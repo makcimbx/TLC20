@@ -1,0 +1,11 @@
+*.swp
+*.sublime-*
+Thumbs.db
+*.lnk
+sftp-config.json
+node_modules
+
+*.gma
+*.jpg
+*.psd
+*.png

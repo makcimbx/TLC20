@@ -1,0 +1,7 @@
+// Extracted with MulleDK19's GMAD Extractor
+"AddonInfo"
+{
+	"name" "Star Wars Vehicles: Episode 2"
+	"author_name" "Author Name"
+	"info" " { 	"description": "Description", 	"type": "vehicle", 	"tags":  	[ 		"roleplay", 		"movie" 	] }"
+}

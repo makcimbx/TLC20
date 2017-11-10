@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"name"			"Set PlayURL"
+	"version"			"1.01"
+	"up_date"			"02/03/15"
+	"author_name"		"Mr. Apple"
+	"author_email"		"support@f4egaming.com"
+	"info"			"Play around with a new feature in gmod"
+}
