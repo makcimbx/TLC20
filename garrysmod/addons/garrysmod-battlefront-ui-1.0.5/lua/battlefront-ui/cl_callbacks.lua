@@ -116,7 +116,7 @@ bfUI.addDataCheck( "servers", function( data, frame )
     if not servers then return end
 
     local label = frame.panel:Add( "DLabel" )
-    label:SetText( "CLICK ONE OF THE SERVER BUTTONS TO CONNECT TO A SERVER." )
+    label:SetText( "НАЖМИТЕ НА КНОПКУ, ЧТОБЫ ПРИСОЕДИНИТСЬЯ К СЕРВЕРУ." )
     label:SetFont( "bfUILarge-Secondary" )
     label:SetTextColor( color_white )
     label:Dock( TOP )

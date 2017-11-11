@@ -185,7 +185,7 @@ function PANEL:editColor( varName, varInfo, value )
 
     local resetToDefault = footer:Add( "bfUIButton" )
     resetToDefault:Dock( LEFT )
-    resetToDefault:SetText( "ВЕРНУТЬ СТАНДАРТ" )
+    resetToDefault:SetText( "СБРОСИТЬ НАСТРОЙКИ" )
     resetToDefault:SetWide( 256 )
 
     resetToDefault.DoClick = function( this )
@@ -197,7 +197,7 @@ function PANEL:editColor( varName, varInfo, value )
     local submit = footer:Add( "bfUIButton" )
     submit:Dock( LEFT )
     submit:DockMargin( 8, 0, 0, 0 )
-    submit:SetText( "ПОДТВЕРДИТЬ" )
+    submit:SetText( "SUBMIT" )
     submit:SetWide( 128 )
 
     local mixer = self.optionPanel:Add( "DColorMixer" )
@@ -312,22 +312,22 @@ function PANEL:viewOptions( categoryId, categoryInfo )
 
         self.resetBtn = self.footer:Add( "bfUIButton" )
         self.resetBtn:Dock( LEFT )
-        self.resetBtn:SetText( "RESET TO DEFAULTS" )
+        self.resetBtn:SetText( "СБРОСИТЬ НАСТРОЙКИ" )
         self.resetBtn:SetWide( 256 )
         self.resetBtn.DoClick = function( pnl )
-            bfUI.createDialogue( "RESET", "Reset to defaults settings?", "YES", function( dialogue )
+            bfUI.createDialogue( "СБРОС", "Вернуть стандартные настройки?", "ДА", function( dialogue )
                 for a, b in pairs( bfUI.data.stored ) do
                     bfUI.setClientData( a, b.default )
                 end
 
                 dialogue:Close()
-            end, "NO", function( dialogue ) dialogue:Close() end )
+            end, "НЕТ", function( dialogue ) dialogue:Close() end )
         end
 
         self.goBack = self.footer:Add( "bfUIButton" )
         self.goBack:Dock( LEFT )
         self.goBack:DockMargin( 8, 0, 0, 0 )
-        self.goBack:SetText( "BACK" )
+        self.goBack:SetText( "НАЗАД" )
         self.goBack:SetWide( 128 )
         self.goBack.DoClick = function( pnl )
             local fadeTime = bfUI.getClientData( "fade_time", 0.5 )
@@ -355,16 +355,16 @@ function PANEL:setUp()
 
     self.resetBtn = self.footer:Add( "bfUIButton" )
     self.resetBtn:Dock( LEFT )
-    self.resetBtn:SetText( "RESET TO DEFAULTS" )
+    self.resetBtn:SetText( "СБРОСИТЬ НАСТРОЙКИ" )
     self.resetBtn:SetWide( 256 )
     self.resetBtn.DoClick = function( pnl )
-        bfUI.createDialogue( "RESET", "Reset to defaults settings?", "YES", function( dialogue )
+        bfUI.createDialogue( "СБРОС", "Вернуть стандартные настройки?", "ДА", function( dialogue )
             for a, b in pairs( bfUI.data.stored ) do
                 bfUI.setClientData( a, b.default )
             end
 
             dialogue:Close()
-        end, "NO", function( dialogue ) dialogue:Close() end )
+        end, "НЕТ", function( dialogue ) dialogue:Close() end )
     end
 
     self.container = self.panel:Add( "DIconLayout" )

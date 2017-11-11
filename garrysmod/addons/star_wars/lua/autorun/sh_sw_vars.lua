@@ -8,7 +8,7 @@ SW.EnableScoreboard = true
 if CLIENT then
 
     SW.UseChatbox = false
-    SW.WebsitePage = "http://google.com/"
+    SW.WebsitePage = "https://vk.com/clonewarsrpporus"
     SW.UseRadar = true
     SW.TracedRadar = false
     SW.RadarUpdateRate = 1
@@ -20,7 +20,7 @@ if CLIENT then
         y = 64
     }
 
-    SW.Rules = { "Don't jump" , "Don't disrespect" , "Don't spam mic" , "Use common sense" , "Be smart" , "You can't shout allah akbar" }
+    SW.Rules = { "Запрещено:" , "MetaGaming" , "JobAbuse" , "PropClimb" , "SpawnKill" , "RDM", "И ещё много всего, подробнее в группе вк" }
 end
 
 SW.ShowLevelHUD = true

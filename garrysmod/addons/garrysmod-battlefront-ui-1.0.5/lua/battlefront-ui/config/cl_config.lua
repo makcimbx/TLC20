@@ -72,7 +72,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "appearance", 
-			niceName = "Display avatars" 
+			niceName = "Отображать аватар" 
 		} 
 	}
 )
@@ -87,7 +87,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "appearance", 
-			niceName = "Theme primary color" 
+			niceName = "Основной цвет темы" 
 		} 
 	}
 )
@@ -102,7 +102,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "appearance", 
-			niceName = "Theme secondary color" 
+			niceName = "Второй цвет темы" 
 		} 
 	}
 )
@@ -117,7 +117,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "appearance", 
-			niceName = "Theme gradient color" 
+			niceName = "Цвет темы" 
 		} 
 	}
 )
@@ -132,7 +132,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "appearance", 
-			niceName = "Fade time (general)" 
+			niceName = "Время анимаций (основные)" 
 		} 
 	}
 )
@@ -147,7 +147,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "appearance", 
-			niceName = "Fade time (section click)" 
+			niceName = "Время анимаций (выбор кнопок)" 
 		} 
 	}
 )
@@ -162,7 +162,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "appearance", 
-			niceName = "Primary font" 
+			niceName = "Основной шрифт" 
 		},
 
 		-- Do not edit this
@@ -182,7 +182,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "appearance", 
-			niceName = "Secondary font" 
+			niceName = "Вторичный шрифт" 
 		},
 
 		-- Do not edit this

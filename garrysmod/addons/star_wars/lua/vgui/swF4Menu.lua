@@ -160,7 +160,7 @@ function PANEL:GenerateCategories()
     local cat = vgui.Create("sw.f4.category" , self)
     cat:SetSize(230 , 29)
     cat:SetPos(lowRes and 26 or 36 , (lowRes and 55 or 84) + i * 29 + 8)
-    cat.Text = "Information"
+    cat.Text = "Информация"
     cat.Selected = false
     cat.Disabled = true
     cat.DoClick = function() end
@@ -168,7 +168,7 @@ function PANEL:GenerateCategories()
     local fc = vgui.Create("sw.f4.category" , self)
     fc:SetSize(230 , 29)
     fc:SetPos(lowRes and 26 or 36 , (lowRes and 55 or 84) + i * 29 + 8)
-    fc.Text = "Rules"
+    fc.Text = "Правила"
     fc.Selected = false
     fc.ForceGold = true
     fc:DoClick()
@@ -177,7 +177,7 @@ function PANEL:GenerateCategories()
     local cat = vgui.Create("sw.f4.category" , self)
     cat:SetSize(230 , 29)
     cat:SetPos(lowRes and 26 or 36 , (lowRes and 55 or 84) + i * 29 + 8)
-    cat.Text = "Website"
+    cat.Text = "Вконтакте"
     cat.Selected = false
     cat.ForceGold = true
 
@@ -233,7 +233,7 @@ function PANEL:SetSelection(str)
     self.Content.Child = { }
     self.Content:SetSize(lowRes and 706 or 870 , lowRes and 396 or 600)
 
-    if (str == "Jobs" or str == "Rules") then
+    if (str == "Jobs" or str == "Правила") then
         if (str == "Jobs") then
             self.Content:SetSize(lowRes and 450 or 550 , lowRes and 396 or 585)
             self:createJobSection()
@@ -247,8 +247,8 @@ end
 
 function PANEL:createRules()
     self.Content.Paint = function(s , w , h)
-        draw.SimpleText("Rules:" , "sw_ui_48b" , w / 2 , 0 , Color(0 , 198 , 218) , TEXT_ALIGN_CENTER)
-        draw.SimpleText("Rules:" , "sw_ui_48" , w / 2 , 0 , Color(0 , 198 , 218) , TEXT_ALIGN_CENTER)
+        draw.SimpleText("Правила:" , "sw_ui_48b" , w / 2 , 0 , Color(0 , 198 , 218) , TEXT_ALIGN_CENTER)
+        draw.SimpleText("Правила:" , "sw_ui_48" , w / 2 , 0 , Color(0 , 198 , 218) , TEXT_ALIGN_CENTER)
 
         for k , v in pairs(SW.Rules) do
             draw.SimpleText("-" .. v , "sw_ui_24b" , 24 , 48 + k * 28 , Color(150 , 198 , 218))
@@ -436,7 +436,7 @@ function PANEL:GenerateCategories()
     local cat = vgui.Create("sw.f4.category" , self)
     cat:SetSize(230 , 29)
     cat:SetPos(lowRes and 26 or 36 , (lowRes and 55 or 84) + i * 29 + 8)
-    cat.Text = "Website"
+    cat.Text = "VKontakte"
     cat.Selected = false
     cat.ForceGold = true
 
@@ -506,8 +506,8 @@ end
 
 function PANEL:createRules()
     self.Content.Paint = function(s , w , h)
-        draw.SimpleText("Rules:" , "sw_ui_48b" , w / 2 , 0 , Color(0 , 198 , 218) , TEXT_ALIGN_CENTER)
-        draw.SimpleText("Rules:" , "sw_ui_48" , w / 2 , 0 , Color(0 , 198 , 218) , TEXT_ALIGN_CENTER)
+        draw.SimpleText("Правила:" , "sw_ui_48b" , w / 2 , 0 , Color(0 , 198 , 218) , TEXT_ALIGN_CENTER)
+        draw.SimpleText("Правила:" , "sw_ui_48" , w / 2 , 0 , Color(0 , 198 , 218) , TEXT_ALIGN_CENTER)
 
         for k , v in pairs(SW.Rules) do
             draw.SimpleText("-" .. v , "sw_ui_24b" , 24 , 48 + k * 28 , Color(150 , 198 , 218))

@@ -262,19 +262,19 @@ function FRAME:setUp()
 
     self.disc = self.footer:Add( "bfUIButton" )
     self.disc:Dock( LEFT )
-    self.disc:SetSize( 128 )
-    self.disc:SetText( "DISCONNECT" )
+    self.disc:SetSize( 170 )
+    self.disc:SetText( "ОТКЛЮЧИТЬСЯ" )
 
     self.disc.DoClick = function( this )
         bfUI.createDialogue(
-            "disc",
-            "Do you want to disc this menu?" ,
-            "Yes",
+            "ОТКЛЮЧЕНИЕ",
+            "Вы хотите отключиться?" ,
+            "Да",
             function( dialogue )
                 RunConsoleCommand( "disconnect" )
                 dialogue:Close()
             end,
-            "No",
+            "Нет",
             function( dialogue )
                 dialogue:Close()
         end )
@@ -284,7 +284,7 @@ function FRAME:setUp()
     self.res:Dock( LEFT )
     self.res:DockMargin( 8, 0, 0, 0 )
     self.res:SetSize( 128 )
-    self.res:SetText( "RESUME" )
+    self.res:SetText( "ВЕРНУТЬСЯ" )
 
     self.res.DoClick = function( this )
         self:fadeOut()
@@ -382,7 +382,7 @@ function FRAME:setUp()
 
     self.option1 = self.container:Add( "bfUIDialogueButton" )
     self.option1:Dock( TOP )
-    self.option1:SetText( self.option1Text or "YES" )
+    self.option1:SetText( self.option1Text or "ДА" )
     self.option1:SetHeight( 40 )
     self.option1.DoClick = function( pnl )
         if self.callback1 then return self.callback1( self ) end
@@ -391,7 +391,7 @@ function FRAME:setUp()
     self.option2 = self.container:Add( "bfUIDialogueButton" )
     self.option2:Dock( TOP )
     self.option2:DockMargin( 0, 4, 0, 0 )
-    self.option2:SetText( self.option2Text or "NO" )
+    self.option2:SetText( self.option2Text or "НЕТ" )
     self.option2:SetHeight( 40 )
     self.option2.DoClick = function( pnl )
         if self.callback2 then return self.callback2( self ) end
