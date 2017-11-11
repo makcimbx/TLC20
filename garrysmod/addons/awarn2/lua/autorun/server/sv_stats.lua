@@ -24,16 +24,3 @@ function statSuccess( body )
 	
 	ServerLog("AWarn: Your server info has been updated to the online statistics tracking\n")
 end
-
-function FreeVersionAdvert()
-	for k, v in pairs( player.GetAll() ) do
-		v:SendLua( "chat.AddText( Color(255,255,255), 'This server is running ', Color(255,50,50), 'AWarn2 ', Color(255,255,255), 'designed by ', Color(50,255,50), '|G4P| Mr.President', Color(255,255,255), '.' )" )
-	end
-
-	timer.Simple( 1800, FreeVersionAdvert )
-end
-
-function AWarn2_Advert_TimerStart()
-	timer.Simple( 5, FreeVersionAdvert )
-end
-hook.Add( "InitPostEntity", "AWarn2_Advert_TimerStart", AWarn2_Advert_TimerStart )
