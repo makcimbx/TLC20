@@ -51,15 +51,17 @@ function Kun_MakeMarker()
 		if(team.GetName(ply:Team()) == Kun_DefJobName) then
 			for k,v in pairs(ents.GetAll()) do
 				if(v != nil and v:IsValid() and v:GetClass() == "prop_ragdoll") then
-					local pos = v:GetPos():ToScreen()
-					local forczersad = Kun_DeathTime
-					if(Kun_AddExtraTime == 1) then
-						forczersad = forczersad + Kun_ExtraDeathTime
+					if(ply:GetPos():Distance( v:GetPos() )) <= 1000 and ply:IsTeamType("medic") then
+						local pos = v:GetPos():ToScreen()
+						local forczersad = Kun_DeathTime
+						if(Kun_AddExtraTime == 1) then
+							forczersad = forczersad + Kun_ExtraDeathTime
+						end
+						draw.SimpleText( "Время: "..forczersad - math.ceil(CurTime() - v:GetNWInt("RagDeathTimeZ")), "TargetID", pos.x - 20, pos.y + 30, Color(250,250,250,255))
+						surface.SetDrawColor( 250, 250, 250, 255) 
+						surface.DrawRect(pos.x, pos.y, 10, 30 )
+						surface.DrawRect(pos.x - 10, pos.y + 10, 30, 10 )
 					end
-					draw.SimpleText( "Time: "..forczersad - math.ceil(CurTime() - v:GetNWInt("RagDeathTimeZ")), "TargetID", pos.x - 20, pos.y + 30, Color(250,250,250,255))
-					surface.SetDrawColor( 250, 250, 250, 255) 
-					surface.DrawRect(pos.x, pos.y, 10, 30 )
-					surface.DrawRect(pos.x - 10, pos.y + 10, 30, 10 )
 				end
 			end
 		end
