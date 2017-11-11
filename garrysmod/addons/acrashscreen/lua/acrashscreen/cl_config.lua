@@ -34,17 +34,17 @@ _this.backgroundUrls = {
 	{ 
 		"https://tlcdonatesystem.ru/imagesall/1.jpg", -- Image URL
 		1920, 1080, -- Width, Height
-		false -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
+		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	},
 	{ 
 		"https://tlcdonatesystem.ru/imagesall/2.jpg", -- Image URL
-		2006, 1074, -- Width, Height
-		false -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
+		1920, 1080, -- Width, Height
+		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	},
 	{ 
 		"https://tlcdonatesystem.ru/imagesall/3.jpg", -- Image URL
 		1920, 1080, -- Width, Height
-		false -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
+		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	}
 }
 
