@@ -21,7 +21,7 @@ CLASSICADVERT.advertTextColor = Color( 255, 255, 0, 255 )
 CLASSICADVERT.failMessage = "Введите текст."
 
 -- The chat command for adverts. (A "/" is added at the front automatically.)
-CLASSICADVERT.chatCommand = "ad" -- Please, do not use "/advert" as it is used for the new advert system in DarkRP.
+CLASSICADVERT.chatCommand = "advert" -- Please, do not use "/advert" as it is used for the new advert system in DarkRP.
 
 -- The F1 (help menu) description of the advert command.
 CLASSICADVERT.commandDescription = "Message all players on the server."
