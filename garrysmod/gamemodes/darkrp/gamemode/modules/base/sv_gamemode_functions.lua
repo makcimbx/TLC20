@@ -824,14 +824,7 @@ local function collectRemoveEntities(ply)
         table.insert(collect, v)
     end
 
-    if not ply:isMayor() then return collect end
-
-    for _, ent in pairs(ply.lawboards or {}) do
-        if not IsValid(ent) then continue end
-        table.insert(collect, ent)
-    end
-
-    return collect
+     return collect
 end
 
 function GM:PlayerDisconnected(ply)
@@ -839,7 +832,6 @@ function GM:PlayerDisconnected(ply)
     timer.Remove(ply:SteamID64() .. "jobtimer")
     timer.Remove(ply:SteamID64() .. "propertytax")
 
-    local isMayor = ply:isMayor()
 
     local remList = collectRemoveEntities(ply)
     removeDelayed(remList, ply)
@@ -847,11 +839,11 @@ function GM:PlayerDisconnected(ply)
     DarkRP.destroyQuestionsWithEnt(ply)
     DarkRP.destroyVotesWithEnt(ply)
 
-    if isMayor and GetGlobalBool("DarkRP_LockDown") then -- Stop the lockdown
+    if GetGlobalBool("DarkRP_LockDown") then -- Stop the lockdown
         DarkRP.unLockdown(ply)
     end
 
-    if isMayor and GAMEMODE.Config.shouldResetLaws then
+    if GAMEMODE.Config.shouldResetLaws then
         DarkRP.resetLaws()
     end
 

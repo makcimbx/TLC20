@@ -26,7 +26,7 @@ local function declareTeamCommands(CTeam)
         return true
     end
 
-    if CTeam.vote or CTeam.RequiresVote then
+    if false then
         DarkRP.declareChatCommand{
             command = "vote" .. CTeam.command,
             description = "Vote to become " .. CTeam.name .. ".",
