@@ -25,11 +25,11 @@ In these few cases it will be pretty obvious when you expect something to happen
 DarkRP.disabledDefaults["modules"] = {
 	["afk"]              = true,
 	["chatsounds"]       = true,
-	["events"]           = false,
+	["events"]           = true,
 	["fpp"]              = false,
 	["f1menu"]           = true,
 	["f4menu"]           = true,
-	["hitmenu"]          = false,
+	["hitmenu"]          = true,
 	["hud"]              = false,
 	["hungermod"]        = true,
 	["playerscale"]      = false,

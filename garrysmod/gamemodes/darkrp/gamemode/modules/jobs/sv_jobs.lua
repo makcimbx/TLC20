@@ -7,11 +7,6 @@ function meta:changeTeam(t, force, suppressNotification)
     local notify = suppressNotification and fn.Id or DarkRP.notify
     local notifyAll = suppressNotification and fn.Id or DarkRP.notifyAll
 
-    if self:isArrested() and not force then
-        notify(self, 1, 4, DarkRP.getPhrase("unable", team.GetName(t), ""))
-        return false
-    end
-
     local allowed, time = self:changeAllowed(t)
     if t ~= GAMEMODE.DefaultTeam and not allowed and not force then
         local notif = time and DarkRP.getPhrase("have_to_wait",  math.ceil(time), "/job, " .. DarkRP.getPhrase("banned_or_demoted")) or DarkRP.getPhrase("unable", team.GetName(t), DarkRP.getPhrase("banned_or_demoted"))
@@ -213,7 +208,6 @@ function meta:changeAllowed(t)
 end
 
 function GM:canChangeJob(ply, args)
-    if ply:isArrested() then return false end
     if ply.LastJob and 10 - (CurTime() - ply.LastJob) >= 0 then return false, DarkRP.getPhrase("have_to_wait", math.ceil(10 - (CurTime() - ply.LastJob)), "/job") end
     if not ply:Alive() then return false end
 
@@ -261,9 +255,6 @@ local function FinishDemote(vote, choice)
         if target:Alive() then
             local demoteTeam = hook.Call("demoteTeam", nil, target) or GAMEMODE.DefaultTeam
             target:changeTeam(demoteTeam, true)
-            if target:isArrested() then
-                target:arrest()
-            end
         else
             target.demotedWhileDead = true
         end

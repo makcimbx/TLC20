@@ -21,7 +21,6 @@ end
 
 function meta:payDay()
     if not IsValid(self) then return end
-    if not self:isArrested() then
         DarkRP.retrieveSalary(self, function(amount)
             amount = math.floor(amount or GAMEMODE.Config.normalsalary)
             local suppress, message, hookAmount = hook.Call("playerGetSalary", GAMEMODE, self, amount)
@@ -34,9 +33,6 @@ function meta:payDay()
                 if not suppress then DarkRP.notify(self, 4, 4, message or DarkRP.getPhrase("payday_message", DarkRP.formatMoney(amount))) end
             end
         end)
-    else
-        DarkRP.notify(self, 4, 4, DarkRP.getPhrase("payday_missed"))
-    end
 end
 
 function DarkRP.createMoneyBag(pos, amount)

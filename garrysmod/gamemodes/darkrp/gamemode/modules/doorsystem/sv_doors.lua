@@ -135,7 +135,7 @@ end
 
 function pmeta:doPropertyTax()
     if not GAMEMODE.Config.propertytax then return end
-    if self:isCP() and GAMEMODE.Config.cit_propertytax then return end
+    if GAMEMODE.Config.cit_propertytax then return end
 
     local numowned = self.OwnedNumz
 
@@ -312,11 +312,6 @@ local function OwnDoor(ply)
     end
 
     local Owner = trace.Entity:CPPIGetOwner()
-
-    if ply:isArrested() then
-        DarkRP.notify(ply, 1, 5, DarkRP.getPhrase("door_unown_arrested"))
-        return ""
-    end
 
     if trace.Entity:getKeysNonOwnable() or trace.Entity:getKeysDoorGroup() or not fn.Null(trace.Entity:getKeysDoorTeams() or {}) then
         DarkRP.notify(ply, 1, 5, DarkRP.getPhrase("door_unownable"))

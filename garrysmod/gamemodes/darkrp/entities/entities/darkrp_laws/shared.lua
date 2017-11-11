@@ -7,19 +7,18 @@ ENT.Author = "Drakehawke"
 ENT.Spawnable = false
 
 local plyMeta = FindMetaTable("Player")
-DarkRP.declareChatCommand{
-    command = "addlaw",
-    description = "Add a law to the laws board.",
-    delay = 1.5,
-    condition = plyMeta.isMayor
-}
+--DarkRP.declareChatCommand{
+--    command = "addlaw",
+--    description = "Add a law to the laws board.",
+--    delay = 1.5,
+--}
 
-DarkRP.declareChatCommand{
-    command = "removelaw",
-    description = "Remove a law from the laws board.",
-    delay = 1.5,
-    condition = plyMeta.isMayor
-}
+--DarkRP.declareChatCommand{
+--    command = "removelaw",
+ --   description = "Remove a law from the laws board.",
+--    delay = 1.5,
+--    condition = plyMeta.isMayor
+--}
 
 DarkRP.declareChatCommand{
     command = "placelaws",

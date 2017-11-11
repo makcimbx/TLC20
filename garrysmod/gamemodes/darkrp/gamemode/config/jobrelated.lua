@@ -245,7 +245,7 @@ DarkRP.createAgenda("Gangster's agenda", TEAM_MOB, {TEAM_GANG})
 DarkRP.createAgenda("Police agenda", {TEAM_MAYOR, TEAM_CHIEF}, {TEAM_POLICE})
 
 -- Group chats
-DarkRP.createGroupChat(function(ply) return ply:isCP() end)
+DarkRP.createGroupChat(function(ply) return false end)
 DarkRP.createGroupChat(TEAM_MOB, TEAM_GANG)
 DarkRP.createGroupChat(function(listener, ply) return not ply or ply:Team() == listener:Team() end)
 
@@ -260,7 +260,7 @@ GAMEMODE.CivilProtection = {
 }
 
 -- Hitman team
-DarkRP.addHitmanTeam(TEAM_MOB)
+-- DarkRP.addHitmanTeam(TEAM_MOB)
 
 -- Demote groups
 DarkRP.createDemoteGroup("Cops", {TEAM_POLICE, TEAM_CHIEF})

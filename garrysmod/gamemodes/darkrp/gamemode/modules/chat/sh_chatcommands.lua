@@ -114,7 +114,6 @@ DarkRP.declareChatCommand{
     command = "broadcast",
     description = "Broadcast something as a mayor.",
     delay = 1.5,
-    condition = plyMeta.isMayor
 }
 
 DarkRP.declareChatCommand{
