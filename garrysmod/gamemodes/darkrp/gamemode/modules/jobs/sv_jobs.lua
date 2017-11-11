@@ -23,7 +23,7 @@ function meta:changeTeam(t, force, suppressNotification)
         self:teamBan()
         self.IsBeingDemoted = false
         self:changeTeam(GAMEMODE.DefaultTeam, true)
-        DarkRP.destroyVotesWithEnt(self)
+        --DarkRP.destroyVotesWithEnt(self)
         notify(self, 1, 4, DarkRP.getPhrase("tried_to_avoid_demotion"))
 
         return false

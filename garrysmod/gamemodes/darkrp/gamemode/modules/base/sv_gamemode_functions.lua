@@ -836,8 +836,8 @@ function GM:PlayerDisconnected(ply)
     local remList = collectRemoveEntities(ply)
     removeDelayed(remList, ply)
 
-    DarkRP.destroyQuestionsWithEnt(ply)
-    DarkRP.destroyVotesWithEnt(ply)
+    --DarkRP.destroyQuestionsWithEnt(ply)
+    --DarkRP.destroyVotesWithEnt(ply)
 
     if GetGlobalBool("DarkRP_LockDown") then -- Stop the lockdown
         DarkRP.unLockdown(ply)
