@@ -1,7 +1,18 @@
 --[[
-    NPC Spawn Platforms V2
-    Copyright (c) 2011-2016 Lex Robinson
-    This code is freely available under the MIT License
+	NPC Spawn Platforms V2 - lua/autorun/npcspawner2.lua
+    Copyright 2009-2017 Lex Robinson
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 --]]
 
 local function printd(...)
@@ -15,15 +26,19 @@ local function printd2(...)
     end
 end
 
+local function svorcl()
+    return SERVER and "SV" or "CL";
+end
+
 npcspawner = {
     debug = function(...)
         if (npcspawner.config.debug == 1) then
-            printd("Spawn Platforms Debug ("..(SERVER and "server" or "client")..")",...);
+            printd("PLFM (" .. svorcl() .. "):", ...);
         end
     end;
     debug2 = function(...)
         if (npcspawner.config.debug == 1) then
-            printd2("Spawn Platforms Debug (Level 2) ("..(SERVER and "server" or "client")..")",...);
+            printd("PLFM L2 (" .. svorcl() .. "):", ...);
         end
     end;
     send = function(name, tab, who)

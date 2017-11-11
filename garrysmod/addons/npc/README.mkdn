@@ -1,12 +1,9 @@
-NPC Spawn Platforms v2
-=======================
-About
------
+# NPC Spawn Platforms V2
+## About
 This is an addon for the popular [Garry's Mod][gmod].
 It allows you to create SEnts which spawn a stream of NPCs without user interaction, which is useful for NPC battles, either against yourself or rival NPCs.
 
-Features
---------
+## Features
 * Full [Wiremod][wire] support
 * Integrates with the Sandbox gamemode if it's loaded
 * Easy to control Lua API for integration with other gamemodes.
@@ -16,8 +13,16 @@ Features
   - Specify where and how fast NPCs spawn
   - Choose how many NPCs are active at any one time and if the spawners should turn off after a certain number of NPCs spawned. (Waves anyone?)
 
-Changelog
----------
+## Changelog
+* __3.0.0__:
+  - ~ REWRITE OF CORE IN PROGRESS~
+  - Change NPC spawn delay to pause once the maximum NPC limit is reached
+  - Fix key bindings not being cleaned up properly
+* __2.4.0__:
+  - Add support for Hammer IO
+  - Rejig the NPC categories
+  - Add an "All" tab with the old style gigantic list
+  - Support the Common Prop Protection Interface (FPP et al)
 * __2.3.2__:
   - Fix NPCs with no category breaking the tool
 * __2.3.1__:
@@ -60,13 +65,11 @@ Changelog
   - platform:RemoveNPCs()
 
 
-Credits
--------
+## Credits
 * Lex Robinson
 * Devenger
 
-Links
------
+## Links
 * [Steam Workshop][workshop]
 * [Legacy gmod.org release][legacy]
 * [Facepunch thread][fpthread]

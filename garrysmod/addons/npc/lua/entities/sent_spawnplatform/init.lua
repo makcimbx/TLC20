@@ -1,36 +1,44 @@
 --[[
-	NPC Spawn Platforms V2
-	Copyright (c) 2011-2016 Lex Robinson
-	This code is freely available under the MIT License
+	NPC Spawn Platforms V2 - lua/entities/sent_spawnplatform/init.lua
+    Copyright 2009-2017 Lex Robinson
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 --]]
+
 AddCSLuaFile("shared.lua");
 include('shared.lua');
 
 DEFINE_BASECLASS(ENT.Base);
 
---[[ Make the platform dupable ]]--
-duplicator.RegisterEntityClass("sent_spawnplatform", function(ply, pos, angles, data)
-	local ent = ents.Create("sent_spawnplatform");
-	ent:SetAngles(angles);
-	ent:SetPos(pos);
-	-- Legacy support
+--[[ The built in duplicator function messes with the platform too much ]]--
+duplicator.RegisterEntityClass("sent_spawnplatform", function(ply, data)
+	if (BaseClass.CanDuplicate(ply, data)) then
+		return BaseClass.GenericDuplicate(ply, data);
+	end
+	return nil;
+end, "Data");
+
+-- Deal with old save data
+function ENT:OnDuplicated(data)
 	for key, value in pairs(data) do
 		if (key:sub(1, 2) == "k_") then
-			ent:SetKeyValue(key:sub(3), value);
+			self:SetKeyValue(key:sub(3), value);
 		end
 	end
-	ent:Spawn();
-	ent:Activate();
-	-- If it's being loaded from a savegame ply might be nil
-	if (IsValid(ply)) then
-		ent:SetPlayer(ply);
-		ply:AddCount("sent_spawnplatform", ent);
-	end
-	return ent;
-end, "Pos", "Angle", "Data");
+end
 
-local model1 = Model("models/props_c17/streetsign004e.mdl");
-local model2 = Model("models/props_c17/streetsign004f.mdl");
+local model_active = Model("models/props_c17/streetsign004e.mdl");
+local model_inactive = Model("models/props_c17/streetsign004f.mdl");
 --[[
 Medic:
 		SpawnFlags	=	131072
@@ -106,45 +114,73 @@ function ENT:Initialize ()
 	self.NPCs    = {};
 	self:UpdateLabel();
 
-	if (WireLib) then
-	--[[ People wanted wire control, here is your wire control. ]]--
-		WireLib.CreateSpecialInputs (self, {
-			"SetActive",
-			"SpawnOne",
-			"NPCClass",
-			"MaxActiveNPCs",
-			"SpawnDelay",
-			"Weapon",
-			"HealthMultiplier",
-			"MaxSpawnedNPCs",
-			"DelayDecreaseAmount",
-			"RemoveNPCs",
-		}, {
-			"NORMAL",
-			"NORMAL",
-			"STRING",
-			"NORMAL",
-			"NORMAL",
-			"STRING",
-			"NORMAL",
-			"NORMAL",
-			"NORMAL",
-			"NORMAL"
-		});
-		WireLib.CreateSpecialOutputs(self, {
-			"IsOn",
-			"ActiveNPCs",
-			"TotalNPCsSpawned",
-			"LastNPCSpawned",
-			"OnNPCSpawned"
-		}, {
-			"NORMAL",
-			"NORMAL",
-			"NORMAL",
-			"ENTITY",
-			"NORMAL"
-		});
-	end
+	self:CreateWireInputs({
+		{
+			Name = "SetActive";
+			Desc = "Set the active state of the platform";
+		};
+		{
+			Name = "SpawnOne";
+			Desc = "Force the spawning of a NPC";
+		};
+		{
+			Name = "NPCClass";
+			Desc = "Set the class of NPC to spawn";
+			Type = "STRING";
+		};
+		{
+			Name = "MaxActiveNPCs";
+			Desc = "Set the max number of active NPCs";
+		};
+		{
+			Name = "SpawnDelay";
+			Desc = "Set the spawn delay";
+		};
+		{
+			Name = "Weapon";
+			Desc = "Set what weapon to give the NPCs";
+			Type = "STRING";
+		};
+		{
+			Name = "HealthMultiplier";
+			Desc = "Set the health multiplier for the NPCs";
+		};
+		{
+			Name = "MaxSpawnedNPCs";
+			Desc = "Set the total number of NPCs to spawn before turning off";
+		};
+		{
+			Name = "DelayDecreaseAmount";
+			Desc = "Set how much to decrease the delay by every MaxActiveNPCs spawned";
+		};
+		{
+			Name = "RemoveNPCs";
+			Desc = "Delete all NPCs currently spawned.";
+		};
+	});
+	self:CreateWireOutputs({
+		{
+			Name = "IsOn";
+			Desc = "Is the platform on?";
+		};
+		{
+			Name = "ActiveNPCs";
+			Desc = "The number of currently active NPCs";
+		};
+		{
+			Name = "TotalNPCsSpawned";
+			Desc = "The total number of NPCs spawned this active session";
+		};
+		{
+			Name = "LastNPCSpawned";
+			Desc = "The last NPC the platform spawned";
+			Type = "ENTITY";
+		};
+		{
+			Name = "OnNPCSpawned";
+			Desc = "Triggered every time a NPC is spawned.";
+		};
+	});
 end
 
 function ENT:RegisterListeners()
@@ -208,12 +244,12 @@ function ENT:OnFrozenStateChange(_, _, freeze)
 	end
 end
 
-ENT._prevOnKepad = false;
+ENT._prevOnKeypad = false;
 ENT._prevOffKeypad = false;
 function ENT:RebindNumpads(ply, keyOn, keyOff)
 	numpad.Remove(self._prevOffKeypad);
-	numpad.Remove(self._prevOnKepad);
-	self._prevOnKepad = false;
+	numpad.Remove(self._prevOnKeypad);
+	self._prevOnKeypad = false;
 	self._prevOffKeypad = false;
 
 	if (not IsValid(ply)) then
@@ -221,20 +257,17 @@ function ENT:RebindNumpads(ply, keyOn, keyOff)
 	end
 
 	if (keyOn) then
-		self._prevOnKepad = numpad.OnDown(ply, keyOn, "NPCSpawnerOn", self);
+		self._prevOnKeypad = numpad.OnDown(ply, keyOn, "NPCSpawnerOn", self);
 	end
 	if (keyOff) then
-		self._prevOffKepad = numpad.OnDown(ply, keyOff, "NPCSpawnerOff", self);
+		self._prevOffKeypad = numpad.OnDown(ply, keyOff, "NPCSpawnerOff", self);
 	end
 end
 
 function ENT:Think()
 	if (BaseClass.Think) then BaseClass.Think(self); end
 	if (self.Spawned < 0) then self.Spawned = 0 end
-	if (self._WireSpawnedActive) then
-		WireLib.TriggerOutput(self, "OnNPCSpawned", 0);
-		self._WireSpawnedActive = nil;
-	end
+
 	if ((not self:IsActive()) or
 		self.Spawned >= self:GetMaxNPCs() or
 		self.LastSpawn + self:GetSpawnDelay() > CurTime()
@@ -504,6 +537,9 @@ function ENT:SpawnOne()
 		if (IsValid(ply)) then
 			gamemode.Call("PlayerSpawnedNPC", ply, npc);
 			debugoverlay.Cross(npc:GetPos(), 10, 10, color_white, true);
+			if (CPPI) then
+				npc:CPPISetOwner(ply);
+			end
 		end
 	end
 
@@ -517,18 +553,16 @@ function ENT:SpawnOne()
 		self:SetSpawnDelay(math.max(self:GetSpawnDelay() - self:GetDelayDecrease(), npcspawner.config.mindelay));
 	end
 
-
-	if (WireLib) then
-		WireLib.TriggerOutput(self, "ActiveNPCs", self.Spawned);
-		WireLib.TriggerOutput(self, "TotalNPCsSpawned", self.TotalSpawned);
-		WireLib.TriggerOutput(self, "LastNPCSpawned", npc);
-		WireLib.TriggerOutput(self, "OnNPCSpawned", 1);
-		WireLib.TriggerOutput(self, "OnNPCSpawned", 0);
-		--self._WireSpawnedActive = true;
-	end
+	self:TriggerOutput("OnNPCSpawned", self);
+	self:TriggerWireOutput("ActiveNPCs", self.Spawned);
+	self:TriggerWireOutput("TotalNPCsSpawned", self.TotalSpawned);
+	self:TriggerWireOutput("LastNPCSpawned", npc);
+	self:TriggerWireOutput("OnNPCSpawned", 1);
+	self:TriggerWireOutput("OnNPCSpawned", 0);
 
 	if (self.TotalSpawned == self:GetMaxNPCsTotal()) then -- Since totallimit is 0 for off and totalspawned will always be > 0 at this point, shit works.
 		npcspawner.debug("totallimit ("..self:GetMaxNPCsTotal()..") hit. Turning off.");
+		self:TriggerOutput("OnLimitReached", self);
 		self:TurnOff();
 	end
 end
@@ -536,10 +570,13 @@ end
 function ENT:NPCKilled(npc)
 	npcspawner.debug2("NPC Killed:", npc);
 	self.NPCs[npc] = nil;
-	self.Spawned = self.Spawned - 1;
-	if (WireLib) then
-		WireLib.TriggerOutput(self, "ActiveNPCs", self.Spawned);
+	-- Make the delay apply after the nth NPC dies.
+	if (not self:GetLegacySpawnMode() and self.Spawned >= self:GetMaxNPCs()) then
+		self.LastSpawn = CurTime();
 	end
+	self.Spawned = self.Spawned - 1;
+	self:TriggerOutput("OnNPCKilled", self);
+	self:TriggerWireOutput("ActiveNPCs", self.Spawned);
 end
 
 function ENT:Use (activator, caller)
@@ -564,9 +601,7 @@ function ENT:TurnOn()
 	self:SetActive(true);
 	self.TotalSpawned = 0;
 	self:SetSpawnDelay(self:GetStartDelay());
-	if (WireLib) then
-		WireLib.TriggerOutput(self, "TotalNPCsSpawned", self.TotalSpawned);
-	end
+	self:TriggerWireOutput("TotalNPCsSpawned", self.TotalSpawned);
 end
 function ENT:TurnOff()
 	self:SetActive(false);
@@ -577,29 +612,17 @@ function ENT:OnActiveChange(_, _, active)
 	local c = self:GetColor();
 	local a = c.a;
 	if (active) then
-		self:SetModel(model1);
+		self:SetModel(model_active);
 		self.LastSpawn = CurTime();
 		self:SetColor(Color(0, 255, 0, a));
 	else
-		self:SetModel(model2);
+		self:SetModel(model_inactive);
 		self:SetColor(Color(255, 0, 0, a));
 	end
-	if (WireLib) then
-		WireLib.TriggerOutput(self, "IsOn", active and 1 or 0);
-	end
+	self:TriggerWireOutput("IsOn", active and 1 or 0);
 	self.LastChange = CurTime();
 end
 
--- Using keyvalues allows us to have a callback for each value, should it be needed.
-function ENT:KeyValue(key, value)
-	npcspawner.debug2(self, "Key:", key, "Value:", value);
-
-	if (self:SetNetworkKeyValue(key, value)) then
-		npcspawner.debug2("Swallowed by magic!~")
-		return
-	end
-	npcspawner.debug2("REJECTED")
-end
 
 function ENT:OnEntityCopyTableFinish(tab)
 	if (BaseClass.OnEntityCopyTableFinish) then BaseClass.OnEntityCopyTableFinish(self, tab) end;
@@ -623,9 +646,7 @@ function ENT:RemoveNPCs()
 		end
 	end
 	self.Spawned = 0;
-	if (WireLib) then
-		WireLib.TriggerOutput(self, "ActiveNPCs", self.Spawned);
-	end
+	self:TriggerWireOutput("ActiveNPCs", self.Spawned);
 end
 
 function ENT:OnRemove()
@@ -639,6 +660,8 @@ end
 
 --[[ Wire based shit ]]--
 function ENT:TriggerInput(name, val)
+	if (BaseClass.TriggerInput) then BaseClass.TriggerInput(self, name, val); end
+
 	npcspawner.debug2(self, "has recieved wire input with name", name, "and value", val);
 	if (name == "SetActive") then
 		if (val == 0) then
@@ -673,9 +696,20 @@ end
 
 
 --[[ Hammer I/O ]]--
--- function ENT:AcceptInput(name, activator, called, value)
--- 	--npcspawner.debug2(self, "has just had their", name, "triggered by", tostring(called), "which was caused by", tostring(activator), "and was passed", value);
--- 	MsgN(self, " had their '", name, "' input triggered by ", tostring(called), " which was caused by ", tostring(activator), " and was passed '", value, "'");
---     name = string.lower(name);
---     return true;
--- end
+function ENT:AcceptInput(name, activator, called, value)
+	if (BaseClass.AcceptInput) then BaseClass.AcceptInput(self, name, activator, called, value); end
+
+	npcspawner.debug2(self, "has just had their", name, "triggered by", tostring(called), "which was caused by", tostring(activator), "and was passed", value);
+
+	if (name == "TurnOn") then
+		self:TurnOn();
+	elseif (name == "TurnOff") then
+		self:TurnOff();
+	elseif (name == "RemoveNPCs") then
+		self:RemoveNPCs();
+	elseif (name == "SpawnOne") then
+		self:SpawnOne();
+	end
+
+    return true;
+end

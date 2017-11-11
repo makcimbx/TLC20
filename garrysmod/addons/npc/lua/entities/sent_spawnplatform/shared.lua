@@ -1,7 +1,18 @@
 --[[
-	NPC Spawn Platforms V2
-	Copyright (c) 2011-2016 Lex Robinson
-	This code is freely available under the MIT License
+	NPC Spawn Platforms V2 - lua/entities/sent_spawnplatform/shared.lua
+    Copyright 2009-2017 Lex Robinson
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 --]]
 
 ENT.Type           = "anim";
@@ -12,13 +23,7 @@ ENT.Purpose        = "Spawn a constant(ish) stream of NPCs";
 ENT.Spawnable      = false;
 ENT.AdminSpawnable = true;
 
-local BaseClass;
-if (WireLib) then
-    BaseClass = "base_wire_entity"
-else
-    BaseClass = "base_gmodentity"
-end
-DEFINE_BASECLASS(BaseClass);
+DEFINE_BASECLASS "base_lexentity";
 
 print("Hello from the Spawn Platform!");
 
@@ -54,76 +59,76 @@ ENT._NWVars = {
 	{
 		Type = "Bool";
 		Name = "Active";
-		LegacyName = "active";
+		KeyName = "active";
 		Default = false;
 	},
 
 	{
 		Type = "String";
 		Name = "NPC";
-		LegacyName = "npc";
+		KeyName = "npc";
 		Default = "npc_combine_s";
 	},
 	{
 		Type = "String";
 		Name = "NPCWeapon";
-		LegacyName = "weapon";
+		KeyName = "weapon";
 		Default = "weapon_smg1";
 	},
 	{
 		Type = "Float";
 		Name = "NPCHealthMultiplier";
-		LegacyName = "healthmul";
+		KeyName = "healthmul";
 		Default = 1;
 	},
 	{
 		Type = "Int";
 		Name = "NPCSkillLevel";
-		LegacyName = "skill";
+		KeyName = "skill";
 		Default = WEAPON_PROFICIENCY_AVERAGE;
 	},
 
 	{
 		Type = "Int";
 		Name = "MaxNPCs";
-		LegacyName = "maximum";
+		KeyName = "maximum";
 		Default = 5;
 	},
 	{
 		Type = "Int";
 		Name = "MaxNPCsTotal";
-		LegacyName = "totallimit";
+		KeyName = "totallimit";
 		Default = 0;
 	},
 
 	{
 		Type = "Int";
 		Name = "OnKey";
-		LegacyName = "OnKey";
+		KeyName = "OnKey";
 	},
 	{
 		Type = "Int";
 		Name = "OffKey";
-		LegacyName = "offkey";
+		KeyName = "offkey";
 	},
 
 	{
 		Type = "Bool";
 		Name = "CustomSquad";
-		LegacyName = "customsquads";
+		KeyName = "customsquads";
 		Default = false;
 	},
 	{
 		Type = "Int";
 		Name = "SquadOverride";
-		LegacyName = "squadoverride";
+		KeyName = "squadoverride";
 		Default = 0;
 	},
 
 	{
 		Type = "Float";
 		Name = "StartDelay";
-		LegacyName = "delay";
+		KeyName = "delay";
 		Special = {
 			Set = StartDelayCustomSet
 		};
@@ -132,49 +137,55 @@ ENT._NWVars = {
 	{
 		Type = "Float";
 		Name = "DelayDecrease";
-		LegacyName = "decrease";
+		KeyName = "decrease";
 		Default = 0;
 	},
 	{
 		Type = "Float";
 		Name = "SpawnDelay";
 	},
+	{
+		Type = "Bool";
+		Name = "LegacySpawnMode";
+		LegacyName = "oldspawning";
+		Default = False;
+	},
 
 	{
 		Type = "Bool";
 		Name = "CanToggle";
-		LegacyName = "toggleable";
+		KeyName = "toggleable";
 		Default = true;
 	},
 	{
 		Type = "Bool";
 		Name = "AutoRemove";
-		LegacyName = "autoremove";
+		KeyName = "autoremove";
 		Default = true;
 	},
 
 	{
 		Type = "Int";
 		Name = "SpawnHeight";
-		LegacyName = "spawnheight";
+		KeyName = "spawnheight";
 		Default = 16;
 	},
 	{
 		Type = "Int";
 		Name = "SpawnRadius";
-		LegacyName = "spawnradius";
+		KeyName = "spawnradius";
 		Default = 16;
 	},
 	{
 		Type = "Bool";
 		Name = "NoCollideNPCs";
-		LegacyName = "nocollide";
+		KeyName = "nocollide";
 		Default = true;
 	},
 	{
 		Type = "Bool";
 		Name = "Frozen";
-		LegacyName = "frozen";
+		KeyName = "frozen";
 		Default = true;
 	},
 
@@ -186,41 +197,28 @@ ENT._NWVars = {
 	{
 		Type = "Int";
 		Name = "PlayerID";
-		LegacyName = "ply";
+		KeyName = "ply";
 	},
 }
 
 function ENT:SetupDataTables()
+	if (BaseClass.SetupDataTables) then BaseClass.SetupDataTables(self); end
+
 	-- In order not to break existing compatability, make sure all
 	--  keys are still available under their old names.
 	local legacy = {};
 	local function onDataChanged(ent, key, old, new)
 		local data = legacy[key];
 		if (data) then
-			ent["k_" .. data.LegacyName] = tostring(new);
+			ent["k_" .. data.KeyName] = tostring(new);
 		end
 	end
-
-	local NWCounts = {};
 
 	for _, nwvar in pairs(self._NWVars) do
-		local id = NWCounts[nwvar.Type] or 0;
-		local special = nwvar.Special or {};
-		special.KeyName = nwvar.LegacyName;
-		self:NetworkVar(nwvar.Type, id, nwvar.Name, special);
-
-		if (nwvar.LegacyName) then
+		if (nwvar.KeyName) then
 			legacy[nwvar.Name] = nwvar;
 			self:NetworkVarNotify(nwvar.Name, onDataChanged);
+			onDataChanged(self, nwvar.Name, nil, self["Get" .. nwvar.Name](self));
 		end
-
-		if (nwvar.Default ~= nil) then
-			self["Set" .. nwvar.Name](self, nwvar.Default);
-		end
-		NWCounts[nwvar.Type] = id + 1;
-	end
-
-	if (SERVER) then
-		self:RegisterListeners();
 	end
 end
