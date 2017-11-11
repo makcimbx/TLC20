@@ -1,3 +1,3 @@
-resource.AddWorkshop( '1165844047' ) 
+resource.AddWorkshop( '' ) 
 
 resource.AddFile( "" )
