@@ -210,22 +210,22 @@ bfUI.registerClientConfig(
 	}
 )
 
-bfUI.registerElement( "HOME", {
-	greeting = "WELCOME TO BATTLEFRONT UI, YOU CAN SPECIFY YOUR TEXT HERE.",
+bfUI.registerElement( "ГЛАВНАЯ", {
+	greeting = "ДОБРО ПОЖАЛОВАТЬ НА TLC CLONE WARS",
 	blocks = {
 		[ 1 ] = {
-			text = "FULLY IN-GAME CONFIGURATION",
-			sub = "FEATURING",
+			text = "СЕРВЕР ПРОВЕРЕННЫЙ ВРЕМЕНЕМ       НАМ СКОРО 2 ГОДА",
+			sub = "ОСОБЕННОСТИ",
 			image = Material( "bfui/block_2.png" )
 		},
 		[ 2 ] = {
-			text = "BY DEVULTJ",
-			sub = "A QUALITY, OPTIMIZED SCRIPT",
+			text = "СОЗДАНО КОМАНДОЙ TLC",
+			sub = "КАЧЕСТВО, ОПТИМИЗИРОВАННОСТЬ СКРИПТОВ СЕРВЕРА",
 			image = Material( "bfui/block_3.png" )
 		},
 		[ 3 ] = {
-			text = "PURCHASE BATTLEFRONT UI          FOR $3.99",
-			sub = "LAST CHANCE",
+			text = "https://vk.com/clonewarsrpporus",
+			sub = "ВКОНТАКТЕ",
 			image = Material( "bfui/block_4.png" )
 		}
 	},
@@ -247,26 +247,26 @@ bfUI.registerElement( "HOME", {
 	}
 })
 
-bfUI.registerElement( "FORUMS", {
+bfUI.registerElement( "ФОРУМ", {
 	showURL = "https://facepunch.com/"
 })
 
-bfUI.registerElement( "STAFF", {
+bfUI.registerElement( "АДМИНЫ", {
 	--customCheck = function( client, panel ) return client:IsAdmin() or client:IsSuperAdmin() end,
 
-	headerMessage = "This list shows the current online Staff members, contact them if you have any issues.",
+	headerMessage = "Этот лист показывает администрацию в онлайне, обращайтесь к ним если у вас есть проблемы.",
 	staff = {
 		[ "admin" ] = {
-			name = "Administrator",
+			name = "Администратор",
 			color = Color( 255, 255, 255 ),
 		},
 		[ "superadmin" ] = {
-			name = "Senior Administrator",
+			name = "Супер Администратор",
 			color = Color( 51, 125, 255 ),
 		},
-		[ "founder" ] = {
-			name = "Founder",
-			color = Color( 235, 51, 51 ),
+		[ "headadmin" ] = {
+			name = "Главный Администратор",
+			color = Color( 255, 0, 0 ),
 		},
 		--[[
 		[ "vip" ] = {
@@ -288,26 +288,19 @@ bfUI.registerElement( "STAFF", {
 		joinText = "JOIN THE SERVER", -- Replacement text for the join button.
 	}
 ]]
-bfUI.registerElement( "SERVERS", {
+bfUI.registerElement( "СЕРВЕРА", {
 	servers = {
-		[ "DARKRP" ] = {
+		[ "STARWARSRP" ] = {
 			icon = Material( "bfui/server_icon.png" ),
 			ip = "89.34.97.159",
-			desc = "One of our servers.",
+			desc = "Наш сервер из периода войн клонов.",
 
-			joinText = "JOIN"
-		},
-		[ "TTT" ] = {
-			icon = Material( "bfui/server_icon_2.png" ),
-			ip = "89.34.97.159",
-			desc = "Another one of our servers.",
-
-			joinText = "JOIN"
+			joinText = "ПРИСОЕДИНИТЬСЯ"
 		}
 	}
 })
 
-bfUI.registerElement( "RULES", {
+bfUI.registerElement( "ПРАВИЛА", {
 	-- This dictates whether a website should load here.
 	showURL = "https://google.co.uk"
 })
@@ -321,7 +314,7 @@ bfUI.registerElement( "RULES", {
 	})
 ]]
 
-bfUI.registerElement( "OPTIONS", {
+bfUI.registerElement( "НАСТРОЙКИ", {
 	-- This dictates whether the options menu should show here.
 	options = true
 } )
