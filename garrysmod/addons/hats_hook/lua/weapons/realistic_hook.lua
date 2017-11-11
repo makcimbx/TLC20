@@ -525,14 +525,4 @@ function table.FullCopy( tab )
 	return res
 end
 
-// Make a TTT Swep from what we've got
-local TTTSwep = table.Copy( SWEP ) // It's the same as the normal swep, copy over the table
-TTTSwep.Base = "weapon_tttbase" // Using TTT weapon base
-TTTSwep.Slot = 6 // Put it in the proper slot
 
-TTTSwep.Spawnable = false // Make the TTT version hidden, so people don't accidentally spawn it
-TTTSwep.AdminOnly = false
-TTTSwep.AdminSpawnable = false
-
-TTTSwep.CanBuy = {ROLE_TRAITOR, ROLE_DETECTIVE} // Make it buyable
-weapons.Register( TTTSwep, "ttt_realistic_hook" ) // Register the new weapon
