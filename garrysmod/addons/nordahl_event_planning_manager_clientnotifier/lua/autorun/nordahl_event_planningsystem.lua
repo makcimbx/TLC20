@@ -118,33 +118,33 @@ function langueeventplen(z)Z_Defaut_Languages=z
 if IsValid(LocalPlayer()) then
 LocalPlayer():EmitSound("garrysmod/ui_return.wav",60,150)
 end
-tra_scrp_nordahl = "PLANNING"
-tra_scrp_nordahl_e = "Delete"
-tra_scrp_nordahl_lun = "Monday"
-tra_scrp_nordahl_mar = "Tuesday"
-tra_scrp_nordahl_mer = "Wednesday"
-tra_scrp_nordahl_jeu = "Thursday"
-tra_scrp_nordahl_ven = "Friday"
-tra_scrp_nordahl_sam = "Saturday"
-tra_scrp_nordahl_dim = "Sunday"
-tra_scrp_nordahl_heure = "Hours"
-tra_scrp_nordahl_minute = "Minutes"
-tra_scrp_nordahl_heurere = "Real"
-tra_scrp_nordahl_heurevi = "Virtual"
-tra_scrp_nordahl_SH = "Time System"
-tra_scrp_nordahl_Time = "Changing the time"
-tra_scrp_nordahl_Cons = "in the Console"
-tra_scrp_nordahl_Groupmax = "Number Group"
-tra_scrp_nordahl_script = "Script"
-tra_scrp_nordahl_credit = "Made by Nordahl"
-tra_scrp_nordahl_ng = "Rename group"
-tra_scrp_nordahl_settime = "Virtual Conversion Time"
-tra_scrp_nordahl_noevent="There are currently no events, check the planning"
-tra_scrp_nordahl_titre="Planning of the Server: "
+tra_scrp_nordahl = "планирование"
+tra_scrp_nordahl_e = "Удалить"
+tra_scrp_nordahl_lun = "Понедельник"
+tra_scrp_nordahl_mar = "вторник"
+tra_scrp_nordahl_mer = "Среда"
+tra_scrp_nordahl_jeu = "Четверг"
+tra_scrp_nordahl_ven = "Пятница"
+tra_scrp_nordahl_sam = "суббота"
+tra_scrp_nordahl_dim = "Воскресенье"
+tra_scrp_nordahl_heure = "Часы"
+tra_scrp_nordahl_minute = "минут"
+tra_scrp_nordahl_heurere = "Реал"
+tra_scrp_nordahl_heurevi = "Виртуальная"
+tra_scrp_nordahl_SH = "Системное время"
+tra_scrp_nordahl_Time = "Изменение времени"
+tra_scrp_nordahl_Cons = "в консоли"
+tra_scrp_nordahl_Groupmax = "Номер группы"
+tra_scrp_nordahl_script = "Кредит"
+tra_scrp_nordahl_credit = "Сделано Нордалем"
+tra_scrp_nordahl_ng = "Переименовать группу"
+tra_scrp_nordahl_settime = "Виртуальная Время преобразования"
+tra_scrp_nordahl_noevent="Пусто"
+tra_scrp_nordahl_titre="Планирование событий сервера"
 tra_scrp_nordahl_only="Only Show In Event"
-tra_scrp_nordahl_only_inctxtmenu="Only show when the menucontext is open"
-tra_scrp_actue="Currently"
-tra_scrp_proch="In the Next hour"
+tra_scrp_nordahl_only_inctxtmenu="Показываем только когда menucontext открыт"
+tra_scrp_actue = "В настоящее время"
+tra_scrp_proch = "В течение следующего часа"
 end
 
 function langueeventpldu(z)Z_Defaut_Languages=z
@@ -805,11 +805,7 @@ else
 langueeventplen(2)
 end
 
-chat.AddText(Color(255,103,55),"")
-chat.AddText(Color(255,103,55),"[",Color(255,255,255)," > ",Color(255,103,55),"] ",Color(255,103,55), " Nordahl Event Planning "..Ver)
-chat.AddText(Color(255,103,55),"| ",Color(255,255,255),"In the chat :",Color(255,103,55), " !event")
-chat.AddText(Color(255,103,55),"| ",Color(255,255,255),"In the console :",Color(255,103,55), " planning_event")
-chat.AddText(Color(255,103,55),"")
+
 chat.PlaySound()
 
 if eanticonf2==nil then

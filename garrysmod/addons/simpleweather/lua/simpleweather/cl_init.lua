@@ -477,7 +477,7 @@ function SW.InitPostEntity()
 		
 		if( SW.DisplayAtStart ) then
 			
-			chat.AddText( Color( 255, 255, 255, 255 ), "This server is running ", Color( 76, 128, 255, 255 ), "SimpleWeather 1.24", Color( 255, 255, 255, 255 ), ". Type ", Color( 76, 128, 255, 255 ), SW.ChatCommand, Color( 255, 255, 255, 255 ), " to open the config menu." );
+			
 			
 		end
 		
