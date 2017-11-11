@@ -7,7 +7,7 @@ SW.EnableScoreboard = true
 
 if CLIENT then
 
-    SW.UseChatbox = true
+    SW.UseChatbox = false
     SW.WebsitePage = "http://google.com/"
     SW.UseRadar = true
     SW.TracedRadar = false

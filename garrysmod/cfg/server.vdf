@@ -28,4 +28,6 @@
 	"hatshook_speed"		"1000"
 	"hatshook_breakpower"		"3"
 	"hatshook_breakregen"		"1"
+	"_FAdmin_MOTDPage"		"default"
+	"_FAdmin_immunity"		"1"
 }
