@@ -106,11 +106,11 @@ function PANEL:addBoolean( parent, value )
 
         -- Yes
         draw.RoundedBox( 16, 4, 4, w / 2 - 8, h - 8, desiredBoxColor )
-        draw.SimpleText( "YES", "bfUIMedium-Secondary", ( w / 2 ) / 2, h / 2, not value and activeColor or notActiveColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+        draw.SimpleText( "ДА", "bfUIMedium-Secondary", ( w / 2 ) / 2, h / 2, not value and activeColor or notActiveColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
         
         -- No
         draw.RoundedBox( 16, w / 2, 4, w / 2 - 8, h - 8, desiredBoxColorInverted )
-        draw.SimpleText( "NO", "bfUIMedium-Secondary", w - ( ( w / 2 ) / 2 ) - 8 , h / 2, value and activeColor or notActiveColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+        draw.SimpleText( "НЕТ", "bfUIMedium-Secondary", w - ( ( w / 2 ) / 2 ) - 8 , h / 2, value and activeColor or notActiveColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
     end
 
     button.DoClick = function( this )
@@ -185,7 +185,7 @@ function PANEL:editColor( varName, varInfo, value )
 
     local resetToDefault = footer:Add( "bfUIButton" )
     resetToDefault:Dock( LEFT )
-    resetToDefault:SetText( "RESET TO DEFAULT" )
+    resetToDefault:SetText( "ВЕРНУТЬ СТАНДАРТ" )
     resetToDefault:SetWide( 256 )
 
     resetToDefault.DoClick = function( this )
@@ -197,7 +197,7 @@ function PANEL:editColor( varName, varInfo, value )
     local submit = footer:Add( "bfUIButton" )
     submit:Dock( LEFT )
     submit:DockMargin( 8, 0, 0, 0 )
-    submit:SetText( "SUBMIT" )
+    submit:SetText( "ПОДТВЕРДИТЬ" )
     submit:SetWide( 128 )
 
     local mixer = self.optionPanel:Add( "DColorMixer" )

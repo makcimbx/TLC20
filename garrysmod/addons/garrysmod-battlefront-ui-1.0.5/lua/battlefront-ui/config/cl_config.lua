@@ -15,7 +15,7 @@
 bfUI.registerCategory( 
 	{
 		id = "general configuration",
-		name = "GENERAL",
+		name = "ГЛАВНЫЕ",
 		image = Material( "bfui/cogwheel.png", "mips smooth" )
 	}
 )
@@ -23,7 +23,7 @@ bfUI.registerCategory(
 bfUI.registerCategory( 
 	{ 
 		id = "appearance", 
-		name = "APPEARANCE",
+		name = "ПЕРСОНАЛИЗАЦИЯ",
 		image = Material( "bfui/avatar.png", "mips smooth" )
 	}
 )
@@ -205,7 +205,7 @@ bfUI.registerClientConfig(
 		-- Extra information
 		data = { 
 			category = "general configuration", 
-			niceName = "Show prompt on quit" 
+			niceName = "Супер Графон" 
 		} 
 	}
 )
@@ -214,17 +214,17 @@ bfUI.registerElement( "ГЛАВНАЯ", {
 	greeting = "ДОБРО ПОЖАЛОВАТЬ НА TLC CLONE WARS",
 	blocks = {
 		[ 1 ] = {
-			text = "СЕРВЕР ПРОВЕРЕННЫЙ ВРЕМЕНЕМ       НАМ СКОРО 2 ГОДА",
+			text = "СЕРВЕР ПРОВЕРЕННЫЙ ВРЕМЕНЕМ                                                                         НАМ СКОРО 2 ГОДА",
 			sub = "ОСОБЕННОСТИ",
 			image = Material( "bfui/block_2.png" )
 		},
 		[ 2 ] = {
 			text = "СОЗДАНО КОМАНДОЙ TLC",
-			sub = "КАЧЕСТВО, ОПТИМИЗИРОВАННОСТЬ СКРИПТОВ СЕРВЕРА",
+			sub = "КАЧЕСТВО, ОПТИМИЗИРОВАННОСТЬ СКРИПТОВ",
 			image = Material( "bfui/block_3.png" )
 		},
 		[ 3 ] = {
-			text = "https://vk.com/clonewarsrpporus",
+			text = "vk.com/clonewarsrpporus",
 			sub = "ВКОНТАКТЕ",
 			image = Material( "bfui/block_4.png" )
 		}
@@ -293,7 +293,7 @@ bfUI.registerElement( "СЕРВЕРА", {
 		[ "STARWARSRP" ] = {
 			icon = Material( "bfui/server_icon.png" ),
 			ip = "89.34.97.159",
-			desc = "Наш сервер из периода войн клонов.",
+			desc = "Наш сервер периода войн клонов.",
 
 			joinText = "ПРИСОЕДИНИТЬСЯ"
 		}
