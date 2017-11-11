@@ -28,14 +28,6 @@ bfUI.registerCategory(
 	}
 )
 
--- Defines the key to use to open Battlefront UI
-bfUI.registerUneditableConfig(
-	{
-		id = "menu_key",
-		value = KEY_ESCAPE  --  Use a key from the KEY enumeration (https://wiki.garrysmod.com/page/Enums/KEY)
-	}
-)
-
  -- Disables material background image and uses main_color client configuration
 bfUI.registerUneditableConfig( 
 	{
@@ -214,21 +206,6 @@ bfUI.registerClientConfig(
 		data = { 
 			category = "general configuration", 
 			niceName = "Show prompt on quit" 
-		} 
-	}
-)
-
--- This decides whether Battlefront UI will open when a player joins the server, for example like a Message of the Day.
-bfUI.registerClientConfig(
-	{
-		id = "auto_open_on_join", 
-		value = true, 
-		description = "Whether Battlefront UI should auto-open on join",
-
-		-- Extra information
-		data = { 
-			category = "general configuration", 
-			niceName = "Open on initial join" 
 		} 
 	}
 )

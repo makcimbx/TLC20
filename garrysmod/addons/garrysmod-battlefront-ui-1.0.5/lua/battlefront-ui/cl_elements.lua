@@ -15,14 +15,19 @@ function bfUI.getMenu()
     return bfUIMenu
 end
 
-bfUI.toggleMenu = function()
-    if IsValid( bfUIMenu ) then
-        bfUIMenu:fadeOut()
-    else
-        bfUIMenu = vgui.Create( "bfUIFrame" )
-        bfUIMenu:fadeIn()
+function OpenMenu()
+    if input.IsKeyDown( KEY_ESCAPE ) and gui.IsGameUIVisible() then
+        if IsValid( bfUIMenu ) then
+            gui.HideGameUI()
+			bfUIMenu:fadeOut()
+        else
+            gui.HideGameUI()
+			bfUIMenu = vgui.Create( "bfUIFrame" )
+			bfUIMenu:fadeIn()
+        end
     end
 end
+hook.Add( "PreRender", "bf1.OpenMenu", OpenMenu )
 
 local FRAME = {}
 
@@ -66,12 +71,6 @@ function FRAME:fadeOut()
             self:Close()
         end )
     end )
-end
-
-function FRAME:Think()
-    if input.IsKeyDown( bfUI.getClientData( "menu_key", KEY_ESCAPE ) ) then 
-        self:fadeOut()
-    end
 end
 
 function FRAME:showAvatar()
