@@ -14,7 +14,7 @@ hook.Add( "PlayerButtonUp", "bfUI_keybinds", function( player, buttonId )
 
     local chosenKey = bfUI.getUnEditableData( "menu_key", KEY_ESCAPE )
     if buttonId ~= chosenKey then return end
-    
+
     bfUI.toggleMenu()
 end )
 

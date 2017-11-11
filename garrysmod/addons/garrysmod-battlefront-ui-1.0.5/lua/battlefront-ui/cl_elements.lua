@@ -17,10 +17,8 @@ end
 
 bfUI.toggleMenu = function()
     if IsValid( bfUIMenu ) then
-	    gui.HideGameUI()
         bfUIMenu:fadeOut()
     else
-	    gui.HideGameUI()
         bfUIMenu = vgui.Create( "bfUIFrame" )
         bfUIMenu:fadeIn()
     end
