@@ -34,17 +34,17 @@ _this.backgroundUrls = {
 	{ 
 		"https://tlcdonatesystem.ru/imagesall/1.jpg", -- Image URL
 		1920, 1080, -- Width, Height
-		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
-	}
+		false -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
+	},
 	{ 
 		"https://tlcdonatesystem.ru/imagesall/2.jpg", -- Image URL
-		1920, 1080, -- Width, Height
-		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
-	}
+		2006, 1074, -- Width, Height
+		false -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
+	},
 	{ 
 		"https://tlcdonatesystem.ru/imagesall/3.jpg", -- Image URL
 		1920, 1080, -- Width, Height
-		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
+		false -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	}
 }
 
@@ -65,7 +65,7 @@ _this.chatURL = "http://thelastcity.tk/acrashscreen/chat/chat.php"
 -- Chat user properties: nick names and noticable messages
 local ranks = {}
 ranks[ 'manager' ] = { Color( 125, 0, 180 ), true } -- { nick name color, if true user can use ! in front of their text to type a noticable message }
-ranks[ 'donator' ] = { Color( 255, 220, 0 ), false }
+ranks[ 'vip' ] = { Color( 255, 220, 0 ), false }
 
 function _this.getUserProperties( ply ) -- This is somewhat more advanced
 	
