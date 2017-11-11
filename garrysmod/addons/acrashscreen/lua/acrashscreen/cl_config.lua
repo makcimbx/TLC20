@@ -32,7 +32,17 @@ _this.serverPort = "27015"
 -- Set backgroundUrls to false to use backgroundColor instead
 _this.backgroundUrls = {
 	{ 
-		"http://orig10.deviantart.net/7dd2/f/2014/159/a/5/mac_wallpaper___flat_colors___1920x1200_by_dakirby309-d7lmemf.jpg", -- Image URL
+		"https://tlcdonatesystem.ru/imagesall/1.jpg", -- Image URL
+		1920, 1080, -- Width, Height
+		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
+	}
+	{ 
+		"https://tlcdonatesystem.ru/imagesall/2.jpg", -- Image URL
+		1920, 1080, -- Width, Height
+		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
+	}
+	{ 
+		"https://tlcdonatesystem.ru/imagesall/3.jpg", -- Image URL
 		1920, 1080, -- Width, Height
 		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	}
@@ -45,9 +55,7 @@ _this.backgroundColor = Color( 0, 75, 130 )
 -- Will be chosen randomly, but will only play once until all songs have been played
 -- Set this to false if you want this disabled
 _this.songUrls = { -- NOTE: These songs are place holders, they most likely will not work
-	"https://drive.google.com/uc?export=download&id=0B91z1MPPxaoLa3JrTW4wbXFiRlU",
-	"https://drive.google.com/uc?export=download&id=0B91z1MPPxaoLUG84cXNWMXdTM3c",
-	"https://drive.google.com/uc?export=download&id=0B91z1MPPxaoLa05vb0pWZGlidDg"
+	"https://tlcdonatesystem.ru/musicall/1.mp3"   -- Нужно с запятой в конце добавлять новую музыку
 }
 
 -- The web-based chat
