@@ -260,28 +260,34 @@ function FRAME:setUp()
         end
     end
 
-    self.quit = self.footer:Add( "bfUIButton" )
-    self.quit:Dock( LEFT )
-    self.quit:SetSize( 128 )
-    self.quit:SetText( "QUIT" )
+    self.disc = self.footer:Add( "bfUIButton" )
+    self.disc:Dock( LEFT )
+    self.disc:SetSize( 128 )
+    self.disc:SetText( "DISCONNECT" )
 
-    self.quit.DoClick = function( this )
-        if bfUI.getClientData( "ask_on_close", false ) then
-            bfUI.createDialogue(
-                "QUIT",
-                "Do you want to quit this menu?" ,
-                "Yes",
-                function( dialogue )
-                    self:fadeOut()
-                    dialogue:Close()
-                end,
-                "No",
-                function( dialogue )
-                    dialogue:Close()
-                end )
-        else
-            self:fadeOut()
-        end
+    self.disc.DoClick = function( this )
+        bfUI.createDialogue(
+            "disc",
+            "Do you want to disc this menu?" ,
+            "Yes",
+            function( dialogue )
+                RunConsoleCommand( "disconnect" )
+                dialogue:Close()
+            end,
+            "No",
+            function( dialogue )
+                dialogue:Close()
+        end )
+    end
+	
+    self.res = self.footer:Add( "bfUIButton" )
+    self.res:Dock( LEFT )
+    self.res:DockMargin( 8, 0, 0, 0 )
+    self.res:SetSize( 128 )
+    self.res:SetText( "RESUME" )
+
+    self.res.DoClick = function( this )
+        self:fadeOut()
     end
 
     -- Render avatar layout
