@@ -144,7 +144,7 @@ function SWEP:DoAttack(dmg)
     else
         self:GetOwner():EmitSound(self.Hit[math.random(1,#self.Hit)])
         if FPP and FPP.plyCanTouchEnt(self:GetOwner(), ent, "EntityDamage") then
-            if ent.SeizeReward and not ent.beenSeized and not ent.burningup and self:GetOwner():isCP() and ent.Getowning_ent and self:GetOwner() ~= ent:Getowning_ent() then
+            if ent.SeizeReward and not ent.beenSeized and not ent.burningup and ent.Getowning_ent and self:GetOwner() ~= ent:Getowning_ent() then
                 local amount = isfunction(ent.SeizeReward) and ent:SeizeReward(self:GetOwner(), dmg) or ent.SeizeReward
 
                 self:GetOwner():addMoney(amount)

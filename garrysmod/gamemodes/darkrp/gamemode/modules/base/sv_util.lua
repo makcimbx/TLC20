@@ -158,7 +158,7 @@ function meta:applyPlayerClassVars(applyHealth)
     local playerClass = baseclass.Get(player_manager.GetPlayerClass(self))
 
     self:SetWalkSpeed(playerClass.WalkSpeed >= 0 and playerClass.WalkSpeed or GAMEMODE.Config.walkspeed)
-    self:SetRunSpeed(playerClass.RunSpeed >= 0 and playerClass.RunSpeed or (self:isCP() and GAMEMODE.Config.runspeedcp or GAMEMODE.Config.runspeed))
+    self:SetRunSpeed(playerClass.RunSpeed >= 0 and playerClass.RunSpeed or GAMEMODE.Config.runspeed)
 
     hook.Call("UpdatePlayerSpeed", GAMEMODE, self) -- Backwards compatitibly, do not use
 

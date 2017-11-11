@@ -513,15 +513,12 @@ function GAMEMODE:PlayerSelectSpawn(ply)
     end
 	end
     local CustomSpawnPos = DarkRP.retrieveTeamSpawnPos(ply:Team())
-    if GAMEMODE.Config.customspawns and not ply:isArrested() and CustomSpawnPos and next(CustomSpawnPos) ~= nil then
+    if GAMEMODE.Config.customspawns and CustomSpawnPos and next(CustomSpawnPos) ~= nil then
     POS = CustomSpawnPos[math.random(1, #CustomSpawnPos)]
     end
 	end
     if GAMEMODE.Config.strictsuicide and ply.DeathPos then
         POS = ply.DeathPos
-    end
-    if ply:isArrested() then
-        POS = DarkRP.retrieveJailPos() or ply.DeathPos
     end
     POS = DarkRP.findEmptyPos(POS, {ply}, 600, 30, Vector(16, 16, 64))
 	else

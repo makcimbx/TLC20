@@ -140,7 +140,7 @@ function PANEL:UpdatePlayerData()
 	self.lblFrags:SetText(self.Player:Frags())
 	self.lblDeaths:SetText(self.Player:Deaths())
 	self.lblPing:SetText(self.Player:Ping())
-	self.lblWanted:SetText(self.Player:isWanted() and DarkRP.getPhrase("Wanted_text") or "")
+	self.lblWanted:SetText("")
 end
 
 function PANEL:ApplySchemeSettings()

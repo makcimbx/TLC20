@@ -153,7 +153,7 @@ function SWEP:DoHandcuff( target )
 		if IsValid(wep) and wep:GetClass()=="weapon_physcannon" then
 			wep:Remove()
 			timer.Simple( 0.1, function()
-				if IsValid(target) and target:Alive() and not (target.isArrested and target:isArrested()) then
+				if IsValid(target) and target:Alive() then
 					target:Give( "weapon_physcannon" )
 				end
 			end)
@@ -188,7 +188,7 @@ function SWEP:DoHandcuff( target )
 	PrintMessage( HUD_PRINTCONSOLE, "[Cuffs] "..tostring(self.Owner:Nick()).." has handcuffed "..tostring(target:Nick()).." with "..tostring(self.PrintName) )
 	hook.Call( "OnHandcuffed", GAMEMODE, self.Owner, target, cuff )
 	
-	if self.Owner.isCP and target.arrest and self.Owner:isCP() and cvars.Bool("cuffs_autoarrest") then
+	if target.arrest and cvars.Bool("cuffs_autoarrest") then
 		target:arrest( nil, self.Owner)
 	end
 	

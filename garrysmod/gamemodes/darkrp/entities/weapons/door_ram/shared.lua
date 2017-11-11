@@ -60,7 +60,7 @@ end
 
 -- Check whether an object of this player can be rammed
 local function canRam(ply)
-    return IsValid(ply) and (ply.warranted == true or ply:isWanted() or ply:isArrested())
+    return IsValid(ply)
 end
 
 -- Ram action when ramming a door

@@ -19,7 +19,6 @@ local function declareTeamCommands(CTeam)
         if isnumber(CTeam.NeedToChangeFrom) and plyTeam ~= CTeam.NeedToChangeFrom then return false end
         if istable(CTeam.NeedToChangeFrom) and not table.HasValue(CTeam.NeedToChangeFrom, plyTeam) then return false end
         if CTeam.customCheck and CTeam.customCheck(ply) == false then return false end
-        if ply:isArrested() then return false end
         if CTeam.max ~= 0 and ((CTeam.max % 1 == 0 and team.NumPlayers(k) >= CTeam.max) or (CTeam.max % 1 ~= 0 and (team.NumPlayers(k) + 1) / #player.GetAll() > CTeam.max)) then return false end
         if ply.LastJob and 10 - (CurTime() - ply.LastJob) >= 0 then return false end
         if ply.LastVoteCop and CurTime() - ply.LastVoteCop < 80 then return false end
@@ -279,7 +278,6 @@ local function addEntityCommands(tblEnt)
         delay = 2,
         condition =
             function(ply)
-                if ply:isArrested() then return false end
                 if istable(tblEnt.allowed) and not table.HasValue(tblEnt.allowed, ply:Team()) then return false end
                 if not ply:canAfford(tblEnt.price) then return false end
                 if tblEnt.customCheck and tblEnt.customCheck(ply) == false then return false end
@@ -312,7 +310,6 @@ local function addEntityCommands(tblEnt)
     end
 
     local function buythis(ply, args)
-        if ply:isArrested() then return "" end
         if type(tblEnt.allowed) == "table" and not table.HasValue(tblEnt.allowed, ply:Team()) then
             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("incorrect_job", tblEnt.name))
             return ""
