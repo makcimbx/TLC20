@@ -82,8 +82,7 @@ function meta:changeTeam(t, force, suppressNotification)
         return false
     end
 
-    local isMayor = RPExtraTeams[prevTeam] and RPExtraTeams[prevTeam].mayor
-    if isMayor and GetGlobalBool("DarkRP_LockDown") then
+    if GetGlobalBool("DarkRP_LockDown") then
         DarkRP.unLockdown(self)
     end
     self:updateJob(TEAM.name)
@@ -118,15 +117,7 @@ function meta:changeTeam(t, force, suppressNotification)
         end
     end
 
-    if isMayor then
-        for _, ent in pairs(self.lawboards or {}) do
-            if IsValid(ent) then
-                ent:Remove()
-            end
-        end
-    end
-
-    if isMayor and GAMEMODE.Config.shouldResetLaws then
+    if GAMEMODE.Config.shouldResetLaws then
         DarkRP.resetLaws()
     end
 
