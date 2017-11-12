@@ -5,7 +5,7 @@ end
 
 if(CLIENT) then
 	SWEP.Author = "Kunit"
-	SWEP.Instructions = "Left click to revive, right click to charge the defibrillator."
+	SWEP.Instructions = "Левый клик чтобы возродить, правый чтобы зарядить дефибрилятор."
 	SWEP.Contact = ""
 	SWEP.Purpose = ""
 	SWEP.DrawAmmo = false

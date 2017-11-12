@@ -22,7 +22,7 @@ function Kun_MakeMarker()
 		
 		dbutz = vgui.Create("DButton", PLYFORCEDEADSPAWN)
 		dbutz:SetSize(100,20)
-		dbutz:SetText("Force Spawn")
+		dbutz:SetText("Респавн")
 		dbutz:SetPos(10, 30)
 		dbutz.DoClick = function()
 			net.Start("DarkRP_Kun_ForceSpawn")
@@ -36,7 +36,7 @@ function Kun_MakeMarker()
 		surface.DrawRect(0, 0, ScrW(), ScrH())
 		local form = (1 + ply:GetNWInt("ForceAddExDeath") - math.ceil(CurTime() - ply:GetNWInt("KunDeathTime")))
 		if(form == 1 or form == 0) then if(PLYFORCEDEADSPAWN != nil and PLYFORCEDEADSPAWN:IsValid()) then PLYFORCEDEADSPAWN:Close() end end
-		draw.SimpleText( "You are dead. "..form.." seconds until respawn.", "TargetID", ScrW() / 2, ScrH() / 2, Color(250,250,250,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		draw.SimpleText( "Вы мертвы. "..form.." секунд до респавна.", "TargetID", ScrW() / 2, ScrH() / 2, Color(250,250,250,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		if(PLYFORCEDEADSPAWN  != nil and PLYFORCEDEADSPAWN :IsValid() and Kun_ForceLive == 1) then
 			if(math.ceil(CurTime() - ply:GetNWInt("KunDeathTime")) >= Kun_ForceLiveTime) then
 				if(!ply:Alive()) then
