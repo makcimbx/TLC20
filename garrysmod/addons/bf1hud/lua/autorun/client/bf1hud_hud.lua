@@ -72,5 +72,4 @@ local function BF1HUD( ply )
 	ang:Normalize()
 	local deg = math.ceil(ang.y-90)
 end
-
 hook.Add("HUDPaint","BF1HUD",BF1HUD)
