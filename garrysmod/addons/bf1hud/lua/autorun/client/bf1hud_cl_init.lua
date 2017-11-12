@@ -1,4 +1,4 @@
-hook.Add("HUDShouldDraw","BHudHideDarkRPHUD",function(name) if name == "DarkRP_EntityDisplay" or name == "DarkRP_HUD" then return false end end)
+--hook.Add("HUDShouldDraw","BHudHideDarkRPHUD",function(name) if name == "DarkRP_EntityDisplay" or name == "DarkRP_HUD" then return false end end)
 
 
 bhudstructure = {}
