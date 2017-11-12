@@ -25,7 +25,7 @@
 \*																					*/
 
 JukeBox.Lang = {}
-JukeBox.Lang.Current = "English"
+JukeBox.Lang.Current = "Russian"
 JukeBox.Lang.Languages = {}
 
 -- CREATING A LANGUAGE
@@ -39,37 +39,37 @@ JukeBox.Lang.Languages = {}
 -- %s	Replced by a variable, such as song name or artist
 -- \n	Creates a new line
 
-JukeBox.Lang.Languages["English"] = {
+JukeBox.Lang.Languages["Russian"] = {
 	-- GENERAL LIST HEADINGS
-	["#HEADING_Name"] 		= "JukeBox - developed by Panda Collision",
-	["#HEADING_Song"] 		= "Song Name",
-	["#HEADING_Artist"] 	= "Artist",
-	["#HEADING_Length"]		= "Length",
-	["#HEADING_Favourite"]	= "Favourite",
-	["#HEADING_Actions"]	= "Actions",
+	["#HEADING_Name"] 		= "TLC Community",
+	["#HEADING_Song"] 		= "Имя Песни",
+	["#HEADING_Artist"] 	= "Артист",
+	["#HEADING_Length"]		= "Длина",
+	["#HEADING_Favourite"]	= "Избранные",
+	["#HEADING_Actions"]	= "Действия",
 	
 	-- GENERAL BUTTONS
-	["#BUTTON_Cancel"]		= "Cancel",
-	["#BUTTON_Close"]		= "Close",
+	["#BUTTON_Cancel"]		= "Отменить",
+	["#BUTTON_Close"]		= "Закрыть",
 	
 	-- TABS NAMES/HEADINGS
-	["#TAB_Main"]			= "Main",
-	["#TAB_AllSongs"]		= "All Songs",
-	["#TAB_Queue"]			= "Queue",
-	["#TAB_User"]			= "User",
-	["#TAB_Options"]		= "Options",
-	["#TAB_AddSong"]		= "Add a Song",
+	["#TAB_Main"]			= "Главная",
+	["#TAB_AllSongs"]		= "Все Песни",
+	["#TAB_Queue"]			= "Очередь",
+	["#TAB_User"]			= "Юзер",
+	["#TAB_Options"]		= "Настройки",
+	["#TAB_AddSong"]		= "Добавить песню",
 	["#TAB_Manual"]			= "Manual",
-	["#TAB_Search"]			= "Search",
+	["#TAB_Search"]			= "Поиск",
 	
 	-- BASE
-	["#BASE_NotPlaying"]	= "Not playing...",
-	["#BASE_VotesTo"]		= "Votes to", 	-- These two are part of the same sentance
-	["#BASE_Skip"]			= "Skip",		-- but are on 2 lines, \n doesn't work here
+	["#BASE_NotPlaying"]	= "Не играет...",
+	["#BASE_VotesTo"]		= "Голоса за", 	-- These two are part of the same sentance
+	["#BASE_Skip"]			= "Пропустить",		-- but are on 2 lines, \n doesn't work here
 	["#BASE_PlayDisabled"]	= "Playback is disabled by the Server while you're alive!",
-	["#BASE_VoteSkip"]		= "Vote Skip",
-	["#BASE_ForceSkip"]		= "Force Skip",
-	["#BASE_ChatCommand"]	= "To open, type %s",
+	["#BASE_VoteSkip"]		= "Голосовать за пропуск",
+	["#BASE_ForceSkip"]		= "Принудительные пропуск",
+	["#BASE_ChatCommand"]	= "Чтобы открыть меню, нажмите F8",
 	
 	-- NOTIFICATIONS
 	["#NOTIFY_SongRemovedQ"]	= "The song was removed from the Queue!",
@@ -92,7 +92,7 @@ JukeBox.Lang.Languages["English"] = {
 	["#CHAT_IdlePlaying"]		= "Idle-playing: %s - %s",
 	["#CHAT_SongQueued"]		= "Song Queued: %s - %s",
 	["#CHAT_IdleSongStopped"]	= "The current idle-song has been stopped.",
-	["#CHAT_NowPlaying"]		= "Now playing: %s - %s",
+	["#CHAT_NowPlaying"]		= "Сейчас играет: %s - %s",
 	["#CHAT_VotesToSkip"]		= "Votes to skip current song: %s/%s",
 	["#CHAT_SongSkipped"]		= "The current song has been skipped.",
 	["#CHAT_ForceSkipped"]		= "The current song has been Force skipped by a Manager.",
@@ -106,9 +106,9 @@ JukeBox.Lang.Languages["English"] = {
 	["#SEARCH_Results"]		= "Search found %s songs.", 
 	
 	-- ALL SONGS TAB
-	["#ALLSONGS_Queue"]		= "Queue Song",
-	["#ALLSONGS_SortBy"]	= "Sort By:",
-	["#ALLSONGS_Refresh"]	= "Refresh All",
+	["#ALLSONGS_Queue"]		= "В очередь",
+	["#ALLSONGS_SortBy"]	= "Сортировка:",
+	["#ALLSONGS_Refresh"]	= "Обновить всё",
 	["#ALLSONGS_RefreshWait"]	= "Please wait %s seconds before refreshing again..",
 	["#ALLSONGS_TooMany"]		= "There are too many results to display!\nTry searching or refining your search to display results!",
 	["#ALLSONGS_Fetching"]		= "We're currently fetching the All Songs list!\nPlease wait...",

@@ -21,7 +21,7 @@ RelayConfig = {
     RelayAdminChannel = "admin_logs",
 
     -- BotName: The name for the bot in discord.
-    BotName = "TLC CHAT BOT",
+    BotName = "TLC StarWars Integration",
 
     -- BotAvatar: URL that should be bot's avatar (png/jpeg only)
     -- Recommended size: 128x128

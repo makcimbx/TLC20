@@ -4,11 +4,11 @@ JukeBox.HUD.Height = 70
 JukeBox.HUD.BarHeight = 20
 JukeBox.HUD.Across = {
 	["left"] = 10,
-	["center"] = (ScrW()/2)-(JukeBox.HUD.Width/2),
+	["center"] = (ScrW()/7)-(JukeBox.HUD.Width/2),
 	["right"] = ScrW()-10-JukeBox.HUD.Width,
 }
 JukeBox.HUD.Down = {
-	["top"] = 10,
+	["top"] = 30,
 	["center"] = (ScrH()/2)-(JukeBox.HUD.Height/2),
 	["bottom"] = ScrH()-10-JukeBox.HUD.Height,
 }

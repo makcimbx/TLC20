@@ -46,8 +46,8 @@ SW.StartTime				= 10	-- What time to start at on server launch (0-24).
 
 SW.Realtime					= false	-- Should time pass according to the server's time. (true/false)
 SW.RealtimeOffset			= 0		-- If realtime is on, add this many timezones. For example, if the server was GMT and you set this to -5, it'd be EST ingame.
-SW.DayTimeMul 				= 0.005	-- Multiplier of time during the day. Make this bigger for time to go faster, and smaller for time to go slower.
-SW.NightTimeMul 			= 0.01	-- Multiplier of time during the night. Make this bigger for time to go faster, and smaller for time to go slower.
+SW.DayTimeMul 				= 0.000000000000001	-- Multiplier of time during the day. Make this bigger for time to go faster, and smaller for time to go slower.
+SW.NightTimeMul 			= 0.000000000000001	-- Multiplier of time during the night. Make this bigger for time to go faster, and smaller for time to go slower.
 
 SW.UpdateLighting			= true	-- Enable map lighting updates (true/false). Turn this off if the map's a night map already!
 SW.UpdateSun				= true	-- Enable sun moving through the sky (true/false).

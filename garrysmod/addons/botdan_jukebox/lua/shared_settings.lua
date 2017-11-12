@@ -4,7 +4,7 @@ JukeBox.Colours = {}
 --| GENERAL SETTINGS |------------------------------------------------------------------------------------
 -- This decides whether new players should be bale to hear the JukeBox or not
 -- This option only sets a config for new players on first join and they can enable the JukeBox themselves after.
-JukeBox.Settings.DefaultEnabled = true
+JukeBox.Settings.DefaultEnabled = false
 
 -- Use this to make sure when ANYONE joins the server the JukeBox is off by default, even if they've used it before.
 -- This may be useful for gamemodes where the JukeBox mak be intrusive.
@@ -126,12 +126,12 @@ JukeBox.Settings.UseGroupRestrictions = true
 
 -- If the Group Restrictions should work as a whitelist.
 -- This means that anyone in the list below WILL be able to queue songs, everyone else won't be.
-JukeBox.Settings.GroupRestrctionWhiteList = false
+JukeBox.Settings.GroupRestrctionWhiteList = true
 
 -- The list of groups that CAN'T or CAN use the JukeBox.
 -- Restricts users from being able to queue songs.
 JukeBox.Settings.RestrictedGroups = {
-	"user",
+	"superadmin",
 	"none",
 }
 
@@ -150,7 +150,7 @@ JukeBox.Settings.RequestFasttrackCost = 250
 
 -- If queueing songs can only be done by managers (I RECOMMEND RESTRICTIONS INSTEAD ABOVE)
 -- This prevents users from queueing songs but they can still request
-JukeBox.Settings.ManagerOnlyMode = false
+JukeBox.Settings.ManagerOnlyMode = true
 
 -- The percentage of players that have to vote skip a song for it to skip
 -- This is done as a decimal from 0 to 1 (0.6 = 60%)
@@ -194,7 +194,7 @@ JukeBox.Settings.UseULXRanks = true
 -- The ULX ranks to have access to the manager parts of the JukeBox
 -- Only used if the above setting is set to true
 JukeBox.Settings.ULXRanksList = {
-	"HeadAdmin",
+	"superadmin",
 	"Helper",
 	"Eventmaker",
 	"Moderator",
@@ -202,7 +202,7 @@ JukeBox.Settings.ULXRanksList = {
 
 -- SteamIDs that have access to the manager parts of the JukeBox
 JukeBox.Settings.SteamIDList = {
-	"STEAM_0:0:214405746",
+	"",
 }
 
 -- Commands to open the JukeBox VGUI

@@ -30,10 +30,10 @@ function SW.DrawClock()
 		min = "0" .. min;
 	end
 	
-	local text = hr .. ":" .. min .. " " .. ampm;
+	clock4811 = hr .. ":" .. min .. " " .. ampm;
 	
 	surface.SetFont( "SW.ClockFont" );
-	local w, h = surface.GetTextSize( text );
+	local w, h = surface.GetTextSize( clock4811 );
 	surface.SetDrawColor( Color( 0, 0, 0, 150 ) );
 	surface.SetTextColor( Color( 255, 255, 255, 255 ) );
 	
@@ -44,9 +44,7 @@ function SW.DrawClock()
 		ybase = 20;
 	end
 	
-	surface.DrawRect( ScrW() / 2 - w / 2 - padding, ybase - padding, w + ( padding * 2 ), h + ( padding * 2 ) );
-	surface.SetTextPos( ScrW() / 2 - w / 2, ybase );
-	surface.DrawText( text );
+
 	
 end
 hook.Add( "HUDPaint", "SW.DrawClock", SW.DrawClock );
