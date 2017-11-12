@@ -243,7 +243,7 @@ function SendG(group)
 end
 timer.Simple(0.5,function()
 	LoadList()
-	if(GetData( "#EVER@@2" )!="1")then
+	if(GetData( "tabs_default" )!="1")then
 		SetData( "#EVER@@2","1" )
 		AddGroupTo("entities","admin",nil)
 		AddGroupTo("weapons","admin",nil)

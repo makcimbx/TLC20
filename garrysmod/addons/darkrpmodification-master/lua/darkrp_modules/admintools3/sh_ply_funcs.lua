@@ -11,3 +11,18 @@ function p:IsTeamType(x)
 	end
 	return false
 end
+
+local cmds = {
+	["superadmin"] = {
+		["sooc"] = true,
+		["oocdelay"] = true,
+	},
+}
+
+function p:CanCMD(x)
+	local a = cmds[self:GetUserGroup()][x]
+	if(a == nil)then
+		a = false
+	end
+	return a
+end

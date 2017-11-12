@@ -51,6 +51,6 @@ end
 
 function ENT:Use(activator, caller)
 	if (activator:IsPlayer()) then
-		gamemode.Call("PlayerLoadout", activator)
+		BOX_PlayerLoadout(activator)
 	end
 end

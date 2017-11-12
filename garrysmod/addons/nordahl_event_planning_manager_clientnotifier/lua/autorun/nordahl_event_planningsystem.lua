@@ -880,7 +880,7 @@ local abc2=abc/2
 if ENOPL.Hud==1 or (ENOPL.Hud==2 and GetGlobalString(ENOPLJourHeure)!="" or GetGlobalString(ENOPLJourHeureS)!="" ) or openmenu==true  then
 surface.SetMaterial(xp_bar)
 surface.SetDrawColor(255,255,255,255)
-surface.DrawTexturedRect( ScrW()/4.8, ScrH()-(ScrH()/0.823),  1100,563)
+surface.DrawTexturedRect( ScrW()/2-1100/2, 46.5-(563/2),  1100,563)
 draw.SimpleText(tra_scrp_actue..":","Trebuchet18",ScrW()/2.15-abc2/2,26+y,Color(255,255,255),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
 draw.SimpleText(tra_scrp_proch..":","Trebuchet18",ScrW()/1.85+abc2/2,26+y,Color(255,255,255),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
 if GetGlobalString(ENOPLJourHeure)!="" then
