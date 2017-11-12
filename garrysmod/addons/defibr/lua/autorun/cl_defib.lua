@@ -48,10 +48,10 @@ function Kun_MakeMarker()
 		end
 	end
 	if(Kun_DrawHealth == 1 and ply:Alive()) then
-		if(team.GetName(ply:Team()) == Kun_DefJobName) then
+		if(ply:IsTeamType("medic")) then
 			for k,v in pairs(ents.GetAll()) do
 				if(v != nil and v:IsValid() and v:GetClass() == "prop_ragdoll") then
-					if(ply:GetPos():Distance( v:GetPos() )) <= 1000 and ply:IsTeamType("medic") then
+					if(ply:GetPos():Distance( v:GetPos() )) <= 1000 then
 						local pos = v:GetPos():ToScreen()
 						local forczersad = Kun_DeathTime
 						if(Kun_AddExtraTime == 1) then

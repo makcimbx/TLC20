@@ -1,18 +1,19 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include('shared.lua')
+include('cl_init.lua')
  
 function ENT:SpawnFunction(ply, tr)
 
 	if (!tr.Hit) then return end
 	
-	local SpawnPos = tr.HitPos + tr.HitNormal * 18
+	local SpawnPos = tr.HitPos + tr.HitNormal * 16
 	
-	local ent = ents.Create("touch_pickup_752_ammo_map_weapon_box")
+	local ent = ents.Create("ammo_box")
 	ent:SetPos(SpawnPos)
 	local ang = ply:EyeAngles()
 	ang.p = 0
-	ang:RotateAroundAxis( ang:Up(), 180 )
+	--ang:RotateAroundAxis( ang:Forward(), -90 )
 	ent:SetAngles( ang )
 	ent:Spawn()
 	ent:Activate()
@@ -22,13 +23,14 @@ end
 
 function ENT:Initialize()
 
-	self:SetNWInt( "Ammo", m_ammo );
-	self.Entity:SetModel("models/Items/ammocrate_smg1.mdl")
+	self:SetNWInt( "Ammo", self.m_ammo );
+	self.Entity:SetModel(self.model)
 	self.Entity:PhysicsInit(SOLID_VPHYSICS)
 	self.Entity:SetMoveType(MOVETYPE_VPHYSICS)
 	self.Entity:SetSolid(SOLID_VPHYSICS)
 	self.Entity:DrawShadow(false)
 	
+	self.Entity:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 	
 	local phys = self.Entity:GetPhysicsObject()
 	
@@ -51,12 +53,21 @@ function ENT:OnTakeDamage(dmginfo)
 end
 
 function ENT:Use(activator, caller)
-	--self.Entity:EmitSound("starwars/items/bacta.wav")
 	if (activator:IsPlayer()) then
-		--print("Get")
-		if(activator:GetPData(activator:SteamID().."_new")=="true")then
-			gamemode.Call("PlayerLoadout", activator)
-			activator:SetPData(activator:SteamID().."_new", "false")
+		for k,v in pairs(self.Ammo)do
+			local ac = activator:GetAmmoCount( v.name )
+			if(ac<v.max)then
+				if(ac+self.t_ammo<v.max)then
+					self:SetNWInt( "Ammo",self:GetNWInt( "Ammo" )-self.t_ammo )
+					activator:GiveAmmo(self.t_ammo,v.name)
+					if(self:GetNWInt( "Ammo" )<=0)then self.Entity:Remove() end
+				else
+					self:SetNWInt( "Ammo",self:GetNWInt( "Ammo" )-(v.max-ac) )
+					activator:GiveAmmo(v.max-ac,v.name)
+					if(self:GetNWInt( "Ammo" )<=0)then self.Entity:Remove() end
+				end
+			end
 		end
 	end
+	if (self:GetNWInt( "Ammo" )<=0)then self.Entity:Remove() end
 end
