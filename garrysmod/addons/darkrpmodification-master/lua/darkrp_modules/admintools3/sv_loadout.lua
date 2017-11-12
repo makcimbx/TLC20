@@ -53,25 +53,32 @@ function GM:PlayerLoadout(ply)
 end
 
 function BOX_PlayerLoadout(ply)
-	if(ply.newSpawn == false)then
+	if(ply.newSpawn == true)then
+		ply.newSpawn = false
 		local jobTable = ply:getJobTable()
 	
 		for k,v in pairs(jobTable.weapons or {}) do
 			ply:Give(v,true)
 		end
 	else
-		DarkRP.notify(activator, 1, 4, "Ты не можешь взять больше!")
+		DarkRP.notify(ply, 1, 4, "Ты не можешь взять больше!")
 	end
 end
 
-function spawn( ply )
+local function spawn( ply )
 	ply:StripAmmo()
 	ply.newSpawn = true
 end
 hook.Add( "PlayerSpawn", "PlayerSpawn", spawn )
 
-function change(ply, oldTeam, newTeam)
+local function change(ply, oldTeam, newTeam)
 	ply:StripAmmo()
 	ply.newSpawn = true
 end
-hook.Add( "OnPlayerChangedTeam", "OnPlayerChangedTeam", change )
+hook.Add( "OnPlayerChangedTeam", "Ever_OnPlayerChangedTeam", change )
+
+local function PlayerDeath( ply, i, a )
+	ply:StripAmmo()
+	ply.newSpawn = true
+end
+hook.Add( "PlayerDeath", "Ever_PlayerDeath", PlayerDeath )

@@ -244,7 +244,7 @@ end
 timer.Simple(0.5,function()
 	LoadList()
 	if(GetData( "tabs_default" )!="1")then
-		SetData( "#EVER@@2","1" )
+		SetData( "tabs_default","1" )
 		AddGroupTo("entities","admin",nil)
 		AddGroupTo("weapons","admin",nil)
 		AddGroupTo("npcs","admin",nil)

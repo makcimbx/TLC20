@@ -54,9 +54,11 @@ end
 
 function ENT:Use(activator, caller)
 	if (activator:IsPlayer()) then
+		local a = 0 
 		for k,v in pairs(self.Ammo)do
 			local ac = activator:GetAmmoCount( v.name )
 			if(ac<v.max)then
+				a=a+1
 				if(ac+self.t_ammo<v.max)then
 					self:SetNWInt( "Ammo",self:GetNWInt( "Ammo" )-self.t_ammo )
 					activator:GiveAmmo(self.t_ammo,v.name)
@@ -68,6 +70,7 @@ function ENT:Use(activator, caller)
 				end
 			end
 		end
+		if(a==0)then DarkRP.notify(activator, 1, 4, "Ты не можешь взять больше!") end
+		if (self:GetNWInt( "Ammo" )<=0)then self.Entity:Remove() end
 	end
-	if (self:GetNWInt( "Ammo" )<=0)then self.Entity:Remove() end
 end

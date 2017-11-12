@@ -87,6 +87,7 @@ function ENT:Use(activator, caller)
 			for k,v in pairs(self.Ammo)do
 				local ac = activator:GetAmmoCount( v.name )
 				if(ac<v.max)then
+					a=a+1
 					if(ac+self.t_ammo<v.max)then
 						activator:GiveAmmo(self.t_ammo,v.name)
 					else

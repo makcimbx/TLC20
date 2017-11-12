@@ -1,4 +1,4 @@
-ENT.PrintName		= "Ammo Map Box"
+ENT.PrintName		= "Weapon Box"
 ENT.Author			= "Ever"
 ENT.Information		= ""
 ENT.Category		= "#Ever Items"

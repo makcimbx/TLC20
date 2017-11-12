@@ -15,7 +15,7 @@ ENT.UnlimitedAmmo = false
 ENT.m_ammo = 600000
 ENT.t_ammo = 600
 ENT.recharge_rate = 2
-ENT.recharge_multiplayer = 1753
+ENT.recharge_multiplayer = 0
 
 ENT.Ammo = {
 	{name="AR2",max=1500},
