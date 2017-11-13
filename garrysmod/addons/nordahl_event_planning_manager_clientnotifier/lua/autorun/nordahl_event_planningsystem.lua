@@ -869,6 +869,7 @@ concommand.Add("tmevent",tmevent)
 
 local opstring=tostring
 local zcolorbase=Color(0,255,0,200) local hookAdd=hook.Add
+local xp_bar = Material("tlcimages/uptab.png","noclamp smooth")
 
 local function HUDPaint()
 local ENOPLJourHeure="zeventplan1"..ENOPL.Jour..ENOPL.Heure
@@ -877,21 +878,20 @@ local y=30
 local abc=700
 local abc2=abc/2
 if ENOPL.Hud==1 or (ENOPL.Hud==2 and GetGlobalString(ENOPLJourHeure)!="" or GetGlobalString(ENOPLJourHeureS)!="" ) or openmenu==true  then
-draw.RoundedBox(4,ScrW()/2-(abc2+1),5+y,abc,14,Color(231/2,83/2,35/2,100))
-draw.RoundedBox(4,ScrW()/2-(abc2),6+y,abc-2,12,Color(255,103,55,100))
-draw.RoundedBox(2,ScrW()/2-(abc2),14+y,abc-2,33,Color(0,0,0,150))
-draw.SimpleText("Planning Event","Trebuchet18",ScrW()/2,11+y,Color(255,255,255),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
-draw.SimpleText(tra_scrp_actue..":","Trebuchet18",ScrW()/2-abc2/2,24+y,Color(255,255,255),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
-draw.SimpleText(tra_scrp_proch..":","Trebuchet18",ScrW()/2+abc2/2,24+y,Color(255,255,255),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
+surface.SetMaterial(xp_bar)
+surface.SetDrawColor(255,255,255,255)
+surface.DrawTexturedRect( ScrW()/2-1100/2, 46.5-(563/2),  1100,563)
+draw.SimpleText(tra_scrp_actue..":","Trebuchet18",ScrW()/2.15-abc2/2,26+y,Color(255,255,255),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
+draw.SimpleText(tra_scrp_proch..":","Trebuchet18",ScrW()/1.85+abc2/2,26+y,Color(255,255,255),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
 if GetGlobalString(ENOPLJourHeure)!="" then
-draw.SimpleText(GetGlobalString(ENOPLJourHeure),"Trebuchet18",ScrW()/2-abc2/2,37+y,Color(0,255,0),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
+draw.SimpleText(GetGlobalString(ENOPLJourHeure),"Trebuchet18",ScrW()/2.15-abc2/2,39+y,Color(0,255,0),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
 else
-draw.SimpleText(tra_scrp_nordahl_noevent,"Trebuchet18",ScrW()/2-abc2/2,37+y,Color(255,103,55),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
+draw.SimpleText(tra_scrp_nordahl_noevent,"Trebuchet18",ScrW()/2.15-abc2/2,39+y,Color(255,103,55),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
 end
 if GetGlobalString(ENOPLJourHeureS)!="" then
-draw.SimpleText(GetGlobalString(ENOPLJourHeureS),"Trebuchet18",ScrW()/2+abc2/2,37+y,Color(200,200,200),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
+draw.SimpleText(GetGlobalString(ENOPLJourHeureS),"Trebuchet18",ScrW()/1.85+abc2/2,39+y,Color(200,200,200),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
 else
-draw.SimpleText(tra_scrp_nordahl_noevent,"Trebuchet18",ScrW()/2+abc2/2,37+y,Color(255,103,55),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
+draw.SimpleText(tra_scrp_nordahl_noevent,"Trebuchet18",ScrW()/1.85+abc2/2,39+y,Color(255,103,55),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
 end
 end
 end

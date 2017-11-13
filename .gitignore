@@ -18,3 +18,4 @@ garrysmod/data/ulib/users.txt
 garrysmod/modelsounds.cache
 garrysmod/sv.db-journal
 garrysmod/clientside_errors.txt
+garrysmod/cfg/server.vdf

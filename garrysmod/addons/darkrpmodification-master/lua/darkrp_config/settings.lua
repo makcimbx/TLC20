@@ -307,8 +307,6 @@ GM.Config.F1MenuHelpPageTitle = "Server tips"
 
 -- Put Steam ID's and ranks in this list, and the players will have that rank when they join.
 GM.Config.DefaultPlayerGroups = {
-    ["STEAM_0:0:00000000"] = "superadmin",
-    ["STEAM_0:0:11111111"] = "admin",
 }
 
 -- Custom modules in this addon that are disabled.
@@ -393,9 +391,6 @@ GM.Config.AdminWeapons = {
 
 -- These are the default laws, they're unchangeable in-game.
 GM.Config.DefaultLaws = {
-    "Do not attack other citizens except in self-defence.",
-    "Do not steal or break into people's homes.",
-    "Money printers/drugs are illegal.",
 }
 
 GM.Config.PocketBlacklist = {

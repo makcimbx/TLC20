@@ -21,6 +21,6 @@ hook.Add("HUDShouldDraw", "Kun_HideHud", Kun_HideHud)
 function SWEP:DrawHUD()
 	surface.SetDrawColor( 0, 0, 0, 255) 
 	surface.DrawRect(ScrW() / 2 - 50, ScrH() / 2 + 30, 100, 20)
-	draw.SimpleText( "Charge: "..LocalPlayer():GetNWInt("DefibCharge").."/"..Kun_DefibChargeAmtNeed, "TargetID", ScrW() / 2, ScrH() / 2 + 40, Color(250,250,250,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+	draw.SimpleText( "Заряд: "..LocalPlayer():GetNWInt("DefibCharge").."/"..Kun_DefibChargeAmtNeed, "TargetID", ScrW() / 2, ScrH() / 2 + 40, Color(250,250,250,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 	return
 end

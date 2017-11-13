@@ -328,8 +328,8 @@ hook.Add("HUDPaint" , "StarWars.HUDPaint" , function()
     if (SW.ShowLevelHUD) then
         draw.SimpleText(SW:ShowLevel(LocalPlayer()) , "sw_ui_14" , 150 , ScrH() - 114 , Color(176 , 226 , 235) , TEXT_ALIGN_CENTER)
     end
-    local TimeString = os.date("%H:%M" , os.time())
-    draw.SimpleText(TimeString , "sw_ui_14" , 380 , ScrH() - 70 , Color(176 , 226 , 235) , TEXT_ALIGN_LEFT)
+    local TimeString = clock4811
+    draw.SimpleText(TimeString , "sw_ui_14" , 350 , ScrH() - 70 , Color(176 , 226 , 235) , TEXT_ALIGN_LEFT)
 
     if (SW.UseRadar) then
         drawRadar()

@@ -21,16 +21,6 @@ util.AddNetworkString("CS_NETPOINTS")
 util.AddNetworkString("CS_NETCONFIG")
 util.AddNetworkString("CS_NOTIF")
 
-resource.AddFile("materials/conquestsystem/circle32.png")
-resource.AddFile("materials/conquestsystem/circle64.png")
-resource.AddFile("materials/conquestsystem/circle128.png")
-resource.AddFile("materials/conquestsystem/square32.png")
-resource.AddFile("materials/conquestsystem/square64.png")
-resource.AddFile("materials/conquestsystem/square128.png")
-resource.AddFile("materials/conquestsystem/triangle32.png")
-resource.AddFile("materials/conquestsystem/triangle64.png")
-resource.AddFile("materials/conquestsystem/triangle128.png")
-
 ConquestSystem.Points = {}
 
 --[[-------------------------------------------------------------------------
