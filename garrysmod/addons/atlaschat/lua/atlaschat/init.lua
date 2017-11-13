@@ -27,27 +27,7 @@ include("sh_config.lua")
 include("sv_sql.lua")
 include("cl_theme.lua") -- Nothing is actually used serverside.
 
-resource.AddFile("materials/atlaschat/plus.png")
-resource.AddFile("materials/atlaschat/cross.png")
-resource.AddFile("materials/atlaschat/check.png")
-resource.AddFile("materials/atlaschat/users.png")
-resource.AddFile("materials/atlaschat/emotes.png")
-resource.AddFile("materials/atlaschat/settings.png")
 
-resource.AddFile("materials/atlaschat/emoticons/overrustle.png")
-resource.AddFile("materials/atlaschat/emoticons/garry.png")
-resource.AddFile("materials/atlaschat/emoticons/gaben.png")
-
-resource.AddFile("resource/fonts/opensans_bold.ttf")
-resource.AddFile("resource/fonts/opensans_bolditalic.ttf")
-resource.AddFile("resource/fonts/opensans_extrabold.ttf")
-resource.AddFile("resource/fonts/opensans_extrabolditalic.ttf")
-resource.AddFile("resource/fonts/opensans_italic.ttf")
-resource.AddFile("resource/fonts/opensans_light.ttf")
-resource.AddFile("resource/fonts/opensans_lightitalic.ttf")
-resource.AddFile("resource/fonts/opensans_regular.ttf")
-resource.AddFile("resource/fonts/opensans_semibold.ttf")
-resource.AddFile("resource/fonts/opensans_semibolditalic.ttf")
 
 -- configuration ot add usergroups to a whitelist of who can edit stuff
 

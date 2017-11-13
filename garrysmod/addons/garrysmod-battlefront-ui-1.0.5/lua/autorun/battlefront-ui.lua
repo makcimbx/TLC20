@@ -32,6 +32,4 @@ end
 
 findInFolder( "battlefront-ui/" )
 
-if SERVER then
-	resource.AddWorkshop( "1165844047" )
-end
+

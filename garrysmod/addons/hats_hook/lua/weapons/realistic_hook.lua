@@ -66,7 +66,7 @@ SWEP.EquipMenuData = {
 };
 
 SWEP.Icon = "entities/realistic_hook"
-if SERVER then resource.AddFile( "materials/"..SWEP.Icon..".vmt" ) end
+
 ----
 
 --Standard swep functions--
