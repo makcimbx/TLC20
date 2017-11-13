@@ -51,7 +51,7 @@ function Kun_MakeMarker()
 		if(ply:IsTeamType("medic")) then
 			for k,v in pairs(ents.GetAll()) do
 				if(v != nil and v:IsValid() and v:GetClass() == "prop_ragdoll") then
-					if(ply:GetPos():Distance( v:GetPos() )) <= 1000 then
+					if(ply:GetPos():Distance( v:GetPos() )) <= 1000 and v:GetNWInt("RagDeathTimeZ")!=0 then
 						local pos = v:GetPos():ToScreen()
 						local forczersad = Kun_DeathTime
 						if(Kun_AddExtraTime == 1) then
