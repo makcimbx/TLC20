@@ -2,7 +2,10 @@ if (!SW.EnableScoreboard) then return end
 
 local PANEL = { }
 local cl = Material("ggui/star_wars/close.png")
+local ch = Material("ggui/star_wars/change.png")
 local lowRes = ScrH() <= 720
+
+fadminChange = false
 
 for k , v in pairs(player.GetAll()) do
     v.Scoreboard = nil
@@ -15,6 +18,7 @@ function PANEL:Init()
     self:MakePopup()
     self:SetDraggable(false)
     self:ShowCloseButton(false)
+	
     self.cl = vgui.Create("DButton" , self)
     self.cl:SetSize(16 , 16)
     self.cl:SetPos(self:GetWide() - 42 , 18)
@@ -26,6 +30,27 @@ function PANEL:Init()
 
     self.cl.Paint = function(s , w , h)
         surface.SetMaterial(cl)
+        surface.SetDrawColor(s:IsHovered() and Color(218 , 198 , 0) or Color(0 , 198 , 218))
+        surface.DrawTexturedRect(0 , 0 , w , h)
+    end
+	
+    self.change = vgui.Create("DButton" , self)
+    self.change:SetSize(16 , 16)
+    self.change:SetPos(self:GetWide() - 69 , 18)
+    self.change:SetText("")
+
+    self.change.DoClick = function()
+        self:Hide()
+		fadminChange = !fadminChange
+		if(fadminChange==true)then
+			if FAdmin.GlobalSetting.FAdmin or OverrideScoreboard:GetBool() then -- Don't show scoreboard when FAdmin is not installed on server
+				return FAdmin.ScoreBoard.ShowScoreBoard()
+			end
+		end
+    end
+
+    self.change.Paint = function(s , w , h)
+        surface.SetMaterial(ch)
         surface.SetDrawColor(s:IsHovered() and Color(218 , 198 , 0) or Color(0 , 198 , 218))
         surface.DrawTexturedRect(0 , 0 , w , h)
     end
@@ -305,14 +330,23 @@ if (IsValid(SW.Score)) then
 end
 
 hook.Add("ScoreboardShow" , "SW.Scoreboard" , function()
-    if (not IsValid(SW.Score)) then
-        SW.Score = vgui.Create("swScoreboard")
-    else
-        SW.Score:Show()
-    end
-
-    return false
+	if(fadminChange==false)then
+		Ever_OpenHud()
+	else
+		if FAdmin.GlobalSetting.FAdmin or OverrideScoreboard:GetBool() then -- Don't show scoreboard when FAdmin is not installed on server
+			return FAdmin.ScoreBoard.ShowScoreBoard()
+		end
+	end
+	return false
 end)
+
+function Ever_OpenHud()
+	if (not IsValid(SW.Score)) then
+		SW.Score = vgui.Create("swScoreboard")
+	else
+		SW.Score:Show()
+	end
+end
 
 hook.Add("ScoreboardHide" , "SW.Scoreboard" , function()
     if (IsValid(SW.Score)) then
