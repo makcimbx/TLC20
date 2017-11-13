@@ -11,6 +11,11 @@ surface.CreateFont("old_republic_32" , {
     size = 30
 })
 
+surface.CreateFont("old_republic_12" , {
+    font = "Aero Matics" ,
+    size = 14
+})
+
 surface.CreateFont("old_republic_24" , {
     font = "Aero Matics" ,
     size = 18
@@ -100,6 +105,10 @@ net.Receive("SW.ShowHitMarker" , function(l , ply)
 end)
 
 hook.Add("PostDrawTranslucentRenderables" , "StarWars.DrawHitMarkers" , function()
+
+		if (IsValid(modelPanel)) then
+			modelPanel:SetVisible( false ) 
+		end
     local ang = EyeAngles()
     ang:RotateAroundAxis(ang:Right() , 90)
     ang:RotateAroundAxis(ang:Up() , -90)
@@ -294,10 +303,12 @@ local function drawWeapon()
 end
 
 hook.Add("HUDPaint" , "StarWars.HUDPaint" , function()
+		if (IsValid(modelPanel)) then
+			modelPanel:SetVisible( true ) 
+		end
     if (not IsValid(modelPanel)) then
         createDModel()
     end
-
     surface.SetTexture(bHUD)
     surface.SetDrawColor(color_white)
     surface.DrawTexturedRect(32 , ScrH() - 128 - 16 , 512 , 128)
@@ -313,10 +324,11 @@ hook.Add("HUDPaint" , "StarWars.HUDPaint" , function()
     surface.DrawTexturedRectUV(140 , ScrH() - 98 , 512 * p , 128 , 0 , 0 , p , 1)
     surface.SetTexture(aBar)
 
+	
     if (SW.DrawHealthAmount) then
         draw.DrawNonParsedText(LocalPlayer():Health() .."HP", "sw_ui_14" , 140 + 512 * p-4, ScrH() - 102 , color_black , 2)
         draw.DrawNonParsedText(LocalPlayer():Health() .."HP" , "sw_ui_14" , 140 + 512 * p-4, ScrH() - 101 , color_white , 2)
-    end
+	end
 
     p = 0.47 * (LocalPlayer():Armor() / 100)
     surface.DrawTexturedRectUV(140 , ScrH() - 88 , 512 * p , 128 , 0 , 0 , p , 1)
@@ -328,8 +340,8 @@ hook.Add("HUDPaint" , "StarWars.HUDPaint" , function()
     if (SW.ShowLevelHUD) then
         draw.SimpleText(SW:ShowLevel(LocalPlayer()) , "sw_ui_14" , 150 , ScrH() - 114 , Color(176 , 226 , 235) , TEXT_ALIGN_CENTER)
     end
-    local TimeString = clock4811
-    draw.SimpleText(TimeString , "sw_ui_14" , 350 , ScrH() - 70 , Color(176 , 226 , 235) , TEXT_ALIGN_LEFT)
+	
+	draw.SimpleTextOutlined(clock4811 , "old_republic_12" , 350 , ScrH() - 73 , Color(176 , 226 , 235) , nil , nil , 1 , color_black)
 
     if (SW.UseRadar) then
         drawRadar()
@@ -454,11 +466,12 @@ end
 vgui.Register("CircularPlayer" , PANEL)
 
 local hideHUDElements = {
-    [ "CHudWeapon" ] = true ,
     [ "CHudSecondaryAmmo" ] = true ,
     [ "CHudAmmo" ] = true
 }
 
 hook.Add("HUDShouldDraw" , "SW.HideHUD" , function(name)
-    if hideHUDElements[ name ] then return false end
+    if hideHUDElements[ name ] then
+		return false 
+	end
 end)
