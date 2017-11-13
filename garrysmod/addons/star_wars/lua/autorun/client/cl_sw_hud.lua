@@ -353,7 +353,7 @@ end)
 local plyMeta = FindMetaTable("Player")
 local Page = Material("icon16/page_white_text.png")
 
-timer.Simple(0 , function()
+--[[timer.Simple(0 , function()
     plyMeta.drawPlayerInfo = function(self)
         local pos = self:EyePos()
         local nick , plyTeam = self:Nick() , self:Team()
@@ -393,7 +393,7 @@ timer.Simple(0 , function()
             surface.DrawTexturedRect(pos.x - 16 , pos.y + 60 , 32 , 32)
         end
     end
-end)
+end)]]--
 
 local PANEL = { }
 

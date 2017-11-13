@@ -1,6 +1,6 @@
 
 ENT.RenderGroup = RENDERGROUP_OPAQUE
-ENT.Base = "fighter_base"
+ENT.Base = "laat_base"
 ENT.Type = "vehicle"
 
 ENT.PrintName = "LAAT"
@@ -40,6 +40,7 @@ function ENT:Initialize()
 		Left = self:GetPos()+self:GetForward()*360+self:GetUp()*25+self:GetRight()*-58,
 	}
 	self.WeaponsTable = {};
+	self.TWeaponsTable = {};
 	self.BoostSpeed = 1750;
 	self.ForwardSpeed = 1000;
 	self.UpSpeed = 500;
@@ -84,6 +85,9 @@ function ENT:Initialize()
 
 	self.PilotVisible = true;
 	self.PilotPosition = {x=0,y=210,z=130};
+	
+	self.TPilotVisible = true;
+	self.TPilotPosition = {x=0,y=210+90,z=130};
 
 	self.HasLookaround = true;
 	self.BaseClass.Initialize(self);
