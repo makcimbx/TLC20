@@ -42,7 +42,7 @@ function FAdmin.ScoreBoard.ShowScoreBoard()
 	
 	
     FAdmin.ScoreBoard.Controls.Change = vgui.Create("DImageButton")
-    FAdmin.ScoreBoard.Controls.Change:SetMaterial("fadmin/change2.png")
+    FAdmin.ScoreBoard.Controls.Change:SetMaterial("ggui/star_wars/change2.png")
     FAdmin.ScoreBoard.Controls.Change:SetPos(FAdmin.ScoreBoard.Width-360, FAdmin.ScoreBoard.Y - 20)
     FAdmin.ScoreBoard.Controls.Change:SetSize( 128, 128 )
     FAdmin.ScoreBoard.Controls.Change:SetVisible(true)
