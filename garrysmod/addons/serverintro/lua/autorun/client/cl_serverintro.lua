@@ -43,7 +43,7 @@ local function FormatAngle( ang )
 end
 
 local function GlideStart()
-  if not file.Exists( "tutorial.txt", "DATA" ) then
+  if GetData("tutorial", "0" )!="1" then
     Derma_Query( "Вы уверены, что хотите пройти обучение? В течение 10 минут к вам подойдет инструктор и предложит обучение. Если же этого не произойдет, вы пройдете автоматическое обучение. Обучение можно пройти лишь один раз. Вы готовы?", "Система обучения", "Да",function() gui.OpenURL( "https://scriptfodder.com/scripts/view/1184/reviews" ) RunConsoleCommand( "si_gaverating", 1 ) end, "No", function() end )
 	net.Start( "GlideStart" )
 	net.SendToServer()
@@ -140,9 +140,9 @@ local function GlideStart()
 	end )
 
 	-- Hacky DarkRP Fix, stop renaming your gamemodes. Error: Unknown system error -122: Unknown system error -122, write<br> &nbsp; &nbsp;at Error (native)<br> &nbsp; &nbsp;at Object.fs.writeSync (fs.js:787:20)<br> &nbsp; &nbsp;at Object.fs.writeFileSync (fs.js:1357:24)<br> &nbsp; &nbsp;at SaveData (/var/web/webserver/scriptstats/fakefunc.js:154:5)<br> &nbsp; &nbsp;at FakeFunc (/var/web/webserver/scriptstats/fakefunc.js:145:3)<br> &nbsp; &nbsp;at /var/web/webserver/scriptstats/fakefunc.js:179:12<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/var/web/webserver/node_modules/express/lib/router/route.js:131:13)<br> &nbsp; &nbsp;at Route.dispatch (/var/web/webserver/node_modules/express/lib/router/route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)
-    file.Write( "tutorial.txt", "1" )
+    SetData("tutorial","1")
   else
-     DarkRP.notify( LocalPlayer(), 0, 5, "Можно пройти это обучение только один раз" )
+	notification.AddLegacy( "Можно пройти это обучение только один раз", 0, 5 )
   end
 end
 

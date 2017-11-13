@@ -39,3 +39,21 @@ DarkRP.declareChatCommand{
 	description = "Set ooc delay!",
 	delay = 1.5
 }
+
+DarkRP.declareChatCommand{
+	command = "/",
+	description = "ooc",
+	delay = 1.5
+}
+
+DarkRP.declareChatCommand{
+	command = "a",
+	description = "ooc",
+	delay = 1.5
+}
+
+DarkRP.declareChatCommand{
+	command = "ooc",
+	description = "ooc",
+	delay = 1.5
+}
