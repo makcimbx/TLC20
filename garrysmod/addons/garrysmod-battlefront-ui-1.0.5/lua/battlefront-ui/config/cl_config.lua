@@ -247,9 +247,9 @@ bfUI.registerElement( "ГЛАВНАЯ", {
 	}
 })
 
-bfUI.registerElement( "ФОРУМ", {
-	showURL = "https://facepunch.com/"
-})
+--bfUI.registerElement( "ФОРУМ", {
+	--showURL = "https://facepunch.com/"
+--})
 
 bfUI.registerElement( "АДМИНЫ", {
 	--customCheck = function( client, panel ) return client:IsAdmin() or client:IsSuperAdmin() end,
@@ -302,17 +302,16 @@ bfUI.registerElement( "СЕРВЕРА", {
 
 bfUI.registerElement( "ПРАВИЛА", {
 	-- This dictates whether a website should load here.
-	showURL = "https://google.co.uk"
+	showURL = "https://vk.com/topic-43701099_34451510"
 })
 
---[[ 
+
 	-- This shows a donation page URL which you can uncomment and set your own URL for.
 
-	bfUI.registerElement( "DONATE", {
-		-- This dictates whether a website should load here.
-		showURL = "https://google.co.uk"
-	})
-]]
+bfUI.registerElement( "ДОНАТ", {
+	showURL = "https://vk.com/topic-43701099_34461503"
+})
+
 
 bfUI.registerElement( "НАСТРОЙКИ", {
 	-- This dictates whether the options menu should show here.

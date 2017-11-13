@@ -1,4 +1,4 @@
-resource.AddWorkshop("1138475161")
+
 util.AddNetworkString("SW.OpenF4")
 
 hook.Add("ShowSpare2","OpenDarkrPMenu",function(ply)

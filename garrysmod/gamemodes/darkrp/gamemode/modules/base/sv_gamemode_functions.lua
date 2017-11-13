@@ -374,7 +374,7 @@ function GM:CanProperty(ply, property, ent)
 end
 
 function GM:PlayerShouldTaunt(ply, actid)
-    return false
+    return true
 end
 
 function GM:DoPlayerDeath(ply, attacker, dmginfo, ...)
