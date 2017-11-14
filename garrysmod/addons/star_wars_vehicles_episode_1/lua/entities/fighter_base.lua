@@ -802,7 +802,6 @@ function ENT:Network_Overheating()
 end
 
 function ENT:OnTakeDamage(dmg)
-
 	if(dmg:GetInflictor():GetParent() == self) then return end;
 
 	self.VehicleHealth = self.VehicleHealth-(dmg:GetDamage()/2)
@@ -1625,7 +1624,9 @@ if CLIENT then
 		end
 		FPV = false;
 		if(IsValid(self.FXEmitter)) then
-			self.FXEmitter:Remove();
+			if ShipName != "laat" then 
+				--self.FXEmitter:Remove();
+			end
 		end
 	end
 	
