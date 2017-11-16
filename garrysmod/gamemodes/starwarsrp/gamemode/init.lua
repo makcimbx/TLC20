@@ -8,3 +8,5 @@ DeriveGamemode("darkrp")
 DEFINE_BASECLASS("gamemode_darkrp")
 
 GM.DarkRP = BaseClass
+
+

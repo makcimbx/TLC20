@@ -1,0 +1,119 @@
+
+--[[-------------------------------------------------------------------
+	Advanced Lightsaber Combat Loader:
+		Loads all the files and such
+			Powered by
+						  _ _ _    ___  ____  
+				__      _(_) | |_ / _ \/ ___| 
+				\ \ /\ / / | | __| | | \___ \ 
+				 \ V  V /| | | |_| |_| |___) |
+				  \_/\_/ |_|_|\__|\___/|____/ 
+											  
+ _____         _                 _             _           
+|_   _|__  ___| |__  _ __   ___ | | ___   __ _(_) ___  ___ 
+  | |/ _ \/ __| '_ \| '_ \ / _ \| |/ _ \ / _` | |/ _ \/ __|
+  | |  __/ (__| | | | | | | (_) | | (_) | (_| | |  __/\__ \
+  |_|\___|\___|_| |_|_| |_|\___/|_|\___/ \__, |_|\___||___/
+                                         |___/             
+----------------------------- Copyright 2017, David "King David" Wiltos ]]--[[
+							  
+	Lua Developer: King David
+	Contact: http://steamcommunity.com/groups/wiltostech
+		
+-- Copyright 2017, David "King David" Wiltos ]]--
+
+wOS = wOS or {}
+wOS.Lightsaber = wOS.Lightsaber or {}
+
+--This order may look completely stupid, and you'd ask why I wouldn't just cluster them all together
+--Well, load orders are very important, and this is the best way to control it
+
+if SERVER then
+
+	AddCSLuaFile( "wos/advswl/config/sh_serverwos.lua" )
+	AddCSLuaFile( "wos/advswl/config/sh_swlwos.lua" )
+	AddCSLuaFile( "wos/advswl/config/sh_hiltwos.lua" )
+	AddCSLuaFile( "wos/advswl/config/sh_stamina.lua" )
+	
+	AddCSLuaFile( "wos/advswl/robot-boy/cl_rb655_lightsaber.lua" )	
+	AddCSLuaFile( "wos/advswl/robot-boy/sh_rb655_lightsaber_presets.lua" )	
+	
+	AddCSLuaFile( "wos/advswl/core/cl_core.lua" )
+	AddCSLuaFile( "wos/advswl/core/cl_net.lua" )
+	AddCSLuaFile( "wos/advswl/core/sh_core.lua" )
+	AddCSLuaFile( "wos/advswl/core/sh_hilt_extension.lua" )
+	
+	AddCSLuaFile( "wos/advswl/anim/sh_forcesequence.lua" )
+	AddCSLuaFile( "wos/advswl/anim/cl_forcesequence.lua" )
+	
+	AddCSLuaFile( "wos/advswl/combat/cl_dualsaber.lua" )	
+	AddCSLuaFile( "wos/advswl/combat/cl_saberbase_hook.lua" )		
+	
+	AddCSLuaFile( "wos/advswl/forcepowers/wos_forcematerialbuilding.lua" )			
+	AddCSLuaFile( "wos/advswl/forcepowers/cl_forcepowers.lua" )		
+	
+	AddCSLuaFile( "wos/advswl/devestators/wos_devmaterialbuilding.lua" )			
+	AddCSLuaFile( "wos/advswl/devestators/cl_devestators.lua" )		
+	
+	AddCSLuaFile( "wos/advswl/crafting/wos_crafting.lua" )			
+	
+	AddCSLuaFile( "wos/advswl/forms/cl_forms.lua" )			
+	
+end
+
+include( "wos/advswl/config/sh_serverwos.lua" )
+include( "wos/advswl/config/sh_swlwos.lua" )
+include( "wos/advswl/config/sh_hiltwos.lua" )
+include( "wos/advswl/config/sh_stamina.lua" )
+
+include( "wos/advswl/robot-boy/sh_rb655_lightsaber_presets.lua" )	
+include( "wos/advswl/core/sh_core.lua" )
+include( "wos/advswl/core/sh_hilt_extension.lua" )
+include( "wos/advswl/anim/sh_forcesequence.lua" )
+
+if SERVER then
+
+	
+	include( "wos/advswl/robot-boy/sv_rb655_lightsaber.lua" )	
+	
+	include( "wos/advswl/core/sv_resources.lua" )		
+	include( "wos/advswl/core/sv_concommands.lua" )	
+	include( "wos/advswl/core/sv_core.lua" )
+	include( "wos/advswl/core/sv_net.lua" )
+	include( "wos/advswl/core/sv_saber_registry.lua" )
+	
+	include( "wos/advswl/anim/sh_forcesequence.lua" )
+	include( "wos/advswl/anim/sv_forcesequence.lua" )
+	
+	include( "wos/advswl/combat/sv_saberbase_hook.lua" )		
+	include( "wos/advswl/combat/sv_combat_hook.lua" )	
+			
+	include( "wos/advswl/forcepowers/sv_forcepowers.lua" )		
+				
+	include( "wos/advswl/devestators/sv_devestators.lua" )		
+	
+	include( "wos/advswl/forms/sv_forms.lua" )		
+	
+else
+
+	include( "wos/advswl/robot-boy/cl_rb655_lightsaber.lua" )	
+	
+	include( "wos/advswl/core/cl_core.lua" )
+	include( "wos/advswl/core/cl_net.lua" )
+	
+	include( "wos/advswl/anim/cl_forcesequence.lua" )
+	
+	include( "wos/advswl/combat/cl_dualsaber.lua" )	
+	include( "wos/advswl/combat/cl_saberbase_hook.lua" )		
+	
+	include( "wos/advswl/forcepowers/wos_forcematerialbuilding.lua" )			
+	include( "wos/advswl/forcepowers/cl_forcepowers.lua" )		
+	
+	include( "wos/advswl/devestators/wos_devmaterialbuilding.lua" )			
+	include( "wos/advswl/devestators/cl_devestators.lua" )		
+	
+	include( "wos/advswl/crafting/wos_crafting.lua" )	
+	
+	include( "wos/advswl/forms/cl_forms.lua" )	
+	
+end

@@ -341,7 +341,7 @@ hook.Add("HUDPaint" , "StarWars.HUDPaint" , function()
         draw.SimpleText(SW:ShowLevel(LocalPlayer()) , "sw_ui_14" , 150 , ScrH() - 114 , Color(176 , 226 , 235) , TEXT_ALIGN_CENTER)
     end
 	
-	draw.SimpleTextOutlined(clock4811 , "old_republic_12" , 350 , ScrH() - 73 , Color(176 , 226 , 235) , nil , nil , 1 , color_black)
+	
 
     if (SW.UseRadar) then
         drawRadar()

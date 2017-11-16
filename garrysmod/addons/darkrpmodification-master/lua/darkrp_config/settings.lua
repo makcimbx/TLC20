@@ -86,7 +86,7 @@ GM.Config.dropweapondeath               = false
 -- Whether players can drop the weapons they spawn with.
 GM.Config.dropspawnedweapons            = true
 -- dynamicvoice - Enable/disable whether only people in the same room as you can hear your mic.
-GM.Config.dynamicvoice                  = true
+GM.Config.dynamicvoice                  = false
 -- earthquakes - Enable/disable earthquakes.
 GM.Config.earthquakes                   = false
 -- enablebuypistol - Turn /buy on of off.
