@@ -67,7 +67,8 @@ function meta:getXP()
 end
 
 function meta:getMaxXP()
-	return (((10+(((self:getDarkRPVar('level') or 1)*((self:getDarkRPVar('level') or 1)+1)*90))))*LevelSystemConfiguration.XPMult)
+	return LevelSystemConfiguration.LinearXP[self:getDarkRPVar('level') or 1]
+	--return (((10+(((self:getDarkRPVar('level') or 1)*((self:getDarkRPVar('level') or 1)+1)*90))))*LevelSystemConfiguration.XPMult)
 end
 
 function meta:addLevels(levels)

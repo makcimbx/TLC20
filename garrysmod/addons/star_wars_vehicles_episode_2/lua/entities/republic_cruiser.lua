@@ -443,7 +443,7 @@ function ENT:PhysicsSimulate(phys,delta)
 	local FWD = self:GetForward()*-1;
 	local UP = ZAxis;
 	local RIGHT = FWD:Cross(UP):GetNormalized();
-	if(self.Inflight) then
+	if(self.Inflight) then 
 		phys:Wake();
 		if(self.Pilot:KeyDown(IN_FORWARD) and (self.Wings or self.Pilot:KeyDown(IN_SPEED))) then
 			self.num = self.BoostSpeed;

@@ -13,11 +13,11 @@ DisplayNotify = function(msg)
   return MsgC(Color(255, 20, 20, 255), '[DarkRP] ', Color(200, 200, 200, 255), txt, '\n')
 end
 usermessage.Hook("_Notify", DisplayNotify);
-(GM or GAMEMODE).HUDShouldDraw = function(self, name)
-  if name == 'CHudHealth' or name == 'CHudBattery' or name == 'CHudSuitPower' then
-    return false
-  else
-    return self.Sandbox and self.Sandbox.HUDShouldDraw(self, name) or true
-  end
-end
+--(GM or GAMEMODE).HUDShouldDraw = function(self, name)
+  --if name == 'CHudHealth' or name == 'CHudBattery' or name == 'CHudSuitPower' then
+   -- return false
+  --else
+    --return self.Sandbox and self.Sandbox.HUDShouldDraw(self, name) or true
+ -- end
+--end
 (GM or GAMEMODE).HUDDrawTargetID = phud.identityFunc(false)

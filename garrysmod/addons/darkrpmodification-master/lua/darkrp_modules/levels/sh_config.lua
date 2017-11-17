@@ -5,6 +5,39 @@
 LevelSystemConfiguration = {} // Ignore
 Printers = {} // Ignore
 
+LevelSystemConfiguration.LinearXP = {
+	grade1 = 20000,
+	[1] = grade1,
+	[2] = grade1,
+	[3] = grade1,
+	[4] = grade1,
+	[5] = grade1,
+	[6] = grade1,
+	[7] = grade1,
+	[8] = grade1,
+	[9] = grade1,
+	grade2 = 35000,
+	[10] = grade2,
+	[11] = grade2,
+	[12] = grade2,
+	[13] = grade2,
+	[14] = grade2,
+	[15] = grade2,
+	[16] = grade2,
+	[17] = grade2,
+	[19] = grade2,
+	grade3 = 35000,
+	[20] = grade3,
+	[21] = grade3,
+	[22] = grade3,
+	[23] = grade3,
+	[24] = grade3,
+	[25] = grade3,
+	[26] = grade3,
+	[27] = grade3,
+	[28] = grade3,
+	[29] = grade3,
+}
 
 LevelSystemConfiguration.EnableHUD = true // Is the HUD enabled?
 LevelSystemConfiguration.LevelColor = Color(255,255,255,255) // The color of the "Level: 1" HUD element. White looks best. (This setting is nullified if you have the prestige system)

@@ -32,7 +32,6 @@ end
 
 function ENT:Initialize()
 
-
 	self:SetNWInt("Health",self.StartHealth);
 	
 	self.WeaponLocations = {
@@ -54,6 +53,11 @@ function ENT:Initialize()
 	self.Overheated = false;
 	
 	self.Bullet = CreateBulletStructure(70,"green");
+	self.GunnerDamage = 1000000000
+	self.GunnerRadius = 50
+	
+	self.LeftCockpit = nil
+	self.RightCockpit = nil
 	
 	self.SeatPos = {
 	
@@ -83,23 +87,25 @@ function ENT:Initialize()
 		{self:GetPos()+self:GetUp()*34+self:GetForward()*52+self:GetRight()*122, self:GetAngles()+Angle(0,-115,0)},
 		{self:GetPos()+self:GetUp()*34+self:GetForward()*55+self:GetRight()*-120, self:GetAngles()+Angle(0,-65,0)},
 	}
+
+	self.GunnerCockpitPos = {
+		self:GetPos()+self:GetUp()*52.4+self:GetForward()*58+self:GetRight()*122,
+		self:GetPos()+self:GetUp()*52.4+self:GetForward()*58+self:GetRight()*-122
+	}
 	
 	self.GunnerSeats = {};
 	self:SpawnGunnerSeats();
-
 	
 	self.LeftWeaponLocations = {
-		self:GetPos()+self:GetUp()*50+self:GetForward()*95+self:GetRight()*140,
+		self:GetPos()+self:GetUp()*52.4+self:GetForward()*95+self:GetRight()*-140,
 	}
 	
 	self.RightWeaponLocations = {
-		self:GetPos()+self:GetUp()*50+self:GetForward()*95+self:GetRight()*-140,	
+		self:GetPos()+self:GetUp()*52.4+self:GetForward()*95+self:GetRight()*140,	
 	}
 	
 	self:SpawnSeats();
 	self.ExitModifier = {x=0,y=87.5,z=20};
-
-	self.PilotOffset = {x=0,y=0,z=100000};
 	
 	self.PilotVisible = true;
 	self.PilotPosition = {x=0,y=210,z=130};
@@ -132,26 +138,30 @@ function ENT:SpawnGunnerSeats()
 		e:GetPhysicsObject():EnableMotion(false);
 		e:GetPhysicsObject():EnableCollisions(false);
 		e:SetUseType(ONOFF_USE);
-		e.GunnerSeat = true
+		e.LaatGunnerSeat = true
 		e.Ship = self
 		self.GunnerSeats[k] = e;
-		if(k == 2) then
+		if(k == 1) then
 			e.IsRight = true;
 		end
 		e.IsLaatGunnerSeat = true;
+		e:DrawShadow( false )
+	end
+	for k,v in pairs(self.GunnerCockpitPos) do
+		local prop = ents.Create( "mine_ever" )
+		prop:SetParent(self)
+		prop:SetPos(v)
+		prop.ship = self
+		prop:Spawn()
+		if(k == 1) then
+			prop.right = true;
+			self.RightCockpit = prop
+		else
+			self.LeftCockpit = prop
+		end
+		prop:DrawShadow( false )
 	end
 end
-
-hook.Add( "PlayerUse", "1Ever11125", function( activator, caller )
-	if IsValid( activator ) and activator:IsPlayer() then
-		if(caller.GunnerSeat == true)then
-			if(caller.Ship.NextUse.Use < CurTime()) then
-				caller.Ship:GunnerEnter(activator,caller.IsRight)
-			end
-			return false
-		end
-	end
-end )
 
 function ENT:GunnerEnter(p,right)
 	if(p == self.Pilot) then return end;
@@ -163,14 +173,17 @@ function ENT:GunnerEnter(p,right)
 		if(!right) then
 			if(!IsValid(self.LeftGunner)) then
 				p:SetNWBool("LeftGunner",true);
+				self:SetNWEntity("LeftGunner_ENT",p)
 				self.LeftGunner = p;
-				p:EnterVehicle(self.GunnerSeats[1]);
+				p:EnterVehicle(self.GunnerSeats[2]);
+				self:SetSequence( self:LookupSequence( "drive_pd" ) )
 			end
 		else
 			if(!IsValid(self.RightGunner)) then
 				p:SetNWBool("RightGunner",true);
+				self:SetNWEntity("RightGunner_ENT",p)
 				self.RightGunner = p;
-				p:EnterVehicle(self.GunnerSeats[2]);
+				p:EnterVehicle(self.GunnerSeats[1]);
 			end
 		end
 		p:SetNWEntity(self.Vehicle,self);
@@ -178,12 +191,22 @@ function ENT:GunnerEnter(p,right)
 	end
 end
 
+hook.Add( "PlayerUse", "1Ever11125", function( activator, caller )
+	if IsValid( activator ) and activator:IsPlayer() then
+		if(caller.LaatGunnerSeat == true)then
+			return false
+		end
+	end
+end )
+
 hook.Add("CanExitVehicle", "LaatCanExitVehicle", function(v,p)
 	if(IsValid(p) and IsValid(v)) then
-		if(v.Ship.NextUse.Use < CurTime()) then
-			return true
-		else	
-			return false
+		if(v.Ship != nil) then 
+			if(v.Ship.NextUse.Use < CurTime()) then
+				return true
+			else	
+				return false
+			end
 		end
 	end
 end);
@@ -192,11 +215,31 @@ hook.Add("PlayerLeaveVehicle", "LaatSeatExit", function(p,v)
 	if(IsValid(p) and IsValid(v)) then
 		if(v.IsLaatGunnerSeat) then
 			local e = v:GetParent();
-			if(v.IsRight) then
-				e:GunnerExit(true,p);
-			else
-				e:GunnerExit(false,p);
+			e:GunnerExit(false or v.IsRight,p);
+		else
+			if(v.IsLAATSeat) then
+				local e = v.LAAT;
+				if(IsValid(e)) then
+					if(v.LeftSide) then
+						p:SetPos(e:GetPos()+e:GetRight()*65+e:GetUp()*20+e:GetForward()*(-40+math.random(-50,50)));
+					elseif(v.RightSide) then
+						p:SetPos(e:GetPos()+e:GetRight()*-65+e:GetUp()*20+e:GetForward()*(-40+math.random(-50,50)));
+					end
+				end
+				p:SetNetworkedEntity("LAATSeat",NULL);
+				p:SetNetworkedEntity("LAAT",NULL);
+				p:SetNetworkedBool("LAATPassenger",false);			
 			end
+		end
+	end
+end);
+
+hook.Add("PlayerEnteredVehicle","LAATSeatEnter", function(p,v)
+	if(IsValid(v) and IsValid(p)) then
+		if(v.IsLAATSeat) then
+			p:SetNetworkedEntity("LAATSeat",v);
+			p:SetNetworkedEntity("LAAT",v:GetParent());
+			p:SetNetworkedBool("LAATPassenger",true);
 		end
 	end
 end);
@@ -207,14 +250,16 @@ function ENT:GunnerExit(right,p)
 	if(!right) then
 		if(IsValid(self.LeftGunner)) then
 			self.LeftGunner:SetNWBool("LeftGunner",false);
+			self:SetNWEntity("LeftGunner_ENT",nil)
 			self.LeftGunner = NULL;
-			pos = -self:GetForward()*15+self:GetRight()*110+self:GetUp()*10
+			pos = -self:GetForward()*15-self:GetRight()*110+self:GetUp()*10
 		end
 	else
 		if(IsValid(self.RightGunner)) then
 			self.RightGunner:SetNWBool("RightGunner",false);
+			self:SetNWEntity("RightGunner_ENT",nil)
 			self.RightGunner = NULL;
-			pos = -self:GetForward()*15-self:GetRight()*110+self:GetUp()*10
+			pos = -self:GetForward()*15+self:GetRight()*110+self:GetUp()*10
 		end
 	end
 	p:SetModelScale( p.lastScale, 0 )
@@ -226,40 +271,56 @@ end
 function ENT:FireLeft(angPos)
 
 	if(self.NextUse.LeftFire < CurTime()) then
-		for k,v in pairs(self.LeftWeapons) do
-
-			self.Bullet.Attacker = self.Pilot or self;
-			self.Bullet.Src		= v:GetPos();
-			self.Bullet.Dir = angPos
-			self.Bullet.Damage = 350
-			
-			v:FireBullets(self.Bullet)
-		end
-		self:EmitSound(self.FireSound,100,math.random(80,120));
-		self.NextUse.LeftFire = CurTime() + (self.FireDelay or 0.2);
+		self:SetNWBool("LAAT_LEFT_FIRE",true)
+		self:fireIt("L")
+		self.NextUse.LeftFire = CurTime()+0.2;
 	end
 end
 
 function ENT:FireRight(angPos)
 
 	if(self.NextUse.RightFire < CurTime()) then
-		for k,v in pairs(self.RightWeapons) do
-
-			self.Bullet.Attacker = self.Pilot or self;
-			self.Bullet.Src		= v:GetPos();
-			self.Bullet.Dir = angPos
-			self.Bullet.Damage = 750
-
-			v:FireBullets(self.Bullet)
-		end
-		self:EmitSound(self.FireSound,100,math.random(80,120));
-		self.NextUse.RightFire = CurTime() + (self.FireDelay or 0.2);
+		self:SetNWBool("LAAT_RIGHT_FIRE",true)
+		self:fireIt("R")
+		self.NextUse.RightFire = CurTime()+0.2;
 	end
 end
 
+function ENT:fireIt(r)
+	local startPos = 0
+	local endPos = 0
+	if(r=="R")then
+		startPos = self.RightWeapons[1]:GetPos()
+		endPos = self.RightGunner:GetAimVector():Angle():Forward()*10000
+		self:SetNWBool("LAAT_RIGHT_FIRE_VECTOR",endPos)
+	else
+		startPos = self.LeftWeapons[1]:GetPos()
+		endPos = self.LeftGunner:GetAimVector():Angle():Forward()*10000
+		self:SetNWBool("LAAT_LEFT_FIRE_VECTOR",endPos)
+	end
+	
+	local tr = util.QuickTrace( startPos, endPos, {self,self.RightCockpit,self.LeftCockpit} )
+	util.Decal( "fadingscorch", tr.HitPos + tr.HitNormal, tr.HitPos - tr.HitNormal );
+	local fx = EffectData()
+	fx:SetOrigin(tr.HitPos);
+	fx:SetNormal(tr.HitNormal);
+	util.Effect( "StunstickImpact", fx, true )
+			
+	
+	if(r=="R")then
+		util.BlastDamage( self, self.RightGunner or self, tr.HitPos, self.GunnerRadius, self.GunnerDamage)
+	else
+		util.BlastDamage( self, self.LeftGunner or self, tr.HitPos, self.GunnerRadius, self.GunnerDamage)
+	end
+			
+	self:EmitSound(self.FireSound,100,math.random(80,120));
+end
+
 function ENT:SpawnWeapons()
+	self.BaseClass.SpawnWeapons(self);
 	self.LeftWeapons = {};
 	self.RightWeapons = {};
+	
 	for k,v in pairs(self.LeftWeaponLocations) do
 		local e = ents.Create("prop_physics");
 		e:SetModel("models/props_junk/PopCan01a.mdl");
@@ -273,6 +334,7 @@ function ENT:SpawnWeapons()
 		e:SetParent(self);
 		e:GetPhysicsObject():EnableMotion(false);
 		self.LeftWeapons[k] = e;
+		e:DrawShadow( false )
 	end
 
 	for k,v in pairs(self.RightWeaponLocations) do
@@ -288,6 +350,7 @@ function ENT:SpawnWeapons()
 		e:SetParent(self);
 		e:GetPhysicsObject():EnableMotion(false);
 		self.RightWeapons[k] = e;
+		e:DrawShadow( false )
 	end
 end
 
@@ -319,53 +382,12 @@ function ENT:SpawnSeats()
 
 end
 
-hook.Add("PlayerEnteredVehicle","LAATSeatEnter", function(p,v)
-	if(IsValid(v) and IsValid(p)) then
-		if(v.IsLAATSeat) then
-			p:SetNetworkedEntity("LAATSeat",v);
-			p:SetNetworkedEntity("LAAT",v:GetParent());
-			p:SetNetworkedBool("LAATPassenger",true);
-		end
-	end
-end);
 
-hook.Add("PlayerLeaveVehicle", "LAATSeatExit", function(p,v)
-	if(IsValid(p) and IsValid(v)) then
-		if(v.IsLAATSeat) then
-			local e = v.LAAT;
-			if(IsValid(e)) then
-				if(v.LeftSide) then
-					p:SetPos(e:GetPos()+e:GetRight()*65+e:GetUp()*20+e:GetForward()*(-40+math.random(-50,50)));
-				elseif(v.RightSide) then
-					p:SetPos(e:GetPos()+e:GetRight()*-65+e:GetUp()*20+e:GetForward()*(-40+math.random(-50,50)));
-				end
-			end
-			p:SetNetworkedEntity("LAATSeat",NULL);
-			p:SetNetworkedEntity("LAAT",NULL);
-			p:SetNetworkedBool("LAATPassenger",false);			
-		end
-	end
-end);
+function ENT:Use(p,vc)
 
+	if(p == self.Pilot) then return end;
 
-
-function ENT:Use(p)
-
-	if(p == self.Pilot or p == self.LeftGunner or p == self.RightGunner) then return end;
-
-	if(!self.Inflight and !p:KeyDown(IN_WALK)) then
-		if(p != self.LeftGunner and p != self.RightGunner) then
-			self:Enter(p);
-		end
-	else
-		if(!self.LeftGunner) then
-			--self:GunnerEnter(p,false);
-		else
-			--self:GunnerEnter(p,true);
-		end
-	end
-
-	--[[self.UsePos = {
+	self.UsePos = {
 		self:GetPos()+self:GetForward()*65+self:GetRight()*-70+self:GetUp()*10,
 		self:GetPos()+self:GetForward()*110+self:GetRight()*50+self:GetUp()*140,
 	}
@@ -375,12 +397,13 @@ function ENT:Use(p)
 				self:Enter(p);
 			end
 		end
-	end]]--
+	end
 end
 
 
 function ENT:Think()
 
+	self.BaseClass.Think(self);
 	if(IsValid(self.LeftGunner)) then
 		if(self.GunnerSeats[1]:GetThirdPersonMode()) then
 			self.GunnerSeats[1]:SetThirdPersonMode(false);
@@ -410,7 +433,14 @@ function ENT:Think()
 		end
 	end	
 
-	self.BaseClass.Think(self);
+	if(self.NextUse.LeftFire+0.05 < CurTime()) then
+		self:SetNWBool("LAAT_LEFT_FIRE",false)
+	end
+	
+	if(self.NextUse.RightFire+0.05 < CurTime()) then
+		self:SetNWBool("LAAT_RIGHT_FIRE",false)
+	end
+	
 end
 
 function ENT:ToggleDoors()
@@ -436,7 +466,6 @@ function ENT:PhysicsSimulate(phys,d)
 end
 
 function ENT:Enter(p)
-
 	self:SetBodygroup(9,0);
 	self.BaseClass.Enter(self,p);
 	
@@ -499,6 +528,41 @@ if CLIENT then
 	end
 	hook.Add("CalcView", "LAATView", CalcView)
 	
+	local MaterialMain			= Material( "effects/sw_laser_green_main" );
+	local MaterialFront			= Material( "effects/sw_laser_green_front" );
+
+	hook.Add("PostDrawTranslucentRenderables","Ever_PostDrawTranslucentRenderables", function()
+		for k,v in pairs (ents.FindByClass( "laat" ))do
+			if(v:GetNWBool("LAAT_LEFT_FIRE") == true)then
+				local WeaponsPos = v:GetPos()+v:GetUp()*52.4+v:GetForward()*95+v:GetRight()*-140
+				local gunner = v:GetNWEntity("LeftGunner_ENT")
+				DrawGreenBeam(WeaponsPos,gunner,v)
+			end
+		
+			if(v:GetNWBool("LAAT_RIGHT_FIRE") == true)then
+				local WeaponsPos = v:GetPos()+v:GetUp()*52.4+v:GetForward()*95+v:GetRight()*140
+				local gunner = v:GetNWEntity("RightGunner_ENT")
+				DrawGreenBeam(WeaponsPos,gunner,v)
+			end
+		end
+		
+	end)
+	
+	function DrawGreenBeam(startPos,gunner,filt)
+		local tr = util.QuickTrace( startPos, gunner:GetAimVector():Angle():Forward()*10000, filt )
+		
+		endPos = tr.HitPos;
+		
+		render.SetMaterial( MaterialFront );
+		render.DrawSprite( startPos, 32*2, 24*2, Color(255,255,255) );
+		
+		render.SetMaterial( MaterialFront );
+		render.DrawSprite( endPos, 32*3, 24*3, Color(255,255,255) );
+
+		render.SetMaterial( MaterialMain );
+		render.DrawBeam( startPos, endPos, 25, 1, 1, Color(255,255,255) );
+	end
+	
 	hook.Add( "ShouldDrawLocalPlayer", "LAATDrawPlayerModel", function( p )
 		local self = p:GetNWEntity("LAAT", NULL);
 		local PassengerSeat = p:GetNWEntity("LAATSeat",NULL);
@@ -510,7 +574,7 @@ if CLIENT then
 			end
 		end
 	end);
-
+	
 	function LAATReticle()
 		
 		
@@ -519,6 +583,7 @@ if CLIENT then
 		local self = p:GetNWEntity("LAAT");
 		local LeftGunner = p:GetNWBool("LeftGunner");
 		local RightGunner = p:GetNWBool("RightGunner");
+		
 		if(Flying and IsValid(self)) then
 			SW_HUD_DrawHull(5000);
 			SW_WeaponReticles(self);
@@ -530,13 +595,11 @@ if CLIENT then
 			SW_HUD_Compass(self,x,y);
 			SW_HUD_DrawSpeedometer();
 		elseif(LeftGunner and IsValid(self)) then
-			local WeaponsPos = {
-				self:GetPos()+self:GetUp()*50+self:GetForward()*95+self:GetRight()*140
-			}
+			local WeaponsPos = self:GetPos()+self:GetUp()*50+self:GetForward()*95+self:GetRight()*-140
 			
 				local tr = util.TraceLine( {
-					start = WeaponsPos[1],
-					endpos = WeaponsPos[1] + p:GetAimVector():Angle():Forward()*10000,
+					start = WeaponsPos,
+					endpos = WeaponsPos + p:GetAimVector():Angle():Forward()*10000,
 				} )
 
 				surface.SetTextColor( 255, 255, 255, 255 );
@@ -561,13 +624,11 @@ if CLIENT then
 				surface.SetTextPos( x, y );
 				surface.DrawText( "+" );
 		elseif(RightGunner and IsValid(self)) then
-			local WeaponsPos = {
-				self:GetPos()+self:GetUp()*50+self:GetForward()*95+self:GetRight()*-140
-			}
+			local WeaponsPos = self:GetPos()+self:GetUp()*50+self:GetForward()*95+self:GetRight()*140
 			
 				local tr = util.TraceLine( {
-					start = WeaponsPos[1],
-					endpos = WeaponsPos[1] + p:GetAimVector():Angle():Forward()*10000,
+					start = WeaponsPos,
+					endpos = WeaponsPos + p:GetAimVector():Angle():Forward()*10000,
 				} )
 
 				surface.SetTextColor( 255, 255, 255, 255 );

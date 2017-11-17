@@ -9,12 +9,12 @@ local hideHUDElements = {
 
 	-- DarkRP_EntityDisplay is the text that is drawn above a player when you look at them.
 	-- This also draws the information on doors and vehicles
-	["DarkRP_EntityDisplay"] = false,
+	["DarkRP_EntityDisplay"] = true,
 
 	-- This is the one you're most likely to replace first
 	-- DarkRP_LocalPlayerHUD is the default HUD you see on the bottom left of the screen
 	-- It shows your health, job, salary and wallet, but NOT hunger (if you have hungermod enabled)
-	["DarkRP_LocalPlayerHUD"] = false,
+	["DarkRP_LocalPlayerHUD"] = true,
 
 	-- If you have hungermod enabled, you will see a hunger bar in the DarkRP_LocalPlayerHUD
 	-- This does not get disabled with DarkRP_LocalPlayerHUD so you will need to disable DarkRP_Hungermod too
