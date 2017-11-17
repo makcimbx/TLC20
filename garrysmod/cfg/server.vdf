@@ -116,4 +116,5 @@
 	"thirdperson_ots_crosshair"		"1"
 	"thirdperson_ots_fov"		"100"
 	"sw_stim_enable"		"0"
+	"sv_spawnjetpackonground"		"1"
 }

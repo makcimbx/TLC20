@@ -5,8 +5,10 @@
 LevelSystemConfiguration = {} // Ignore
 Printers = {} // Ignore
 
+	grade1 = 20000
+	grade2 = 35000
+	grade3 = 35000
 LevelSystemConfiguration.LinearXP = {
-	grade1 = 20000,
 	[1] = grade1,
 	[2] = grade1,
 	[3] = grade1,
@@ -16,7 +18,6 @@ LevelSystemConfiguration.LinearXP = {
 	[7] = grade1,
 	[8] = grade1,
 	[9] = grade1,
-	grade2 = 35000,
 	[10] = grade2,
 	[11] = grade2,
 	[12] = grade2,
@@ -26,7 +27,6 @@ LevelSystemConfiguration.LinearXP = {
 	[16] = grade2,
 	[17] = grade2,
 	[19] = grade2,
-	grade3 = 35000,
 	[20] = grade3,
 	[21] = grade3,
 	[22] = grade3,
