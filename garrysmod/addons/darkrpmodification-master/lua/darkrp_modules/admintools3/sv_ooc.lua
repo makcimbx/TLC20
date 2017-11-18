@@ -91,3 +91,21 @@ local function oocdelay(ply, args)
 end
 DarkRP.defineChatCommand("od", oocdelay, true, 1.5)
 DarkRP.defineChatCommand("/od", oocdelay, true, 1.5)
+
+DarkRP.declareChatCommand{
+	command = "/",
+	description = "ooc",
+	delay = 1.5
+}
+
+DarkRP.declareChatCommand{
+	command = "a",
+	description = "ooc",
+	delay = 1.5
+}
+
+DarkRP.declareChatCommand{
+	command = "ooc",
+	description = "ooc",
+	delay = 1.5
+}

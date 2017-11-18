@@ -156,14 +156,17 @@ function ENT:SpawnGunnerSeats()
 		if(k == 1) then
 			prop.right = true;
 			self.RightCockpit = prop
+			self:SetNWEntity("RightGunner_Cockpit",prop)
 		else
 			self.LeftCockpit = prop
+			self:SetNWEntity("LeftGunner_Cockpit",prop)
 		end
 		prop:DrawShadow( false )
 	end
 end
 
 function ENT:GunnerEnter(p,right)
+	if(self.Done == true)then return end
 	if(p == self.Pilot) then return end;
 	if(p == self.LeftGunner) then return end;
 	if(p == self.RightGunner) then return end;
@@ -176,7 +179,6 @@ function ENT:GunnerEnter(p,right)
 				self:SetNWEntity("LeftGunner_ENT",p)
 				self.LeftGunner = p;
 				p:EnterVehicle(self.GunnerSeats[2]);
-				self:SetSequence( self:LookupSequence( "drive_pd" ) )
 			end
 		else
 			if(!IsValid(self.RightGunner)) then
@@ -237,6 +239,7 @@ end);
 hook.Add("PlayerEnteredVehicle","LAATSeatEnter", function(p,v)
 	if(IsValid(v) and IsValid(p)) then
 		if(v.IsLAATSeat) then
+			if(v.LAAT.Done == true)then return end
 			p:SetNetworkedEntity("LAATSeat",v);
 			p:SetNetworkedEntity("LAAT",v:GetParent());
 			p:SetNetworkedBool("LAATPassenger",true);
@@ -385,6 +388,7 @@ end
 
 function ENT:Use(p,vc)
 
+	if(self.Done == true)then return end
 	if(p == self.Pilot) then return end;
 
 	self.UsePos = {
@@ -466,6 +470,7 @@ function ENT:PhysicsSimulate(phys,d)
 end
 
 function ENT:Enter(p)
+	if(self.Done == true)then return end
 	self:SetBodygroup(9,0);
 	self.BaseClass.Enter(self,p);
 	
@@ -536,31 +541,34 @@ if CLIENT then
 			if(v:GetNWBool("LAAT_LEFT_FIRE") == true)then
 				local WeaponsPos = v:GetPos()+v:GetUp()*52.4+v:GetForward()*95+v:GetRight()*-140
 				local gunner = v:GetNWEntity("LeftGunner_ENT")
-				DrawGreenBeam(WeaponsPos,gunner,v)
+				local cock = v:GetNWEntity("LeftGunner_Cockpit")
+				DrawGreenBeam(WeaponsPos,gunner,v,cock)
 			end
 		
 			if(v:GetNWBool("LAAT_RIGHT_FIRE") == true)then
 				local WeaponsPos = v:GetPos()+v:GetUp()*52.4+v:GetForward()*95+v:GetRight()*140
 				local gunner = v:GetNWEntity("RightGunner_ENT")
-				DrawGreenBeam(WeaponsPos,gunner,v)
+				local cock = v:GetNWEntity("RightGunner_Cockpit")
+				DrawGreenBeam(WeaponsPos,gunner,cock)
 			end
 		end
 		
 	end)
 	
-	function DrawGreenBeam(startPos,gunner,filt)
-		local tr = util.QuickTrace( startPos, gunner:GetAimVector():Angle():Forward()*10000, filt )
-		
-		endPos = tr.HitPos;
+	function DrawGreenBeam(startPos,gunner,filt,cock)
+		local tr = util.QuickTrace( startPos, gunner:GetAimVector():Angle():Forward()*10000, {filt,cock})
+		--debugoverlay.Sphere( startPos, 5, 0.01, Color( 255, 255, 255 ), true )
+		--debugoverlay.Sphere( tr.HitPos, 5, 0.01, Color( 255, 0, 0 ), true )
+		local endPos2 = tr.HitPos;
 		
 		render.SetMaterial( MaterialFront );
 		render.DrawSprite( startPos, 32*2, 24*2, Color(255,255,255) );
 		
 		render.SetMaterial( MaterialFront );
-		render.DrawSprite( endPos, 32*3, 24*3, Color(255,255,255) );
+		render.DrawSprite( endPos2, 32*3, 24*3, Color(255,255,255) );
 
 		render.SetMaterial( MaterialMain );
-		render.DrawBeam( startPos, endPos, 25, 1, 1, Color(255,255,255) );
+		render.DrawBeam( startPos, endPos2, 25, 1, 1, Color(255,255,255) );
 	end
 	
 	hook.Add( "ShouldDrawLocalPlayer", "LAATDrawPlayerModel", function( p )
