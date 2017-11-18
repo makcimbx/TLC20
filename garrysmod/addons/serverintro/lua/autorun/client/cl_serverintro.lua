@@ -42,9 +42,8 @@ local function FormatAngle( ang )
 	return "Angle( " .. ang.p .. ", " .. ang.y .. ", " .. ang.r .. " )"
 end
 
-local function GlideStart()
+function GlideStart()
   if GetData("tutorial", "0" )!="1" then
-    Derma_Query( "Вы уверены, что хотите пройти обучение? В течение 10 минут к вам подойдет инструктор и предложит обучение. Если же этого не произойдет, вы пройдете автоматическое обучение. Обучение можно пройти лишь один раз. Вы готовы?", "Система обучения", "Да",function() gui.OpenURL( "https://scriptfodder.com/scripts/view/1184/reviews" ) RunConsoleCommand( "si_gaverating", 1 ) end, "No", function() end )
 	net.Start( "GlideStart" )
 	net.SendToServer()
 	if locations[ game.GetMap() ] == nil then
@@ -140,16 +139,24 @@ local function GlideStart()
 	end )
 
 	-- Hacky DarkRP Fix, stop renaming your gamemodes. Error: Unknown system error -122: Unknown system error -122, write<br> &nbsp; &nbsp;at Error (native)<br> &nbsp; &nbsp;at Object.fs.writeSync (fs.js:787:20)<br> &nbsp; &nbsp;at Object.fs.writeFileSync (fs.js:1357:24)<br> &nbsp; &nbsp;at SaveData (/var/web/webserver/scriptstats/fakefunc.js:154:5)<br> &nbsp; &nbsp;at FakeFunc (/var/web/webserver/scriptstats/fakefunc.js:145:3)<br> &nbsp; &nbsp;at /var/web/webserver/scriptstats/fakefunc.js:179:12<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/var/web/webserver/node_modules/express/lib/router/route.js:131:13)<br> &nbsp; &nbsp;at Route.dispatch (/var/web/webserver/node_modules/express/lib/router/route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)
-    SetData("tutorial","1")
+    --SetData("tutorial","1")
   else
 	notification.AddLegacy( "Можно пройти это обучение только один раз", 0, 5 )
   end
 end
 
+local function Vopros()
+    if (game.GetMap == "rp_venator_tlc_v2") then
+		Derma_Query( "Вы уверены, что хотите пройти обучение? В течение 10 минут к вам подойдет инструктор и предложит обучение. Если же этого не произойдет, вы пройдете автоматическое обучение. Обучение можно пройти лишь один раз. Вы готовы?", "Система обучения", "Да",function() GlideStart() end, "Нет", function() end )
+	else 
+	    notification.AddLegacy( "Вам нужно дождаться окончания ивента! Просим прощения за неудобство.", NOTIFY_GENERIC, 5 )
+	end
+end
+
 hook.Add( "Initialize", "KillYourselfOOOHYEAH", function()
 	hook.Add( "OnPlayerChat", "ChatCommand", function( ply, text )
 		if ply == LocalPlayer() and text == command and useCommand then
-			GlideStart()
+			Vopros()
 		end
 	end )
 end )
