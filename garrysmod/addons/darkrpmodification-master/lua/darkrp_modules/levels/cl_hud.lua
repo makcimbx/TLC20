@@ -61,11 +61,11 @@ local xp_bar = Material("tlcimages/xp_bar.png","noclamp smooth")
 local function HUDPaint()
 	if not LevelSystemConfiguration then return end
 	if not LevelSystemConfiguration.EnableHUD then return end
-	local PlayerLevel = LocalPlayer():getDarkRPVar('level')
+	local PlayerLevel = LocalPlayer():getDarkRPVar('level') or 1
 	local PlayerXP = LocalPlayer():getDarkRPVar('xp')
 	
 	// Draw the XP Bar
-	local percent = (PlayerXP or 0)/LevelSystemConfiguration.LinearXP[PlayerLevel or 1] // Gets the accurate level up percentage
+	local percent = (PlayerXP or 0)/LevelSystemConfiguration.LinearXP[PlayerLevel] // Gets the accurate level up percentage
 	
 	local drawXP = Lerp(8*FrameTime(),OldXP,percent)
 	OldXP = drawXP
