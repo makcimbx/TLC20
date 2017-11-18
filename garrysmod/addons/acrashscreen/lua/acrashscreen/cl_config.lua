@@ -11,7 +11,7 @@ _this.communityName = "TLC Clonewars"
 -- The web-based server status checker
 -- This will check if the server is online, if it is it will automatically reconnect
 -- Set this to false if you want to use auto reconnection after x amount of seconds
-_this.serverStatusURL = "http://thelastcity.tk/acrashscreen/serverstatus.php"
+_this.serverStatusURL = "https://thelastcity.ru/acrashscreen/serverstatus.php"
 
 -- How long to wait for the client to reconnect to the server when it is back up
 -- If you're reconnecting before the server is fully loaded, increase this value
@@ -32,17 +32,17 @@ _this.serverPort = "27015"
 -- Set backgroundUrls to false to use backgroundColor instead
 _this.backgroundUrls = {
 	{ 
-		"https://tlcdonatesystem.ru/imagesall/1.jpg", -- Image URL
+		"https://thelastcity.ru/imagesall/1.jpg", -- Image URL
 		1920, 1080, -- Width, Height
 		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	},
 	{ 
-		"https://tlcdonatesystem.ru/imagesall/2.jpg", -- Image URL
+		"https://thelastcity.ru/imagesall/2.jpg", -- Image URL
 		1920, 1080, -- Width, Height
 		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	},
 	{ 
-		"https://tlcdonatesystem.ru/imagesall/3.jpg", -- Image URL
+		"https://thelastcity.ru/imagesall/3.jpg", -- Image URL
 		1920, 1080, -- Width, Height
 		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	}
@@ -55,7 +55,7 @@ _this.backgroundColor = Color( 0, 75, 130 )
 -- Will be chosen randomly, but will only play once until all songs have been played
 -- Set this to false if you want this disabled
 _this.songUrls = { -- NOTE: These songs are place holders, they most likely will not work
-	"https://tlcdonatesystem.ru/musicall/1.mp3"   -- Нужно с запятой в конце добавлять новую музыку
+	"https://thelastcity.ru/musicall/1.mp3"   -- Нужно с запятой в конце добавлять новую музыку
 }
 
 -- The web-based chat
