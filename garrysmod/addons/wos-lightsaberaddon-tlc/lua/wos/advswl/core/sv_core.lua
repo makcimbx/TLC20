@@ -23,27 +23,7 @@
 
 wOS = wOS or {}
 
-resource.AddFile( "materials/wos/forceicons/absorb.png" )																		
-resource.AddFile( "materials/wos/forceicons/advanced_cloak.png" )
-resource.AddFile( "materials/wos/forceicons/cloak.png" )
-resource.AddFile( "materials/wos/forceicons/combust.png" )
-resource.AddFile( "materials/wos/forceicons/charge.png" )
-resource.AddFile( "materials/wos/forceicons/lightning.png" )
-resource.AddFile( "materials/wos/forceicons/lightning_strike.png" )
-resource.AddFile( "materials/wos/forceicons/throw.png" )
-resource.AddFile( "materials/wos/forceicons/shadow_strike.png" )
-resource.AddFile( "materials/wos/forceicons/leap.png" )
-resource.AddFile( "materials/wos/forceicons/heal.png" )
-resource.AddFile( "materials/wos/forceicons/group_heal.png" )
-resource.AddFile( "materials/wos/forceicons/storm.png" )
-resource.AddFile( "materials/wos/forceicons/rage.png" )
-resource.AddFile( "materials/wos/forceicons/reflect.png" )
-resource.AddFile( "materials/wos/forceicons/meditate.png" )
-resource.AddFile( "materials/wos/forceicons/repulse.png" )
-resource.AddFile( "materials/wos/forceicons/push.png" )
-resource.AddFile( "materials/wos/forceicons/pull.png" )
-resource.AddFile( "materials/wos/forceicons/channel_hatred.png" )
-resource.AddFile( "materials/wos/utilities/saber_measurement_axis.png" )
+
 resource.AddWorkshop( "757604550" )
 resource.AddWorkshop( "742660522" )
 resource.AddWorkshop( "848953359" )

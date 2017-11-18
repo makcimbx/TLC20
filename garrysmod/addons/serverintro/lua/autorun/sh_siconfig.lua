@@ -3,7 +3,7 @@ SI.locations = {} -- Don't touch that.
 
 // Config
 
-SI.locations[ "gm_flatgrass" ] = { -- You can change the map name to whatever you want. Make sure to add new positions for every map you have!
+SI.locations[ "rp_venator_tlc_v2" ] = { -- You can change the map name to whatever you want. Make sure to add new positions for every map you have!
 	{ 
 		startpos = Vector( 550, -5500, 3311 ), 
 		endpos = Vector( 550, 5500, 3311 ), 

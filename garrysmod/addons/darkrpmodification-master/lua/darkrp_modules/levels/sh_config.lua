@@ -5,9 +5,9 @@
 LevelSystemConfiguration = {} // Ignore
 Printers = {} // Ignore
 
-	grade1 = 20000
-	grade2 = 35000
-	grade3 = 35000
+local grade1 = 20000
+local grade2 = 35000
+local grade3 = 35000
 LevelSystemConfiguration.LinearXP = {
 	[1] = grade1,
 	[2] = grade1,
