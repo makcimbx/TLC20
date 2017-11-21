@@ -1,0 +1,16 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sup/hud/istyping"
+	"$translucent" "1"
+	"startframe" "1"
+	"endframe" "59"
+	"Proxies"
+	{
+		"AnimatedTexture"
+		{
+			"animatedTextureVar" "$basetexture"
+			"animatedTextureFrameNumVar" "$frame"
+			"animatedTextureFrameRate" "30"
+		}
+	}
+}

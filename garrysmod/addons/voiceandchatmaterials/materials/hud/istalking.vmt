@@ -1,0 +1,16 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sup/hud/istalking"
+	"$translucent" "1"
+	"startframe" "1"
+	"endframe" "44"
+	"Proxies"
+	{
+		"AnimatedTexture"
+		{
+			"animatedTextureVar" "$basetexture"
+			"animatedTextureFrameNumVar" "$frame"
+			"animatedTextureFrameRate" "30"
+		}
+	}
+}
