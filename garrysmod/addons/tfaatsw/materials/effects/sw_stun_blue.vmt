@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture"		"effects\sw_stun_blue"
+	"$additive"		"1"
+	"$vertexcolor"	"1"
+}
