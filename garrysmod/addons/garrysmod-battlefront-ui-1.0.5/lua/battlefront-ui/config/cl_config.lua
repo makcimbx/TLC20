@@ -247,9 +247,9 @@ bfUI.registerElement( "ГЛАВНАЯ", {
 	}
 })
 
---bfUI.registerElement( "ФОРУМ", {
-	--showURL = "https://facepunch.com/"
---})
+bfUI.registerElement( "ФОРУМ", {
+	showURL = "https://thelastcity.ru/index.php"
+})
 
 bfUI.registerElement( "АДМИНЫ", {
 	--customCheck = function( client, panel ) return client:IsAdmin() or client:IsSuperAdmin() end,

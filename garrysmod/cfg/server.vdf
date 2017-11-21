@@ -226,4 +226,9 @@
 	"vj_wep_nomuszzleflash_dynamiclight"		"0"
 	"vj_wep_nobulletshells"		"0"
 	"vj_havandust"		"1"
+	"mp_tfa_precache_ins2"		"1"
+	"soundlist_usedefaultsounds"		"0"
+	"chess_wagers"		"1"
+	"chess_darkrp_wager"		"1"
+	"chess_debug"		"0"
 }
