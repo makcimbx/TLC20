@@ -1,7 +1,0 @@
-
-"AddonInfo"
-{
-	"name" "Kunits Defib"
-	"author_name" "Kunit"
-	"info" "A item to bring people back to life."
-}
