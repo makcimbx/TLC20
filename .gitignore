@@ -4,6 +4,7 @@ garrysmod/garrysmod_001.vpk
 garrysmod/garrysmod_002.vpk
 cstrike/
 bin/
+garrysmod/addons/advanced_medic_mod/
 garrysmod/maps/
 garrysmod/data/
 garrysmod/cache/
@@ -19,3 +20,4 @@ garrysmod/modelsounds.cache
 garrysmod/sv.db-journal
 garrysmod/clientside_errors.txt
 garrysmod/cfg/server.vdf
+garrysmod/map.pack
