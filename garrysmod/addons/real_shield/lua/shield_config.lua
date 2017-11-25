@@ -30,7 +30,7 @@ btShield = btShield or {}
 -- models/payday2/shield_fbi.mdl
 
 if (SERVER) then
-	--resource.AddWorkshop(117454900)
+	resource.AddWorkshop(117454900)
 	--resource.AddWorkshop(223731572)
 	--resource.AddWorkshop(149837821)
 	--resource.AddWorkshop(543527096)
