@@ -248,7 +248,7 @@ bfUI.registerElement( "ГЛАВНАЯ", {
 })
 
 bfUI.registerElement( "ФОРУМ", {
-	showURL = "https://thelastcity.ru/index.php"
+	showURL = "https://thelastcity.ru/forum/index.php"
 })
 
 bfUI.registerElement( "АДМИНЫ", {
