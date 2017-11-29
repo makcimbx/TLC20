@@ -43,7 +43,6 @@ local function FormatAngle( ang )
 end
 
 function GlideStart()
-  if GetData("tutorial", "0" )!="1" then
 	net.Start( "GlideStart" )
 	net.SendToServer()
 	if locations[ game.GetMap() ] == nil then
@@ -137,14 +136,9 @@ function GlideStart()
 
 		hook.Call("PostServerIntro")
 	end )
-    
-	Derma_Query( "Вы успели всё усвоить? Если нажать 'Нет' то вы снова пролетите по правилам.", "Система обучения", "Да",function() end, "Нет", function() GlideStart() end )
 	
 	-- Hacky DarkRP Fix, stop renaming your gamemodes. Error: Unknown system error -122: Unknown system error -122, write<br> &nbsp; &nbsp;at Error (native)<br> &nbsp; &nbsp;at Object.fs.writeSync (fs.js:787:20)<br> &nbsp; &nbsp;at Object.fs.writeFileSync (fs.js:1357:24)<br> &nbsp; &nbsp;at SaveData (/var/web/webserver/scriptstats/fakefunc.js:154:5)<br> &nbsp; &nbsp;at FakeFunc (/var/web/webserver/scriptstats/fakefunc.js:145:3)<br> &nbsp; &nbsp;at /var/web/webserver/scriptstats/fakefunc.js:179:12<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/var/web/webserver/node_modules/express/lib/router/route.js:131:13)<br> &nbsp; &nbsp;at Route.dispatch (/var/web/webserver/node_modules/express/lib/router/route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)
-    --SetData("tutorial","1")
-  else
-	notification.AddLegacy( "Можно пройти это обучение только один раз", NOTIFY_GENERIC, 5 )
-  end
+
 end
 
 local function Vopros()
