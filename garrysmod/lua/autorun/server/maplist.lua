@@ -2,7 +2,7 @@
 --Each one uses the map file's name and the workshop ID
 maplist = {}
 
-maplist["rp_venator_tlc_v2"] = "1201044007"
+maplist["rp_venator_tlc_v6"] = "1216850900"
 maplist["rp_noclyria_crimson"] = "851819730"
 maplist["event_christophsis_tgc"] = "804567216"
 maplist["gm_aftermath_day_v1_0"] = "428781078"
