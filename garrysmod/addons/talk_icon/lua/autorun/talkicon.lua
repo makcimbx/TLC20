@@ -7,7 +7,7 @@ if (SERVER) then
 
 	RunConsoleCommand('mp_show_voice_icons', '0')
 
-	for k=1,60 do
+	--[[for k=1,60 do
 		local a = "0"..k
 		if(k>10)then a = k end
 		resource.AddFile('materials/istyping/istyping_'..a..'_00_00.png')
@@ -17,7 +17,7 @@ if (SERVER) then
 		local a = "0"..k
 		if(k>10)then a = k end
 		resource.AddFile('materials/istalking/istalking_'..a..'_00_00.png')
-	end
+	end]]--
 
 	util.AddNetworkString('TalkIconChat')
 
