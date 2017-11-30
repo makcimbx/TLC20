@@ -11,7 +11,7 @@ SI.locations[ "rp_venator_tlc_v2" ] = { -- You can change the map name to whatev
 		speed = 0.1, 
 		text = "This is our map.",
 	},
-	{ 
+	--[[{ 
 		startpos = Vector( 248, 640, -150 ),
 		endpos = Vector( 248, 3500, -150 ), 
 		ang = Angle( 0, 105, 0 ), 
@@ -33,7 +33,7 @@ SI.locations[ "rp_venator_tlc_v2" ] = { -- You can change the map name to whatev
 		speed = 0.1,
 		text = "We hope you enjoy your stay.",
 		ang2 = Angle( 0, 45, 0 ),
-	},
+	},]]--
 }
 
 SI.PVSExtra = { -- If you are having problems with invisble entites during the intro, add the locations of the entites here and they'll be syncrohnised with the client automatically.
@@ -50,7 +50,7 @@ SI.youtubeUrl = "https://www.youtube.com/watch?v=vS3C0s3wuN4" -- Youtube URL. No
 
 SI.posDuration = 10 -- The time spent at each position
 
-SI.useCommand = true
+SI.useCommand = false
 SI.command = "!tutorial"
 
 SI.forceIntro = false -- Force the user to watch the intro?

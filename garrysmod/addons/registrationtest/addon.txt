@@ -1,0 +1,8 @@
+"AddonInfo"
+{
+	"name"		"Join Quiz"
+	"version"	"1"
+	"author_name"	"Barel"
+	"author_url"	"http://coderhire.com/profile/view/3333"
+	"info"		""
+}

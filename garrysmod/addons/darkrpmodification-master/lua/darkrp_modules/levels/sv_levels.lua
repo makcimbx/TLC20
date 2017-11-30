@@ -67,7 +67,8 @@ function meta:getXP()
 end
 
 function meta:getMaxXP()
-	return LevelSystemConfiguration.LinearXP[(self:getDarkRPVar('level') or 1)]
+	local a = LevelSystemConfiguration.LinearXP[math.floor(( self:getDarkRPVar('level') or 1)/10)+1]
+	return a
 	--return (((10+(((self:getDarkRPVar('level') or 1)*((self:getDarkRPVar('level') or 1)+1)*90))))*LevelSystemConfiguration.XPMult)
 end
 
