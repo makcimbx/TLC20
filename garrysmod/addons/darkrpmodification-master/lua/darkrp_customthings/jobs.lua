@@ -1077,7 +1077,7 @@ TEAM_104MJR = DarkRP.createJob("104-й Майор", {
 
 TEAM_104COL = DarkRP.createJob("104-й Подполковник", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_327th_commander/sm_327th_commander.mdl",
+	model = "models/player/smitty/bf2_reg/sm_104th_commander/sm_104th_commander.mdl",
 	description = [[Поздравляем, теперь вы Подполковник 104-го батальона!]],
 	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade"},
 	command = "104col",

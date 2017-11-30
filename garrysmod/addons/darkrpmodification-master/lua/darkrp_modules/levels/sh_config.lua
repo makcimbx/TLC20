@@ -5,21 +5,19 @@
 LevelSystemConfiguration = {} // Ignore
 Printers = {} // Ignore
 
-local grade1 = 20000
-local grade2 = 30000
-local grade3 = 40000
-local grade4 = 50000
+
 LevelSystemConfiguration.LinearXP = {
-	[1] = grade1,
-	[2] = grade2,
-	[3] = grade3,
-	[4] = grade4,
-	[5] = grade4,
-	[6] = grade4,
-	[7] = grade4,
-	[8] = grade4,
-	[9] = grade4,
-	[10] = grade4,
+	[1] = 30000,
+	[2] = 40000,
+	[3] = 50000,
+	[4] = 60000,
+	[5] = 70000,
+	[6] = 75000,
+	[7] = 85000,
+	[8] = 90000,
+	[9] = 95000,
+	[10] = 100000,
+	[11] = 110000,
 }
 
 LevelSystemConfiguration.EnableHUD = true // Is the HUD enabled?
@@ -39,8 +37,8 @@ LevelSystemConfiguration.NPCXP = false // Give XP when an NPC is killed?
 LevelSystemConfiguration.NPCXPAmount = 100 // Amount of XP to give when an NPC is killed
 
 LevelSystemConfiguration.TimerModule = false // Give XP to everybody every howeverlong
-LevelSystemConfiguration.Timertime = 100 // How much time (in seconds) until everybody gets given XP
-LevelSystemConfiguration.TimerXPAmount = 1500 // How much XP to give each time it goes off
+LevelSystemConfiguration.Timertime = 600 // How much time (in seconds) until everybody gets given XP
+LevelSystemConfiguration.TimerXPAmount = 6000 // How much XP to give each time it goes off
 LevelSystemConfiguration.YourServerName = "on TLC Server" // The notifcation text ish. "Вы получили 100XP за игру на TLC."
 
 LevelSystemConfiguration.XPMult = 1 // How hard it is to level up. 2 would require twice as much XP, ect.

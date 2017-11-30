@@ -60,7 +60,7 @@ _this.songUrls = { -- NOTE: These songs are place holders, they most likely will
 
 -- The web-based chat
 -- Set this to false if you want this disabled
-_this.chatURL = "http://thelastcity.tk/acrashscreen/chat/chat.php"
+_this.chatURL = "http://thelastcity.ru/acrashscreen/chat/chat.php"
 
 -- Chat user properties: nick names and noticable messages
 local ranks = {}
