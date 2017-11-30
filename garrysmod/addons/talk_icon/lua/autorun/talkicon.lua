@@ -69,8 +69,6 @@ elseif (CLIENT) then
 			pos = ply:GetAttachment(ply:LookupAttachment('eyes')).Pos + Vector(0, 0, 15)
 		end
 
-		render.SetMaterial(ply:IsSpeaking() and voice_array[math.floor(i2)] or text_array[math.floor(i)])
-
 		local color_var = 255
 
 		if computecolor:GetBool() then
@@ -82,7 +80,18 @@ elseif (CLIENT) then
 		if(ply:IsSpeaking())then
 			i2 = i2 + 0.25
 		end
-		render.DrawSprite(pos, 12, 12, Color(color_var, color_var, color_var, 255))
+		
+		local ang = EyeAngles()--LocalPlayer():EyeAngles()
+		ang:RotateAroundAxis( ang:Up(), -90 )
+		--ang:RotateAroundAxis( ang:Right(), 90 )
+		
+		cam.Start3D2D( pos, Angle( 0, ang.y, 90 ), 1 ) 
+			surface.SetDrawColor( color_var, color_var, color_var, 255 )
+			surface.SetMaterial( ply:IsSpeaking() and voice_array[math.floor(i2)] or text_array[math.floor(i)]	) -- If you use Material, cache it!
+			surface.DrawTexturedRect( -6, -6 , 12, 12 )
+		cam.End3D2D()
+		
+		--render.DrawSprite(pos, 12, 12, Color(color_var, color_var, color_var, 255))
 	end)
 
 	hook.Add('StartChat', 'TalkIcon', function(isteam)
