@@ -601,7 +601,7 @@ TEAM_91CT = DarkRP.createJob("91-й Клон Солдат", {
 
 TEAM_91TRP = DarkRP.createJob("91-й Солдат", {
 	color = Color(200, 0, 25, 255),
-	model = {models/player/smitty/bf2_reg/91st_trooper/91st_trooper.mdl},
+	model = {"models/player/smitty/bf2_reg/91st_trooper/91st_trooper.mdl"},
 	description = [[Поздравляем, теперь вы часть 91-го батальона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome"},
 	command = "91trp",
@@ -2582,7 +2582,7 @@ TEAM_JEDIK = DarkRP.createJob("Джедай Рыцарь", {
 		"models/player/grady/starwars/mon_cala_master.mdl",
 		"models/player/grady/starwars/rodian_master.mdl",
 		"models/player/grady/starwars/zabrak_master.mdl",
-		"models/gonzo/swtorjedi1/twilekjedi1/twilekjedi1.mdl"
+		"models/gonzo/swtorjedi1/twilekjedi1/twilekjedi1.mdl",
 		"models/gonzo/jedihoodmask/jedihoodmask.mdl",
 		"models/player/jedi/gotal.mdl",
 		"models/player/jedi/gungan.mdl",
@@ -2626,7 +2626,7 @@ TEAM_JEDIS = DarkRP.createJob("Джедай Страж", {
 		"models/player/grady/starwars/mon_cala_master.mdl",
 		"models/player/grady/starwars/rodian_master.mdl",
 		"models/player/grady/starwars/zabrak_master.mdl",
-		"models/gonzo/swtorjedi1/twilekjedi1/twilekjedi1.mdl"
+		"models/gonzo/swtorjedi1/twilekjedi1/twilekjedi1.mdl",
 		"models/gonzo/jedihoodmask/jedihoodmask.mdl",
 		"models/player/jedi/gotal.mdl",
 		"models/player/jedi/gungan.mdl",
@@ -2669,7 +2669,7 @@ TEAM_JEDIQ = DarkRP.createJob("Джедай Защитник", {
 		"models/player/grady/starwars/mon_cala_master.mdl",
 		"models/player/grady/starwars/rodian_master.mdl",
 		"models/player/grady/starwars/zabrak_master.mdl",
-		"models/gonzo/swtorjedi1/twilekjedi1/twilekjedi1.mdl"
+		"models/gonzo/swtorjedi1/twilekjedi1/twilekjedi1.mdl",
 		"models/gonzo/jedihoodmask/jedihoodmask.mdl",
 		"models/player/jedi/gotal.mdl",
 		"models/player/jedi/gungan.mdl",
@@ -3154,12 +3154,12 @@ TEAM_SECURITY = DarkRP.createJob("Охранник", {
 	candemote = false,
 })
 
-TEAM_SECURITY = DarkRP.createJob("Гражданский", {
+TEAM_CIVIL = DarkRP.createJob("Гражданский", {
 	color = Color(60, 200, 255, 255),
 	model = {"models/valley/lgn/cgi pack/naaleth/naaleth.mdl","models/valley/lgn/cgi pack/lux_bonteri/lux_bonteri.mdl","models/valley/lgn/cgi pack/ion_papanoida/ion_papanoida.mdl","models/valley/lgn/cgi pack/coruscant_underworld/coruscant_underworld.mdl","models/player/valley/lgn/quarren/quarren.mdl"},
 	description = [[]],
 	weapons = {},
-	command = "security",
+	command = "civil",
 	level = 0,
 	max = 0,
 	salary = 0,

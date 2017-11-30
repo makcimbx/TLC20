@@ -1,5 +1,11 @@
 DarkRP.declareChatCommand{
 	command = "train",
-	description = "Create cash!",
+	description = "",
+	delay = 1.5
+}
+
+DarkRP.declareChatCommand{
+	command = "offertrain",
+	description = "",
 	delay = 1.5
 }
