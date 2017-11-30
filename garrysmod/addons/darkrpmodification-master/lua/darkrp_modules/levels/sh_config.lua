@@ -19,7 +19,7 @@ LevelSystemConfiguration.LinearXP = {
 	[7] = grade4,
 	[8] = grade4,
 	[9] = grade4,
-	[10] = 9,
+	[10] = grade4,
 }
 
 LevelSystemConfiguration.EnableHUD = true // Is the HUD enabled?
@@ -43,7 +43,7 @@ LevelSystemConfiguration.Timertime = 100 // How much time (in seconds) until eve
 LevelSystemConfiguration.TimerXPAmount = 1500 // How much XP to give each time it goes off
 LevelSystemConfiguration.YourServerName = "on TLC Server" // The notifcation text ish. "Вы получили 100XP за игру на TLC."
 
-LevelSystemConfiguration.XPMult = 0.5 // How hard it is to level up. 2 would require twice as much XP, ect.
+LevelSystemConfiguration.XPMult = 1 // How hard it is to level up. 2 would require twice as much XP, ect.
 LevelSystemConfiguration.MaxLevel = 100 // The max level
 LevelSystemConfiguration.ContinueXP = true // If remaining XP continues over to next levels. I recommend this to be false. Seriously. What if a level 1 gets 99999999 XP somehow? He is level 99 so quickly.
 
