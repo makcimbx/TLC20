@@ -34,7 +34,27 @@ timer.Create( "TrainPlayerCheck", 3, 0,function()
 end )
 
 local function OfferTrain(ply, args)
-	if ply.train_wait!=nil or #args != 1 then return "" end
-
+	--if ply.train_wait!=nil then return "" end
+	if #args != 1 then return "" end
+	if type(args)!="table" then return "" end
+	PrintTable(args)
+	local target = AutoComplete(tostring(args[1]))
+	print(target)
+	
 end
-DarkRP.defineChatCommand("offertrain", CreateTrain)
+DarkRP.defineChatCommand("offertrain", OfferTrain)
+
+local function AutoComplete( stringargs )
+
+	--stringargs = string.Trim( stringargs ) -- Remove any spaces before or after.
+	stringargs = string.lower( stringargs )
+	
+	for k, v in pairs( player.GetAll() ) do
+		local nick = v:Nick()
+		if string.find( string.lower( nick ), stringargs ) then
+			return v
+		end
+	end
+	
+	return false
+end

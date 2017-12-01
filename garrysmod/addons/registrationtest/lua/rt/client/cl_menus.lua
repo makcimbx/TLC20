@@ -46,7 +46,7 @@ end)
 net.Receive("questions", function()
 
 	local mainFrame = vgui.Create("DFrame")
-	mainFrame:SetSize( ScrW(),  ScrH() * 0.6 )
+	mainFrame:SetSize( ScrW(),  ScrH() * 0.8 )
 	mainFrame:SetBackgroundBlur( true )
 	mainFrame:SetDraggable( false )
 	mainFrame:ShowCloseButton( false )
@@ -105,7 +105,7 @@ net.Receive("questions", function()
 	    question[id]:SetColor(Color(255, 255, 255))
 		question[id]:SetWide( contentHolder:GetWide() - 5)
 		--question[id]:SetAutoStretchVertical( true)
-		local text1,y1 = CalculateSize(question[id]:GetText(),question[id]:GetFont(),question[id]:GetWide()-30)
+		local text1,y1 = CalculateSize2(question[id]:GetText(),question[id]:GetFont(),question[id]:GetWide()-30)
 		question[id]:SetText(text1)
 		question[id]:SetTall(y1) -- Size the label to fit the text in it
 		--size = size + question[id]:GetTall()
@@ -157,7 +157,7 @@ net.Receive("questions", function()
 			questionBlock[id].label[k]:SetWrap( true )
 			questionBlock[id].label[k]:SetColor(Color(255, 255, 255))
 			questionBlock[id].label[k]:SetPos(5,5)
-			local text1,y1 = CalculateSize(questionBlock[id].label[k]:GetText(),questionBlock[id].label[k]:GetFont(),questionBlock[id].quest[k]:GetWide()-20)
+			local text1,y1 = CalculateSize2(questionBlock[id].label[k]:GetText(),questionBlock[id].label[k]:GetFont(),questionBlock[id].quest[k]:GetWide()-20)
 			questionBlock[id].label[k]:SetText(text1)
 			questionBlock[id].label[k]:SetTall(y1)
 			questionBlock[id].quest[k]:SetTall(y1)
@@ -197,12 +197,13 @@ net.Receive("questions", function()
 				table.insert(answers, my_answers[k])
 				allgood = true
 			else
-				Derma_Query(rtLang.forgotAnswer, "Error", "Ok")
+				EverDerma("Ошибка",rtLang.forgotAnswer,{{text="Ок",func = function() end}})
+				--Derma_Query(rtLang.forgotAnswer, "Error", "Ok")
 				allgood = false
 				break
 			end
 		end
-		print(allgood)
+		--print(allgood)
 		if allgood then
 			net.Start("checkanswers")
 				net.WriteTable(answers)
@@ -229,7 +230,7 @@ function Legion()
 	
 	local target_legion = 0
 	local mainFrame = vgui.Create("DFrame")
-	mainFrame:SetSize( ScrW(),  ScrH() * 0.6 )
+	mainFrame:SetSize( ScrW(),  ScrH() * 0.8 )
 	mainFrame:SetBackgroundBlur( true )
 	mainFrame:SetDraggable( false )
 	mainFrame:ShowCloseButton( false )
@@ -299,14 +300,18 @@ function Legion()
 		draw.RoundedBox( 0, 0, 0, sendButton:GetWide(), sendButton:GetTall(), Color( 46, 204, 113 ) )
 	end
 	sendButton.DoClick = function()
-		mainFrame:Close()
-		LocalPlayer().legion = rtLang.Legions[target_legion].name
-		local mainFrame = vgui.Create("DAlert")
-		mainFrame:SetTitle(rtLang.passedTitle)
-		mainFrame:SetText(rtLang.passedText)
-		mainFrame.okTxt = rtLang.passedOk
-		mainFrame.cancelTxt1 = rtLang.passedCancel
-		mainFrame:Passed()
+		if(target_legion!=0)then
+			mainFrame:Close()
+			LocalPlayer().legion = target_legion
+			local mainFrame = vgui.Create("DAlert")
+			mainFrame:SetTitle(rtLang.passedTitle)
+			mainFrame:SetText(rtLang.passedText)
+			mainFrame.okTxt = rtLang.passedOk
+			mainFrame.cancelTxt1 = rtLang.passedCancel
+			mainFrame:Passed()
+		else
+			EverDerma("Ошибка","Вы не выбрали легион",{{text="Ок",func = function() end}})
+		end
 	end
 end
 
@@ -472,6 +477,109 @@ net.Receive("addquestions", function()
 	end
 
 end)
+
+local p = FindMetaTable("Panel")
+
+function p:GetPosY()
+	local x,y = self:GetPos()
+	return y
+end
+
+function p:GetPosX()
+	local x,y = self:GetPos()
+	return x
+end
+
+function EverDerma(title, inner, buttons)
+	
+	if(#buttons == 0)then return end
+	
+	local mainFrame = vgui.Create("DFrame")
+	mainFrame:SetSize( ScrW()* 0.6,  ScrH() * 0.6 )
+	mainFrame:SetBackgroundBlur( true )
+	mainFrame:SetDraggable( false )
+	mainFrame:ShowCloseButton( false )
+	mainFrame:SetTitle("")
+	mainFrame:Center()
+	mainFrame:MakePopup()
+	mainFrame.Init = function()
+		mainFrame.startTime = SysTime()
+	end
+	mainFrame.Paint = function()
+		Derma_DrawBackgroundBlur(mainFrame, mainFrame.startTime)
+		draw.RoundedBox( 0, 0, 0, mainFrame:GetWide(), mainFrame:GetTall(), Color( 41, 128, 185))
+	end
+
+	local contentHolder = vgui.Create("DPanel", mainFrame)
+	contentHolder:SetSize( mainFrame:GetWide() * 0.7,  mainFrame:GetTall() * 0.9 )
+	contentHolder:Center()
+	contentHolder.Paint = function() 
+		--draw.RoundedBox( 0, 0, 0, contentHolder:GetWide(), contentHolder:GetTall(), Color( 101, 128, 185))
+	end
+
+	local titleLabel = vgui.Create("DLabel", contentHolder)
+	titleLabel:SetText(title)
+	titleLabel:SetFont("titleFont")
+	titleLabel:SizeToContents()
+	titleLabel:SetPos(contentHolder:GetWide()/2, 0)
+	titleLabel:SetColor(Color(255, 255, 255))
+	titleLabel:CenterHorizontal()
+	
+	local questionsHolder = vgui.Create( "DPanelList", contentHolder)
+	questionsHolder:SetSize( contentHolder:GetWide() - 5, contentHolder:GetTall() - 170 )
+	questionsHolder:SetPos( 0, 100 )
+	questionsHolder:SetSpacing( 10 )
+	questionsHolder:EnableHorizontal( false )
+	questionsHolder:EnableVerticalScrollbar( true )
+	questionsHolder.Paint = function()
+		--draw.RoundedBox( 0, 0, 0, questionsHolder:GetWide(), questionsHolder:GetTall(), Color( 11, 28, 15))
+	end
+		
+	local label = vgui.Create( "DLabel" )
+	label:SetText(inner)
+	label:SetFont("buttonsFont")
+	label:SetSize( questionsHolder:GetWide() - 10, 70 )
+	label:SetWrap( true )
+	label:SetColor(Color(255, 255, 255))
+	label:SetPos(5,5)
+	local text1,y1 = CalculateSize2(label:GetText(),label:GetFont(),questionsHolder:GetWide() - 10) --[[ .."1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111" ]]-- 
+	label:SetText(text1)
+	label:SetTall(y1)
+	
+	if(y1<questionsHolder:GetTall())then
+		questionsHolder:SetTall(y1)
+	end
+	
+	questionsHolder:AddItem( label )
+	
+	
+	local contentHolder2 = vgui.Create("DPanel", contentHolder)
+	contentHolder2:SetSize( contentHolder:GetWide(), 50)--contentHolder:GetTall()-questionsHolder:GetTall()-100 )
+	contentHolder2:SetPos( 0, questionsHolder:GetPosY()+questionsHolder:GetTall()+5 )
+	contentHolder2.Paint = function()
+		--draw.RoundedBox( 0, 0, 0, contentHolder2:GetWide(), contentHolder2:GetTall(), Color( 101, 28, 185))
+	end
+	
+	for k,v in pairs(buttons)do
+		local sendButton = vgui.Create("DButton", contentHolder2)
+		sendButton:SetText(v.text)
+		sendButton:SetSize((contentHolder2:GetWide()-(#buttons+1)*5)/#buttons, 40)
+		sendButton:SetColor(Color(255,255,255))
+		sendButton:SetFont("buttonsFont")
+		sendButton:SetPos( (k-1)*(sendButton:GetWide())+5*k, contentHolder2:GetTall()/2-sendButton:GetTall()/2 )
+		sendButton.Paint = function()
+			draw.RoundedBox( 0, 0, 0, sendButton:GetWide(), sendButton:GetTall(), v.color or Color( 46, 204, 113 ) )
+		end
+		sendButton.DoClick = function() v.func() mainFrame:Close() end
+	end
+	
+	
+	contentHolder:SetTall(contentHolder2:GetPosY()+contentHolder2:GetTall())
+	mainFrame:SetSize( contentHolder:GetWide()* 1.1,  contentHolder:GetTall() * 1.25 )
+	contentHolder:Center()
+	mainFrame:Center()
+	
+end
 
 net.Receive("adminselectquestion", function()
 

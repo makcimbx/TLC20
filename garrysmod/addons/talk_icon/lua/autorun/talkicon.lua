@@ -63,10 +63,9 @@ elseif (CLIENT) then
 		if not ply:IsSpeaking() and not (showtextchat:GetBool() and ply:GetNW2Bool('ti_istyping')) then return end
 
 		local pos = ply:GetPos() + Vector(0, 0, ply:GetModelRadius() + 15)
-
 		local attachment = ply:GetAttachment(ply:LookupAttachment('eyes'))
 		if attachment then
-			pos = ply:GetAttachment(ply:LookupAttachment('eyes')).Pos + Vector(0, 0, 15)
+			--pos = ply:GetAttachment(ply:LookupAttachment('eyes')).Pos + Vector(0, 0, 15)
 		end
 
 		local color_var = 255

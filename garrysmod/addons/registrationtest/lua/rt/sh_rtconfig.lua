@@ -15,14 +15,14 @@ rtConfig.XPmultip = 1000
 
 rtLang = {}
 rtLang.Legions = {
-	[1] = {name = "501",prof = ""},
-	[2] = {name = "212",prof = ""},
-	[3] = {name = "41",prof = ""},
-	[4] = {name = "91",prof = ""},
-	[5] = {name = "74",prof = ""},
-	[6] = {name = "EOD",prof = ""},
-	[7] = {name = "327",prof = ""},
-	[8] = {name = "104",prof = ""},
+	[1] = {name = "501",prof = TEAM_501CT},
+	[2] = {name = "212",prof = TEAM_212CT},
+	[3] = {name = "41",prof = TEAM_41CT},
+	[4] = {name = "91",prof = TEAM_91CT},
+	[5] = {name = "74",prof = TEAM_74CT},
+	[6] = {name = "EOD",prof = TEAM_EODCT},
+	[7] = {name = "327",prof = TEAM_327CT},
+	[8] = {name = "104",prof = TEAM_104CT},
 }
 
 rtLang.Questions = {
@@ -46,20 +46,20 @@ rtLang.Questions = {
 rtLang.legionTitle = "Выбери легион"
 rtLang.legionOk = "Отправить"
 
-rtLang.welcomeTitle = "Проверка знаний."
-rtLang.welcomeText = "Сейчас ты пройдёшь небольшой тест на проверку только что полученных тобой знаний."
+rtLang.welcomeTitle = "Проверка знаний"
+rtLang.welcomeText = "Сейчас ты пройдёшь небольшой тест на проверку только что полученных тобой знаний"
 rtLang.welcomeOk = "Начать тест"
 rtLang.welcomeCancel = "Повторить обучение"
 rtLang.welcomeOffset1 = 40
 rtLang.welcomeCType_1 = "restart"
 
-rtLang.questionsTitle = "Тест."
+rtLang.questionsTitle = "Тест"
 rtLang.defualtOption = "Выбирай правильные ответы"
 rtLang.forgotAnswer = "Ты забыл ответить на некоторые вопросы!"
 rtLang.questionsOk = "Отправить"
 rtLang.questionsCancel = ""
 
-rtLang.passedTitle = "Проверка знаний."
+rtLang.passedTitle = "Проверка знаний"
 rtLang.passedText = "Ты прошёл тест! Теперь ты готов играть на сервере!"
 rtLang.passedOk = "Поехали!"
 rtLang.passedCancel = ""

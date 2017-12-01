@@ -97,4 +97,3 @@ local function HUDPaint()
 end
 hook.Add("HUDPaint", "manolis:MVLevels:HUDPaintA", HUDPaint) // IS THAT UNIQUE ENOUGH FOR YOU, FUCKING GMOD HOOKING BULLSHIT.
 
-

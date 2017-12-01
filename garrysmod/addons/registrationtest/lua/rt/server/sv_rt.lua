@@ -79,7 +79,8 @@ end)
 
 net.Receive("addnagrada",function(l,pl)
 	if(pl.allgood == true)then
-		local legion = net.ReadString()
+		local legion = tonumber(net.ReadString())
+		pl:changeTeam(legion,true,true)
 		pl:addXP(pl.trainXp, true)
 		pl.trainXp = nil
 		pl:SetPData("tutor_ever","1")

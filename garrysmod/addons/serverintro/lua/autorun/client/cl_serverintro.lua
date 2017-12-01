@@ -89,7 +89,7 @@ function GlideStart()
 		for k,v in pairs( locations[ game.GetMap() ] ) do
 			if stage == k then
 				if not v.Started then
-					print( k, v )
+					--print( k, v )
 					pos = v.startpos
 					ang = v.ang
 				end
@@ -164,7 +164,7 @@ local ang2
 
 
 concommand.Add( "glide_pos1", function()
-	print( "Logged first glide position..." )
+	--print( "Logged first glide position..." )
 	pos1 = LocalPlayer():EyePos()
 	ang1 = LocalPlayer():EyeAngles()
 end )
@@ -172,7 +172,7 @@ end )
 concommand.Add( "glide_pos2", function()
 	pos2 = LocalPlayer():EyePos()
 	ang2 = LocalPlayer():EyeAngles()
-	print( "{ startpos = " .. FormatVector( pos1 ) .. ", endpos = " .. FormatVector( pos2 ) .. ", ang = " .. FormatAngle( ang1 ) .. ", ang2 = " .. FormatAngle( ang2 ) .. ", speed = 0.1 }," )
+	--print( "{ startpos = " .. FormatVector( pos1 ) .. ", endpos = " .. FormatVector( pos2 ) .. ", ang = " .. FormatAngle( ang1 ) .. ", ang2 = " .. FormatAngle( ang2 ) .. ", speed = 0.1 }," )
 end )
 
 concommand.Add( "glide_start", GlideStart )
