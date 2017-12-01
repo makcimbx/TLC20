@@ -68,37 +68,7 @@ Add entities under the following line:
 		allowed = {TEAM_EODTRP,TEAM_EODCPL,TEAM_EODSGT,TEAM_EODLT,TEAM_EODCPT,TEAM_EODMJR,TEAM_EODCOL,TEAM_EODCO},
 	})
 	
-	DarkRP.createEntity("Медицинская кровать", {
-		ent = "bed_medicmod",
-		model = "models/medicmod/hospital_bed/hospital_bed.mdl",
-		price = 1,
-		max = 3,
-		cmd = "buybed",
-		category = "Medic Bed",
-		allowed = {TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
-	})
-	
-	DarkRP.createEntity("Пакет Крови", {
-		ent = "bloodbag_medicmod",
-		model = "models/medicmod/bloodbag/bloodbag.mdl",
-		price = 1,
-		max = 3,
-		cmd = "buyblood",
-		category = "Bloodbag",
-		allowed = {TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
-	})
-	
-	DarkRP.createEntity("Капельница", {
-		ent = "drip_medicmod",
-		model = "models/medicmod/medical_stand/medical_stand.mdl",
-		price = 1,
-		max = 3,
-		cmd = "buydrip",
-		category = "Drip",
-		allowed = {TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
-	})
-	
-	DarkRP.createEntity("Электродиаграмм", {
+		DarkRP.createEntity("Электродиаграмм", {
 		ent = "electrocardiogram_medicmod",
 		model = "models/medicmod/electrocardiogram/electrocardiogram.mdl",
 		price = 1,
@@ -133,7 +103,18 @@ Add entities under the following line:
 		model = "models/medicmod/radio/radio.mdl",
 		price = 1,
 		max = 2,
-		cmd = "medterminal",
+		cmd = "buyradio2",
 		category = "X-ray Machine",
 		allowed = {TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
 	})
+	
+		DarkRP.createEntity("Медицинская кровать", {
+		ent = "bed_medicmod",
+		model = "models/medicmod/hospital_bed/hospital_bed.mdl",
+		price = 1,
+		max = 3,
+		cmd = "buybed",
+		category = "Medic Bed",
+		allowed = {TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
+	})
+	
