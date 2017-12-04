@@ -14,4 +14,4 @@ SArmory.Config.ShowCantAfford = false
 SArmory.Config.ShowedOwned = false
 
 --[[ Text to show on the header of the armory menu ]]--
-SArmory.Config.Header = 'Armory'
+SArmory.Config.Header = 'Магазин оружия'

@@ -25,7 +25,7 @@ Add entities under the following line:
 		max = 1,
 		cmd = "buypjetpack",
 		category = "Jetpack",
-		allowed = {TEAM_2NDTRP,TEAM_2NDGRENADE,TEAM_327JETSGT,TEAM_327JETTRP,TEAM_ARCTRP,TEAM_ARCCPL,TEAM_ARCSGT,TEAM_ARCLT,TEAM_ARCCPT,TEAM_ARCMJR,TEAM_ARCCOL,TEAM_ARCCO},
+		allowed = {TEAM_2NDTRP,TEAM_2NDGRENADE,TEAM_327JETTRP,TEAM_ARCTRP,TEAM_ARCCPL,TEAM_ARCSGT,TEAM_ARCLT,TEAM_ARCCPT,TEAM_ARCMJR,TEAM_ARCCOL,TEAM_ARCCO,TEAM_104JETTRP},
 	})
 	
 	DarkRP.createEntity("Патроны", {
@@ -103,7 +103,7 @@ Add entities under the following line:
 		model = "models/medicmod/radio/radio.mdl",
 		price = 1,
 		max = 2,
-		cmd = "buyradio2",
+		cmd = "buyterminal",
 		category = "X-ray Machine",
 		allowed = {TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
 	})
@@ -116,5 +116,65 @@ Add entities under the following line:
 		cmd = "buybed",
 		category = "Medic Bed",
 		allowed = {TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
+	})
+	
+	DarkRP.createEntity("LAAT", {
+		ent = "laat",
+		model = "models/ish/starwars/laat/laat_mk2.mdl",
+		price = 1,
+		max = 1,
+		cmd = "buylaat",
+		category = "LAAT",
+		allowed = {TEAM_PILOTTRP,TEAM_PILOTCPL,TEAM_PILOTSGT,TEAM_PILOTLT,TEAM_PILOTCPT,TEAM_PILOTMJR,TEAM_PILOTCOL,TEAM_PILOTCO},
+	})
+
+	DarkRP.createEntity("ARC170", {
+		ent = "arc170",
+		model = "models/ish/starwars/laat/laat_mk2.mdl",
+		price = 1,
+		max = 1,
+		cmd = "buyarc170",
+		category = "ARC170",
+		allowed = {TEAM_PILOTSGT,TEAM_PILOTLT,TEAM_PILOTCPT,TEAM_PILOTMJR,TEAM_PILOTCOL,TEAM_PILOTCO},
+	})
+	
+	DarkRP.createEntity("V19 Torrent", {
+		ent = "v19torrent",
+		model = "models/ish/starwars/laat/laat_mk2.mdl",
+		price = 1,
+		max = 1,
+		cmd = "buyv19",
+		category = "V19",
+		allowed = {TEAM_PILOTCPL,TEAM_PILOTSGT,TEAM_PILOTLT,TEAM_PILOTCPT,TEAM_PILOTMJR,TEAM_PILOTCOL,TEAM_PILOTCO},
+	})
+	
+	DarkRP.createEntity("Z95", {
+		ent = "headhunter",
+		model = "models/ish/starwars/laat/laat_mk2.mdl",
+		price = 1,
+		max = 1,
+		cmd = "buyz95",
+		category = "Z95",
+		allowed = {TEAM_PILOTCPL,TEAM_PILOTSGT,TEAM_PILOTLT,TEAM_PILOTCPT,TEAM_PILOTMJR,TEAM_PILOTCOL,TEAM_PILOTCO},
+	})
+
+	DarkRP.createEntity("Y WING BTL B", {
+		ent = "ywing_btlb",
+		model = "models/ish/starwars/laat/laat_mk2.mdl",
+		price = 1,
+		max = 1,
+		cmd = "buyywing",
+		category = "YWING",
+		allowed = {TEAM_PILOTCPL,TEAM_PILOTSGT,TEAM_PILOTLT,TEAM_PILOTCPT,TEAM_PILOTMJR,TEAM_PILOTCOL,TEAM_PILOTCO},
+	})
+	
+	DarkRP.createEntity("BARC Speeder", {
+		ent = "republic_speeder",
+		model = "models/ish/starwars/laat/laat_mk2.mdl",
+		price = 1,
+		max = 1,
+		cmd = "buybarc",
+		category = "BARC",
+		allowed = {TEAM_91SCOUT,TEAM_GCSCOUT},
 	})
 	
