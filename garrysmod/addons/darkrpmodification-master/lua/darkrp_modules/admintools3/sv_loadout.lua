@@ -61,13 +61,18 @@ function BOX_PlayerLoadout(ply)
 			ply:Give(v,true)
 		end
 	else
-		DarkRP.notify(ply, 1, 4, "Ты не можешь взять больше!")
+		if((ply:getJobTable().maxAM or 0)==ply:Armor())then
+			DarkRP.notify(ply, 1, 4, "Ты не можешь взять больше!")
+		else
+			ply:SetArmor(ply:getJobTable().maxAM or 0)
+		end
 	end
 end
 
 local function spawn( ply )
 	ply:StripAmmo()
 	ply.newSpawn = true
+	ply:SetHealth(ply:getJobTable().maxHP or 100)
 end
 hook.Add( "PlayerSpawn", "PlayerSpawn", spawn )
 
