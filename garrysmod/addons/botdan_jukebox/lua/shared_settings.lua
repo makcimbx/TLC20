@@ -4,7 +4,7 @@ JukeBox.Colours = {}
 --| GENERAL SETTINGS |------------------------------------------------------------------------------------
 -- This decides whether new players should be bale to hear the JukeBox or not
 -- This option only sets a config for new players on first join and they can enable the JukeBox themselves after.
-JukeBox.Settings.DefaultEnabled = false
+JukeBox.Settings.DefaultEnabled = true
 
 -- Use this to make sure when ANYONE joins the server the JukeBox is off by default, even if they've used it before.
 -- This may be useful for gamemodes where the JukeBox mak be intrusive.
@@ -131,8 +131,9 @@ JukeBox.Settings.GroupRestrctionWhiteList = true
 -- The list of groups that CAN'T or CAN use the JukeBox.
 -- Restricts users from being able to queue songs.
 JukeBox.Settings.RestrictedGroups = {
+	"headadmin",
 	"superadmin",
-	"none",
+	"founder",
 }
 
 --| MISC |------------------------------------------------------------------------------------------------

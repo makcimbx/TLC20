@@ -1,9 +1,9 @@
 RP_MySQLConfig = {}
-RP_MySQLConfig.EnableMySQL = false
-RP_MySQLConfig.Host = "127.0.0.1"
-RP_MySQLConfig.Username = "user"
-RP_MySQLConfig.Password = "password"
-RP_MySQLConfig.Database_name = "DarkRP"
+RP_MySQLConfig.EnableMySQL = true
+RP_MySQLConfig.Host = "server191.hosting.reg.ru"
+RP_MySQLConfig.Username = "u0426341_gmod"
+RP_MySQLConfig.Password = "vstreza555"
+RP_MySQLConfig.Database_name = "u0426341_gmod"
 RP_MySQLConfig.Database_port = 3306
 RP_MySQLConfig.Preferred_module = "mysqloo"
-RP_MySQLConfig.MultiStatements = false
+RP_MySQLConfig.MultiStatements = true

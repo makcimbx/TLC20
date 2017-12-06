@@ -1,5 +1,7 @@
 AWarn.DefaultValues = { awarn_kick = 1, awarn_kick_threshold = 3, awarn_ban = 1, awarn_ban_threshold = 5, awarn_ban_time = 30, awarn_decay = 1, awarn_decay_rate = 30, awarn_reasonrequired = 1 }
 
+local loc = AWarn.localizations.localLang
+
 
 util.AddNetworkString("SendPlayerWarns")
 util.AddNetworkString("SendOwnWarns")
@@ -12,6 +14,7 @@ util.AddNetworkString("AWarnChatMessage")
 util.AddNetworkString("awarn_openoptions")
 util.AddNetworkString("awarn_openmenu")
 util.AddNetworkString("awarn_fetchwarnings")
+util.AddNetworkString("awarn_fetchwarnings_byid")
 util.AddNetworkString("awarn_fetchownwarnings")
 util.AddNetworkString("awarn_deletesinglewarn")
 util.AddNetworkString("awarn_deletewarningsid")
@@ -31,110 +34,21 @@ end
 hook.Add( "Initialize", "Awarn_Initialize", awarn_loadscript )
 
 
-function awarn_checkkickban( ply )
-	local kt = GetConVar("awarn_kick_threshold"):GetInt()
-	local bt = GetConVar("awarn_ban_threshold"):GetInt()
-	local btime = GetConVar("awarn_ban_time"):GetInt()
-	
-	local kickon = GetConVar("awarn_kick"):GetBool()
-	local banon = GetConVar("awarn_ban"):GetBool()
-	
-	
-	
-	if banon then
-		if tonumber(awarn_getwarnings( ply )) >= tonumber(bt) then
-			ServerLog("AWarn: BANNING " .. ply:Nick() .. " FOR " .. btime .. " minutes!\n")
-			for k, v in pairs(player.GetAll()) do AWSendMessage( v, "AWarn: " .. ply:Nick() .. " was banned for reaching the warning threshold" ) end
-			local AWarnLimitBan = hook.Call( "AWarnLimitBan", GAMEMODE, ply )
-			timer.Simple(1, function() awarn_ban( ply, btime ) end )
-			return
-		end
-	end
-	
-	if kickon then
-		if awarn_getwarnings( ply ) >= tonumber(kt) then
-			ServerLog("AWarn: KICKING " .. ply:Nick().. "\n")
-			for k, v in pairs(player.GetAll()) do AWSendMessage( v, "AWarn: " .. ply:Nick() .. " was kicked for reaching the warning threshold" ) end
-			local AWarnLimitKick = hook.Call( "AWarnLimitKick", GAMEMODE, ply )
-			timer.Simple(1, function() awarn_kick( ply ) end )
-			return
-		end
-	end
-end
-
-
-function awarn_kick( ply )
+function awarn_kick( ply, message )
 	if ulx then
-		ULib.kick( ply, "AWarn: Warning Threshold Met" )
+		ULib.kick( ply, message )
 	else
-		ply:Kick( "AWarn: Warning Threshold Met" )
+		ply:Kick( message )
 	end
 end
 
-function awarn_ban( ply, time )
+function awarn_ban( ply, time, message )
 	if ulx then
-		ULib.kickban( ply, time, "AWarn: Ban Threshold Met" )
+		ULib.kickban( ply, time, message )
 	else
-		ply:Ban( time, "AWarn: Ban Threshold Met" )
+		ply:Ban( time, true, message )
 	end
 end
-
-
-function awarn_decaywarns( ply )
-	if GetConVar("awarn_decay"):GetBool() then
-		local dr = GetConVar("awarn_decay_rate"):GetInt()
-		
-		if awarn_getlastwarn( ply ) == "NONE" then
-		else
-			if tonumber(os.time()) >= tonumber(awarn_getlastwarn( ply )) + (dr*60) then
-				awarn_decwarnings(ply)
-			end
-			
-			if awarn_getwarnings( ply ) > 0 then
-				timer.Create( ply:SteamID64() .. "_awarn_decay", dr*60, 1, function() if IsValid(ply) then awarn_decaywarns(ply) end end )
-			end
-		end
-	end
-
-end
-hook.Add( "PlayerInitialSpawn", "awarn_decaywarns", awarn_decaywarns )
-
-function awarn_welcomebackannounce( ply )
-	if awarn_getwarnings( ply ) > 0 then
-		local t1 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "Welcome back to the server, " .. ply:Nick() .. "." }
-		net.Start("AWarnChatMessage") net.WriteTable(t1) net.Send( ply )
-		local t2 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "Current Active Warnings: ", Color(255,0,0), tostring(awarn_getwarnings( ply )) }
-		net.Start("AWarnChatMessage") net.WriteTable(t2) net.Send( ply )
-		if GetConVar("awarn_kick"):GetBool() then
-			local t3 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "You will be kicked after: ", Color(255,0,0), tostring(GetConVar("awarn_kick_threshold"):GetInt()), Color(255,255,255), " total active warnings." }
-			net.Start("AWarnChatMessage") net.WriteTable(t3) net.Send( ply )
-		end
-		if GetConVar("awarn_ban"):GetBool() then
-			local t4 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "You will be banned after: ", Color(255,0,0), tostring(GetConVar("awarn_ban_threshold"):GetInt()), Color(255,255,255), " total active warnings." }
-			net.Start("AWarnChatMessage") net.WriteTable(t4) net.Send( ply )
-		end
-		local t5 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "Type !warn to see a list of your warnings." }
-		net.Start("AWarnChatMessage") net.WriteTable(t5) net.Send( ply )
-	end
-end
-hook.Add( "PlayerInitialSpawn", "awarn_welcomebackannounce", awarn_welcomebackannounce )
-
-function awarn_notifyadmins( ply )
-	if awarn_gettotalwarnings( ply ) > 0 then
-		local total_warnings = awarn_gettotalwarnings( ply )
-		local total_active_warnings = awarn_getwarnings( ply )
-		timer.Simple(1, function()
-			local t1 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), ply, " joins the server with (", Color(255,0,0), tostring(total_warnings), Color(255,255,255), ") total warnings and (", Color(255,0,0), tostring(total_active_warnings), Color(255,255,255), ") active warnings." }
-			for k, v in pairs(player.GetAll()) do
-				if awarn_checkadmin_view( v ) then
-					net.Start("AWarnChatMessage") net.WriteTable(t1) net.Send( v )
-				end
-			end
-		end )
-	end
-end
-hook.Add( "PlayerInitialSpawn", "awarn_notifyadmins", awarn_notifyadmins )
-
 
 function awarn_playerdisconnected( ply )
 	timer.Remove( ply:SteamID64() .. "_awarn_decay" )
@@ -142,18 +56,23 @@ end
 hook.Add( "PlayerDisconnected", "awarn_playerdisconnected", awarn_playerdisconnected )
 
 net.Receive( "awarn_fetchwarnings", function( l, ply )
-
+	
 	if not awarn_checkadmin_view( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
-	
-	local target_ply = awarn_getUser( net.ReadString() )
-	
-	if target_ply then
-		awarn_sendwarnings( ply, target_ply )
-	else
-		AWSendMessage( ply, "AWarn: Player not found!")
+	local player_type = net.ReadString()
+	local player_target = net.ReadString()
+	if player_type == "playername" then
+		local target_ply = awarn_getUser( player_target )
+		
+		if target_ply then
+			awarn_sendwarnings( ply, target_ply )
+		else
+			AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].cl37)
+		end
+	elseif player_type == "playerid" then
+		awarn_sendwarnings_id( ply, player_target )
 	end
 
 end )
@@ -166,17 +85,17 @@ end )
 
 net.Receive( "awarn_changeconvarbool", function( l, ply )
     
-	local allowed = { "awarn_kick", "awarn_ban", "awarn_decay", "awarn_reasonrequired" }
+	local allowed = { "awarn_kick", "awarn_ban", "awarn_decay", "awarn_reasonrequired", "awarn_reset_warnings_after_ban", "awarn_logging" }
 	local convar = net.ReadString()
 	local val = net.ReadString()
 
 	if not awarn_checkadmin_options( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
 	
 	if not table.HasValue( allowed, convar ) then
-		AWSendMessage( ply, "AWarn: You can not set this CVar with this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv2)
 		return
 	end
 	
@@ -195,17 +114,17 @@ net.Receive( "awarn_changeconvar", function( l, ply )
 	local val = net.ReadInt(32)
 
 	if not awarn_checkadmin_options( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
 	
 	if not table.HasValue( allowed, convar ) then
-		AWSendMessage( ply, "AWarn: You can not set this CVar with this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv2)
 		return
 	end
 	
 	if val < 0 then
-		AWSendMessage( ply, "AWarn: You must pass this ConVar a positive value.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv3)
 		return
 	end
 
@@ -243,7 +162,7 @@ function awarn_con_warn( ply, _, args )
 	
 	if (string.sub(string.lower(args[1]), 1, 5) == "steam") then
 		if string.len(args[1]) == 7 then
-			AWSendMessage( ply, "AWarn: Make sure you wrap the steamID in quotes!"  )
+			AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].cl36)
 			return
 		end
 		tid = AWarn_ConvertSteamID( args[1] )
@@ -252,7 +171,6 @@ function awarn_con_warn( ply, _, args )
 	end
 	
 	if not (IsValid(tar)) then return end
-	print("DEBUG =-=-= Reason: " .. reason)
 	awarn_warnplayer( ply, tar, reason )
 
 end
@@ -275,23 +193,39 @@ end )
 function awarn_warnplayer( ply, tar, reason )
 
 	if not awarn_checkadmin_warn( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
 	
+	if table.HasValue( AWarn.userBlacklist, tar:SteamID() ) then
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv9)
+		return
+	end
+	
+	if table.HasValue( AWarn.groupBlacklist, tar:GetUserGroup() ) then
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv10)
+		return
+	end
+	
+	if awarn_checkadmin_warn( tar ) and not GetConVar("awarn_allow_warnadmin"):GetBool() then
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv4)
+		return
+	end
+    
 	target_ply = tar
 	if reason == nil then reason = "" end
 	
 	if not IsValid(target_ply) then return end
 	if not target_ply:IsPlayer() then return end
 	
+	--if tobool(GetGlobalInt( "awarn_reasonrequired", 1 )) then
 	if GetConVar("awarn_reasonrequired"):GetBool() then
 		if not reason then
-			AWSendMessage( ply, "AWarn: You MUST include a reason. Disable this in the options.")
+			AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv5)
 			return
 		end
 		if reason == "" then
-			AWSendMessage( ply, "AWarn: You MUST include a reason. Disable this in the options.")
+			AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv5)
 			return
 		end
 	end
@@ -314,34 +248,27 @@ function awarn_warnplayer( ply, tar, reason )
 		if IsValid(ply) then
             awarn_addwarning( target_ply:SteamID64(), reason, ply:Nick() )
             ServerLog( "[AWarn] " .. ply:Nick() .. " warned " .. target_ply:Nick() .. " for reason: " .. reason.. "\n" )
+			if GetConVar("awarn_logging"):GetBool() then
+				awarn_log( ply:Nick() .. " warned " .. target_ply:Nick() .. " for reason: " .. reason )
+			end
         else
             awarn_addwarning( target_ply:SteamID64(), reason, "[CONSOLE]" )
             ServerLog( "[AWarn] [CONSOLE] warned " .. target_ply:Nick() .. " for reason: " .. reason.. "\n" )
+			if GetConVar("awarn_logging"):GetBool() then
+				awarn_log( "[CONSOLE] warned " .. target_ply:Nick() .. " for reason: " .. reason )
+			end
         end
 		awarn_incwarnings( target_ply )
 		
 		local t1 = {}
         if IsValid( ply ) then
-            t1 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "You have been warned by ", ply, " for ", Color(150,40,40), reason, Color(255,255,255), "." }
+            t1 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), AWarn.localizations[loc].sv6 .. " ", ply, ": ", Color(150,40,40), reason }
         else
-            t1 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "You have been warned by ", Color(100,100,100), "[CONSOLE]", Color(255,255,255), " for ", Color(150,40,40), reason, Color(255,255,255), "." }
+            t1 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), AWarn.localizations[loc].sv6 .. " ", Color(100,100,100), "[CONSOLE]", Color(255,255,255), ": ", Color(150,40,40), reason }
         end
 		net.Start("AWarnChatMessage") net.WriteTable(t1) net.Send( target_ply )
 		
-		local t2 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "Current Active Warnings: ", Color(255,0,0), tostring(awarn_getwarnings( target_ply )) }
-		net.Start("AWarnChatMessage") net.WriteTable(t2) net.Send( target_ply )
-		
-		if GetConVar("awarn_kick"):GetBool() then
-			local t3 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "You will be kicked after: ", Color(255,0,0), tostring(GetConVar("awarn_kick_threshold"):GetInt()), Color(255,255,255), " total active warnings." }
-			net.Start("AWarnChatMessage") net.WriteTable(t3) net.Send( target_ply )
-		end
-		
-		if GetConVar("awarn_ban"):GetBool() then
-			local t4 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "You will be banned after: ", Color(255,0,0), tostring(GetConVar("awarn_ban_threshold"):GetInt()), Color(255,255,255), " total active warnings." }
-			net.Start("AWarnChatMessage") net.WriteTable(t4) net.Send( target_ply )
-		end
-		
-		local t5 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), "Type !warn to see a list of your warnings." }
+		local t5 = { Color(60,60,60), "[", Color(30,90,150), "AWarn", Color(60,60,60), "] ", Color(255,255,255), AWarn.localizations[loc].sv7 }
 		net.Start("AWarnChatMessage") net.WriteTable(t5) net.Send( target_ply )
 		
 		if IsValid( ply ) then
@@ -351,7 +278,7 @@ function awarn_warnplayer( ply, tar, reason )
 		local AWarnPlayerWarned = hook.Call( "AWarnPlayerWarned", GAMEMODE, target_ply, ply, reason )
 			
 	else
-		AWSendMessage( ply, "AWarn: Player not found!")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].cl37)
 	end
 
 end
@@ -359,17 +286,22 @@ end
 function awarn_warnplayerid( ply, tarid, reason )
 
 	if not awarn_checkadmin_warn( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
+		return
+	end
+	
+	if table.HasValue( AWarn.userBlacklist, util.SteamIDFrom64( tarid ) ) then
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv9)
 		return
 	end
 	
 	if GetConVar("awarn_reasonrequired"):GetBool() then
 		if not reason then
-			AWSendMessage( ply, "AWarn: You MUST include a reason. Disable this in the options.")
+			AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv5)
 			return
 		end
 		if reason == "" then
-			AWSendMessage( ply, "AWarn: You MUST include a reason. Disable this in the options.")
+			AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv5)
 			return
 		end
 	end
@@ -377,29 +309,60 @@ function awarn_warnplayerid( ply, tarid, reason )
 	if not reason then reason = "NONE GIVEN" end
 	if reason == "" then reason = "NONE GIVEN" end
 	
-	net.Start("AWarnNotification2")
-		net.WriteEntity( ply )
-		net.WriteString( tarid )
-		net.WriteString( reason )
-	net.Broadcast()
+	local tar_name = tarid
+	local tar_ply = nil
+	for k, v in pairs( player.GetAll() ) do
+		if v:SteamID64() == tostring(tarid) then
+			tar_name = v:Nick()
+			tar_ply = v
+			awarn_warnplayer( ply, tar_ply, reason )
+			return
+		end
+	end
+	
+	if not tar_ply then tar_ply = game.GetWorld() end
+	for k, v in pairs(player.GetAll()) do
+		if v ~= tar_ply then
+			net.Start("AWarnNotification")
+				net.WriteEntity( ply )
+				net.WriteEntity( tar_ply )
+				net.WriteString( reason )
+				net.WriteString( tostring(tarid) )
+			net.Send( v )
+		end
+	end
         
 		
 	if IsValid(ply) then
 		awarn_addwarning( tarid, reason, ply:Nick() )
-		ServerLog( "[AWarn] " .. ply:Nick() .. " warned " .. tostring(tarid) .. " for reason: " .. reason.. "\n" )
+		ServerLog( "[AWarn] " .. ply:Nick() .. " warned " .. tostring(tar_name) .. " for reason: " .. reason.. "\n" )
+		if GetConVar("awarn_logging"):GetBool() then
+			awarn_log( ply:Nick() .. " warned " .. tostring(tar_name) .. " for reason: " .. reason )
+		end
 	else
 		awarn_addwarning( tarid, reason, "[CONSOLE]" )
-		ServerLog( "[AWarn] [CONSOLE] warned " .. tostring(tarid) .. " for reason: " .. reason.. "\n" )
+		ServerLog( "[AWarn] [CONSOLE] warned " .. tostring(tar_name) .. " for reason: " .. reason.. "\n" )
+		if GetConVar("awarn_logging"):GetBool() then
+			awarn_log( "[CONSOLE] warned " .. tostring(tar_name) .. " for reason: " .. reason )
+		end
 	end
 	awarn_incwarningsid( tarid )
+		
+	if IsValid( ply ) then
+		awarn_sendwarnings_id( ply, util.SteamIDFrom64( tarid ) )
+	end
 	
 	local AWarnPlayerIDWarned = hook.Call( "AWarnPlayerIDWarned", GAMEMODE, tarid, ply, reason )
 end
 
+// This function is for removing warnings
+// 76561198045250532
+// ( ply, tar )
+
 function awarn_remwarn( ply, tar )
 
 	if not awarn_checkadmin_remove( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
 	
@@ -419,7 +382,7 @@ end
 net.Receive( "awarn_removewarnid", function( l, ply )
 
 	if not awarn_checkadmin_remove( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
 	
@@ -434,7 +397,7 @@ net.Receive( "awarn_removewarn", function( l, ply )
 	
     if (string.sub(string.lower( p_id ), 1, 5) == "steam") then
 		if string.len(args[1]) == 7 then
-			AWSendMessage( ply, "AWarn: Make sure you wrap the steamID in quotes!"  )
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].cl36)
 			return
 		end
         id = AWarn_ConvertSteamID( p_id )
@@ -448,7 +411,7 @@ end )
 net.Receive( "awarn_deletewarnings", function( l, ply )
 
 	if not awarn_checkadmin_delete( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
 	
@@ -457,13 +420,12 @@ net.Receive( "awarn_deletewarnings", function( l, ply )
 	if target_ply then
 		awarn_delwarnings( target_ply, ply )
 	else
-		AWSendMessage( ply, "AWarn: Player not found!")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].cl37)
 	end
 
 end )
 
 concommand.Add( "awarn_deletewarnings", function( ply, _, args )
-	
 	if IsValid(ply) then return end
 	if #args ~= 1 then return end
 	local target_ply = awarn_getUser( args[1] )
@@ -471,13 +433,13 @@ concommand.Add( "awarn_deletewarnings", function( ply, _, args )
 	if target_ply then
 		awarn_delwarnings( target_ply, ply )
 	else
-		AWSendMessage( ply, "AWarn: Player not found!")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].cl37)
 	end
 end )
 
 net.Receive( "awarn_deletewarningsid", function( l, ply )
 	if not awarn_checkadmin_delete( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
 	
@@ -497,7 +459,7 @@ end )
 net.Receive( "awarn_openmenu", function( l, ply )
 
     if not IsValid( ply ) then
-        AWSendMessage( ply, "AWarn: This command can not be run from the server's console!")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv8)
         return
     end
 
@@ -516,12 +478,12 @@ end )
 net.Receive( "awarn_openoptions", function( l, ply )
 
     if not IsValid( ply ) then
-        AWSendMessage( ply, "AWarn: This command can not be run from the server's console!")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv8)
         return
     end
 
 	if not awarn_checkadmin_options( ply ) then
-		AWSendMessage( ply, "AWarn: You do not have access to this command.")
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
 		return
 	end
 	
@@ -533,9 +495,22 @@ end )
 
 net.Receive( "awarn_deletesinglewarn", function( l, ply )
 
-	AWSendMessage( ply, "AWarn: This feature is not available in the free version of AWarn2!")
+	if not awarn_checkadmin_delete( ply ) then
+		AWSendMessage( ply, "AWarn: " .. AWarn.localizations[loc].sv1)
+		return
+	end
+	
+	local warningid = net.ReadInt(16)
+	
+	awarn_delsinglewarning( ply, warningid )
 
 end )
+
+AWarn.PunishmentSequence = AWarn.PunishmentSequence or {}
+
+function AWarn.RegisterPunishment( TBL )
+	AWarn.PunishmentSequence[ TBL.NumberOfWarnings ] = TBL
+end
 
 local files, dirs = file.Find("awarn/modules/*.lua", "LUA")
 for k, v in pairs( files ) do

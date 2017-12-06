@@ -4,14 +4,14 @@ CreateConVar( "awarn_kick", "1", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_RE
 CreateConVar( "awarn_ban", "1", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "Allow AWarn to ban players who reach the ban threshold. 1=Enabled 0=Disabled" )
 CreateConVar( "awarn_decay", "1", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "If enabled, active warning acount will decay over time. 1=Enabled 0=Disabled" )
 CreateConVar( "awarn_reasonrequired", "1", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "If enabled, admins must supply a reason when warning someone. 1=Enabled 0=Disabled" )
-CreateConVar( "awarn_kick_threshold", "3", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "Number of active warnings needed before a player is kicked (if enabled)." )
-CreateConVar( "awarn_ban_threshold", "5", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "Number of active warnings needed before a player is banned (if enabled)." )
-CreateConVar( "awarn_ban_time", "30", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "Time (in minutes) a player is banned from the server if the banning is enabled. 0 = Permanent" )
 CreateConVar( "awarn_decay_rate", "30", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "Time (in minutes) a player needs to play for an active warning to decay." )
+CreateConVar( "awarn_reset_warnings_after_ban", "0", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "If enabled, active warning count is cleared after a player is banned by awarn. 1=Enabled 0=Disabled" )
+CreateConVar( "awarn_logging", "0", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "If enabled, AWarn will log actions to a data file. 1=Enabled 0=Disabled" )
+CreateConVar( "awarn_allow_warnadmin", "1", bit.bxor( FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED ), "Disable to disallow the warning of other admins. 1=Enabled 0=Disabled" )
+
 
 AWarn = {}
-AWarn.Version = "FREE VERSION"
-AWarn.hash = "3197094529"
+AWarn.Version = "3.4"
 
 local PlayerMeta = FindMetaTable("Player")
 
@@ -24,6 +24,13 @@ function awarn_ULXCompatability()
 		ULib.ucl.registerAccess( "awarn_delete", ULib.ACCESS_SUPERADMIN, "Ability to delete a player's warning data entirely.", "AWarn" )
 		ULib.ucl.registerAccess( "awarn_options", ULib.ACCESS_SUPERADMIN, "Ability to view and change AWarn settings.", "AWarn" )
 	end
+	if serverguard then
+		serverguard.permission:Add("awarn_view")
+		serverguard.permission:Add("awarn_warn")
+		serverguard.permission:Add("awarn_remove")
+		serverguard.permission:Add("awarn_delete")
+		serverguard.permission:Add("awarn_options")
+	end	
 end
 hook.Add( "InitPostEntity", "awarn_ULXCompatability", awarn_ULXCompatability )
 
@@ -38,6 +45,9 @@ function awarn_checkadmin_view( self )
 		if self:IsSuperAdmin() then return true end
 	elseif maestro then
 		if maestro.rankget(maestro.userrank(self)).flags.awarn_view then return true end
+		if self:IsSuperAdmin() then return true end
+	elseif serverguard then
+		if serverguard.player:HasPermission(self, "awarn_view") then return true end
 		if self:IsSuperAdmin() then return true end
 	else
 		if self:IsAdmin() then return true end
@@ -57,6 +67,9 @@ function awarn_checkadmin_warn( self )
 	elseif maestro then
 		if maestro.rankget(maestro.userrank(self)).flags.awarn_warn then return true end
 		if self:IsSuperAdmin() then return true end
+	elseif serverguard then
+		if serverguard.player:HasPermission(self, "awarn_warn") then return true end
+		if self:IsSuperAdmin() then return true end
 	else
 		if self:IsAdmin() then return true end
 		if self:IsSuperAdmin() then return true end	
@@ -74,6 +87,9 @@ function awarn_checkadmin_remove( self )
 		if self:IsSuperAdmin() then return true end
 	elseif maestro then
 		if maestro.rankget(maestro.userrank(self)).flags.awarn_remove then return true end
+		if self:IsSuperAdmin() then return true end
+	elseif serverguard then
+		if serverguard.player:HasPermission(self, "awarn_remove") then return true end
 		if self:IsSuperAdmin() then return true end
 	else
 		if self:IsAdmin() then return true end
@@ -93,6 +109,9 @@ function awarn_checkadmin_delete( self )
 	elseif maestro then
 		if maestro.rankget(maestro.userrank(self)).flags.awarn_delete then return true end
 		if self:IsSuperAdmin() then return true end
+	elseif serverguard then
+		if serverguard.player:HasPermission(self, "awarn_delete") then return true end
+		if self:IsSuperAdmin() then return true end
 	else
 		if self:IsAdmin() then return true end
 		if self:IsSuperAdmin() then return true end	
@@ -110,6 +129,9 @@ function awarn_checkadmin_options( self )
 		if self:IsSuperAdmin() then return true end
 	elseif maestro then
 		if maestro.rankget(maestro.userrank(self)).flags.awarn_options then return true end
+		if self:IsSuperAdmin() then return true end
+	elseif serverguard then
+		if serverguard.player:HasPermission(self, "awarn_options") then return true end
 		if self:IsSuperAdmin() then return true end
 	else
 		if self:IsAdmin() then return true end

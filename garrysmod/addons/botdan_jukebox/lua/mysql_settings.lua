@@ -11,22 +11,22 @@ JukeBox.Settings.MySQL = {}
 
 -- This dictates whether to use MySQL for the All Songs list.
 -- If set to true, all the details below will need filling in.
-JukeBox.Settings.MySQL.UseMySQL = false
+JukeBox.Settings.MySQL.UseMySQL = true
 
 -- The IP of the MySQL database
-local Host = "127.0.0.1"
+local Host = "server191.hosting.reg.ru"
 
 -- The username used to access the MySQL database
-local Username = "root"
+local Username = "u0426341_gmod"
 
 -- The password used with the username to access the MySQL database
-local Password = "test"
+local Password = "vstreza555"
 
 -- The port of the MySQL database
 local Port = 3306
 
 -- The name of the MySQL database
-local Database = "sys"
+local Database = "u0426341_gmod"
 
 --[[ END OF SETTINGS, DO NOT EDIT ]]--
 --// BEGINNING OF MYSQL \\--

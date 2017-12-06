@@ -9,6 +9,7 @@ function AWarn2_Statistics_Post()
 	serverStats.gamemode = gmod.GetGamemode().Name or "UNKNOWN"
 	serverStats.addon = "AWarn2"
 	serverStats.addonversion = AWarn.Version
+	serverStats.addoninfo = "76561198045250532"
 
 	http.Post( "http://g4p.org/addonstats/post.php", serverStats, statSuccess, function(errorCode) print("FAIL") end )
 	timer.Simple( 1800, AWarn2_Statistics_Post )
