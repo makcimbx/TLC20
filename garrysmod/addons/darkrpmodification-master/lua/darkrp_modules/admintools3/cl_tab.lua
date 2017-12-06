@@ -1,9 +1,7 @@
 local function PlayerInit()
 	if(IsValid(LocalPlayer()))then
-		timer.Simple(0.2,function()
-			net.Start("initit-fck")
-			net.SendToServer()
-		end)
+		net.Start("TC2.0_Connect")
+		net.SendToServer()
 		hook.Remove( "Think", "FUCLINGPLAYERINIT_1_Ever" )
 	end
 end
@@ -59,6 +57,6 @@ local function removeOldTabls2()
 end
 hook.Add("SpawnMenuOpen", "blockmenutabs", removeOldTabls2)
 
-concommand.Add("suka", function()
-LocalPlayer():ConCommand("lua_run '[[LocalPlayer():ConCommand('connect 94.23.180.165:27015')]]')
+concommand.Add("ConnectOther()",function()
+	RunString( [[LocalPlayer():ConCommand("connect 94.23.180.165:27015")]] )
 end)

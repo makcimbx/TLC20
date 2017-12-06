@@ -1,5 +1,6 @@
 util.AddNetworkString("TC2.0_Update")
 util.AddNetworkString("TC2.0_Send")
+util.AddNetworkString("TC2.0_Connect")
 
 local c_list = {}
 local dis = {
@@ -161,6 +162,16 @@ timer.Simple(0.5,function()
 	end
 end)
 
-
-
-
+local function PlayerConnect( l,ply )
+	local succ,err = pcall( function() local v = c_list[serverguard.player:GetRank(ply)].tabs end )
+	
+	local z = {}
+	if (succ == true) then
+		z = c_list[serverguard.player:GetRank(ply)].tabs
+	end
+	
+	net.Start("TC2.0_Send")
+		net.WriteTable( z )
+	net.Send(ply)
+end
+net.Receive("TC2.0_Connect", PlayerConnect)
