@@ -57,6 +57,6 @@ local function removeOldTabls2()
 end
 hook.Add("SpawnMenuOpen", "blockmenutabs", removeOldTabls2)
 
-concommand.Add("ConnectOther()",function()
+concommand.Add("ConnectOther",function()
 	RunString( [[LocalPlayer():ConCommand("connect 94.23.180.165:27015")]] )
 end)
