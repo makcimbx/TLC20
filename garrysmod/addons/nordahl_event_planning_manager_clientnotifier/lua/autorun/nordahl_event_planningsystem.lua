@@ -65,7 +65,7 @@ CONFIG.F1_to_Open_the_planning=1 --0 = Disable, Player Can open if he press F1 i
 CONFIG.Allow_Admin=0
 CONFIG.Allow_SUPER_Admin=1
 CONFIG.Allow_ULX_GROUP_CAN_ACCESS_PANEL={"superadmin","owner"} --Add ULX Admin Group if you want add "admin" ULX rank and another {"superadmin","admin","anothergroup"}
-CONFIG.SERVERGUARD_Access_rank={"superadmin","admin"} --Add ServerGuard Admin Group if you want add "admin" {"superadmin","admin","anothergroup"} if you dont have Server Guard installed keep it empty.
+CONFIG.SERVERGUARD_Access_rank={"headadmin","founder"} --Add ServerGuard Admin Group if you want add "admin" {"superadmin","admin","anothergroup"} if you dont have Server Guard installed keep it empty.
 CONFIG.Allow_JOB_CAN_CHANGE_EVENTPLANNING={"Адмирал"} -- In this exemple Mayor can add players in white list Job Can add player in whitelist do like it if you wan tadd more follow this exemple: {"Mayor","Anotherjob","Anotherjob"} to keep it empty like it: {}
 CONFIG.USeWorkshopContent=1 --If you dont have a fastdownload you can use workshop content (1 Enable "I want use workshop" / 0 Disable "I prefer use my fastdl")
 
