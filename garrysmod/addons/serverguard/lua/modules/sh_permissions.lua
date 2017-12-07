@@ -74,6 +74,11 @@ serverguard.permission:Add("awarn_remove");
 serverguard.permission:Add("awarn_delete");
 serverguard.permission:Add("awarn_options");
 
+serverguard.permission:Add("Tabs_AddTab");
+serverguard.permission:Add("Tabs_RemoveTab");
+serverguard.permission:Add("Tabs_GetList");
+serverguard.permission:Add("Tabs_GetHelp");
+
 hook.Add("PhysgunPickup", "serverguard.PhysgunPickup", function(pPlayer, pEntity)
 	if (pEntity:IsPlayer() and serverguard.player:HasPermission(pPlayer, "Physgun Player") and serverguard.player:CanTarget(pPlayer, pEntity)) then
 		pPlayer.sg_physgunPlayer = pEntity;

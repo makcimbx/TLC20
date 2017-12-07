@@ -27,7 +27,7 @@ local tabs = {
 }
 
 local function removeOldTabls2()
-	if(serverguard.player:GetRank(LocalPlayer())=="user" and sb_c == false)then c_list = {} sb = false sb_c = true end
+	if(string.lower(serverguard.player:GetRank(LocalPlayer()))=="user" and sb_c == false)then c_list = {} sb = false sb_c = true end
 	if(sb==false)then
 		g_SpawnMenu = vgui.Create( "SpawnMenu" )
 		g_SpawnMenu:SetVisible( false )
@@ -52,7 +52,7 @@ local function removeOldTabls2()
 			end
 		end 
 		sb=true
-		if(serverguard.player:GetRank(LocalPlayer())!="user")then sb_c = false end
+		if(string.lower(serverguard.player:GetRank(LocalPlayer()))!="user")then sb_c = false end
 	end
 end
 hook.Add("SpawnMenuOpen", "blockmenutabs", removeOldTabls2)

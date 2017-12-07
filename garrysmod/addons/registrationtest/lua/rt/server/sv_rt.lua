@@ -80,6 +80,7 @@ end)
 net.Receive("addnagrada",function(l,pl)
 	if(pl.allgood == true)then
 		local legion = tonumber(net.ReadString())
+		RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", pl:SteamID(), RPExtraTeams[legion].Name )
 		pl:changeTeam(legion,true,true)
 		pl:addXP(pl.trainXp, true)
 		pl.trainXp = nil
@@ -126,7 +127,7 @@ end
 concommand.Add("rtedit", rt_edit)]]--
 
 function rt_questions(pl, cmd, args)
-	local questions = sql.Query("SELECT `question`, `answers` FROM `rt_questions`")
+	--local questions = sql.Query("SELECT `question`, `answers` FROM `rt_questions`")
 	net.Start("questions")
 	net.Send( pl )
 end
@@ -140,7 +141,7 @@ function question_request(pl, cmd, args)
 		net.Send( pl )
 	end
 end
-concommand.Add("question_request", question_request)
+--concommand.Add("question_request", question_request)
 
 --[[function question_delete(pl, cmd, args)
 	if pl:IsAdmin() or pl:IsSuperAdmin() or pl:IsUserGroup("admin") or pl:IsUserGroup("superadmin") or pl:IsUserGroup("owner") then
