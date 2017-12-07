@@ -25,7 +25,7 @@ Add entities under the following line:
 		max = 1,
 		cmd = "buypjetpack",
 		category = "Jetpack",
-		allowed = {TEAM_2NDTRP,TEAM_2NDGRENADE,TEAM_327JETTRP,TEAM_ARCTRP,TEAM_ARCCPL,TEAM_ARCSGT,TEAM_ARCLT,TEAM_ARCCPT,TEAM_ARCMJR,TEAM_ARCCOL,TEAM_ARCCO,TEAM_104JETTRP},
+		allowed = {TEAM_327JETTRP,TEAM_ARCTRP,TEAM_ARCCPL,TEAM_ARCSGT,TEAM_ARCLT,TEAM_ARCCPT,TEAM_ARCMJR,TEAM_ARCCOL,TEAM_ARCCO,TEAM_104JETTRP,TEAM_ARCSNP,TEAM_ARCGRENADE,TEAM_ARCGUNNER},
 	})
 	
 	DarkRP.createEntity("Патроны", {
@@ -166,15 +166,5 @@ Add entities under the following line:
 		cmd = "buyywing",
 		category = "YWING",
 		allowed = {TEAM_PILOTCPL,TEAM_PILOTSGT,TEAM_PILOTLT,TEAM_PILOTCPT,TEAM_PILOTMJR,TEAM_PILOTCOL,TEAM_PILOTCO},
-	})
-	
-	DarkRP.createEntity("BARC Speeder", {
-		ent = "republic_speeder",
-		model = "models/ish/starwars/laat/laat_mk2.mdl",
-		price = 1,
-		max = 1,
-		cmd = "buybarc",
-		category = "BARC",
-		allowed = {TEAM_91SCOUT,TEAM_GCSCOUT},
 	})
 	
