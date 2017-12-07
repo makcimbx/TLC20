@@ -10,7 +10,7 @@ if CLIENT then
     SW.UseChatbox = false
     SW.WebsitePage = "https://vk.com/clonewarsrpporus"
     SW.UseRadar = true
-    SW.TracedRadar = false
+    SW.TracedRadar = true
     SW.RadarUpdateRate = 1
     SW.DrawHealth = true
     SW.DrawHealthAmount = true
