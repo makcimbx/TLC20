@@ -1,5 +1,5 @@
 
-DarkRP.defineChatCommand("b", makesomeb)DarkRP.declareChatCommand{
+DarkRP.declareChatCommand{
 	command = "do",
 	description = "Do command!",
 	delay = 1.5
