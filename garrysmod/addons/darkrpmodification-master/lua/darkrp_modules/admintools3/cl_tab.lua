@@ -16,6 +16,18 @@ net.Receive("TC2.0_Send", function(l,ply)
 	sb = false
 end)
 
+net.Receive("TC2.0_Update", function(l,ply)
+	local tab = net.ReadString()
+	local t = net.ReadString()
+	
+	if(t=="r")then
+		table.RemoveByValue( c_list, tab )
+	else
+		table.insert( c_list, tab )
+	end
+	sb = false
+end)
+
 local tabs = {
 	language.GetPhrase("spawnmenu.category.entities"),
 	language.GetPhrase("spawnmenu.category.weapons"),

@@ -56,12 +56,12 @@ function GetList(ply, cmd, args)
 		if(ply==NULL)then
 			MsgC( Color( 255, 0, 0 ),v.group.."\n") 
 			for k,v in pairs(v.tabs)do
-				MsgC( Color( 0, 255, 0 ),"	["..k.."] "..v.."\n") 
+				MsgC( Color( 0, 255, 0 ),"	["..k.."] '"..v.."'\n") 
 			end
 		else
-			ply:SendLua("MsgC( Color( 255, 0, 0 ), \""..v.group.."\n\")") 
+			ply:SendLua("MsgC( Color( 255, 0, 0 ), \""..v.group.."\\n\")") 
 			for k,v in pairs(v.tabs)do
-				ply:SendLua("MsgC( Color( 0, 255, 0 ), \"["..k.."] "..v.."\n\"") 
+				ply:SendLua("MsgC( Color( 0, 255, 0 ), \"	["..k.."] '"..v.."'\\n\")") 
 			end
 		end
 	end
@@ -78,23 +78,21 @@ local tbs = {
 	"saves"
 }
 
-function GetList(ply, cmd, args)
+function GetTList(ply, cmd, args)
 	if(serverguard.player:HasPermission(ply, "Tabs_GetList") == false)then return false end
-	for k,v in pairs(c_list)do
-		if(ply==NULL)then
-			MsgC( Color( 0, 255, 0 ),"[TC 2.0 TABS]\n") 
-			for k,v in pairs(tbs)do
-				MsgC( Color( 0, 255, 0 ),"	["..k.."] "..v.."\n") 
-			end
-		else
-			ply:SendLua("MsgC( Color( 0, 255, 0 ),\"[TC 2.0 TABS]\n\"") 
-			for k,v in pairs(tbs)do
-				ply:SendLua("MsgC( Color( 0, 255, 0 ),\"	["..k.."] "..v.."\n\"") 
-			end
+	if(ply==NULL)then
+		MsgC( Color( 255, 0, 0 ),"[TC 2.0 TABS]\n") 
+		for k,v in pairs(tbs)do
+			MsgC( Color( 0, 255, 0 ),"	["..k.."] '"..v.."'\n") 
+		end
+	else
+		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"[TC 2.0 TABS]\\n\")") 
+		for k,v in pairs(tbs)do
+			ply:SendLua("MsgC( Color( 0, 255, 0 ),\"	["..k.."] '"..v.."'\\n\")") 
 		end
 	end
 end
-concommand.Add( "tabs_tlist",GetList)
+concommand.Add( "tabs_tlist",GetTList)
 
 function Help(ply, cmd, args)
 	if(serverguard.player:HasPermission(ply, "Tabs_GetHelp") == false)then return false end
@@ -105,11 +103,11 @@ function Help(ply, cmd, args)
 		MsgC( Color( 255, 0, 0 ),"tabs_list ") MsgC( Color( 0, 255, 0 ),"-open saved list\n") 
 		MsgC( Color( 255, 0, 0 ),"tabs_tlist ")  MsgC( Color( 0, 255, 0 ),"-open list of tabs\n") 
 	else
-		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"[TC 2.0 HELP]\"\n") 
-		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"tabs_addtab [group] [tab] \") MsgC( Color( 0, 255, 0 ),\"-add tab to group\n") 
-		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"tabs_removetab [group] [tab] \") MsgC( Color( 0, 255, 0 ),\"-delete tab from group\n") 
-		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"tabs_list \") MsgC( Color( 0, 255, 0 ),\"-open saved list\n") 
-		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"tabs_tlist \")  MsgC( Color( 0, 255, 0 ),\"-open list of tabs\n") 
+		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"[TC 2.0 HELP]\\n\")") 
+		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"tabs_addtab [group] [tab] \") MsgC( Color( 0, 255, 0 ),\"-add tab to group\\n\")") 
+		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"tabs_removetab [group] [tab] \") MsgC( Color( 0, 255, 0 ),\"-delete tab from group\\n\")") 
+		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"tabs_list \") MsgC( Color( 0, 255, 0 ),\"-open saved list\\n\")") 
+		ply:SendLua("MsgC( Color( 255, 0, 0 ),\"tabs_tlist \")  MsgC( Color( 0, 255, 0 ),\"-open list of tabs\\n\")") 
 	end
 end
 concommand.Add( "tabs_help",Help)
@@ -118,7 +116,7 @@ function Add(ply, cmd, args)
 	if(serverguard.player:HasPermission(ply, "Tabs_AddTab") == false)then return false end
 	if(#args<2)then
 		if(ply!=NULL)then
-			ply:SendLua("MsgC( Color( 255, 0, 0 ), \"[TC 2.0] Error! Use '"..cmd.." [group] [tab]' to "..dis[cmd].."\n\")")  
+			ply:SendLua("MsgC( Color( 255, 0, 0 ), \"[TC 2.0] Error! Use '"..cmd.." [group] [tab]' to "..dis[cmd].."\\n\")")  
 		else
 			MsgC( Color( 255, 0, 0 ),"[TC 2.0] Error! Use '"..cmd.." [group] [tab]' to "..dis[cmd].."\n") 
 		end
@@ -132,7 +130,7 @@ function Remove(ply, cmd, args)
 	if(serverguard.player:HasPermission(ply, "Tabs_RemoveTab") == false)then return false end
 	if(#args<2)then
 		if(ply!=NULL)then
-			ply:SendLua("MsgC( Color( 255, 0, 0 ), \"[TC 2.0] Error! Use '"..cmd.." [group] [tab]' to "..dis[cmd].."\n\")")  
+			ply:SendLua("MsgC( Color( 255, 0, 0 ), \"[TC 2.0] Error! Use '"..cmd.." [group] [tab]' to "..dis[cmd].."\\n\")")  
 		else
 			MsgC( Color( 255, 0, 0 ),"[TC 2.0] Error! Use '"..cmd.." [group] [tab]' to "..dis[cmd].."\n") 
 		end
@@ -146,11 +144,11 @@ function AddTo(group, tab,p)
 	p = p or NULL
 	local succ,err = pcall( function() local v = c_list[group].tabs end )
 	local s = false
-	local succ2,err2 = pcall( function() s = table.KeyFromValue(c_list[group].tabs,tab) or false end)
+	pcall( function() s = table.KeyFromValue(c_list[group].tabs,tab) or false end)
 	
 	if(s!=false)then
 		if(p != NULL)then
-			p:SendLua("MsgC( Color( 255, 0, 0 ), \"[TC 2.0] Tab '"..tab.."' in '"..group.."' exists\n\")")
+			p:SendLua("MsgC( Color( 255, 0, 0 ), \"[TC 2.0] Tab '"..tab.."' in '"..group.."' exists\\n\")")
 		else
 			MsgC( Color( 255, 0, 0 ),"[TC 2.0] Tab '"..tab.."' in '"..group.."' exists\n")  
 		end
@@ -168,7 +166,7 @@ function AddTo(group, tab,p)
 		end
 		
 		if(p != NULL)then
-			p:SendLua("MsgC( Color( 0, 255, 0 ), \"[TC 2.0] Added '"..tab.."' to '"..group.."'\n\")")
+			p:SendLua("MsgC( Color( 0, 255, 0 ), \"[TC 2.0] Added '"..tab.."' to '"..group.."'\\n\")")
 			MsgC( Color( 0, 255, 0 ),"[TC 2.0] Added '"..tab.."' to '"..group.."' by "..p:SteamID().."\n")  
 		else
 			MsgC( Color( 0, 255, 0 ),"[TC 2.0] Added '"..tab.."' to '"..group.."' by console\n")  
@@ -178,24 +176,25 @@ end
 
 function RemoveFrom(group, tab,p)
 	p = p or NULL
-	local succ,err = pcall( function() local v = c_list[group].tabs[tab] end )
-
-	if(succ == true)then
+	local s = false
+	pcall( function() s = table.KeyFromValue(c_list[group].tabs,tab) or false end)
+	
+	if(s != false)then
 		table.RemoveByValue( c_list[group].tabs, tab )
 		Save()
 		Update(group,tab,"r")
 	
 		if(p != NULL)then
-			p:SendLua("MsgC( Color( 0, 255, 0 ), \"[TC 2.0] Removed '"..tab.."' to '"..group.."'\n\")")
-			MsgC( Color( 0, 255, 0 ),"[TC 2.0] Removed '"..tab.."' to '"..group.."' by "..p:SteamID().."\n")  
+			p:SendLua("MsgC( Color( 0, 255, 0 ), \"[TC 2.0] Removed '"..tab.."' from '"..group.."'\\n\")")
+			MsgC( Color( 0, 255, 0 ),"[TC 2.0] Removed '"..tab.."' from '"..group.."' by "..p:SteamID().."\n")  
 		else
-			MsgC( Color( 0, 255, 0 ),"[TC 2.0] Removed '"..tab.."' to '"..group.."' by console\n")  
+			MsgC( Color( 0, 255, 0 ),"[TC 2.0] Removed '"..tab.."' from '"..group.."' by console\n")  
 		end
 	else
 		if(p != NULL)then
-			p:SendLua("MsgC( Color( 0, 255, 0 ), \"[TC 2.0] Tab '"..tab.."' in '"..group.."' or '"..group.."' doent exists\n\")")
+			p:SendLua("MsgC( Color( 255, 0, 0 ), \"[TC 2.0] Tab '"..tab.."' in '"..group.."' or '"..group.."' doent exists\\n\")")
 		else
-			MsgC( Color( 0, 255, 0 ),"[TC 2.0] Tab '"..tab.."' in '"..group.."' or '"..group.."' doent exists\n")  
+			MsgC( Color( 255, 0, 0 ),"[TC 2.0] Tab '"..tab.."' in '"..group.."' or '"..group.."' doent exists\n")  
 		end
 	end
 	
@@ -205,9 +204,8 @@ function Update(group, tab, t)
 	for k,v in pairs(player.GetAll())do
 		if(string.lower(serverguard.player:GetRank(v)) == string.lower(group))then
 			net.Start("TC2.0_Update")
-				net.WriteString(group)
 				net.WriteString(tab)
-				net.WriteString(r)
+				net.WriteString(t)
 			net.Send(v)
 		end
 	end
