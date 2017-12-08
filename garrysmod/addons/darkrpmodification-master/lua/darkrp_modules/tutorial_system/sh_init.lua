@@ -9,3 +9,8 @@ DarkRP.declareChatCommand{
 	description = "",
 	delay = 1.5
 }
+DarkRP.declareChatCommand{
+	command = "offertest",
+	description = "",
+	delay = 1.5
+}
