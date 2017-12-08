@@ -78,8 +78,8 @@ ATAG.NutScript = false
 --## by giving the player the privilege called 'atags adminpanel'               ##
 --##============================================================================##
 ATAG.adminPanel_Access = {
-	"owner",
-	"superadmin"
+	"founder",
+	"headadmin"
 }
 
 
