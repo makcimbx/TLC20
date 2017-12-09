@@ -8,19 +8,21 @@ include('shared.lua')
 function ENT:Initialize()
 end
 
+/*---------------------------------------------------------
+   Name: DrawPre
+---------------------------------------------------------*/
+
+local w1,h1,w2,h2 = 0,0,0,0
 function ENT:Draw()
 	self.Entity:DrawModel()
 	render.MaterialOverride("models/props_combine/tpballglow")
 	local Pos = self:GetPos()
-    local Ang = self:GetAngles()
-	Ang:RotateAroundAxis(Ang:Up(), 90)
-	
-	cam.Start3D2D((Pos + Ang:Up() * 17)- Ang:Forward() * 32, Ang , 0.2)
-        draw.WordBox(2, -5 * 0.5 + 50, -16, "Патроны", "HUDNumber5", Color(0, 0, 0, 0), Color(255, 255, 255, 255))
-		if(self.UnlimitedAmmo==false)then
-			draw.WordBox(2, -5 * 0.5 + 50*3.5, -16, self:GetNWInt( "Ammo" ), "HUDNumber5", Color(0, 0, 0, 0), Color(255, 255, 255, 255))
-		else
-			draw.WordBox(2, -5 * 0.5 + 50*3.5, -16, "∞", "HUDNumber5", Color(0, 0, 0, 0), Color(255, 255, 255, 255))
-		end
+
+	local ang = EyeAngles()--LocalPlayer():EyeAngles()
+	ang:RotateAroundAxis( ang:Up(), -90 )
+
+	cam.Start3D2D(Pos, Angle( 0, ang.y, 90 ) , 0.2)
+        w1,h1 = draw.WordBox(2, -w1/2, -h1-150, "Патроны", "HUDNumber5", Color(0, 0, 0, 0), Color(255, 255, 255, 255))
+		w2,h2 = draw.WordBox(2, -w2/2, -150, self:GetNWInt( "Ammo" ), "HUDNumber5", Color(0, 0, 0, 0), Color(255, 255, 255, 255))
     cam.End3D2D()
 end

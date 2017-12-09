@@ -72,6 +72,7 @@ end
 local function spawn( ply )
 	ply:StripAmmo()
 	ply.newSpawn = true
+	PrintTable(RPExtraTeams[ply:Team()])
 	ply:SetHealth(ply:getJobTable().maxHP or 100)
 end
 hook.Add( "PlayerSpawn", "PlayerSpawn", spawn )

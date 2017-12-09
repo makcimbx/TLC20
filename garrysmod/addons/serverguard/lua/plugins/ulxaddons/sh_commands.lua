@@ -10,23 +10,16 @@ command.immunity = SERVERGUARD.IMMUNITY.LESSEQUAL
 command.aliases = {"model"}
 command.permissions = {"Set Model"}
 function command:Execute(player, silent, arguments)
-	local target = util.FindPlayer(arguments[1], player)
-	local model = tostring(arguments[2])
+	local model = tostring(arguments[#arguments])
+	table.remove(arguments,#arguments)
 	
 	if model == -1 then return	end
 	
-	if (IsValid(target)) then
-		if target.DarkRPUnInitialized then
-			serverguard.Notify(player, SERVERGUARD.NOTIFY.RED, "Player is not yet initialized.")
-			return
-		end
-		
-		target:SetModel(model)
-		
-		if not silent then
-			serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(player), SERVERGUARD.NOTIFY.WHITE, " выдал  ", SERVERGUARD.NOTIFY.RED, target:Name(), SERVERGUARD.NOTIFY.WHITE, " модель.")
-		end
-	end
+	local setmdl = function (v) v:SetModel(model) end
+	
+	Simpliest(player,arguments,setmdl,true,silent,"выдал модель")
+	
+
 end
 plugin:AddCommand(command)
 
@@ -41,31 +34,22 @@ command.immunity = SERVERGUARD.IMMUNITY.LESSEQUAL
 command.aliases = {"scale"}
 command.permissions = {"Set Scale"}
 function command:Execute(player, silent, arguments)
-	local target = util.FindPlayer(arguments[1], player)
-	local scale = tonumber(arguments[2])
-	local affected_plys = {}
+	local scale = tonumber(arguments[#arguments])
+	table.remove(arguments,#arguments)
 	
-	if scale == -1 then return	end
+	if scale == nil then return	end
 	
-	if (IsValid(target)) then
-		if target.DarkRPUnInitialized then
-			serverguard.Notify(player, SERVERGUARD.NOTIFY.RED, "Player is not yet initialized.")
-			return
-		end
+	local scaling = function (v) 
+		v.CLEANUPKITScale = scale
+		v.CLEANUPKITViewOffset = v.CLEANUPKITViewOffset or v:GetViewOffset()
+		v.CLEANUPKITViewOffsetDucked =v.CLEANUPKITViewOffsetDucked or v:GetViewOffsetDucked()
 		
-		target.CLEANUPKITScale = scale
-		target.CLEANUPKITViewOffset = target.CLEANUPKITViewOffset or target:GetViewOffset()
-		target.CLEANUPKITViewOffsetDucked =target.CLEANUPKITViewOffsetDucked or target:GetViewOffsetDucked()
-		
-		target:SetViewOffset(target.CLEANUPKITViewOffset*scale)
-		target:SetViewOffsetDucked(target.CLEANUPKITViewOffsetDucked*scale)
-		target:SetModelScale(scale,0)
-		table.insert( affected_plys, target )
-		
-		if not silent then
-			serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(player), SERVERGUARD.NOTIFY.WHITE, " установил  ", SERVERGUARD.NOTIFY.RED, target:Name(), SERVERGUARD.NOTIFY.WHITE, " высоту.")
-		end
+		v:SetViewOffset(v.CLEANUPKITViewOffset*scale)
+		v:SetViewOffsetDucked(v.CLEANUPKITViewOffsetDucked*scale)
+		v:SetModelScale(scale,0) 
 	end
+	Simpliest(player,arguments,scaling,true,silent,"установил высоту")
+
 end
 plugin:AddCommand(command)
 
@@ -78,14 +62,14 @@ command.bSingleTarget = false
 command.immunity = SERVERGUARD.IMMUNITY.LESSEQUAL
 command.aliases = {"stopsound"}
 command.permissions = {"Stop Sounds on server"}
-function command:Execute(player, silent, arguments)
+function command:Execute(ply, silent, arguments)
 
 	    for k,v in pairs(player.GetAll()) do
 		    v:SendLua([[RunConsoleCommand("stopsound")]])
 	    end
 		
 		if not silent then
-			serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(player), SERVERGUARD.NOTIFY.WHITE, " остановил все звуки")
+			serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " остановил все звуки")
 		end
 end
 plugin:AddCommand(command)
@@ -120,20 +104,10 @@ command.immunity = SERVERGUARD.IMMUNITY.LESSEQUAL
 command.aliases = {"reconnect"}
 command.permissions = {"RECONNECT"}
 function command:Execute(player, silent, arguments)
-	local target = util.FindPlayer(arguments[1], player)
 
-	if (IsValid(target)) then
-		if target.DarkRPUnInitialized then
-			serverguard.Notify(player, SERVERGUARD.NOTIFY.RED, "Player is not yet initialized.")
-			return
-		end
-		
-		target:SendLua([[RunConsoleCommand("retry")]])
-		
-		if not silent then
-			serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(player), SERVERGUARD.NOTIFY.WHITE, " ВЫДАЛ РЕКОННЕКТ  ", SERVERGUARD.NOTIFY.RED, target:Name())
-		end
-	end
+	local reconect = function (v) v:SendLua([[RunConsoleCommand("retry")]]) end
+	Simpliest(player,arguments,reconect,false,silent,"ВЫДАЛ РЕКОННЕКТ")
+
 end
 plugin:AddCommand(command)
 
@@ -203,31 +177,54 @@ function Simpliest(ply,arguments,func,needAlive,silent,msg)
 				end
 			end
 		end
-		if not silent then
+		if (not silent) and #affected_plys!=0 then
 			serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " "..msg.." ", SERVERGUARD.NOTIFY.RED, "["..table.concat( affected_plys, ", " ).."]")
 		end
 	else
 		if(#arguments==1)then
 			if arguments[1] != "*" then 
-				local affected_ply = ""
-				local v = util.FindPlayer(arguments[1], ply)
-				if (IsValid(v))then
-					if v.DarkRPUnInitialized then
-						serverguard.Notify(ply, SERVERGUARD.NOTIFY.RED, v:Name().." is not yet initialized.")
-					else
-						if(needAlive)then
-							if v:Alive() then
+				if arguments[1] != "^" then 
+					local affected_ply = ""
+					local v = util.FindPlayer(arguments[1], ply)
+					if (IsValid(v))then
+						if v.DarkRPUnInitialized then
+							serverguard.Notify(ply, SERVERGUARD.NOTIFY.RED, v:Name().." is not yet initialized.")
+						else
+							if(needAlive)then
+								if v:Alive() then
+									func(v)
+									affected_ply = v:Name()
+								end
+							else
 								func(v)
 								affected_ply = v:Name()
 							end
-						else
-							func(v)
-							affected_ply = v:Name()
 						end
 					end
-				end
-				if not silent then
-					serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " взорвал пердак у  ", SERVERGUARD.NOTIFY.RED, affected_ply)
+					if (not silent) and affected_ply!="" then
+						serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " "..msg.." ", SERVERGUARD.NOTIFY.RED, affected_ply)
+					end
+				else
+					local affected_ply = ""
+					local v = ply
+					if (IsValid(v))then
+						if v.DarkRPUnInitialized then
+							serverguard.Notify(ply, SERVERGUARD.NOTIFY.RED, v:Name().." is not yet initialized.")
+						else
+							if(needAlive)then
+								if v:Alive() then
+									func(v)
+									affected_ply = v:Name()
+								end
+							else
+								func(v)
+								affected_ply = v:Name()
+							end
+						end
+					end
+					if (not silent) and affected_ply!="" then
+						serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " "..msg.." ", SERVERGUARD.NOTIFY.RED, affected_ply)
+					end
 				end
 			else
 				local affected_plys = {}
@@ -235,7 +232,7 @@ function Simpliest(ply,arguments,func,needAlive,silent,msg)
 					func(v)
 					table.insert( affected_plys, v:Name() )
 				end
-				if not silent then
+				if (not silent) and #affected_plys!=0 then
 					serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " "..msg.." ", SERVERGUARD.NOTIFY.RED, "["..table.concat( affected_plys, ", " ).."]")
 				end
 			end

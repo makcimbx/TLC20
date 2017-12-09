@@ -9,7 +9,7 @@ ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 
 
-ENT.model = "models/Items/ammocrate_smg1.mdl"
+ENT.model = "models/kingpommes/emperors_tower/ph_props/gnk_droid/gnk_droid.mdl"
 ENT.UnlimitedAmmo = false
 
 ENT.m_ammo = 600000
