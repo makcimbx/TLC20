@@ -1,6 +1,6 @@
 --Groups added to this blacklist can not be warned by anyone, ever.
 AWarn.groupBlacklist = {
-	"headadmin",
+	"founder",
 }
 
 --SteamID's added to this blacklist can not be warned by anyone, ever.
