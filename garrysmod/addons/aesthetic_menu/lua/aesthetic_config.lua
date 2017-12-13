@@ -1,6 +1,11 @@
 resource.AddFile("resource/fonts/BebasNeue.otf")
 AS = AS or {}
-local ScreenHeight = ScrH()
+local ScreenHeight
+if CLIENT then
+	ScreenHeight = ScrH()
+else
+	ScreenHeight = 20
+end
 --CONFIG--
 AS.BoxSize = ScreenHeight/12 -- Change the default box size. It depends on your screen height.
 AS.HeightOffset = ScreenHeight/5 -- Change vertical position of the hud. It also depends on your screens height.
@@ -13,7 +18,7 @@ AS.SelectedColor = Color(140, 140, 140, 255) -- Selected box color
 AS.OutlineColor = Color(30,30,30,255) -- Outline color
 AS.UnselectedColor = Color(60,60,60,255)  -- Unselected box color
 AS.UnselectedAltColor = Color(75, 75, 75, 255) -- Unselected color used in additional weapon boxes
-AS.EmptyColor = Color(50,50,50,255) -- Empty box color
+AS.EmptyColor = Color(40,40,40,255) -- Empty box color
 AS.WepBoxOutlineColor = Color(30,30,30,255)  -- Color of the border around weapon icon box
 AS.WepBoxBackgroundColor = Color(60,60,60,255) -- Color of the weapon icon box
 AS.UnselectedFontColor = Color(255, 255, 255, 100) -- Font color used in unselected boxes
