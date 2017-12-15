@@ -74,3 +74,34 @@ local function makesomeb(ply, args)
     return args, DoSay
 end
 DarkRP.defineChatCommand("b", makesomeb)
+
+local function roll(ply, args)
+    local DoSay = function(text)
+		local ents = ents.FindInSphere(ply:EyePos(), 250)
+        for k, v in pairs(ents) do
+			if v:IsPlayer() then
+				serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, ply:GetName(), SERVERGUARD.NOTIFY.WHITE, " выпало ", SERVERGUARD.NOTIFY.RED, math.random(0,100).."");
+			end
+		end
+    end
+    return args, DoSay
+end
+DarkRP.defineChatCommand("roll", roll)
+
+DarkRP.declareChatCommand{
+	command = "/",
+	description = "ooc",
+	delay = 1.5
+}
+
+DarkRP.declareChatCommand{
+	command = "a",
+	description = "ooc",
+	delay = 1.5
+}
+
+DarkRP.declareChatCommand{
+	command = "ooc",
+	description = "ooc",
+	delay = 1.5
+}

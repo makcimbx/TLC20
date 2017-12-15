@@ -54,6 +54,8 @@ SERVERGUARD.IMMUNITY.LESS = 2;
 SERVERGUARD.IMMUNITY.LESSOREQUAL = 3;
 SERVERGUARD.IMMUNITY.ANY = 4;
 
+serverguard.preifx = "/" 
+
 --- Returns the version of this server's copy of ServerGuard.
 -- @treturn string Version number with format `#.#.#`.
 function serverguard.GetCurrentVersion()

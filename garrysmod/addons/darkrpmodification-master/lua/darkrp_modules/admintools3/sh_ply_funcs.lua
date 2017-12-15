@@ -12,17 +12,9 @@ function p:IsTeamType(x)
 	return false
 end
 
-local cmds = {
-	["superadmin"] = {
-		["sooc"] = true,
-		["oocdelay"] = true,
-	},
-}
+serverguard.permission:Add("sooc")
+serverguard.permission:Add("oocdelay")
 
 function p:CanCMD(x)
-	local a = cmds[self:GetUserGroup()][x]
-	if(a == nil)then
-		a = false
-	end
-	return a
+	return serverguard.ranks:HasPermission(serverguard.player:GetRank(self), x)
 end
