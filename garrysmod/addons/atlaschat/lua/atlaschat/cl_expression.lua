@@ -134,11 +134,24 @@ emoticons[":O"] = "icon16/emoticon_surprised.png"
 emoticons[":p"] = "icon16/emoticon_tongue.png"
 emoticons[":P"] = "icon16/emoticon_tongue.png"
 emoticons[":("] = "icon16/emoticon_unhappy.png"
+emoticons[":("] = "icon16/emoticon_unhappy.png"
+
 emoticons["med1"] = {"atlaschat/emoticons/med1.png", 26, 16}
 emoticons["med2"] = "atlaschat/emoticons/med2.png"
 emoticons["med3"] = "atlaschat/emoticons/med3.png"
 emoticons["med4"] = "atlaschat/emoticons/med4.png"
 emoticons["med5"] = "atlaschat/emoticons/med5.png"
+
+emoticons["etojerussia"] = {"anticheatmemes/etojerussia.png", 90, 73}
+emoticons["mdaaaa"] = {"anticheatmemes/mdaaaa.png", 60, 67}
+emoticons["mmmahueno"] = {"anticheatmemes/mmmahueno.png", 70, 39}
+emoticons["nerazo4arui"] = {"anticheatmemes/nerazo4arui.png", 60, 66}
+emoticons["nunet"] = {"anticheatmemes/nunet.png", 60, 58}
+emoticons["ooow"] = {"anticheatmemes/ooow.png", 70, 65}
+emoticons["ti4okek"] = {"anticheatmemes/ti4okek.png", 70, 85}
+emoticons["4esirusli"] = {"anticheatmemes/4esirusli.png", 130, 73}
+emoticons["blyaetopizdec4toyauvidel"] = {"anticheatmemes/blyaetopizdec4toyauvidel.png", 60, 62}
+
 emoticons["garry"] = {"atlaschat/emoticons/garry.png", 64, 64}
 emoticons["gaben"] = {"atlaschat/emoticons/gaben.png", 64, 64}
 

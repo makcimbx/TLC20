@@ -1,0 +1,4 @@
+checkpointsConfig = {};
+
+
+checkpointsConfig.Debug = false
