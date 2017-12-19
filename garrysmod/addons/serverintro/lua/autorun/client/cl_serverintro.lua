@@ -1,4 +1,4 @@
-local locations = table.Copy( SI.locations )
+locations = table.Copy( SI.locations )
 -- The text displayed when you join the server
 local welcomeText = SI.welcomeText
 
@@ -19,7 +19,7 @@ local hide = SI.hide -- Hide props and players?
 -- End of config, don't edit this unless you know what you are doing!
 
 local stage = 0
-local hudpainthack
+hudpainthack = nil
 
 
 surface.CreateFont( "SITitleFont", {
@@ -40,6 +40,118 @@ end
 
 local function FormatAngle( ang )
 	return "Angle( " .. ang.p .. ", " .. ang.y .. ", " .. ang.r .. " )"
+end
+
+function GlideSpawnStart()
+	net.Start( "GlideSpawnStart" )
+	net.SendToServer()
+	if locations[ "spawn" ] == nil then
+		gui.EnableScreenClicker( false )
+		error( "\n\nThe current map wasn't found in the config. Please make sure you have configured the addon correctly.\nIf you need further help, send a copy of your config with a ticket on scriptfodder.\n\n" )
+	end
+
+	if music != nil then
+		surface.PlaySound( music )
+	end
+
+	if useYoutube then
+		local url = "http://youtubeinmp3.com/fetch/?video="
+		if SI.useExpirmental then
+			url = "http://alex.meharryp.xyz:3000/fetch?video="
+		end
+		sound.PlayURL( url .. youtubeUrl, "", function( s ) if IsValid( s ) then LocalPlayer().s = s LocalPlayer().s:Play() end end )
+	end
+
+	local d_v = nil
+	local d_a = nil
+	
+	stage = 1
+	local pos = locations[ "spawn" ][ 1 ].pos
+	local ang = locations[ "spawn" ][ 1 ].ang
+	timer.Create( "StageTimer", 60, 0, function()
+		if(#locations[ "spawn" ]<stage+1)then 
+			stage = 1 
+			for k,v in pairs( locations[ "spawn" ] ) do
+				v.Started = false
+			end
+		else
+			stage = stage + 1
+		end
+		 print(d_v)
+		pos = d_v
+		ang = d_a
+	end )
+
+	hudpainthack = vgui.Create( "DPanel" ) -- HUDShouldDraw doesn't like doing what I tell it, so I'm using this way instead.
+	hudpainthack:SetSize( ScrW(), ScrH() )
+	hudpainthack.Paint = function()
+		SI.HUDDraw( locations[ "spawn" ][ stage ].text,true )
+	end
+
+	if hide then
+		for k,v in pairs( player.GetAll() ) do
+			v:SetNoDraw( true )
+		end
+	end
+
+	hook.Add( "CalcView", "GlideTest", function()
+		local view = {}
+		local ang2
+		for k,v in pairs( locations[ "spawn" ] ) do
+			if stage == k then
+				if not v.Started then
+					--print( k, v )
+					pos = d_v or v.startpos
+					ang = d_a or v.ang
+				end
+				ang2 = v.ang2 or ang
+				v.Started = true
+				if pos == nil then pos = locations[ "spawn" ][ stage ].startpos end
+				pos = LerpVector( FrameTime() * v.speed, pos, v.endpos )
+				view.origin = pos
+				ang = LerpAngle( FrameTime() * v.speed, ang, ang2 )
+				view.angles = ang
+				view.farz = 15000
+				view.drawviewer = true;
+				d_v = view.origin
+				d_a = view.angles
+				return view
+			end
+		end
+	end )
+
+	hook.Add( "HUDShouldDraw", "GlideRemoveHUD", function( name )
+		return false
+	end )
+
+	--[[timer.Simple( #locations[ "spawn" ] * posDuration, function()
+		hook.Remove( "CalcView", "GlideTest" )
+		hook.Remove( "HUDPaint", "GlideText" )
+		hook.Remove( "HUDShouldDraw", "GlideRemoveHUD" )
+		hudpainthack:Remove()
+		for k,v in pairs( locations[ "spawn" ] ) do
+			v.Started = false
+		end
+		if IsValid( LocalPlayer().s ) then LocalPlayer().s:Stop() end
+		RunConsoleCommand( "stopsound" )
+
+		if hide then
+			for k,v in pairs( player.GetAll() ) do
+				v:SetNoDraw( false )
+			end
+			for k,v in pairs( ents.FindByClass( "prop_physics" ) ) do
+				v:SetNoDraw( false )
+			end
+		end
+
+		pos = nil
+		ang = nil
+
+		hook.Call("PostServerIntro")
+	end )]]--
+	
+	-- Hacky DarkRP Fix, stop renaming your gamemodes. Error: Unknown system error -122: Unknown system error -122, write<br> &nbsp; &nbsp;at Error (native)<br> &nbsp; &nbsp;at Object.fs.writeSync (fs.js:787:20)<br> &nbsp; &nbsp;at Object.fs.writeFileSync (fs.js:1357:24)<br> &nbsp; &nbsp;at SaveData (/var/web/webserver/scriptstats/fakefunc.js:154:5)<br> &nbsp; &nbsp;at FakeFunc (/var/web/webserver/scriptstats/fakefunc.js:145:3)<br> &nbsp; &nbsp;at /var/web/webserver/scriptstats/fakefunc.js:179:12<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/var/web/webserver/node_modules/express/lib/router/route.js:131:13)<br> &nbsp; &nbsp;at Route.dispatch (/var/web/webserver/node_modules/express/lib/router/route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)
+
 end
 
 function GlideStart()

@@ -270,5 +270,6 @@ local function PlayerConnect( l,ply )
 	net.Start("TC2.0_Send")
 		net.WriteTable( z )
 	net.Send(ply)
+	hook.Call( "TC2.0_Connect",nil,ply )
 end
 net.Receive("TC2.0_Connect", PlayerConnect)

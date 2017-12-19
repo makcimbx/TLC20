@@ -242,8 +242,7 @@ local function drawRadar()
                 end
             end
         end
-
-        surface.SetTexture(beacon)
+		
 
         for k , v in pairs(radarTargets) do
             if (v == LocalPlayer()) then continue end
@@ -264,7 +263,7 @@ local function drawRadar()
         prg = prg / (SW.RadarUpdateRate * 3)
     else
 
-		surface.SetTexture(beacon)
+		
         for k , v in pairs(player.GetAll()) do
             if (v == LocalPlayer()) then continue end
             local pos = v:GetPos()
@@ -278,8 +277,9 @@ local function drawRadar()
 
     end
 
+    surface.SetTexture(beacon)
     surface.SetDrawColor(team.GetColor(LocalPlayer():Team()))
-    surface.DrawTexturedRectRotated(SW.RadarPos.x + 108 , SW.RadarPos.y + 108 , 16 , 32 , 180)
+    surface.DrawTexturedRectRotated(SW.RadarPos.x + 109 , SW.RadarPos.y + 105 , 16 , 32 , 180)
 
     disableClip()
 

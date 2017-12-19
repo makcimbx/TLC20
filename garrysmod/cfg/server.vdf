@@ -237,4 +237,6 @@
 	"awarn_reset_warnings_after_ban"		"0"
 	"awarn_logging"		"0"
 	"awarn_allow_warnadmin"		"1"
+	"aesthetic_menu"		"1"
+	"aesthetic_side"		"1"
 }

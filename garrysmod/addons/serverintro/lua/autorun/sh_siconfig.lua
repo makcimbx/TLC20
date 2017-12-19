@@ -36,6 +36,45 @@ SI.locations[ "rp_venator_tlc_v2" ] = { -- You can change the map name to whatev
 	},]]--
 }
 
+
+SI.locations[ "spawn" ] = {
+	{ 
+		startpos = Vector( 14740, -5074, 6881 ), 
+		endpos = Vector( -11165, -8072, 6073 ), 
+		ang = Angle( 20, 138, 0 ), 
+		speed = 0.05, 
+		text = "Нажмите 'Пробел' для того чтобы заспавнится.",
+		ang2 = Angle( 17, 32, 0 ),
+	},
+	{
+
+		startpos = Vector( -11165, -8072, 6073 ), 
+		endpos = Vector( -11093, 6760, 8728 ), 
+		ang = Angle( 17, 32, 0 ), 
+		speed = 0.05, 
+		text = "Нажмите 'Пробел' для того чтобы заспавнится.",
+		ang2 = Angle( 29, -36, 0 ),
+	},
+	{
+
+		startpos = Vector( -11093, 6760, 8728 ), 
+		endpos = Vector( 13878, 10201, 5804 ), 
+		ang = Angle( 29, -36, 0 ), 
+		speed = 0.05, 
+		text = "Нажмите 'Пробел' для того чтобы заспавнится.",
+		ang2 = Angle( 12, -136, 0 ),
+	},
+	{ 
+		startpos = Vector( 13878, 10201, 5804 ), 
+		endpos = Vector( 14740, -5074, 6881 ), 
+		ang = Angle( 12, -136, 0 ), 
+		speed = 0.05, 
+		text = "Нажмите 'Пробел' для того чтобы заспавнится.",
+		ang2 = Angle( 20, 138, 0 ),
+	},
+
+}
+
 SI.PVSExtra = { -- If you are having problems with invisble entites during the intro, add the locations of the entites here and they'll be syncrohnised with the client automatically.
     Vector( 0, 0, 0 )
 }
@@ -59,7 +98,22 @@ SI.showOnce = false -- Only ask the user if they want to see it once?
 SI.hide = true -- Hide players?
 
 // ADVANCED: HUD DRAW FUNCTION
-function SI.HUDDraw( text ) // Only change this if you know how to make a HUD. Text is the current text from the location. text is a MarkupObject generated from the text string in each section.
-	draw.RoundedBox( 12, 100, ScrH() - 250, ScrW() - 200, 100, Color( 0, 0, 0, 210 ) )
-	markup.Parse( "<font=DermaLarge>" .. text .. "</font>", ScrW() - 200 ):Draw( ScrW() / 2, ScrH() - 200, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+function SI.HUDDraw( text,d ) // Only change this if you know how to make a HUD. Text is the current text from the location. text is a MarkupObject generated from the text string in each section.
+	d = d or false
+	local x = 100
+	local y = 250
+	local h = 100
+	local s = ""
+	local s2 = ""
+	local color = Color( 0, 0, 0, 210 )
+	if(d == true )then
+		x = 0
+		y = 50
+		h = 50
+		s = "<colour=0, 0, 0, 255>"
+		s2 = "</colour>"
+		color = Color( 150, 150, 150, 210 )
+	end
+	draw.RoundedBox( 0, x, ScrH() - y, ScrW() - 2*x, h, color )
+	markup.Parse( "<font=DermaLarge>".. s .. text .. s2.."</font>", ScrW() - 2*h ):Draw( ScrW() / 2, ScrH() - y+h/2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 end 

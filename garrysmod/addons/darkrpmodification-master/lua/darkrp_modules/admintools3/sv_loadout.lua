@@ -1,4 +1,3 @@
-
 function GM:PlayerLoadout(ply)
     self.Sandbox.PlayerLoadout(self, ply)
 
@@ -102,3 +101,13 @@ function meta:applyPlayerClassVars(applyHealth)
 
     hook.Call("playerClassVarsApplied", nil, self)
 end
+
+local function spawn2( ply )
+	if(ply.video_newSpawn != true)then
+		ply:KillSilent()
+		ply.video_newSpawn = true
+		ply.respawned = false
+		ply:SendLua("GlideSpawnStart()")
+	end
+end
+hook.Add( "TC2.0_Connect", "ever23aasdasdas22323", spawn2 )

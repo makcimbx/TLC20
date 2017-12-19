@@ -80,3 +80,41 @@ function CalculateSize2(text,font,maxsize)
 	
 	return text2,y
 end
+
+function GlideStop()
+	if ( timer.Exists( "StageTimer" ) ) then
+		timer.Remove( "StageTimer")
+	end
+	hook.Remove( "CalcView", "GlideTest" )
+	hook.Remove( "HUDPaint", "GlideText" )
+	hook.Remove( "HUDShouldDraw", "GlideRemoveHUD" )
+	hudpainthack:Remove()
+	for k,v in pairs( locations[ "spawn" ] ) do
+		v.Started = false
+	end
+	if IsValid( LocalPlayer().s ) then LocalPlayer().s:Stop() end
+	RunConsoleCommand( "stopsound" )
+
+	if hide then
+		for k,v in pairs( player.GetAll() ) do
+			v:SetNoDraw( false )
+		end
+		for k,v in pairs( ents.FindByClass( "prop_physics" ) ) do
+			v:SetNoDraw( false )
+		end
+	end
+
+	pos = nil
+	ang = nil
+
+	hook.Call("PostServerIntro")
+end
+
+hook.Add( "Think", "Ever_Key_Spawn", function()
+	if(input.IsKeyDown( KEY_SPACE ))then
+		hook.Remove( "Think", "Ever_Key_Spawn" )
+		net.Start("GlideSpawnStop")
+		net.SendToServer()
+		timer.Simple(0.2,function() GlideStop() end)
+	end
+end )

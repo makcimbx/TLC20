@@ -228,6 +228,25 @@ end)
 
 function Legion()
 	
+	local tbl = rtLang.Legions
+	local min = 150
+	for a,z in pairs(tbl)do
+		z.can = true
+		for k,v in pairs(player.GetAll())do
+			if(v:getJobTable().category == RPExtraTeams(z.prof).category)then
+				z.n = z + 1
+			end
+		end
+		if(min>z.n)then
+			min = z.n
+		end
+	end
+	for a,z in pairs(tbl)do
+		if(math.abs(min-z.n)>=5) then
+			z.can = false
+		end
+	end
+	
 	local target_legion = 0
 	local mainFrame = vgui.Create("DFrame")
 	mainFrame:SetSize( ScrW(),  ScrH() * 0.8 )
@@ -267,27 +286,28 @@ function Legion()
 	local question = {}
 	local choose = {}
 	local questionBlock = {}
-	local tbl = rtLang.Legions
-	for k,v in pairs(tbl) do
+	for k,v in pairs(tbl_n) do
 		local id = k
-		questionBlock[id] = vgui.Create( "DButton" )
-		questionBlock[id]:SetText(v.name)
-		questionBlock[id]:SetTall( 45 )
-		questionBlock[id]:SetColor(Color(255,255,255))
-		questionBlock[id]:SetFont("buttonsFont")
-		questionBlock[id]:SetPos( contentHolder:GetWide() - (questionBlock[id]:GetWide() + 5), contentHolder:GetTall() - (questionBlock[id]:GetTall() + 5) )
-		questionBlock[id].color = Color( 231, 76, 60)
-		questionBlock[id].Paint = function()
-			draw.RoundedBox( 0, 0, 0, questionBlock[id]:GetWide(), questionBlock[id]:GetTall(), questionBlock[id].color )
-		end
+		if(v.can)then
+			questionBlock[id] = vgui.Create( "DButton" )
+			questionBlock[id]:SetText(v.name)
+			questionBlock[id]:SetTall( 45 )
+			questionBlock[id]:SetColor(Color(255,255,255))
+			questionBlock[id]:SetFont("buttonsFont")
+			questionBlock[id]:SetPos( contentHolder:GetWide() - (questionBlock[id]:GetWide() + 5), contentHolder:GetTall() - (questionBlock[id]:GetTall() + 5) )
+			questionBlock[id].color = Color( 231, 76, 60)
+			questionBlock[id].Paint = function()
+				draw.RoundedBox( 0, 0, 0, questionBlock[id]:GetWide(), questionBlock[id]:GetTall(), questionBlock[id].color )
+			end
 
-		questionBlock[id].DoClick = function()
-			if(target_legion!=0)then questionBlock[target_legion].color = Color( 231, 76, 60) end
-			questionBlock[id].color = Color( 46, 204, 113 )
-			target_legion = id
-		end
+			questionBlock[id].DoClick = function()
+				if(target_legion!=0)then questionBlock[target_legion].color = Color( 231, 76, 60) end
+				questionBlock[id].color = Color( 46, 204, 113 )
+				target_legion = id
+			end
 		
-		questionsHolder:AddItem( questionBlock[id] )
+			questionsHolder:AddItem( questionBlock[id] )
+		end
 	end
 
 	local sendButton = vgui.Create("DButton", contentHolder)
