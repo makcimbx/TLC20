@@ -9,26 +9,6 @@ function GM:PlayerLoadout(ply)
         ply.RPLicenseSpawn = false
     end)
 
-    --[[local jobTable = ply:getJobTable()
-
-    for k,v in pairs(jobTable.weapons or {}) do
-        ply:Give(v)
-    end
-
-    if jobTable.PlayerLoadout then
-        local val = jobTable.PlayerLoadout(ply)
-        if val == true then
-            ply:SwitchToDefaultWeapon()
-            return
-        end
-    end
-
-    if jobTable.ammo then
-        for k, v in pairs(jobTable.ammo) do
-            ply:SetAmmo(v, k)
-        end
-    end]]--
-
     for k, v in pairs(self.Config.DefaultWeapons) do
         ply:Give(v)
     end
@@ -42,13 +22,16 @@ function GM:PlayerLoadout(ply)
 
         if not GAMEMODE.Config.AdminsCopWeapons then return end
 
-        --ply:Give("door_ram")
-        --ply:Give("arrest_stick")
-        --ply:Give("unarrest_stick")
         ply:Give("stunstick")
         ply:Give("weaponchecker")
     end)
 
+	for k,v in pairs(getWeaponsFromCuLoad(ply)) do 
+		if(v!="-1")then
+			ply:Give(v)
+		end
+	end
+	
     ply:SwitchToDefaultWeapon()
 end
 
@@ -72,19 +55,50 @@ end
 local function spawn( ply )
 	ply:StripAmmo()
 	ply.newSpawn = true
-	PrintTable(RPExtraTeams[ply:Team()])
-	ply:SetHealth(ply:getJobTable().maxHP or 100)
+	local h = ply:getJobTable().maxHP or 100
+	ply:SetMaxHealth(h)
+	ply:SetHealth(h)
 end
-hook.Add( "PlayerSpawn", "PlayerSpawn", spawn )
+hook.Add( "PlayerSpawn", "EverII_PlayerSpawn", spawn )
 
 local function change(ply, oldTeam, newTeam)
 	ply:StripAmmo()
 	ply.newSpawn = true
+	local h = ply:getJobTable().maxHP or 100
+	ply:SetMaxHealth(h)
 end
-hook.Add( "OnPlayerChangedTeam", "Ever_OnPlayerChangedTeam", change )
+hook.Add( "OnPlayerChangedTeam", "EverII_OnPlayerChangedTeam", change )
 
 local function PlayerDeath( ply, i, a )
 	ply:StripAmmo()
 	ply.newSpawn = true
 end
-hook.Add( "PlayerDeath", "Ever_PlayerDeath", PlayerDeath )
+hook.Add( "PlayerDeath", "EverII_PlayerDeath", PlayerDeath )
+
+local meta = FindMetaTable("Player")
+function meta:applyPlayerClassVars(applyHealth)
+    local playerClass = baseclass.Get(player_manager.GetPlayerClass(self))
+
+    self:SetWalkSpeed(playerClass.WalkSpeed >= 0 and playerClass.WalkSpeed or GAMEMODE.Config.walkspeed)
+    self:SetRunSpeed(playerClass.RunSpeed >= 0 and playerClass.RunSpeed or GAMEMODE.Config.runspeed)
+
+    hook.Call("UpdatePlayerSpeed", GAMEMODE, self) -- Backwards compatitibly, do not use
+
+    self:SetCrouchedWalkSpeed(playerClass.CrouchedWalkSpeed)
+    self:SetDuckSpeed(playerClass.DuckSpeed)
+    self:SetUnDuckSpeed(playerClass.UnDuckSpeed)
+    self:SetJumpPower(playerClass.JumpPower)
+    self:AllowFlashlight(playerClass.CanUseFlashlight)
+
+    --self:SetMaxHealth(playerClass.MaxHealth >= 0 and playerClass.MaxHealth or (tonumber(GAMEMODE.Config.startinghealth) or 100))
+    --if applyHealth then
+       --self:SetHealth(playerClass.StartHealth >= 0 and playerClass.StartHealth or (tonumber(GAMEMODE.Config.startinghealth) or 100))
+    --end
+    self:SetArmor(playerClass.StartArmor)
+
+    self.dropWeaponOnDeath = playerClass.DropWeaponOnDie
+    self:SetNoCollideWithTeammates(playerClass.TeammateNoCollide)
+    self:SetAvoidPlayers(playerClass.AvoidPlayers)
+
+    hook.Call("playerClassVarsApplied", nil, self)
+end

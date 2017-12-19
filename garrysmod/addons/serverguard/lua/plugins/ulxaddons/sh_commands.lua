@@ -1,57 +1,80 @@
 local plugin = plugin
 
-local command = {}
-command.help = "Ставит модель игроку."
-command.command = "model"
-command.arguments = {"player", "model"}
-command.bDisallowConsole = false
-command.bSingleTarget = false
-command.immunity = SERVERGUARD.IMMUNITY.LESSEQUAL
-command.aliases = {"model"}
-command.permissions = {"Set Model"}
-function command:Execute(player, silent, arguments)
-	local model = tostring(arguments[#arguments])
-	table.remove(arguments,#arguments)
-	
-	if model == -1 then return	end
-	
-	local setmdl = function (v) v:SetModel(model) end
-	
-	Simpliest(player,arguments,setmdl,true,silent,"выдал модель")
-	
+local command = {};
+command.help		= "Set a player's model.";
+command.command 	= "model";
+command.arguments	= {"player", "model"};
+command.permissions	= "Set Model";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.aliases		= {"setmodel", "model"};
 
-end
-plugin:AddCommand(command)
-
-
-command = {}
-command.help = "Scale player."
-command.command = "scale"
-command.arguments = {"player", "scale"}
-command.bDisallowConsole = false
-command.bSingleTarget = false
-command.immunity = SERVERGUARD.IMMUNITY.LESSEQUAL
-command.aliases = {"scale"}
-command.permissions = {"Set Scale"}
-function command:Execute(player, silent, arguments)
-	local scale = tonumber(arguments[#arguments])
-	table.remove(arguments,#arguments)
+function command:OnPlayerExecute(_, target, arguments)
+	local model = arguments[2];
 	
-	if scale == nil then return	end
-	
-	local scaling = function (v) 
-		v.CLEANUPKITScale = scale
-		v.CLEANUPKITViewOffset = v.CLEANUPKITViewOffset or v:GetViewOffset()
-		v.CLEANUPKITViewOffsetDucked =v.CLEANUPKITViewOffsetDucked or v:GetViewOffsetDucked()
-		
-		v:SetViewOffset(v.CLEANUPKITViewOffset*scale)
-		v:SetViewOffsetDucked(v.CLEANUPKITViewOffsetDucked*scale)
-		v:SetModelScale(scale,0) 
+	if(util.IsValidModel( model )) then
+		target:SetModel(model)
 	end
-	Simpliest(player,arguments,scaling,true,silent,"установил высоту")
 
-end
-plugin:AddCommand(command)
+	return true;
+end;
+
+function command:OnNotify(pPlayer, targets, arguments)
+	local model = arguments[2];
+	
+	if(util.IsValidModel( model )) then
+		return SGPF("command_model", serverguard.player:GetName(pPlayer), util.GetNotifyListForTargets(targets, true), model);
+	else
+		return unpack({SERVERGUARD.NOTIFY.RED, "Wrong model!"});
+	end
+end;
+
+serverguard.phrase:Add("english", "command_model", {
+	SERVERGUARD.NOTIFY.GREEN, "%s", SERVERGUARD.NOTIFY.WHITE, " has set ", SERVERGUARD.NOTIFY.RED, "%s", SERVERGUARD.NOTIFY.WHITE, " model to ",
+	SERVERGUARD.NOTIFY.GREEN, "%s",
+});
+serverguard.command:Add(command);
+
+
+command = {};
+command.help		= "Scale model.";
+command.command 	= "scale";
+command.arguments	= {"player", "scale"};
+command.permissions	= "Set scale";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.aliases		= {"setscale", "scale"};
+
+function command:OnPlayerExecute(_, target, arguments)
+	local scale = tonumber(arguments[2])
+	
+	if(scale>0) then
+		target:SetModelScale(scale, 0)
+
+		target:SetHull(Vector(-16, -16, 0), Vector(16, 16, 72 * scale))
+		umsg.Start("darkrp_playerscale")
+			umsg.Entity(target)
+			umsg.Float(scale)
+		umsg.End()
+	end
+
+	return true;
+end;
+
+function command:OnNotify(pPlayer, targets, arguments)
+	local scale = tonumber(arguments[2])
+	
+	if(scale>0) then
+		return SGPF("command_scale", serverguard.player:GetName(pPlayer), util.GetNotifyListForTargets(targets, true), scale);
+	else
+		return unpack({SERVERGUARD.NOTIFY.RED, "Wrong scale!"});
+	end
+end;
+
+serverguard.phrase:Add("english", "command_scale", {
+	SERVERGUARD.NOTIFY.GREEN, "%s", SERVERGUARD.NOTIFY.WHITE, " has set ", SERVERGUARD.NOTIFY.RED, "%s", SERVERGUARD.NOTIFY.WHITE, " scale to ",
+	SERVERGUARD.NOTIFY.GREEN, "%d",
+});
+serverguard.command:Add(command);
+
 
 command = {}
 command.help = "Останавливает звуки на сервере."
@@ -74,6 +97,7 @@ function command:Execute(ply, silent, arguments)
 end
 plugin:AddCommand(command)
 
+
 command = {}
 command.help = "Фризит пропы на сервере."
 command.command = "nolag"
@@ -94,22 +118,30 @@ function command:Execute(player, silent, arguments)
 end
 plugin:AddCommand(command)
 
-command = {}
-command.help = "РЕКОННЕКТ."
-command.command = "reconnect"
-command.arguments = {"player"}
-command.bDisallowConsole = false
-command.bSingleTarget = false
-command.immunity = SERVERGUARD.IMMUNITY.LESSEQUAL
-command.aliases = {"reconnect"}
-command.permissions = {"RECONNECT"}
-function command:Execute(player, silent, arguments)
 
-	local reconect = function (v) v:SendLua([[RunConsoleCommand("retry")]]) end
-	Simpliest(player,arguments,reconect,false,silent,"ВЫДАЛ РЕКОННЕКТ")
+command = {};
+command.help		= "RECONNECT PLAYER.";
+command.command 	= "reconnect";
+command.arguments	= {"player"};
+command.permissions	= "reconnect";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.aliases		= {"reconnect"};
 
-end
-plugin:AddCommand(command)
+function command:OnPlayerExecute(_, target, arguments)
+	
+	target:SendLua([[RunConsoleCommand("retry")]])
+
+	return true;
+end;
+
+function command:OnNotify(pPlayer, targets, arguments)
+	return SGPF("command_reconnect", serverguard.player:GetName(pPlayer), util.GetNotifyListForTargets(targets, true));
+end;
+
+serverguard.phrase:Add("english", "command_reconnect", {
+	SERVERGUARD.NOTIFY.GREEN, "%s", SERVERGUARD.NOTIFY.WHITE, " has reconnect ", SERVERGUARD.NOTIFY.RED, "%s"
+});
+serverguard.command:Add(command);
 
 
 local RocketPlayers = {}
@@ -138,104 +170,172 @@ if SERVER then
 end
 
 
-command = {}
-command.help = "Взрывает пердак у игрока."
-command.command = "rocket"
-command.arguments = {"player"}
-command.bDisallowConsole = false
-command.bSingleTarget = false
-command.immunity = SERVERGUARD.IMMUNITY.LESSEQUAL
-command.aliases = {"rocket"}
-command.permissions = {"Rocket"}
-function command:Execute(player, silent, arguments)
+command = {};
+command.help		= "Rocket player.";
+command.command 	= "rocket";
+command.arguments	= {"player"};
+command.permissions	= "Rocket";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.aliases		= {"rocket"};
 
-	local rockeet = function (v) RocketPlayers[v] = true end
+function command:OnPlayerExecute(_, target, arguments)
 
-	Simpliest(player,arguments,rockeet,true,silent,"взорвал пердак")
+	RocketPlayers[target] = true
 
-end
-plugin:AddCommand(command)
+	return true;
+end;
 
-function Simpliest(ply,arguments,func,needAlive,silent,msg)
-	if(#arguments>1)then
-		local affected_plys = {}
-		for k,v in pairs(arguments)do
-			v = util.FindPlayer(v, ply)
-			if (IsValid(v))then
-				if v.DarkRPUnInitialized then
-					serverguard.Notify(ply, SERVERGUARD.NOTIFY.RED, v:Name().." is not yet initialized.")
-				else
-					if(needAlive)then
-						if v:Alive() then
-							func(v)
-							table.insert( affected_plys, v:Name() )
-						end
-					else
-						func(v)
-						table.insert( affected_plys, v:Name() )
-					end
-				end
-			end
-		end
-		if (not silent) and #affected_plys!=0 then
-			serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " "..msg.." ", SERVERGUARD.NOTIFY.RED, "["..table.concat( affected_plys, ", " ).."]")
+function command:OnNotify(pPlayer, targets, arguments)
+	return SGPF("command_rocket", serverguard.player:GetName(pPlayer), util.GetNotifyListForTargets(targets, true));
+end;
+
+serverguard.phrase:Add("english", "command_rocket", {
+	SERVERGUARD.NOTIFY.GREEN, "%s", SERVERGUARD.NOTIFY.WHITE, " has rocket ", SERVERGUARD.NOTIFY.RED, "%s"
+});
+serverguard.command:Add(command);
+
+
+command = {};
+command.help		= "Add weapon to player loadout.";
+command.command 	= "cuload_add";
+command.arguments	= {"player", "weapon"};
+command.permissions	= "culoadadd";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.aliases		= {"cuload_add"};
+command.bSingleTarget = true;
+
+function command:OnPlayerExecute(_, target, arguments)
+	local weapon = arguments[2];
+	
+	if(util.IsValidWeapon(weapon))then
+		local addw = addWeaponToCuLoad(target,weapon)
+	
+		if(addw==false)then
+			serverguard.Notify(_, SERVERGUARD.NOTIFY.RED,target:Name(),SERVERGUARD.NOTIFY.WHITE," have ",SERVERGUARD.NOTIFY.RED,weapon,SERVERGUARD.NOTIFY.WHITE," in cuload!");
+		else
+			serverguard.Notify(_, SERVERGUARD.NOTIFY.WHITE, "Added ", SERVERGUARD.NOTIFY.RED,weapon, SERVERGUARD.NOTIFY.WHITE, " to ",SERVERGUARD.NOTIFY.GREEN, target:Name())
+			print("CULOAD ".._:SteamID().." add "..weapon.." "..target:SteamID())
 		end
 	else
-		if(#arguments==1)then
-			if arguments[1] != "*" then 
-				if arguments[1] != "^" then 
-					local affected_ply = ""
-					local v = util.FindPlayer(arguments[1], ply)
-					if (IsValid(v))then
-						if v.DarkRPUnInitialized then
-							serverguard.Notify(ply, SERVERGUARD.NOTIFY.RED, v:Name().." is not yet initialized.")
-						else
-							if(needAlive)then
-								if v:Alive() then
-									func(v)
-									affected_ply = v:Name()
-								end
-							else
-								func(v)
-								affected_ply = v:Name()
-							end
-						end
-					end
-					if (not silent) and affected_ply!="" then
-						serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " "..msg.." ", SERVERGUARD.NOTIFY.RED, affected_ply)
-					end
-				else
-					local affected_ply = ""
-					local v = ply
-					if (IsValid(v))then
-						if v.DarkRPUnInitialized then
-							serverguard.Notify(ply, SERVERGUARD.NOTIFY.RED, v:Name().." is not yet initialized.")
-						else
-							if(needAlive)then
-								if v:Alive() then
-									func(v)
-									affected_ply = v:Name()
-								end
-							else
-								func(v)
-								affected_ply = v:Name()
-							end
-						end
-					end
-					if (not silent) and affected_ply!="" then
-						serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " "..msg.." ", SERVERGUARD.NOTIFY.RED, affected_ply)
-					end
-				end
-			else
-				local affected_plys = {}
-				for k,v in pairs(player.GetAll())do
-					func(v)
-					table.insert( affected_plys, v:Name() )
-				end
-				if (not silent) and #affected_plys!=0 then
-					serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(ply), SERVERGUARD.NOTIFY.WHITE, " "..msg.." ", SERVERGUARD.NOTIFY.RED, "["..table.concat( affected_plys, ", " ).."]")
-				end
-			end
+		serverguard.Notify(_, SERVERGUARD.NOTIFY.RED,weapon,SERVERGUARD.NOTIFY.WHITE," doesnt exist!");
+	end
+	
+	return true
+end
+serverguard.command:Add(command);
+
+
+command = {};
+command.help		= "Remove weapon from player loadout.";
+command.command 	= "cuload_remove";
+command.arguments	= {"player", "weapon"};
+command.permissions	= "culoadremove";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.aliases		= {"cuload_remove"};
+command.bSingleTarget = true;
+
+function command:OnPlayerExecute(_, target, arguments)
+	local weapon = arguments[2];
+	
+	local remw = removeWeaponFromCuLoad(target,weapon)
+	
+	if(remw != false)then
+		serverguard.Notify(_,SERVERGUARD.NOTIFY.WHITE, "Removed ", SERVERGUARD.NOTIFY.GREEN, weapon, SERVERGUARD.NOTIFY.WHITE, " from ",SERVERGUARD.NOTIFY.RED,target:Name());
+		print("CULOAD ".._:SteamID().." remove "..weapon.." "..target:SteamID())
+	else
+		serverguard.Notify(_, SERVERGUARD.NOTIFY.RED,target:Name(),SERVERGUARD.NOTIFY.WHITE," dont have this weapon in cuload!");
+	end
+	
+	return true;
+end;
+serverguard.command:Add(command);
+
+
+command = {};
+command.help		= "Get player cuload list.";
+command.command 	= "cuload_list";
+command.arguments	= {"player"};
+command.permissions	= "culoadget";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.aliases		= {"cuload_list"};
+command.bSingleTarget = true;
+
+function command:OnPlayerExecute(_, target, arguments)
+	printCuLoad(_,target)
+	serverguard.Notify(_, SERVERGUARD.NOTIFY.RED,target:Name(),SERVERGUARD.NOTIFY.WHITE," loadout list printed in console!");
+	return true;
+end;
+serverguard.command:Add(command);
+
+command = {};
+command.help		= "Remove weapon from player loadout by index.";
+command.command 	= "cuload_remove_i";
+command.arguments	= {"player", "weapon"};
+command.permissions	= "culoadremovei";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.aliases		= {"cuload_remove_i"};
+command.bSingleTarget = true;
+
+function command:OnPlayerExecute(_, target, arguments)
+	local weapon = tonumber(arguments[2]);
+	
+	if(weapon > 0) then
+		local remw = removeIndexFromCuLoad(target,weapon)
+		
+		if(remw != false)then
+			serverguard.Notify(_, SERVERGUARD.NOTIFY.WHITE, "Removed ", SERVERGUARD.NOTIFY.GREEN, remw, SERVERGUARD.NOTIFY.WHITE, " from ",SERVERGUARD.NOTIFY.RED,target:Name());
+			print("CULOAD ".._:SteamID().." remove "..weapon.." "..target:SteamID())
+		else
+			serverguard.Notify(_, SERVERGUARD.NOTIFY.RED,target:Name(),SERVERGUARD.NOTIFY.WHITE," dont have this weapon in cuload!");
 		end
 	end
-end
+
+	return true;
+end;
+serverguard.command:Add(command);
+
+
+local command = {};
+
+command.help				= "Send a player to where you're looking, or to another player.";
+command.command 			= "teleport";--send
+command.arguments			= {"player"};
+command.permissions			= "Send";
+command.bDisallowConsole	= true;
+
+function command:Execute(player, silent, arguments)
+	local target = util.FindPlayer(arguments[1], player)
+	
+	if (IsValid(target)) then
+		if (!serverguard.player:HasBetterImmunity(player, serverguard.player:GetImmunity(target))) then
+			serverguard.Notify(player, SERVERGUARD.NOTIFY.RED, "This player has a higher immunity than you.");
+			return;
+		end;
+
+		if (not target:Alive()) then
+			target:Spawn();
+		end
+
+		target.sg_LastPosition = target:GetPos();
+		target.sg_LastAngles = target:EyeAngles();
+
+		local trace = player:GetEyeTrace();
+			trace = trace.HitPos +trace.HitNormal *1.25;
+		target:SetPos(trace);
+		
+		if (!silent) then
+			serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(player), SERVERGUARD.NOTIFY.WHITE, " has sent ", SERVERGUARD.NOTIFY.RED, target:Name(), SERVERGUARD.NOTIFY.WHITE, " to their location.");
+		end;
+	end;
+end;
+
+function command:ContextMenu(player, menu, rankData)
+	local option = menu:AddOption("Send Player", function()
+		serverguard.command.Run("send", false, player:Name());
+	end);
+	
+	option:SetImage("icon16/wand.png");
+end;
+
+serverguard.command:Add(command);
+

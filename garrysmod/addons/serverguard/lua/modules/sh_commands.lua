@@ -221,7 +221,7 @@ if (SERVER) then
 		local prefix = string.sub(text, 1, 1);
 		local bSilent = (prefix == "~") or false;
 
-		if (prefix == "!" or prefix == "~") then
+		if (prefix == "!" or prefix == "~" or prefix == serverguard.preifx) then
 			local arguments = util.ExplodeByTags(text, " ", "\"", "\"", true);
 			local commandName = string.lower(string.sub(arguments[1], #prefix + 1));
 

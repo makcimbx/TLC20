@@ -449,7 +449,7 @@ serverguard.command:Add(command);
 -- The send command.
 --
 
-local command = {};
+--[[local command = {};
 
 command.help				= "Send a player to where you're looking, or to another player.";
 command.command 			= "send";
@@ -515,7 +515,7 @@ function command:ContextMenu(player, menu, rankData)
 	option:SetImage("icon16/wand.png");
 end;
 
-serverguard.command:Add(command);
+serverguard.command:Add(command);]]--
 
 --
 -- The goto command.
