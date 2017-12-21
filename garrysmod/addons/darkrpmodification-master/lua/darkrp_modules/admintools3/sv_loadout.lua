@@ -104,10 +104,11 @@ end
 
 local function spawn2( ply )
 	if(ply.video_newSpawn != true)then
+		ply.respawned = false
+		ply:SetPos( Vector(5607.657715,1846.595703,1385.118286) )
+		ply:SetEyeAngles( Angle(-5.500017, 132.185226, 0.000000) )
 		ply:KillSilent()
 		ply.video_newSpawn = true
-		ply.respawned = false
-		ply:SendLua("GlideSpawnStart()")
 	end
 end
 hook.Add( "TC2.0_Connect", "ever23aasdasdas22323", spawn2 )
