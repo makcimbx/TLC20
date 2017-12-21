@@ -2,6 +2,7 @@ local function PlayerInit()
 	if(IsValid(LocalPlayer()))then
 		net.Start("TC2.0_Connect")
 		net.SendToServer()
+		GlideSpawnStart()
 		hook.Remove( "Think", "FUCLINGPLAYERINIT_1_Ever" )
 	end
 end
