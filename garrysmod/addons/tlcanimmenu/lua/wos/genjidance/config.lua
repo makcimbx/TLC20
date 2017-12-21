@@ -24,9 +24,7 @@ wOS.RollMod.Animations = {}
 wOS.RollMod.Animations[2] = "wos_genji_dance"
 wOS.RollMod.Animations[3] = "cwalk_magic"
 wOS.RollMod.Animations[4] = "wos_animation_test_kek"
-wOS.RollMod.Animations[5] = "gesture_signal_forward"
-wOS.RollMod.Animations[6] = "gesture_signal_group"
-wOS.RollMod.Animations[7] = "gesture_signal_halt"
+
 wOS.RollMod.Animations[8] = "menu_gman"
 wOS.RollMod.Animations[9] = "pose_ducking_01"
 wOS.RollMod.Animations[10] = "pose_standing_01"
@@ -46,7 +44,7 @@ wOS.RollMod.Animations[22] = "wos_signal_left"
 wOS.RollMod.Animations[23] = "wos_signal_right"
 wOS.RollMod.Animations[24] = "wos_signal_takecover"
 wOS.RollMod.Animations[25] = "death_dance_loop"
-wOS.RollMod.Animations[26] = "wos_cast_lighting"
+
 wOS.RollMod.Animations[27] = "kungfu_standing_kick01"
 wOS.RollMod.Animations[28] = "aoc_peasant_idle5"
 

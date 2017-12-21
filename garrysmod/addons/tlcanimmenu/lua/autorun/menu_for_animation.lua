@@ -1,8 +1,17 @@
+concommand.Add( "tlc_run_animation", function( ply, cmd, args )
+    net.Start("StartAnimationGenjiDance")
+	net.WriteString(tostring(args[1]))
+	if (args[2] == 18 or args[2] == 19 or args[2] == 20 or args[2] == 21 or args[2] == 22 or args[2] == 23 or args[2] == 24) then
+	net.WriteString(tostring(2))
+	else
+	net.WriteString(tostring(args[2]))
+	end
+	net.SendToServer()
+end )
+
 if CLIENT then	
  
     CreateClientConVar( "anim_delay", "2", true, false )
-
- 
 	CreateClientConVar( "anim_enabled", "0", true, false )
 	
 	local Editor = {}
@@ -58,6 +67,11 @@ if CLIENT then
 		Editor.PANEL.Sheet:AddSheet( "Анимации 2", Editor.PANEL.CameraSettings, "icon16/cog_edit.png" )
 		
 		Editor.PANEL.CamDistanceTxt = Editor.PANEL.Settings:Add("DLabel")
+		Editor.PANEL.CamDistanceTxt:SetPos(0,493)
+		Editor.PANEL.CamDistanceTxt:SetText("КК: tlc_run_animation номеранимации длительность")
+		Editor.PANEL.CamDistanceTxt:SizeToContents() 
+		
+		Editor.PANEL.CamDistanceTxt = Editor.PANEL.Settings:Add("DLabel")
 		Editor.PANEL.CamDistanceTxt:SetPos(0,510)
 		Editor.PANEL.CamDistanceTxt:SetText("Длительность анимации (max 20) : ")
 		Editor.PANEL.CamDistanceTxt:SizeToContents() 
@@ -80,7 +94,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Танец Генджи")
+		Editor.PANEL.ResetCam:SetText("Танец Генджи (2)")
 		Editor.PANEL.ResetCam:SetPos(0,0)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -94,7 +108,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Магическая стойка")
+		Editor.PANEL.ResetCam:SetText("Магическая стойка (3)")
 		Editor.PANEL.ResetCam:SetPos(0,41)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -107,7 +121,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Поправить галстук")
+		Editor.PANEL.ResetCam:SetText("Поправить галстук (8)")
 		Editor.PANEL.ResetCam:SetPos(0,246)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -119,7 +133,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Преклонить колено")
+		Editor.PANEL.ResetCam:SetText("Преклонить колено (9)")
 		Editor.PANEL.ResetCam:SetPos(0,287)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -132,7 +146,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Руки в подмыхи")
+		Editor.PANEL.ResetCam:SetText("Руки в подмыхи (10)")
 		Editor.PANEL.ResetCam:SetPos(0,328)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -144,7 +158,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Руки на бёдра")
+		Editor.PANEL.ResetCam:SetText("Руки на бёдра (11)")
 		Editor.PANEL.ResetCam:SetPos(0,369)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -156,7 +170,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Поднять левую руку (Не как ленин)")
+		Editor.PANEL.ResetCam:SetText("Поднять левую руку (12)")
 		Editor.PANEL.ResetCam:SetPos(0,410)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -168,7 +182,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Две руки показывают что всё заебись")
+		Editor.PANEL.ResetCam:SetText("Две руки показывают что всё заебись (13)")
 		Editor.PANEL.ResetCam:SetPos(0,451)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -180,7 +194,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Свэээээг")
+		Editor.PANEL.ResetCam:SetText("Свэээээг (4)")
 		Editor.PANEL.ResetCam:SetPos(0,451)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -192,7 +206,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Кулаком по ебалу")
+		Editor.PANEL.ResetCam:SetText("Кулаком по ебалу (14)")
 		Editor.PANEL.ResetCam:SetPos(0,205)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -204,7 +218,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Радость")
+		Editor.PANEL.ResetCam:SetText("Радость (15)")
 		Editor.PANEL.ResetCam:SetPos(0,164)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -216,7 +230,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("А ну ка, подойди ко мне")
+		Editor.PANEL.ResetCam:SetText("А ну ка, подойди ко мне (16)")
 		Editor.PANEL.ResetCam:SetPos(0,82)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -228,7 +242,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.Settings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Пинок с любовью из спарты")
+		Editor.PANEL.ResetCam:SetText("Пинок с любовью из спарты (17)")
 		Editor.PANEL.ResetCam:SetPos(0,123)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -240,7 +254,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Двигаться 'Дополнительно'")
+		Editor.PANEL.ResetCam:SetText("Двигаться 'Дополнительно' (18)")
 		Editor.PANEL.ResetCam:SetPos(0,0)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -252,7 +266,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Двигаться Вперёд")
+		Editor.PANEL.ResetCam:SetText("Двигаться Вперёд (19)")
 		Editor.PANEL.ResetCam:SetPos(0,41)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -264,7 +278,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Сгрупироваться")
+		Editor.PANEL.ResetCam:SetText("Сгрупироваться (20)")
 		Editor.PANEL.ResetCam:SetPos(0,82)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -276,7 +290,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Остановиться")
+		Editor.PANEL.ResetCam:SetText("Остановиться (21)")
 		Editor.PANEL.ResetCam:SetPos(0,123)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -288,7 +302,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Налево")
+		Editor.PANEL.ResetCam:SetText("Налево (22)")
 		Editor.PANEL.ResetCam:SetPos(0,164)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -300,7 +314,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Направо")
+		Editor.PANEL.ResetCam:SetText("Направо (23)")
 		Editor.PANEL.ResetCam:SetPos(0,205)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -312,7 +326,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("В укрытие")
+		Editor.PANEL.ResetCam:SetText("В укрытие (24)")
 		Editor.PANEL.ResetCam:SetPos(0,246)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -324,7 +338,7 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Танец 'Я дефект'")
+		Editor.PANEL.ResetCam:SetText("Танец 'Я дефект' (25)")
 		Editor.PANEL.ResetCam:SetPos(0,287)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -334,21 +348,10 @@ if CLIENT then
 			net.SendToServer()
 		end
 		
-		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
-		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Погреть руки у костра")
-		Editor.PANEL.ResetCam:SetPos(0,328)
-		Editor.PANEL.ResetCam:SetSize(270,40)
-		Editor.PANEL.ResetCam.DoClick = function()
-		    net.Start("StartAnimationGenjiDance")
-			net.WriteString("26")
-			net.WriteString(tostring(GetConVar( "anim_delay" ):GetFloat()))
-			net.SendToServer()
-		end
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Ебануть с ноги типа кунгфу")
+		Editor.PANEL.ResetCam:SetText("Ебануть с ноги типа кунгфу (27)")
 		Editor.PANEL.ResetCam:SetPos(0,369)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
@@ -360,8 +363,8 @@ if CLIENT then
 		
 		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
 		Editor.PANEL.ResetCam:SizeToContents()
-		Editor.PANEL.ResetCam:SetText("Посидим блять")
-		Editor.PANEL.ResetCam:SetPos(0,410)
+		Editor.PANEL.ResetCam:SetText("Посидим блять (28)")
+		Editor.PANEL.ResetCam:SetPos(0,328)
 		Editor.PANEL.ResetCam:SetSize(270,40)
 		Editor.PANEL.ResetCam.DoClick = function()
 		    net.Start("StartAnimationGenjiDance")
