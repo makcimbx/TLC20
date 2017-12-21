@@ -45,4 +45,8 @@ wOS.RollMod.Animations[21] = "wos_signal_halt"
 wOS.RollMod.Animations[22] = "wos_signal_left"
 wOS.RollMod.Animations[23] = "wos_signal_right"
 wOS.RollMod.Animations[24] = "wos_signal_takecover"
+wOS.RollMod.Animations[25] = "death_dance_loop"
+wOS.RollMod.Animations[26] = "wos_cast_lighting"
+wOS.RollMod.Animations[27] = "kungfu_standing_kick01"
+wOS.RollMod.Animations[28] = "aoc_peasant_idle5"
 

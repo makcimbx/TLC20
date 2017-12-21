@@ -33,16 +33,7 @@ function wOS.RollMod:ResetAnimation( ply )
 end
 
 hook.Add( "UpdateAnimation", "wOS.RollMod.SlowDownAnim", function(ply, velocity, maxSeqGroundSpeed)
-	if ply:wOSIsRolling() then
-		if ply:GetRollDir() == 2 then
-			ply:SetPlaybackRate( 0.75 )
-		elseif ply:GetRollDir() == 4 then
-			ply:SetPlaybackRate( 1.1 )
-		else
-			ply:SetPlaybackRate( 0.8 )
-		end
-		return true
-	end
+
 end )
 
 hook.Add( "CalcMainActivity", "wOS.RollMod.Animations", function( ply, velocity )
