@@ -53,7 +53,7 @@ if CLIENT then
 		end
 
 		Editor.PANEL = PNL
-		Editor.PANEL:SetPos(ScrW() - 1750,90)
+		Editor.PANEL:SetPos(ScrW()/6,90)
 		
 		Editor.PANEL.Sheet = Editor.PANEL:Add( "DPropertySheet" )
 		Editor.PANEL.Sheet:Dock(LEFT)
@@ -373,6 +373,18 @@ if CLIENT then
 			net.SendToServer()
 		end
 		
+		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
+		Editor.PANEL.ResetCam:SizeToContents()
+		Editor.PANEL.ResetCam:SetText("Истинно-Джедайский танец (29)")
+		Editor.PANEL.ResetCam:SetPos(0,410)
+		Editor.PANEL.ResetCam:SetSize(270,40)
+		Editor.PANEL.ResetCam.DoClick = function()
+		    net.Start("StartAnimationGenjiDance")
+			net.WriteString("29")
+			net.WriteString(tostring(GetConVar( "anim_delay" ):GetFloat()))
+			net.SendToServer()
+		end
 		
 	end
 end
+

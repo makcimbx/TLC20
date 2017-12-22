@@ -19,12 +19,12 @@ if CLIENT then
 			height = 600,
 			onewindow = true,
 			init = function(icn, pnl)
-				BuildAnimMenu(pnl)
+				BuildFlotMenu(pnl)
 			end
 		}
 	)
 	
-	function BuildAnimMenu(PNL)
+	function BuildFlotMenu(PNL)
 	
 		if Editor.PANEL != nil then
 			Editor.PANEL:Remove()
@@ -41,7 +41,7 @@ if CLIENT then
 		end
 
 		Editor.PANEL = PNL
-		Editor.PANEL:SetPos(ScrW() - 1500,200)
+		Editor.PANEL:SetPos(ScrW()/5,200)
 		
 		Editor.PANEL.Sheet = Editor.PANEL:Add( "DPropertySheet" )
 		Editor.PANEL.Sheet:Dock(LEFT)
