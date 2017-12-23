@@ -15,14 +15,14 @@ rtConfig.XPmultip = 1000
 
 rtLang = {}
 rtLang.Legions = {
-	[1] = {name = "501",prof = TEAM_501CT},
-	[2] = {name = "212",prof = TEAM_212CT},
-	[3] = {name = "41",prof = TEAM_41CT},
-	[4] = {name = "91",prof = TEAM_91CT},
-	[5] = {name = "74",prof = TEAM_74CT},
-	[6] = {name = "EOD",prof = TEAM_EODCT},
-	[7] = {name = "327",prof = TEAM_327CT},
-	[8] = {name = "104",prof = TEAM_104CT},
+	[1] = {name = "501",prof = TEAM_501CT,category = "501st legion"},
+	[2] = {name = "212",prof = TEAM_212CT,category = "212 AB"},
+	[3] = {name = "41",prof = TEAM_41CT,category = "41st legion"},
+	[4] = {name = "91",prof = TEAM_91CT,category = "91st Recon Corps"},
+	[5] = {name = "74",prof = TEAM_74CT,category = "74th medicacal corps"},
+	[6] = {name = "EOD",prof = TEAM_EODCT,category = "EOD"},
+	[7] = {name = "327",prof = TEAM_327CT,category = "327st"},
+	[8] = {name = "104",prof = TEAM_104CT,category = "104st"},
 }
 
 rtLang.Questions = {

@@ -33,6 +33,8 @@ elseif (CLIENT) then
 	local noteamchat = GetConVar('talkicon_ignoreteamchat')
 	local voice_mat = Material('istalking.vmt')
 	local text_mat = Material('istalking.vmt')
+	local addsempai = Material('addsempai.png')
+	local sempai = Material('sempai.png')
 	
 	local text_array = {}
 	local voice_array = {}
@@ -65,7 +67,7 @@ elseif (CLIENT) then
 		local pos = ply:GetPos() + Vector(0, 0, ply:GetModelRadius() + 15)
 		local attachment = ply:GetAttachment(ply:LookupAttachment('eyes'))
 		if attachment then
-			--pos = ply:GetAttachment(ply:LookupAttachment('eyes')).Pos + Vector(0, 0, 15)
+			pos = ply:GetAttachment(ply:LookupAttachment('eyes')).Pos + Vector(0, 0, 25*ply:GetModelScale())
 		end
 
 		local color_var = 255
@@ -88,6 +90,44 @@ elseif (CLIENT) then
 			surface.SetDrawColor( color_var, color_var, color_var, 255 )
 			surface.SetMaterial( ply:IsSpeaking() and voice_array[math.floor(i2)] or text_array[math.floor(i)]	) -- If you use Material, cache it!
 			surface.DrawTexturedRect( -6, -6 , 12, 12 )
+		cam.End3D2D()
+		
+		--render.DrawSprite(pos, 12, 12, Color(color_var, color_var, color_var, 255))
+	end)
+	
+	hook.Add('PostPlayerDraw', 'TalkIco2n', function(ply)
+
+		local pos = ply:GetPos() + Vector(0, 0, ply:GetModelRadius() + 15)
+		local attachment = ply:GetAttachment(ply:LookupAttachment('eyes'))
+		if attachment then
+			pos = ply:GetAttachment(ply:LookupAttachment('eyes')).Pos + Vector(0, 0, 25*ply:GetModelScale())
+		end
+
+		local color_var = 255
+
+		if computecolor:GetBool() then
+			local computed_color = render.ComputeLighting(ply:GetPos(), Vector(0, 0, 1))
+			local max = math.max(computed_color.x, computed_color.y, computed_color.z)
+			color_var = math.Clamp(max * 255 * 1.11, 0, 255)
+		end
+		
+		local ang = EyeAngles()--LocalPlayer():EyeAngles()
+		ang:RotateAroundAxis( ang:Up(), -90 )
+		--ang:RotateAroundAxis( ang:Right(), 90 )
+		
+		cam.Start3D2D( pos, Angle( 0, ang.y, 90 ), 1 ) 
+			surface.SetDrawColor( color_var, color_var, color_var, 255 )
+			if(ply.train_wait!=nil)then
+				if(ply:GetNWEntity("sempai",nil) == LocalPlayer())then
+					surface.SetMaterial( sempai	) -- If you use Material, cache it!
+					surface.DrawTexturedRect( -6-5, -6+12 , 6, 6 )
+				else
+					if(ply:GetNWEntity("sempai",nil) == NULL)then
+						surface.SetMaterial( addsempai 	) -- If you use Material, cache it!
+						surface.DrawTexturedRect( -6-5, -6+12 , 6, 6 )
+					end
+				end
+			end
 		cam.End3D2D()
 		
 		--render.DrawSprite(pos, 12, 12, Color(color_var, color_var, color_var, 255))

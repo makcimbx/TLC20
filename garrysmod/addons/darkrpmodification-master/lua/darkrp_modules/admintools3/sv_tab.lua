@@ -15,8 +15,9 @@ local function OnChangeTeam(ply, rank)
 	if (succ == true) then
 		z = c_list[rank].tabs
 	end
+	
 	net.Start("TC2.0_Send")
-		net.WriteTable( c_list[rank].tabs )
+		net.WriteTable( z )
 	net.Send(ply)
 end
 hook.Add( "serverguard.PostSavePlayerRank", "OnChangeTeam_Ever", OnChangeTeam )

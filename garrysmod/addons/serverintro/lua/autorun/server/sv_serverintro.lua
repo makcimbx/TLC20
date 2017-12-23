@@ -8,7 +8,7 @@ util.AddNetworkString( "GlideSpawnStart" )
 util.AddNetworkString( "GlideSpawnStop" )
 
 if not SI.useYoutube and SI.music then
-	resource.AddFile( SI.music )
+	resource.AddFile( SI.music ) 
 end
 
 hook.Add( "SetupPlayerVisibility", "SIPVS76561198045250557", function( ply )
@@ -20,7 +20,7 @@ hook.Add( "SetupPlayerVisibility", "SIPVS76561198045250557", function( ply )
 		AddOriginToPVS( SI.locations[ g ][ ply.Stage ].startpos )
 		AddOriginToPVS( SI.locations[ g ][ ply.Stage ].endpos )
 	    for k,v in pairs( SI.PVSExtra ) do
-	        AddOriginToPVS( v )
+	        --AddOriginToPVS( v )
 	    end
 	end
 end )

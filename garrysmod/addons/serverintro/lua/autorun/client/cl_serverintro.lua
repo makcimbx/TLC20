@@ -9,7 +9,7 @@ local youtubeUrl = SI.youtubeUrl -- Youtube URL. Note: You must generate it firs
 local posDuration = SI.posDuration -- The time spent at each position
 
 local useCommand = SI.useCommand
-local command = SI.command
+local command = SI.command  
 
 local forceIntro = SI.forceIntro -- Force the user to watch the intro?
 local showOnce = SI.showOnce -- Only ask the user if they want to see it once?

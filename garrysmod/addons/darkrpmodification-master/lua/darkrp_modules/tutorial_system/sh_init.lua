@@ -1,16 +1,64 @@
-DarkRP.declareChatCommand{
-	command = "train",
-	description = "",
-	delay = 1.5
-}
 
-DarkRP.declareChatCommand{
-	command = "offertrain",
-	description = "",
-	delay = 1.5
-}
-DarkRP.declareChatCommand{
-	command = "offertest",
-	description = "",
-	delay = 1.5
-}
+local command = {};
+command.help = "train me pls.";
+command.command = "train";
+command.arguments = {};
+command.bDisallowConsole = true
+
+function command:Execute(ply, silent, arguments)
+	if ply.train_wait==nil then
+		if ply:GetPData("tutor_ever","0") != "1" then 
+			serverguard.Notify(ply,SERVERGUARD.NOTIFY.WHITE,"Ждите в течении", SERVERGUARD.NOTIFY.GREEN," 5 минут",SERVERGUARD.NOTIFY.WHITE," прибытия",SERVERGUARD.NOTIFY.RED," инструктора",SERVERGUARD.NOTIFY.WHITE,", либо вам будет предложено",SERVERGUARD.NOTIFY.RED,SERVERGUARD.NOTIFY.WHITE, " автоматическое обучение.");
+  
+			ply.pause = false
+			table.insert(TrainPlayer,{ply = ply,tm = 5*60})
+			ply.train_wait = true
+			ply:SendLua("LocalPlayer().train_wait = true")
+		else
+			serverguard.Notify(ply,SERVERGUARD.NOTIFY.RED,"Вы уже проходили обучение!");
+		end
+	end
+end;
+serverguard.command:Add(command);
+
+command = {};
+command.help		= "";
+command.command 	= "offertrain";
+command.arguments	= {"player"};
+command.permissions	= "Offertrain";
+command.immunity 	= SERVERGUARD.IMMUNITY.ANY;
+command.bSingleTarget = true;
+
+function command:OnPlayerExecute(ply, target, arguments)
+	if target.train_wait!=nil and target.sempai == nil then 
+		target.pause = true
+		target.presempai = ply
+		net.Start("sendtrain")
+			net.WriteEntity(ply)
+		net.Send(target)
+	else
+		serverguard.Notify(ply, SERVERGUARD.NOTIFY.RED,"Этот игрок уже принял приглашение другого инструктора!");
+	end
+	
+	return true;
+end;
+serverguard.command:Add(command);
+
+
+command = {};
+command.help		= "";
+command.command 	= "offertest";
+command.arguments	= {"player"};
+command.permissions	= "Offertest";
+command.immunity 	= SERVERGUARD.IMMUNITY.ANY;
+command.bSingleTarget = true;
+
+function command:OnPlayerExecute(ply, target, arguments)
+	if target.sempai==ply then
+		net.Start("offertest")
+		net.Send(target)
+	end
+	
+	return true;
+end;
+serverguard.command:Add(command);

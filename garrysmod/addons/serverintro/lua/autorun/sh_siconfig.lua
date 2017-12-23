@@ -7,7 +7,7 @@ SI.locations[ "rp_venator_tlc_v2" ] = { -- You can change the map name to whatev
 	{ 
 		startpos = Vector( 550, -5500, 3311 ), 
 		endpos = Vector( 550, 5500, 3311 ), 
-		ang = Angle( 90, 90, 0 ), 
+		ang = Angle( 90, 90, 0 ),  
 		speed = 0.1, 
 		text = "This is our map.",
 	},
@@ -71,7 +71,7 @@ SI.locations[ "spawn" ] = {
 		speed = 0.05, 
 		text = "Нажмите 'Пробел' для того чтобы заспавнится.",
 		ang2 = Angle( 20, 138, 0 ),
-	},
+	}, 
 
 }
 

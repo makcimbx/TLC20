@@ -39,7 +39,7 @@ command = {};
 command.help		= "Scale model.";
 command.command 	= "scale";
 command.arguments	= {"player", "scale"};
-command.permissions	= "Set scale";
+command.permissions	= "Set scale"; 
 command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
 command.aliases		= {"setscale", "scale"};
 

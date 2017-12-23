@@ -83,7 +83,10 @@ net.Receive("addnagrada",function(l,pl)
 		RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", pl:SteamID(), RPExtraTeams[legion].Name )
 		pl:changeTeam(legion,true,true)
 		pl:addXP(pl.trainXp, true)
+		pl.sempai:addXP(10000, true)
 		pl.trainXp = nil
+		pl:RemoveNWEntity( "sempai" )
+		pl.train_wait = nil
 		pl:SetPData("tutor_ever","1")
 	end
 end)
@@ -128,10 +131,14 @@ concommand.Add("rtedit", rt_edit)]]--
 
 function rt_questions(pl, cmd, args)
 	--local questions = sql.Query("SELECT `question`, `answers` FROM `rt_questions`")
+	rt_startq(pl)
+end
+concommand.Add("rt_questions", rt_questions)
+
+function rt_startq(pl)
 	net.Start("questions")
 	net.Send( pl )
 end
-concommand.Add("rt_questions", rt_questions)
 
 function question_request(pl, cmd, args)
 	if pl:IsAdmin() or pl:IsSuperAdmin() or pl:IsUserGroup("admin") or pl:IsUserGroup("superadmin") or pl:IsUserGroup("owner") then

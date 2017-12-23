@@ -209,6 +209,7 @@ local nextRadar = 0
 local radarTargets = { }
 local prg = 0
 
+local lps = LocalPlayer():GetPos()
 local function drawRadar()
     surface.SetTexture(radar)
     surface.DrawTexturedRect(SW.RadarPos.x , SW.RadarPos.y , 256 , 256)
@@ -222,8 +223,8 @@ local function drawRadar()
 
     if (SW.TracedRadar) then
         prg = 1 - (nextRadar - CurTime()) / SW.RadarUpdateRate
-
         if (nextRadar < CurTime()) then
+			lps = LocalPlayer():GetPos()
             nextRadar = CurTime() + SW.RadarUpdateRate
             radarTargets = { }
 
@@ -237,7 +238,8 @@ local function drawRadar()
                     local tr = util.TraceLine(traceData)
 
                     if (tr.Entity == v) then
-                        table.insert(radarTargets , { tr.Entity:IsPlayer() and tr.Entity:Team() or 1, tr.Entity:GetPos() , tr.Entity:IsPlayer() and tr.Entity:EyeAngles() or tr.Entity:GetAngles(), tr.Entity:IsPlayer()})
+						local ps = tr.Entity:GetPos()
+                        table.insert(radarTargets , { tr.Entity:IsPlayer() and tr.Entity:Team() or 1, ps , tr.Entity:IsPlayer() and tr.Entity:EyeAngles() or tr.Entity:GetAngles(), tr.Entity:IsPlayer()})
                     end
                 end
             end
@@ -247,12 +249,13 @@ local function drawRadar()
         for k , v in pairs(radarTargets) do
             if (v == LocalPlayer()) then continue end
             local pos = v[ 2 ]
-            local dist = pos:Distance(LocalPlayer():GetPos()) / 16
-            local deltaY = GetAngleBetweenPoints(pos , LocalPlayer():GetPos()) - 270 - pAng
+            local dist = pos:Distance(lps) / 16
+            local deltaY = GetAngleBetweenPoints(pos , lps) - 270 - pAng
             local px = dist * math.cos(math.rad(deltaY)) * -1
             local py = dist * math.sin(math.rad(deltaY))
             local c = v[4] and team.GetColor(v[ 1 ]) or Color(200,150,0)
             surface.SetDrawColor(c.r , c.g , c.b , (1 - prg) * 255)
+			surface.SetTexture(beacon)
             surface.DrawTexturedRectRotated(SW.RadarPos.x + 109 + px , SW.RadarPos.y + 109 + py , v[4] and 16 or 8 , v[4] and 32 or 16 , v[ 3 ].y - EyeAngles().y + 180)
         end
 
@@ -272,6 +275,7 @@ local function drawRadar()
             local px = dist * math.cos(math.rad(deltaY)) * -1
             local py = dist * math.sin(math.rad(deltaY))
             surface.SetDrawColor(team.GetColor(v:Team()))
+			surface.SetTexture(beacon)
             surface.DrawTexturedRectRotated(SW.RadarPos.x + 109 + px , SW.RadarPos.y + 109 + py , 16 , 32 , v:EyeAngles().y - EyeAngles().y + 180)
         end
 
@@ -279,7 +283,7 @@ local function drawRadar()
 
     surface.SetTexture(beacon)
     surface.SetDrawColor(team.GetColor(LocalPlayer():Team()))
-    surface.DrawTexturedRectRotated(SW.RadarPos.x + 109 , SW.RadarPos.y + 105 , 16 , 32 , 180)
+    surface.DrawTexturedRectRotated(SW.RadarPos.x + 109 , SW.RadarPos.y + 109 , 16 , 32 , 180)
 
     disableClip()
 

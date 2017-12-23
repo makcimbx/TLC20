@@ -228,21 +228,22 @@ end)
 
 function Legion()
 	
-	local tbl = rtLang.Legions
-	local min = 150
+	local tbl = table.Copy( rtLang.Legions )
+	local mn = 150
 	for a,z in pairs(tbl)do
 		z.can = true
+		z.n = 0
 		for k,v in pairs(player.GetAll())do
-			if(v:getJobTable().category == RPExtraTeams(z.prof).category)then
-				z.n = z + 1
+			if(v:getJobTable().category == z.category)then
+				z.n = z.n + 1
 			end
 		end
-		if(min>z.n)then
-			min = z.n
+		if(mn>z.n)then
+			mn = z.n
 		end
 	end
 	for a,z in pairs(tbl)do
-		if(math.abs(min-z.n)>=5) then
+		if(math.abs(mn-z.n)>=5) then
 			z.can = false
 		end
 	end
@@ -286,7 +287,7 @@ function Legion()
 	local question = {}
 	local choose = {}
 	local questionBlock = {}
-	for k,v in pairs(tbl_n) do
+	for k,v in pairs(tbl) do
 		local id = k
 		if(v.can)then
 			questionBlock[id] = vgui.Create( "DButton" )
