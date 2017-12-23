@@ -30,6 +30,7 @@ if SERVER then
 	AddResourceDir("sound/modernrewards")
 	resource.AddFile("resource/fonts/BebasNeue.ttf")
 	//resource.AddFile("resource/fonts/OpenSansC.ttf")
+
 end
 
 if CLIENT then
