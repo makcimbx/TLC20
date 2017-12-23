@@ -107,7 +107,7 @@ JukeBox.Settings.PlayerCooldownsLimitList = {
 --| SONG COOLDOWNS |--------------------------------------------------------------------------------------
 -- Whether songs should be blocked from being queued after playing.
 -- This prevents the same songs playing over and over again.
-JukeBox.Settings.UseCooldowns = true
+JukeBox.Settings.UseCooldowns = false
 
 -- How long the song should be blocked for after playing.
 -- The time is done in seconds and is applied at the end of the song. (60*15 = 15mins)

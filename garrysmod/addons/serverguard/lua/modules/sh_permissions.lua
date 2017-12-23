@@ -74,6 +74,8 @@ serverguard.permission:Add("awarn_remove");
 serverguard.permission:Add("awarn_delete");
 serverguard.permission:Add("awarn_options");
 
+serverguard.permission:Add("Object Menu")
+
 serverguard.permission:Add("Tabs_AddTab");
 serverguard.permission:Add("Tabs_RemoveTab");
 serverguard.permission:Add("Tabs_GetList");

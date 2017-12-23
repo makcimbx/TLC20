@@ -32,10 +32,6 @@ function wOS.RollMod:ResetAnimation( ply )
 	
 end
 
-hook.Add( "UpdateAnimation", "wOS.RollMod.SlowDownAnim", function(ply, velocity, maxSeqGroundSpeed)
-
-end )
-
 hook.Add( "CalcMainActivity", "wOS.RollMod.Animations", function( ply, velocity )
 
 	if !IsValid( ply ) or !ply:wOSIsRolling() then return end

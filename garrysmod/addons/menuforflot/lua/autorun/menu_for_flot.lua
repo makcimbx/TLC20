@@ -1,5 +1,7 @@
 if CLIENT then	
 
+    
+
 	CreateClientConVar( "flot_enabled", "0", true, false )
 	
 	local Editor = {}
@@ -19,13 +21,16 @@ if CLIENT then
 			height = 600,
 			onewindow = true,
 			init = function(icn, pnl)
+			    if(LocalPlayer():getJobTable().category == "Fleet") then
 				BuildFlotMenu(pnl)
+				end
 			end
 		}
 	)
 	
 	function BuildFlotMenu(PNL)
 	
+
 		if Editor.PANEL != nil then
 			Editor.PANEL:Remove()
 		end

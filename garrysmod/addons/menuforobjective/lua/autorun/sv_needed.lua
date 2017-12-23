@@ -46,12 +46,6 @@ s4 = ""
 s5 = ""
 s6 = ""
 else
-s1=tostring(file.Read("anticheat_option/s1.txt","DATA"))
-s2=tostring(file.Read("anticheat_option/s2.txt","DATA"))
-s3=tostring(file.Read("anticheat_option/s3.txt","DATA"))
-s4=tostring(file.Read("anticheat_option/s4.txt","DATA"))
-s5=tostring(file.Read("anticheat_option/s5.txt","DATA"))
-s6=tostring(file.Read("anticheat_option/s6.txt","DATA"))
 SetGlobalString(s1,file.Read("anticheat_option/s1.txt","DATA"))
 SetGlobalString(s2,file.Read("anticheat_option/s2.txt","DATA"))
 SetGlobalString(s3,file.Read("anticheat_option/s3.txt","DATA"))
@@ -76,6 +70,6 @@ ply:SendLua( " s4 = \""..s4.."\"" )
 ply:SendLua( " s5 = \""..s5.."\"" )
 ply:SendLua( " s6 = \""..s6.."\"" )
 end
-hook.Add("PlayerInitialSpawn", "Transfer_On_Player_spawn_Anti", Transfer_On_Player_spawn_Anti)
+hook.Add("TC2.0_Connect", "Transfer_On_Player_spawn_Anti", Transfer_On_Player_spawn_Anti)
 
 end

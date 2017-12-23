@@ -1,38 +1,31 @@
 if CLIENT then	
 
-    local s1 = ""
-	local s2 = ""
-	local s3 = ""
-	local s4 = ""
-	local s5 = ""
-	local s6 = ""
-
     local function HUDPaint()
 	
 	local posX = ScrW()/2
 
 	local posY = ScrH()/2
 	
-    draw.RoundedBox(6,30,30,375,125,Color(0,0,0,200))
-	draw.RoundedBox(0,30,60,375,3,Color(255,255,255,255))
+    draw.RoundedBox(6,ScrW()/64,ScrH()/36,375,125,Color(0,0,0,200))
+	draw.RoundedBox(0,ScrW()/64,ScrH()/18,375,3,Color(255,255,255,255))
 	
-	draw.RoundedBox(6,30,160,375,125,Color(0,0,0,200))
-	draw.RoundedBox(0,30,190,375,3,Color(255,255,255,255))
+	draw.RoundedBox(6,ScrW()/64,ScrH()/6.75,375,125,Color(0,0,0,200))
+	draw.RoundedBox(0,ScrW()/64,ScrH()/5.684,375,3,Color(255,255,255,255))
 	
-	draw.DrawText('ТЕКУЩАЯ СИТУАЦИЯ', "CloseCaption_Normal", posX/6.7,posY/17,Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-	draw.DrawText('ТЕКУЩАЯ ЗАДАЧА', "CloseCaption_Normal", posX/7.4,posY/3.35,Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+	draw.DrawText('ТЕКУЩАЯ СИТУАЦИЯ', "CloseCaption_Normal", posX/25,posY/21,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText('ТЕКУЩАЯ ЗАДАЧА', "CloseCaption_Normal", posX/25,posY/3.5,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 	
-	draw.DrawText(s1, "HudHintTextLarge", posX/25,posY/8,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s2, "HudHintTextLarge", posX/25,posY/5.7,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s3, "HudHintTextLarge", posX/25,posY/4.3,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s4, "HudHintTextLarge", posX/25,posY/2.6,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s5, "HudHintTextLarge", posX/25,posY/2.3,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s6, "HudHintTextLarge", posX/25,posY/2.07,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s1 or "", "HudHintTextLarge", posX/25,posY/8,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s2 or "", "HudHintTextLarge", posX/25,posY/5.7,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s3 or "", "HudHintTextLarge", posX/25,posY/4.3,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s4 or "", "HudHintTextLarge", posX/25,posY/2.6,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s5 or "", "HudHintTextLarge", posX/25,posY/2.3,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s6 or "", "HudHintTextLarge", posX/25,posY/2.07,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 	
     end
     hook.Add("HUDPaint", "manolis:MVLevels:DrawThisShitAntiCheat", HUDPaint) 
 
-
+    
 
 	CreateClientConVar( "objective_enabled", "0", true, false )
 	
@@ -53,7 +46,9 @@ if CLIENT then
 			height = 340,
 			onewindow = true,
 			init = function(icn, pnl)
+			    if (serverguard.player:HasPermission(LocalPlayer(), "Object Menu")) then
 				BuildObjectiveMenu(pnl)
+				end
 			end
 		}
 	)
@@ -145,6 +140,7 @@ if CLIENT then
 		
 		Editor.PANEL.CamDistanceLb1 = Editor.PANEL.Zadacha:Add("DTextEntry")
 		Editor.PANEL.CamDistanceLb1:SetPos(60,28)
+		Editor.PANEL.CamDistanceLb1:SetValue(s1)
 		Editor.PANEL.CamDistanceLb1:SetSize(200,20)
 		Editor.PANEL.CamDistanceLb1:SetNumeric(false)	
 		Editor.PANEL.CamDistanceLb1:SetUpdateOnType(false)
