@@ -7,20 +7,20 @@ if CLIENT then
 	local posY = ScrH()/2
 	
     draw.RoundedBox(6,ScrW()/64,ScrH()/36,375,125,Color(0,0,0,200))
-	draw.RoundedBox(0,ScrW()/64,ScrH()/18,375,3,Color(255,255,255,255))
+	draw.RoundedBox(0,ScrW()/64,ScrH()/18,375,3,Color(255,255,255,220))
 	
 	draw.RoundedBox(6,ScrW()/64,ScrH()/6.75,375,125,Color(0,0,0,200))
-	draw.RoundedBox(0,ScrW()/64,ScrH()/5.684,375,3,Color(255,255,255,255))
+	draw.RoundedBox(0,ScrW()/64,ScrH()/5.684,375,3,Color(255,255,255,220))
 	
-	draw.DrawText('ТЕКУЩАЯ СИТУАЦИЯ', "CloseCaption_Normal", posX/25,posY/21,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText('ТЕКУЩАЯ ЗАДАЧА', "CloseCaption_Normal", posX/25,posY/3.5,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText('ТЕКУЩАЯ СИТУАЦИЯ', "CloseCaption_Normal", posX/25,posY/21,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText('ТЕКУЩАЯ ЗАДАЧА', "CloseCaption_Normal", posX/25,posY/3.5,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 	
-	draw.DrawText(s1 or "", "HudHintTextLarge", posX/25,posY/8,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s2 or "", "HudHintTextLarge", posX/25,posY/5.7,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s3 or "", "HudHintTextLarge", posX/25,posY/4.3,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s4 or "", "HudHintTextLarge", posX/25,posY/2.6,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s5 or "", "HudHintTextLarge", posX/25,posY/2.3,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-	draw.DrawText(s6 or "", "HudHintTextLarge", posX/25,posY/2.07,Color(255,255,255,255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s1 or "", "HudHintTextLarge", posX/25,posY/8,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s2 or "", "HudHintTextLarge", posX/25,posY/5.7,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s3 or "", "HudHintTextLarge", posX/25,posY/4.3,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s4 or "", "HudHintTextLarge", posX/25,posY/2.6,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s5 or "", "HudHintTextLarge", posX/25,posY/2.3,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+	draw.DrawText(s6 or "", "HudHintTextLarge", posX/25,posY/2.07,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 	
     end
     hook.Add("HUDPaint", "manolis:MVLevels:DrawThisShitAntiCheat", HUDPaint) 
