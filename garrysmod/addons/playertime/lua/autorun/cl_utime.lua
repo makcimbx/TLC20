@@ -20,9 +20,6 @@ local utime_insidetext_r = CreateClientConVar( "utime_insidetext_r", "0", true, 
 local utime_insidetext_g = CreateClientConVar( "utime_insidetext_g", "0", true, false )
 local utime_insidetext_b = CreateClientConVar( "utime_insidetext_b", "0", true, false )
 
-local utime_pos_x = CreateClientConVar( "utime_pos_x", "0.0", true, false )
-local utime_pos_y = CreateClientConVar( "utime_pos_y", "0.0", true, false )
-
 local PANEL = {}
 PANEL.Small = 40
 PANEL.TargetSize = PANEL.Small
@@ -47,7 +44,7 @@ function think()
 	end
 
 	--gpanel:SetPos( ScrW() - gpanel:GetWide() - 20, 20 )
-	gpanel:SetPos( (ScrW() - gpanel:GetWide()) * utime_pos_x:GetFloat() / 100, (ScrH() - gpanel.Large) * utime_pos_y:GetFloat() / 100 )
+	gpanel:SetPos( SW.RadarPos.x+256/2-gpanel:GetWide()/2, SW.RadarPos.y+256-gpanel:GetTall()/2 )
 
 	local textColor = Color( utime_outsidetext_r:GetInt(), utime_outsidetext_g:GetInt(), utime_outsidetext_b:GetInt(), 255 )
 	gpanel.lblTotalTime:SetTextColor( textColor )
@@ -318,8 +315,6 @@ function resetCvars()
 		RunConsoleCommand( "utime_insidetext_g", "0" )
 		RunConsoleCommand( "utime_insidetext_b", "0" )
 
-		RunConsoleCommand( "utime_pos_x", "98" )
-		RunConsoleCommand( "utime_pos_y", "8" )
 		buildCP( controlpanel.Get( "Utime" ) )
 end
 concommand.Add( "utime_reset", resetCvars )
@@ -329,8 +324,6 @@ function buildCP( cpanel )
 		cpanel:ClearControls()
 		cpanel:AddControl( "Header", { Text = "UTime by TLC" } )
 		cpanel:AddControl( "Checkbox", { Label = "Enable", Command = "utime_enable" }  )
-		cpanel:AddControl( "Slider", { Label = "Position X", Command = "utime_pos_x", Type = "Float", Min = "0", Max = "100" }	)
-		cpanel:AddControl( "Slider", { Label = "Position Y", Command = "utime_pos_y", Type = "Float", Min = "0", Max = "100" }	)
 		cpanel:AddControl( "Color", { Label = "Outside Color", Red = "utime_outsidecolor_r", Green = "utime_outsidecolor_g", Blue = "utime_outsidecolor_b", ShowAlpha = "0", ShowHSV = "1", ShowRGB = "1", Multiplier = "255" }	 )
 		cpanel:AddControl( "Color", { Label = "Outside Text Color", Red = "utime_outsidetext_r", Green = "utime_outsidetext_g", Blue = "utime_outsidetext_b", ShowAlpha = "0", ShowHSV = "1", ShowRGB = "1", Multiplier = "255" }  )
 		cpanel:AddControl( "Color", { Label = "Inside Color", Red = "utime_insidecolor_r", Green = "utime_insidecolor_g", Blue = "utime_insidecolor_b", ShowAlpha = "0", ShowHSV = "1", ShowRGB = "1", Multiplier = "255" }	 )
