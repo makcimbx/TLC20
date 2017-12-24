@@ -20,7 +20,7 @@ net.Receive("sendtrain",function()
 			net.Start("gettrain") net.WriteBool(true) net.SendToServer()
 		end},
 	{text="Нет",func = function() 
-		net.Start("gettrain") net.WriteBool(true) net.SendToServer()
+		net.Start("gettrain") net.WriteBool(false) net.SendToServer()
 	end}})
 end)
 

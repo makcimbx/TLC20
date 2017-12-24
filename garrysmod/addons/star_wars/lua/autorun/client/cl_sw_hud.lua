@@ -209,7 +209,7 @@ local nextRadar = 0
 local radarTargets = { }
 local prg = 0
 
-local lps = LocalPlayer():GetPos()
+local lps = Vector(0,0,0)
 local function drawRadar()
     surface.SetTexture(radar)
     surface.DrawTexturedRect(SW.RadarPos.x , SW.RadarPos.y , 256 , 256)
