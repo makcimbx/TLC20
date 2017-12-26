@@ -145,6 +145,7 @@ end
 -----------------------------------------------------------
 local locktime = 0
 function PANEL:Think()
+	self:SetVisible( not gliding ) 
 	if self.Size == self.Small then
 		self.playerInfo:SetVisible( false )
 	else

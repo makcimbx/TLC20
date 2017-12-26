@@ -117,15 +117,17 @@ elseif (CLIENT) then
 		
 		cam.Start3D2D( pos, Angle( 0, ang.y, 90 ), 1 ) 
 			surface.SetDrawColor( color_var, color_var, color_var, 255 )
-			if(ply.train_wait!=nil)then
-				if(ply:GetNWEntity("sempai",nil) == LocalPlayer())then
+			if(ply:GetNWBool("train_wait",false)!=false)then
+				surface.SetMaterial( addsempai 	) -- If you use Material, cache it!
+				surface.DrawTexturedRect( -6-5, -6+12 , 6, 6 )
+			end
+			if(ply:GetNWEntity("sempai") == LocalPlayer())then
+				surface.SetMaterial( sempai	) -- If you use Material, cache it!
+				surface.DrawTexturedRect( -6-5, -6+12 , 6, 6 )
+			else
+				if(LocalPlayer():GetNWEntity("sempai") == ply)then
 					surface.SetMaterial( sempai	) -- If you use Material, cache it!
 					surface.DrawTexturedRect( -6-5, -6+12 , 6, 6 )
-				else
-					if(ply:GetNWEntity("sempai",nil) == NULL)then
-						surface.SetMaterial( addsempai 	) -- If you use Material, cache it!
-						surface.DrawTexturedRect( -6-5, -6+12 , 6, 6 )
-					end
 				end
 			end
 		cam.End3D2D()

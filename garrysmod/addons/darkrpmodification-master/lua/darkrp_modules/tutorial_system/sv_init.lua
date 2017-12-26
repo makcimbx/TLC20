@@ -21,7 +21,8 @@ timer.Create( "TrainPlayerCheck", 3, 0,function()
 			if(v.pause == false)then
 				v.tm = v.tm - 3
 				if(v.tm<=0)then
-					v.ply.train_wait = false
+					v.ply.train_wait = nil
+					v.ply:SetNWEntity( "train_wait", nil )
 					if(IsValid(v.ply))then
 						AutoTrain(v.ply)
 					end
@@ -39,7 +40,8 @@ net.Receive("gettrain",function(len,ply)
 	
 	if(d == true)then
 		table.RemoveByValue( TrainPlayer, ply )
-		ply.train_wait=false
+		ply.train_wait=nil
+		ply:SetNWBool( "train_wait", false )
 		ply.sempai = ply.presempai
 		ply:SetNWEntity( "sempai", ply.presempai )
 		serverguard.Notify(ply.presempai, SERVERGUARD.NOTIFY.RED,ply:Name(),SERVERGUARD.NOTIFY.GREEN," принял предложение!");

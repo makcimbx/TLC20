@@ -102,12 +102,17 @@ function meta:applyPlayerClassVars(applyHealth)
     hook.Call("playerClassVarsApplied", nil, self)
 end
 
+
+local function spawn3( ply )
+	ply:SetPos( Vector(-8153.135742, 6200.348145, -14824.129883) )
+	ply:SetEyeAngles( Angle(59.736351, 148.419388, 0.000000) )
+end
+hook.Add( "PlayerInitialSpawn", "PlayerInitialSpawn", spawn2 )
+
 local function spawn2( ply )
 	if(ply.video_newSpawn != true)then
+		RunConsoleCommand("sv_tfa_bullet_ricochet", "0")
 		ply.respawned = false
-		ply:SetPos( Vector(5607.657715,1846.595703,1385.118286) )
-		ply:SetEyeAngles( Angle(-5.500017, 132.185226, 0.000000) )
-		ply:KillSilent()
 		ply.video_newSpawn = true
 	end
 end

@@ -1,3 +1,5 @@
+local hide = SI.hide
+
 function CalculateSize(text,font,maxsize)
 	surface.SetFont( font )
 	local x, y = surface.GetTextSize( text )
@@ -82,6 +84,7 @@ function CalculateSize2(text,font,maxsize)
 end
 
 function GlideStop()
+	gliding = false
 	if ( timer.Exists( "StageTimer" ) ) then
 		timer.Remove( "StageTimer")
 	end
@@ -113,6 +116,14 @@ end
 hook.Add( "Think", "Ever_Key_Spawn", function()
 	if(input.IsKeyDown( KEY_SPACE ))then
 		hook.Remove( "Think", "Ever_Key_Spawn" )
+		if hide then
+			for k,v in pairs( player.GetAll() ) do
+				v:SetNoDraw( false )
+			end
+			for k,v in pairs( ents.FindByClass( "prop_physics" ) ) do
+				v:SetNoDraw( false )
+			end
+		end
 		net.Start("GlideSpawnStop")
 		net.SendToServer()
 		timer.Simple(0.2,function() GlideStop() end)

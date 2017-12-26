@@ -33,6 +33,7 @@ net.Receive( "GlideSpawnStop", function( len, ply )
 	if IsValid( ply ) then
 		ply.Gliding = false
 		ply:Freeze( false )
+		ply:KillSilent()
 		ply:Spawn()
 	end
 end)

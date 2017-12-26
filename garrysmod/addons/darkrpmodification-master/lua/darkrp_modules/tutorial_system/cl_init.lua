@@ -1,11 +1,6 @@
 local function TrainEnd()
-	if(LocalPlayer().respawned != false)then
 		net.Start("StartTest")
 		net.SendToServer()
-	else
-		net.Start("GlideSpawnStop")
-		net.SendToServer()
-	end
 end
 
 hook.Add( "PostServerIntro", "Ever_PostServerIntro", function( ply )

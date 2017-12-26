@@ -42,7 +42,10 @@ local function FormatAngle( ang )
 	return "Angle( " .. ang.p .. ", " .. ang.y .. ", " .. ang.r .. " )"
 end
 
+gliding = false
+
 function GlideSpawnStart()
+	gliding = true
 	net.Start( "GlideSpawnStart" )
 	net.SendToServer()
 	if locations[ "spawn" ] == nil then
@@ -155,6 +158,7 @@ function GlideSpawnStart()
 end
 
 function GlideStart()
+	gliding = true
 	net.Start( "GlideStart" )
 	net.SendToServer()
 	if locations[ game.GetMap() ] == nil then
@@ -245,6 +249,7 @@ function GlideStart()
 
 		pos = nil
 		ang = nil
+		gliding = false
 
 		hook.Call("PostServerIntro")
 	end )

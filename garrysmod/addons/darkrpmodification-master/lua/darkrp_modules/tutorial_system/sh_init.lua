@@ -14,7 +14,7 @@ function command:Execute(ply, silent, arguments)
 			ply.pause = false
 			table.insert(TrainPlayer,{ply = ply,tm = 5*60})
 			ply.train_wait = true
-			ply:SendLua("LocalPlayer().train_wait = true")
+			ply:SetNWBool( "train_wait", true )
 		else
 			serverguard.Notify(ply,SERVERGUARD.NOTIFY.RED,"Вы уже проходили обучение!");
 		end
