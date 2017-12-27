@@ -152,6 +152,11 @@ emoticons["ti4okek"] = {"anticheatmemes/ti4okek.png", 70, 85}
 emoticons["4esirusli"] = {"anticheatmemes/4esirusli.png", 130, 73}
 emoticons["blyaetopizdec4toyauvidel"] = {"anticheatmemes/blyaetopizdec4toyauvidel.png", 60, 62}
 
+emoticons["cody"] = {"anticheatmemes/cody.png", 100, 100}
+emoticons["guard"] = {"anticheatmemes/guard.png", 100, 100}
+emoticons["rex"] = {"anticheatmemes/rex.png", 100, 100}
+emoticons["venator"] = {"anticheatmemes/venator.png", 100, 100}
+
 emoticons["garry"] = {"atlaschat/emoticons/garry.png", 64, 64}
 emoticons["gaben"] = {"atlaschat/emoticons/gaben.png", 64, 64}
 
