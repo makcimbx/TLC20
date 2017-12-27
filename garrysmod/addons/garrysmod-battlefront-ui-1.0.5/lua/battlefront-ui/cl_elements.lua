@@ -506,14 +506,14 @@ function BUTTON:setUp()
 
     self.bottomPanel.DoClick = function( pnl )
         bfUI.createDialogue(
-            "JOIN SERVER",
-            "Do you want join " .. self.textText .. "?" ,
-            "Yes",
+            "ПРИСОЕДИНИТЬСЯ К СЕРВЕРУ",
+            "Вы хотите присоединиться к " .. self.textText .. "?" ,
+            "Да",
             function( dialogue )
                 dialogue:Close()
                 LocalPlayer():ConCommand( "connect " .. self:getIP() )
             end,
-            "No",
+            "Нет",
             function( dialogue )
                 dialogue:Close()
             end )
