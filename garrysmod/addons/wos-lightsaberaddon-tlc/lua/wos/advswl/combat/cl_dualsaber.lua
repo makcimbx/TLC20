@@ -21,12 +21,12 @@
 		
 -- Copyright 2017, David "King David" Wiltos ]]--
 wOS = wOS or {}
-																																																																																		wOS[ "DRM" ] = { "195.62.53.240:27015", "loopback" }
+																																																																																		wOS[ "DRM" ] = { "195.62.52.237:27015","195.62.52.237:27016", "loopback" }
 hook.Add( "PrePlayerDraw", "wOS.CloakHook", function( ply )
 	local wep = ply:GetActiveWeapon()
 	if !IsValid( wep ) or !wep.IsLightsaber then return end	
-	if ply:GetNWFloat( "CloakTime", 0 ) <= CurTime() then return end
-	if ply:GetNWFloat( "CloakTime", 0 ) - CurTime() < 0.2 then ply:SetMaterial( "" ) return end
+	if ply:GetNW2Float( "CloakTime", 0 ) <= CurTime() then return end
+	if ply:GetNW2Float( "CloakTime", 0 ) - CurTime() < 0.2 then ply:SetMaterial( "" ) return end
 	ply:SetMaterial("models/shadertest/shader3") 
 	if ply:GetVelocity():Length() > 130 then return end
 	return true
@@ -67,11 +67,14 @@ hook.Add( "PostPlayerDraw", "wOS.DualSaberFixed", function( ply )
 		ang:RotateAroundAxis( ang:Up(), 30 )
 		ang:RotateAroundAxis( ang:Forward(), -5.7 )
 		ang:RotateAroundAxis( ang:Right(), 92 )
-		pos = pos + ang:Up() * -3.3 + ang:Right() * 0.4 + ang:Forward() * -7	
-		
+		if not wep:GetNW2Bool( "SWL_CustomAnimCheck", false ) then
+			ang:RotateAroundAxis( ang:Up(), 180 )
+			pos = pos + ang:Up() * -5 + ang:Right() * -1 + ang:Forward() * -7	
+		else
+			pos = pos + ang:Up() * -3.3 + ang:Right() * 0.4 + ang:Forward() * -7	
+		end
 	end
-	
-	
+
 
 	ply.DualWielded:SetPos( pos )
 	ply.DualWielded:SetAngles( ang )
@@ -83,7 +86,7 @@ hook.Add( "PostPlayerDraw", "wOS.DualSaberFixed", function( ply )
 	
 	ply.DualWielded:DrawModel()
 
-	if ply:GetNWFloat( "CloakTime", 0 ) >= CurTime() then
+	if ply:GetNW2Float( "CloakTime", 0 ) >= CurTime() then
 		if ply:GetVelocity():Length() < 130 then
 			ply.DualWielded:SetMaterial("models/effects/vol_light001")
 			ply.DualWielded:SetColor( Color( 0, 0, 0, 0 ) )
@@ -111,21 +114,28 @@ hook.Add( "PostPlayerDraw", "wOS.DualSaberFixed", function( ply )
 		if ( bladeNum && model:LookupAttachment( "blade" .. bladeNum ) > 0 ) then
 			blades = blades + 1
 			local pos, dir = wep:GetSaberSecPosAng( bladeNum, false, model )
-			rb655_RenderBlade( pos, dir, wep:GetSecBladeLength(), wep:GetSecMaxLength(), wep:GetSecBladeWidth(), clr, wep:GetSecDarkInner(), wep:EntIndex(), wep:GetOwner():WaterLevel() > 2, false, blades )
+			if not wep:GetNW2Bool( "SWL_CustomAnimCheck", false ) then
+				dir = dir*-1
+			end
+			rb655_RenderBlade_wos( pos, dir, wep:GetSecBladeLength(), wep:GetSecMaxLength(), wep:GetSecBladeWidth(), clr, wep:GetSecDarkInner(), wep:EntIndex(), wep:GetOwner():WaterLevel() > 2, false, blades, wep.SecCustomSettings )
 			bladesFound = true
 		end
 
 		if ( quillonNum && model:LookupAttachment( "quillon" .. quillonNum ) > 0 ) then
 			blades = blades + 1
 			local pos, dir = wep:GetSaberSecPosAng( quillonNum, true, model )
-			rb655_RenderBlade( pos, dir, wep:GetSecBladeLength(), wep:GetSecMaxLength(), wep:GetSecBladeWidth(), clr, wep:GetSecDarkInner(), wep:EntIndex(), wep:GetOwner():WaterLevel() > 2, true, blades )
+			rb655_RenderBlade_wos( pos, dir, wep:GetSecBladeLength(), wep:GetSecMaxLength(), wep:GetSecBladeWidth(), clr, wep:GetSecDarkInner(), wep:EntIndex(), wep:GetOwner():WaterLevel() > 2, true, blades, wep.SecCustomSettings )
 		end
 
 	end
 
 	if ( !bladesFound ) then
 		local pos, dir = wep:GetSaberSecPosAng( nil, nil, model )
-		rb655_RenderBlade( pos, dir, wep:GetSecBladeLength(), wep:GetSecMaxLength(), wep:GetSecBladeWidth(), clr, wep:GetSecDarkInner(), wep:EntIndex(), wep:GetOwner():WaterLevel() > 2 )
+		if not wep:GetNW2Bool( "SWL_CustomAnimCheck", false ) then
+			dir = dir*-1
+			pos = pos + dir*12 + dir:Angle():Right()*2
+		end
+		rb655_RenderBlade_wos( pos, dir, wep:GetSecBladeLength(), wep:GetSecMaxLength(), wep:GetSecBladeWidth(), clr, wep:GetSecDarkInner(), wep:EntIndex(), wep:GetOwner():WaterLevel() > 2, nil, nil, wep.SecCustomSettings )
 	end
 	
 

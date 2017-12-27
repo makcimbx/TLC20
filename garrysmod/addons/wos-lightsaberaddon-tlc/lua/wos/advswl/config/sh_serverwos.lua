@@ -27,7 +27,7 @@ wOS = wOS or {}
 
 --Should the player move in the direction of the animation when attacking?
 --VERY VERY ( VERY )IMPORTANT NOTE: I highly recommend you disable this if your tick rate is BELOW 33. YOU WILL SEE STUTTERING OTHERWISE
-wOS.EnableLunge = true
+wOS.EnableLunge = false
 
 --Enable this to only draw lightsaber traces when you are swinging
 --This adds a huge buff to performance but will remove the ability to make scorch marks/damage traces when idle/running
@@ -41,7 +41,7 @@ wOS.LegacyToolgun = true
 --This will not affect forced Lightsaber properties. 
 --This is useful for BASIC crafting benches that do not utilize the forced properties
 --or restricted hilts in the tool gun ( sh_hiltwos.lua settings )
-wOS.RestrictConcommands = false
+wOS.RestrictConcommands = true
 
 --Enable this if you want to remove the hot key system entirely and use a "Force Select" menu similar to the Form Select menu
 --Enabling this will allow players to have more than 9 force abilities equipped to a saber, but remove the hotkey system
@@ -60,9 +60,13 @@ wOS.AdvertTime = false
 --This is used to enable the realistic camera on first person lightsabers. 
 --Players will be locked into their model's eyes and the camera will be limited by their head movements
 --Good for RP purposes, but hard aim and use force abiltiies with
-wOS.AlwaysFirstPerson = true
+wOS.AlwaysFirstPerson = false
 
 --If your server is using Zhrom's Starwars Prop Pack, this will automatically mount them to the toolgun/crafting benches
 --YOU AND YOUR SERVER WILL NEED THIS ADDON!
 -- http://steamcommunity.com/sharedfiles/filedetails/?id=740395760&searchtext=Zhrom
 wOS.EnableZhromExtension = true
+
+--If your server is using the CloneWars Adventure pack, this will automatically mount them to the toolgun/crafting benches
+--YOU AND YOUR SERVER WILL NEED THE CLONE WAR PACK!
+wOS.EnableCloneAdventures = true

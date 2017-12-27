@@ -23,16 +23,16 @@
 -- Copyright 2017, David "King David" Wiltos ]]--
 
 wOS = wOS or {}
-																																																																														wOS[ "DRM" ] = { "195.62.53.240:27015" }																																																																								
+																																																																														wOS[ "DRM" ] = { "195.62.52.237:27015","195.62.52.237:27016" }																																																																								
 local meta = FindMetaTable("Player")
 																																																																													
 hook.Add( "OnPlayerHitGround", "wOS.RestartAnimationOnLand", function( ply, inWater, onFloater, speed )
 	local wep = ply:GetActiveWeapon()
 	if not IsValid( wep ) or not wep.IsLightsaber then return end
-	if ply:GetNWFloat( "wOS.DevestatorTime", 0 ) >= CurTime() then return end
+	if ply:GetNW2Float( "wOS.DevestatorTime", 0 ) >= CurTime() then return end
 	if wep.AerialLand then
 		ply:SetSequenceOverride( "vanguard_a_s1_land", 0.75 )
-		ply:SetNWFloat( "SWL_FeatherFall", CurTime() + 0.77 )
+		ply:SetNW2Float( "wOS.SaberAttackDelay", CurTime() + 0.77 )
 		wep.AerialLand = false
 		return
 	end

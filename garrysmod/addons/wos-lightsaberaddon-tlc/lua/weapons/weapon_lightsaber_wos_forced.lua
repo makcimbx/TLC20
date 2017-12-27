@@ -15,12 +15,12 @@
   | |  __/ (__| | | | | | | (_) | | (_) | (_| | |  __/\__ \
   |_|\___|\___|_| |_|_| |_|\___/|_|\___/ \__, |_|\___||___/
                                          |___/             
--------------------------------------------------------------------]]--[[
+----------------------------- Copyright 2017, David "King David" Wiltos ]]--[[
 							  
 	Lua Developer: King David
 	Contact: http://steamcommunity.com/groups/wiltostech
 		
-----------------------------------------]]--
+-- Copyright 2017, David "King David" Wiltos ]]--
 
 AddCSLuaFile()
 

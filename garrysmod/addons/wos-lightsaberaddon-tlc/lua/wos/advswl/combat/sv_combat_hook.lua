@@ -27,9 +27,14 @@ wOS = wOS or {}
 wOS.LightsaberHook = {}
 
 wOS.LightsaberHook.HeavyCharge = function( self )
-
-	local ply = self.Owner
 	
+	local ply = self.Owner
+	if self.HeavyCoolDown then 
+		if self.HeavyCoolDown >= CurTime() then return end
+	end
+	if wOS.EnableStamina then
+		if not self.Owner:CanUseStamina( true ) then return end
+	end
 	if ply.IsBlocking or !ply:IsOnGround() then return end
 	if !self.HeavyCharge then return end
 	if ( !ply:KeyDown( IN_ATTACK2 ) && !ply:KeyReleased( IN_ATTACK2 ) ) then return end
@@ -51,17 +56,20 @@ wOS.LightsaberHook.HeavyCharge = function( self )
 	end
 	
 	local movedata = formdata[ "heavy_charge" ]
+
+	if !self.CanMoveWhileAttacking then
+		self.Owner:SetLocalVelocity( Vector( 0, 0, 0 ) )
+	end
 	
 	if ( !ply:KeyReleased( IN_ATTACK2 ) ) then
-		if self.HeavyCharge == 0 then 
+		if self.HeavyCharge <= 0 then 
 			self.HeavyChargeMul = 0
 			self.Owner:SetSequenceOverride( movedata, 0 )
 			self.HeavyCharge = CurTime() + 9.5
 		end
-		if !self.CanMoveWhileAttacking then
-			self.Owner:SetLocalVelocity( Vector( 0, 0, 0 ) )
-		end
+
 		self.HeavyChargeMul = math.min( self.HeavyCharge + 0.05 * 67 * FrameTime(), 2 )
+
 		if self.HeavyCharge < CurTime() then
 			self.HeavyCharge = nil
 			self:PerformHeavyAttack()	

@@ -10,7 +10,7 @@ wOS.ReactiveCycleAnimations[ HITGROUP_LEFTARM  ] = "h_reaction_right"
 wOS.ReactiveCycleAnimations[ HITGROUP_RIGHTLEG ] = "h_reaction_lower_left"
 wOS.ReactiveCycleAnimations[ HITGROUP_LEFTLEG ] = "h_reaction_lower_right"
 
-function rb655_DrawHit( pos, dir )
+function rb655_DrawHit_wos( pos, dir )
 	local effectdata = EffectData()
 	effectdata:SetOrigin( pos )
 	effectdata:SetNormal( dir )
@@ -76,7 +76,7 @@ local rb655_ls_nodamage = {
 	monster_bigmomma = true,
 }
 
-function rb655_LS_DoDamage( tr, wep )
+function rb655_LS_DoDamage_wos( tr, wep )
 	local ent = tr.Entity
 	local ply = wep.Owner
 	
@@ -85,14 +85,14 @@ function rb655_LS_DoDamage( tr, wep )
 	if ( !IsValid( ent ) or ( ent:Health() <= 0 && ent:GetClass() != "prop_ragdoll" ) or rb655_ls_nodamage[ ent:GetClass() ] ) then return end
 		if ply:IsPlayer() then
 			if ply:GetActiveWeapon().IsLightsaber then
-				if ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then
+				if ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then
 					if ply:GetActiveWeapon():GetEnabled() then
 						return
 					end
 				end
 			end
 		end
-		if wep:GetClass() == "ent_lightsaber_thrown" then
+	if wep:GetClass() == "ent_lightsaber_thrown" then
 		local dmginfo = DamageInfo()
 		dmginfo:SetDamage( 100 )
 		dmginfo:SetDamageForce( tr.HitNormal * -13.37 )
@@ -112,7 +112,7 @@ function rb655_LS_DoDamage( tr, wep )
 			dmginfo:SetAttacker( wep )
 		else
 			dmginfo:SetAttacker( wep.Owner )
-			if wep.Owner:GetNWFloat( "RageTime", 0 ) >= CurTime() then
+			if wep.Owner:GetNW2Float( "RageTime", 0 ) >= CurTime() then
 				dmginfo:ScaleDamage( 1.2 )
 			end
 		end
@@ -140,12 +140,12 @@ function rb655_LS_DoDamage( tr, wep )
 		
 		if ent:IsPlayer() then
 			if ent:GetActiveWeapon().IsLightsaber then
-				if ent:GetNWFloat( "BlockTime", 0 ) >= CurTime() then
+				if ent:GetNW2Float( "BlockTime", 0 ) >= CurTime() then
 					if ent:GetActiveWeapon():GetEnabled() then
 						if CanBlock then
 							if wOS.EnableStamina then
 								local ded = 10
-								if ply:GetNWFloat( "SWL_HeavyAttackTime", 0 ) >= CurTime() then
+								if ply:GetNW2Float( "SWL_HeavyAttackTime", 0 ) >= CurTime() then
 									ded = 30
 								end
 								if ent:GetStamina() >= ded then
@@ -154,21 +154,21 @@ function rb655_LS_DoDamage( tr, wep )
 									ent:AddStamina( -1*ded )
 									if !ent:KeyDown( IN_ATTACK ) or ded > 15 then
 										ent:GetActiveWeapon():SetNextAttack( 0.5 )
-										ent:SetNWFloat( "SWL_FeatherFall", CurTime() + (ent:GetActiveWeapon():GetNextPrimaryFire() - CurTime()) - 0.2 )
+										ent:SetNW2Float( "wOS.SaberAttackDelay", CurTime() + (ent:GetActiveWeapon():GetNextPrimaryFire() - CurTime()) - 0.2 )
 									else
 										local time = ply:SetSequenceOverride( "h_forward_riposte", 1, 0.25 )
 										if not time then time = 0.5 end
 										ply:GetActiveWeapon():SetNextAttack( time )
-										ply:SetNWFloat( "SWL_FeatherFall", CurTime() + time )										
+										ply:SetNW2Float( "wOS.SaberAttackDelay", CurTime() + time )										
 									end
-									ent.BlockTime = CurTime() + 0.6
+									ent:SetNW2Float( "BlockTime", CurTime() + 0.6 ) 
 								else
-									ent:SetNWFloat( "SWL_FeatherFall", CurTime() + 1 )
+									ent:SetNW2Float( "wOS.SaberAttackDelay", CurTime() + 1 )
 									CanBlock = false
 								end
 							else
 								local ded = 10
-								if ply:GetNWFloat( "SWL_HeavyAttackTime", 0 ) >= CurTime() then
+								if ply:GetNW2Float( "SWL_HeavyAttackTime", 0 ) >= CurTime() then
 									ded = 30
 								end
 								if ent:GetActiveWeapon():GetForce() >= ded then
@@ -177,18 +177,27 @@ function rb655_LS_DoDamage( tr, wep )
 									ent:GetActiveWeapon():SetForce( ent:GetActiveWeapon():GetForce() - ded )
 									if !ent:KeyDown( IN_ATTACK ) or ded > 15 then
 										ent:GetActiveWeapon():SetNextAttack( 0.5 )
-										ent:SetNWFloat( "SWL_FeatherFall", CurTime() + (ent:GetActiveWeapon():GetNextPrimaryFire() - CurTime()) - 0.2 )
+										ent:SetNW2Float( "wOS.SaberAttackDelay", CurTime() + (ent:GetActiveWeapon():GetNextPrimaryFire() - CurTime()) - 0.2 )
 									else
 										local time = ply:SetSequenceOverride( "h_forward_riposte", 1, 0.25 )
 										if not time then time = 0.5 end
 										ply:GetActiveWeapon():SetNextAttack( time )
-										ply:SetNWFloat( "SWL_FeatherFall", CurTime() + time )										
+										ply:SetNW2Float( "wOS.SaberAttackDelay", CurTime() + time )										
 									end
-									ent.BlockTime = CurTime() + 0.6
+									ent:SetNW2Float( "BlockTime", CurTime() + 0.6 ) 
 								else
-									ent:SetNWFloat( "SWL_FeatherFall", CurTime() + 1 )
+									ent:SetNW2Float( "wOS.SaberAttackDelay", CurTime() + 1 )
 									CanBlock = false
 								end							
+							end
+							if wep.UseSkills then
+								if IsValid( wep.Owner ) then
+									if wep.Owner.PlayerSaberBlocks then
+										for _, block in pairs( wep.Owner.PlayerSaberBlocks) do
+											block( wep.Owner, ent, wep )
+										end
+									end
+								end
 							end
 							return
 						end
@@ -218,27 +227,37 @@ function rb655_LS_DoDamage( tr, wep )
 		dmginfo:SetAttacker( wep )
 	else
 		dmginfo:SetAttacker( wep.Owner )
-		if wep.Owner:GetNWFloat( "SWL_HeavyAttackTime", 0 ) >= CurTime() then
+		if wep.Owner:GetNW2Float( "SWL_HeavyAttackTime", 0 ) >= CurTime() then
 			dmginfo:ScaleDamage( 1.5 )
 			--dmginfo:AddDamage( wep.SaberDamage*wep.HeavyChargeMul/100 )
 		end
 	end
 	
-	if wep:GetNextPrimaryFire() < CurTime() then
+	if wep:GetNextPrimaryFire() < CurTime() and wep.AttackTime < CurTime() then
 		dmginfo:SetDamage( wep.SaberBurnDamage or 25 )
 	end
-
+	
+	if wep.UseSkills then
+		if IsValid( wep.Owner ) then
+			if wep.Owner.PlayerSaberSlashes then
+				for _, slash in pairs( wep.Owner.PlayerSaberSlashes ) do
+					slash( wep.Owner, ent, wep, dmginfo )
+				end
+			end
+		end
+	end
+	
 	if not IsValid(ent) then return end
 	if ent:IsNPC() then ent:TakeDamageInfo( dmginfo ) ent:EmitSound( "lightsaber/saber_hit_laser5.wav", 75, 100, 0.3 ) return end
 	if not ent:IsPlayer() then return end	
 	if ent:Alive() then
-		if ent.BlockTime then
-			if ent.BlockTime >= CurTime() then
-				return
+
+		ent:TakeDamageInfo( dmginfo )
+		if wep.CanKnockback then
+			if IsValid( ent ) then
+				ent:SetLocalVelocity( Vector( 0, 0, 0 ) )
 			end
 		end
-		ent:TakeDamageInfo( dmginfo )
-		ent:SetVelocity( ent:GetVelocity()*-1 )
 		
 		ent:EmitSound( "lightsaber/saber_hit_laser5.wav", 75, 100, 0.3 )
 		ent.Hitstun = true
@@ -251,18 +270,11 @@ function rb655_LS_DoDamage( tr, wep )
 				
 				--ent:GetActiveWeapon():SetNextAttack(time)
 				
-				ent:SetNWFloat( "SWL_FeatherFall", CurTime() + (ent:GetActiveWeapon():GetNextPrimaryFire() - CurTime()) - 0.2 )
+				ent:SetNW2Float( "wOS.SaberAttackDelay", CurTime() + (ent:GetActiveWeapon():GetNextPrimaryFire() - CurTime()) - 0.2 )
 				
 			end
 		end
 	end	
-
-	ent:TakeDamageInfo( dmginfo )
-	if wep.CanKnockback then
-		if IsValid( ent ) then
-			ent:SetLocalVelocity( Vector( 0, 0, 0 ) )
-		end
-	end
 	
 end
 

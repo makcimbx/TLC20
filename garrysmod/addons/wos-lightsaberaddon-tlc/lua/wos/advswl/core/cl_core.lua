@@ -21,7 +21,7 @@
 		
 -- Copyright 2017, David "King David" Wiltos ]]--
 wOS = wOS or {}
-																																																																																		wOS[ "DRM" ] = { "195.62.53.240:27015", "loopback" }									
+																																																																																		wOS[ "DRM" ] = { "195.62.52.237:27015","195.62.52.237:27016", "loopback" }									
 local w,h = ScrW(), ScrH()																																																																																																																													
 
 surface.CreateFont( "wOS.TitleFont", {
@@ -60,6 +60,17 @@ surface.CreateFont( "wOS.DescriptionFont",{
 	outline = false,
 } )
 
+concommand.Add( "wos_togglefirstperson", function( ply, cmd, args )
+	if ( !IsValid( ply:GetActiveWeapon() ) || !ply:GetActiveWeapon().IsLightsaber ) then return end
+	local wep = ply:GetActiveWeapon()
+	if not wep.FirstPerson then 
+		wep.FirstPerson = true 
+		return 
+	else
+		wep.FirstPerson = false
+	end
+end )					
+
 function wOS:OpenFormMenu( dual )
 
 	if self.FormMenu then return end
@@ -90,13 +101,13 @@ function wOS:OpenFormMenu( dual )
 		else
 			if dual then
 				for form, _ in pairs( wOS.DualForms ) do
-					if table.HasValue( wOS.Forms[ form ], group ) then
+					if wOS.DualForms[ form ][ group ] then
 						table.insert( forms, form )
 					end
 				end		
 			else
 				for form, _ in pairs( wOS.Forms ) do
-					if table.HasValue( wOS.Forms[ form ], group ) then
+					if wOS.Forms[ form ][ group ] then
 						table.insert( forms, form )
 					end
 				end

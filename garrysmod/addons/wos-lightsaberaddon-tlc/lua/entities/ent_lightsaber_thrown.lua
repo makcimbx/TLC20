@@ -71,7 +71,7 @@ function ENT:Initialize()
 end
 
 function ENT:OnRemove()
-	if ( CLIENT ) then rb655_SaberClean( self:EntIndex() ) return end
+	if ( CLIENT ) then rb655_SaberClean_wos( self:EntIndex() ) return end
 
 	if ( self.SoundLoop ) then self.SoundLoop:Stop() self.SoundLoop = nil end
 	if ( self.SoundSwing ) then self.SoundSwing:Stop() self.SoundSwing = nil end
@@ -105,10 +105,10 @@ function ENT:Draw()
 	clr = Color( clr.x, clr.y, clr.z )
 
 	local pos, ang = self:GetSaberPosAng()
-	rb655_RenderBlade( pos, ang, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:WaterLevel() > 2 )
+	rb655_RenderBlade_wos( pos, ang, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:WaterLevel() > 2 )
 	if ( self:LookupAttachment( "blade2" ) > 0 ) then
 		local pos, ang = self:GetSaberPosAng( 2 )
-		rb655_RenderBlade( pos, ang, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex() + 655, self:WaterLevel() > 2 )
+		rb655_RenderBlade_wos( pos, ang, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex() + 655, self:WaterLevel() > 2 )
 	end
 
 end
@@ -269,11 +269,11 @@ function ENT:DrawHitEffects( trace, traceBack )
 	if ( self:GetBladeLength() <= 0 ) then return end
 
 	if ( trace.Hit ) then
-		rb655_DrawHit( trace.HitPos, trace.HitNormal )
+		rb655_DrawHit_wos( trace.HitPos, trace.HitNormal )
 	end
 
 	if ( traceBack && traceBack.Hit ) then
-		rb655_DrawHit( traceBack.HitPos, traceBack.HitNormal )
+		rb655_DrawHit_wos( traceBack.HitPos, traceBack.HitNormal )
 	end
 end
 
@@ -287,8 +287,8 @@ function ENT:BladeThink( startpos, dir )
 	} )
 
 	if ( trace.Hit ) and not (IsValid(trace.Entity) and trace.Entity == self:GetOwner()) then
-		rb655_DrawHit( trace.HitPos, trace.HitNormal )
-		rb655_LS_DoDamage( trace, self )
+		rb655_DrawHit_wos( trace.HitPos, trace.HitNormal )
+		rb655_LS_DoDamage_wos( trace, self )
 	end
 
 	return trace.Hit]]
@@ -327,8 +327,8 @@ function ENT:BladeThink( startpos, dir )
 		ent = IsValid(traceBack.Entity) and traceBack.Entity
 	end
 	
-	if ( trace.Hit ) then rb655_LS_DoDamage( trace, self ) end
-	if ( traceBack.Hit ) then rb655_LS_DoDamage( traceBack, self ) end
+	if ( trace.Hit ) then rb655_LS_DoDamage_wos( trace, self ) end
+	if ( traceBack.Hit ) then rb655_LS_DoDamage_wos( traceBack, self ) end
 
 	if self.LastEndPos then
 		local traceTo = util.TraceHull({
@@ -340,7 +340,7 @@ function ENT:BladeThink( startpos, dir )
 		})
 
 		if ( traceTo.Hit ) and (IsValid(traceTo.Entity) and (not IsValid(ent) or traceTo.Entity != ent)) then 
-			rb655_LS_DoDamage( traceTo, self ) 
+			rb655_LS_DoDamage_wos( traceTo, self ) 
 			ent = traceTo.Entity 
 		end
 
@@ -353,7 +353,7 @@ function ENT:BladeThink( startpos, dir )
 			output = traceTo
 		})
 
-		if ( traceTo.Hit ) and (IsValid(traceTo.Entity) and (not IsValid(ent) or traceTo.Entity != ent)) then rb655_LS_DoDamage( traceTo, self ) return true end
+		if ( traceTo.Hit ) and (IsValid(traceTo.Entity) and (not IsValid(ent) or traceTo.Entity != ent)) then rb655_LS_DoDamage_wos( traceTo, self ) return true end
 	end
 	return trace.Hit or traceBack.Hit
 end

@@ -160,7 +160,7 @@ function TOOL:Deploy()
 	end
 	
 	if wOS.SaberTeamModels[ teamr ] then
-		for _, model in pairs( wOS.SaberGroupModels[ teamr ] ) do
+		for _, model in pairs( wOS.SaberTeamModels[ teamr ] ) do
 			table.insert( tbl, model )
 		end
 	end

@@ -29,33 +29,14 @@ end
 
 hook.Add( "PostGamemodeLoaded", "wOS.AddJobsForForms", function()
 
-wOS.Forms = {}
 -- This is where you configure the group that has access to the form, and which stance they will be using.
 -- FORMAT: wOS.Forms[ FORM ] = { [ ULXGROUP ] = { STANCENUMBER1, STANCENUMBER2, STANCENUMBER3 } }
 -- STANCENUMBER is a number from 1-3
 -- And follow through
 -- PLEASE NOTE THAT IF A GROUP DOES NOT HAVE A FORM SPECIFIED, THEY WILL JUST USE THE DEFAULT GMOD ANIMATIONS!
-wOS.Forms[ "Defensive" ] = { 
-	["user"] = { 1 }, 
-	["jedi"] = { 1, 2, 3 },
-}
-wOS.Forms[ "Aggressive" ] = { 
-	["user"] = { 1 }, 
-	["jedi"] = { 1, 2, 3 },
-}
-wOS.Forms[ "Agile" ] = { 
-	["VIP"] = { 1, 2, 3 },
-}
-wOS.Forms[ "Versatile" ] = { 
-	["VIP"] = { 1, 2, 3 },
-}
 
--- Same as above. STANCENUMBER is 1-3
-wOS.DualForms = {}
-wOS.DualForms[ "Arrogant" ] = {
-}
 
 --This is where you'd select the usergroups that should have access to ALL forms and stances!
-wOS.AllAccessForms = { "minivip", "owner", "superadmin", "headadmin", "administration", "admin", "noaccess", "vip", "event_maker", "commander", "user" }
+wOS.AllAccessForms = { "superadmin", "admin", "senioradmin", "headadmin", "founder", "seniormoderator", "moderator", "gamemaster", "staffmanager", "VIP", "user" }
 
 end )

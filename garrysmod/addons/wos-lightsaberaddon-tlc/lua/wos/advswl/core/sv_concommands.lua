@@ -26,10 +26,10 @@ wOS = wOS or {}
 
 concommand.Add( "rb655_select_force_wos", function( ply, cmd, args )
 	if ( !IsValid( ply ) || !IsValid( ply:GetActiveWeapon() ) || !ply:GetActiveWeapon().IsLightsaber || !tonumber( args[ 1 ]) ) then return end
-	if ply:GetNWBool( "IsMeditating", false ) then return end
+	if ply:GetNW2Bool( "IsMeditating", false ) then return end
 	local wep = ply:GetActiveWeapon()
 	local typ = math.Clamp( tonumber( args[ 1 ]), 1, #wep.ForcePowers )
-	wep:SetForceType( typ )
+	wep:ChangeForcePower( typ )
 end )
 
 concommand.Add( "wos_select_attacks", function( ply, cmd, args )
@@ -72,5 +72,11 @@ concommand.Add( "wos_select_attacks", function( ply, cmd, args )
 	end
 	
 	wep:SetStance( stance )
+	wep:SetForm( index )
 
+end )
+
+concommand.Add( "wos_openadminmenu", function( ply, cmd, args )
+	if not wOS.AdminSettings.CanAccessMenu[ ply:GetUserGroup() ] then return end
+	ply:SendLua( "wOS:OpenAdminMenu()" )
 end )

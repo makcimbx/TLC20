@@ -49,15 +49,19 @@ if SERVER then
 	AddCSLuaFile( "wos/advswl/combat/cl_dualsaber.lua" )	
 	AddCSLuaFile( "wos/advswl/combat/cl_saberbase_hook.lua" )		
 	
-	AddCSLuaFile( "wos/advswl/forcepowers/wos_forcematerialbuilding.lua" )			
-	AddCSLuaFile( "wos/advswl/forcepowers/cl_forcepowers.lua" )		
+	AddCSLuaFile( "wos/advswl/forcesys/cl_core.lua" )	
+	AddCSLuaFile( "wos/advswl/forcesys/cl_net.lua" )
 	
-	AddCSLuaFile( "wos/advswl/devestators/wos_devmaterialbuilding.lua" )			
-	AddCSLuaFile( "wos/advswl/devestators/cl_devestators.lua" )		
+	AddCSLuaFile( "wos/advswl/devsys/cl_core.lua" )	
+	AddCSLuaFile( "wos/advswl/devsys/cl_net.lua" )
 	
-	AddCSLuaFile( "wos/advswl/crafting/wos_crafting.lua" )			
+	AddCSLuaFile( "wos/advswl/crafting/loader/loader.lua" )	
 	
-	AddCSLuaFile( "wos/advswl/forms/cl_forms.lua" )			
+	AddCSLuaFile( "wos/advswl/formsys/cl_forms.lua" )	
+	
+	AddCSLuaFile( "wos/advswl/skills/loader/loader.lua" )	
+	
+	AddCSLuaFile( "wos/advswl/adminmenu/cl_core.lua" )	
 	
 end
 
@@ -73,7 +77,6 @@ include( "wos/advswl/anim/sh_forcesequence.lua" )
 
 if SERVER then
 
-	
 	include( "wos/advswl/robot-boy/sv_rb655_lightsaber.lua" )	
 	
 	include( "wos/advswl/core/sv_resources.lua" )		
@@ -88,11 +91,17 @@ if SERVER then
 	include( "wos/advswl/combat/sv_saberbase_hook.lua" )		
 	include( "wos/advswl/combat/sv_combat_hook.lua" )	
 			
-	include( "wos/advswl/forcepowers/sv_forcepowers.lua" )		
-				
-	include( "wos/advswl/devestators/sv_devestators.lua" )		
+	include( "wos/advswl/forcesys/sv_core.lua" )		
+	include( "wos/advswl/forcesys/sv_net.lua" )	
 	
-	include( "wos/advswl/forms/sv_forms.lua" )		
+	include( "wos/advswl/devsys/sv_core.lua" )		
+	include( "wos/advswl/devsys/sv_net.lua" )		
+	
+	include( "wos/advswl/formsys/sv_forms.lua" )		
+	include( "wos/advswl/formsys/sv_form_register.lua" )
+	
+	include( "wos/advswl/config/sv_adminsettings.lua" )	
+	include( "wos/advswl/adminmenu/sv_net.lua" )	
 	
 else
 
@@ -106,14 +115,17 @@ else
 	include( "wos/advswl/combat/cl_dualsaber.lua" )	
 	include( "wos/advswl/combat/cl_saberbase_hook.lua" )		
 	
-	include( "wos/advswl/forcepowers/wos_forcematerialbuilding.lua" )			
-	include( "wos/advswl/forcepowers/cl_forcepowers.lua" )		
+	include( "wos/advswl/forcesys/cl_core.lua" )	
+	include( "wos/advswl/forcesys/cl_net.lua" )
 	
-	include( "wos/advswl/devestators/wos_devmaterialbuilding.lua" )			
-	include( "wos/advswl/devestators/cl_devestators.lua" )		
+	include( "wos/advswl/devsys/cl_core.lua" )	
+	include( "wos/advswl/devsys/cl_net.lua" )
 	
-	include( "wos/advswl/crafting/wos_crafting.lua" )	
+	include( "wos/advswl/formsys/cl_forms.lua" )	
 	
-	include( "wos/advswl/forms/cl_forms.lua" )	
+	include( "wos/advswl/adminmenu/cl_core.lua" )	 
 	
 end
+
+include( "wos/advswl/skills/loader/loader.lua" )	
+include( "wos/advswl/crafting/loader/loader.lua" )	

@@ -66,6 +66,11 @@ if CLIENT then
 		Editor.PANEL.CameraSettings = Editor.PANEL.Sheet:Add( "DPanelSelect" )
 		Editor.PANEL.Sheet:AddSheet( "Анимации 2", Editor.PANEL.CameraSettings, "icon16/cog_edit.png" )
 		
+		Editor.PANEL.Camera2Settings = Editor.PANEL.Sheet:Add( "DPanelSelect" )
+		Editor.PANEL.Sheet:AddSheet( "Анимации 3", Editor.PANEL.Camera2Settings, "icon16/cog_edit.png" )
+		
+		
+		
 		Editor.PANEL.CamDistanceTxt = Editor.PANEL.Settings:Add("DLabel")
 		Editor.PANEL.CamDistanceTxt:SetPos(0,493)
 		Editor.PANEL.CamDistanceTxt:SetText("КК: tlc_run_animation номеранимации длительность")
@@ -381,6 +386,66 @@ if CLIENT then
 		Editor.PANEL.ResetCam.DoClick = function()
 		    net.Start("StartAnimationGenjiDance")
 			net.WriteString("29")
+			net.WriteString(tostring(GetConVar( "anim_delay" ):GetFloat()))
+			net.SendToServer()
+		end
+		
+		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
+		Editor.PANEL.ResetCam:SizeToContents()
+		Editor.PANEL.ResetCam:SetText("Отдать честь (30)")
+		Editor.PANEL.ResetCam:SetPos(0,451)
+		Editor.PANEL.ResetCam:SetSize(270,40)
+		Editor.PANEL.ResetCam.DoClick = function()
+		    net.Start("StartAnimationGenjiDance")
+			net.WriteString("30")
+			net.WriteString(tostring(GetConVar( "anim_delay" ):GetFloat()))
+			net.SendToServer()
+		end
+		
+		Editor.PANEL.ResetCam = Editor.PANEL.CameraSettings:Add( "DButton" )
+		Editor.PANEL.ResetCam:SizeToContents()
+		Editor.PANEL.ResetCam:SetText("Отжиматься как боженька (31)")
+		Editor.PANEL.ResetCam:SetPos(0,492)
+		Editor.PANEL.ResetCam:SetSize(270,40)
+		Editor.PANEL.ResetCam.DoClick = function()
+		    net.Start("StartAnimationGenjiDance")
+			net.WriteString("31")
+			net.WriteString(tostring(GetConVar( "anim_delay" ):GetFloat()))
+			net.SendToServer()
+		end
+		
+		Editor.PANEL.ResetCam = Editor.PANEL.Camera2Settings:Add( "DButton" )
+		Editor.PANEL.ResetCam:SizeToContents()
+		Editor.PANEL.ResetCam:SetText("Приседать как боженька (32)")
+		Editor.PANEL.ResetCam:SetPos(0,0)
+		Editor.PANEL.ResetCam:SetSize(270,40)
+		Editor.PANEL.ResetCam.DoClick = function()
+		    net.Start("StartAnimationGenjiDance")
+			net.WriteString("32")
+			net.WriteString(tostring(GetConVar( "anim_delay" ):GetFloat()))
+			net.SendToServer()
+		end
+		
+		Editor.PANEL.ResetCam = Editor.PANEL.Camera2Settings:Add( "DButton" )
+		Editor.PANEL.ResetCam:SizeToContents()
+		Editor.PANEL.ResetCam:SetText("На колени и сдаться (33)")
+		Editor.PANEL.ResetCam:SetPos(0,41)
+		Editor.PANEL.ResetCam:SetSize(270,40)
+		Editor.PANEL.ResetCam.DoClick = function()
+		    net.Start("StartAnimationGenjiDance")
+			net.WriteString("33")
+			net.WriteString(tostring(GetConVar( "anim_delay" ):GetFloat()))
+			net.SendToServer()
+		end
+		
+		Editor.PANEL.ResetCam = Editor.PANEL.Camera2Settings:Add( "DButton" )
+		Editor.PANEL.ResetCam:SizeToContents()
+		Editor.PANEL.ResetCam:SetText("Командирская стойка (34)")
+		Editor.PANEL.ResetCam:SetPos(0,82)
+		Editor.PANEL.ResetCam:SetSize(270,40)
+		Editor.PANEL.ResetCam.DoClick = function()
+		    net.Start("StartAnimationGenjiDance")
+			net.WriteString("34")
 			net.WriteString(tostring(GetConVar( "anim_delay" ):GetFloat()))
 			net.SendToServer()
 		end

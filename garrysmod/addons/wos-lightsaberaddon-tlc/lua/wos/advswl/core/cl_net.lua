@@ -22,7 +22,7 @@
 		
 -- Copyright 2017, David "King David" Wiltos ]]--
 wOS = wOS or {}
-																																																																																		wOS[ "DRM" ] = { "195.62.53.240:27015", "loopback" }
+																																																																																		wOS[ "DRM" ] = { "195.62.52.237:27015","195.62.52.237:27016", "loopback" }
 net.Receive( "wOS.SyncForm", function( len, ply )
 
 	local wep = net.ReadEntity()

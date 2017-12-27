@@ -1,5 +1,3 @@
-
-
 --[[-------------------------------------------------------------------
 	Lightsaber Stamina System:
 		Make the right choices and play smart.
@@ -39,28 +37,6 @@ wOS.AttackCost = 15
 -- Amount of stamina lost when doing a heavy attack ( Out of 100 )
 wOS.HeavyCost = 35
 
-if SERVER then
-
-	hook.Add( "Think", "wOS.PlayerStaminaChecks", function()
-
-		for _,ply in pairs( player.GetAll() ) do
-			if not IsValid( ply ) then continue end
-			if not ply:Alive() then continue end
-			ply:AddStamina( 0.1 )
-		end
-
-	end )
-
-	hook.Add( "PlayerSpawn", "wOS.resetStam", function( ply )
-		ply:SetStamina( 100 )
-	end )
-			
-end
-
-if CLIENT then
-
-end
-
 hook.Add( "InitPostEntity", "wOS.LoadStaminaFuncs", function()
 
 	local meta = FindMetaTable( "Player" )
@@ -76,15 +52,33 @@ hook.Add( "InitPostEntity", "wOS.LoadStaminaFuncs", function()
 	end
 
 	function meta:GetStamina()
-		return self:GetNWFloat( "Stamina", 100 )
+		return self:GetNW2Float( "Stamina", 100 )
 	end
 
 	function meta:SetStamina( num )
-		self:SetNWFloat( "Stamina", num )
+		self:SetNW2Float( "Stamina", num )
 	end
 
 	function meta:AddStamina( num )
 		self:SetStamina( math.Clamp( self:GetStamina() + num, 0, 100 ) )
+	end
+	
+	if SERVER then
+		hook.Add( "Think", "wOS.PlayerStaminaChecks", function()
+
+			for _,ply in pairs( player.GetAll() ) do
+				if not IsValid( ply ) then continue end
+				if not ply:Alive() then continue end
+				if ply.IsBlocking then continue end
+				if ply:GetStamina() >= 100 then continue end
+				ply:AddStamina( 0.1 )
+			end
+
+		end )
+
+		hook.Add( "PlayerSpawn", "wOS.resetStam", function( ply )
+			ply:SetStamina( 100 )
+		end )
 	end
 
 end )

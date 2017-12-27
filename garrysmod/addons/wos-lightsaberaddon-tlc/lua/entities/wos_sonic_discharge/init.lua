@@ -71,7 +71,7 @@ function ENT:Touch( ent )
 		ent:SetVelocity( v * -384 + Vector( 0, 0, 64 ) )
 	end
 	
-	ent:SetNWFloat( "wOS.SonicTime", CurTime() + 4 )
+	ent:SetNW2Float( "wOS.SonicTime", CurTime() + 4 )
 	
 end 
 

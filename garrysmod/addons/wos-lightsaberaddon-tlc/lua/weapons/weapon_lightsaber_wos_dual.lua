@@ -54,7 +54,7 @@ SWEP.Class = "weapon_lightsaber_wos_dual" --The file name of this swep
 SWEP.DualWielded = true --Should this be a dual wielded saber?
 SWEP.SaberDamage = 500 --How much damage the saber does when it's being swung
 SWEP.SaberBurnDamage = 25 -- How much damage the saber does when it's colliding with someone ( coming in contact with laser )
-SWEP.CanMoveWhileAttacking = false -- Can the user move while attacking
+SWEP.CanMoveWhileAttacking = true -- Can the user move while attacking
 SWEP.MaxForce = 100 --The maximum amount of force in the meter
 SWEP.RegenSpeed = 1 --The MULTIPLIER for the regen speed. Half speed = 0.5, Double speed = 2, etc.
 SWEP.CanKnockback = true --Should this saber be able to push people back when they get hit?

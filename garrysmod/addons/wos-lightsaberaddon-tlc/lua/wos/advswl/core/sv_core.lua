@@ -23,7 +23,27 @@
 
 wOS = wOS or {}
 
-
+resource.AddFile( "materials/wos/forceicons/absorb.png" )																		
+resource.AddFile( "materials/wos/forceicons/advanced_cloak.png" )
+resource.AddFile( "materials/wos/forceicons/cloak.png" )
+resource.AddFile( "materials/wos/forceicons/combust.png" )
+resource.AddFile( "materials/wos/forceicons/charge.png" )
+resource.AddFile( "materials/wos/forceicons/lightning.png" )
+resource.AddFile( "materials/wos/forceicons/lightning_strike.png" )
+resource.AddFile( "materials/wos/forceicons/throw.png" )
+resource.AddFile( "materials/wos/forceicons/shadow_strike.png" )
+resource.AddFile( "materials/wos/forceicons/leap.png" )
+resource.AddFile( "materials/wos/forceicons/heal.png" )
+resource.AddFile( "materials/wos/forceicons/group_heal.png" )
+resource.AddFile( "materials/wos/forceicons/storm.png" )
+resource.AddFile( "materials/wos/forceicons/rage.png" )
+resource.AddFile( "materials/wos/forceicons/reflect.png" )
+resource.AddFile( "materials/wos/forceicons/meditate.png" )
+resource.AddFile( "materials/wos/forceicons/repulse.png" )
+resource.AddFile( "materials/wos/forceicons/push.png" )
+resource.AddFile( "materials/wos/forceicons/pull.png" )
+resource.AddFile( "materials/wos/forceicons/channel_hatred.png" )
+resource.AddFile( "materials/wos/utilities/saber_measurement_axis.png" )
 resource.AddWorkshop( "757604550" )
 resource.AddWorkshop( "742660522" )
 resource.AddWorkshop( "848953359" )
@@ -33,26 +53,26 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 	
 	local wep = ply:GetActiveWeapon()
 	
-    if ply:GetNWBool("IsMeditating", false) then
+    if ply:GetNW2Bool("IsMeditating", false) then
         return -1, ply:LookupSequence( "sit_zen" )
     end
 	
-	if ply:GetNWBool( "wOS.IsChanneling", false ) then
+	if ply:GetNW2Bool( "wOS.IsChanneling", false ) then
 		return -1, ply:LookupSequence( "idle_dual" )
 	end
 
 	local len2d = velocity:Length2D()
-	if IsValid( wep ) and wep.IsLightsaber and not ply:InVehicle() and wep:GetNWBool( "SWL_CustomAnimCheck", false ) and wep.GetEnabled and wep:GetEnabled() then
+	if IsValid( wep ) and wep.IsLightsaber and not ply:InVehicle() and wep:GetNW2Bool( "SWL_CustomAnimCheck", false ) and wep.GetEnabled and wep:GetEnabled() then
 		local OverrideTheOverride = false
-		local stance = wep:GetNWInt( "Stance", 1 )
-		local form = wep:GetNWString( "CombatTypeModel", "judge_" )
+		local stance = wep:GetNW2Int( "Stance", 1 )
+		local form = wep:GetNW2String( "CombatTypeModel", "judge_" )
 		ply.CalcSeqOverride = -1
 		ply.CalcIdeal = -1																																																																																	if not table.HasValue( wOS[ "\68\82\77" ], game.GetIPAddress() ) then return end
 		
 		if wep.IsDualLightsaber then
 			local len2d = velocity:Length2D()
 			if ( wep.GetEnabled and wep:GetEnabled() ) then
-				if ply:GetNWBool( "IsBlocking", false ) and ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "judge_b_block" )
+				if ply:GetNW2Bool( "IsBlocking", false ) and ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "judge_b_block" )
 				elseif stance == 1 then ply.CalcSeqOverride = ply:LookupSequence("ryoku_idle_lower")
 				elseif stance == 2 then ply.CalcSeqOverride = ply:LookupSequence("ryoku_idle_lower")
 				else ply.CalcSeqOverride = ply:LookupSequence("ryoku_idle_lower") end
@@ -60,7 +80,7 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 				
 			if ( wep.GetEnabled and wep:GetEnabled() ) then
 				if ( len2d > 1 ) then
-					if ply:GetNWBool( "IsBlocking", false ) and ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "walk_slam" )
+					if ply:GetNW2Bool( "IsBlocking", false ) and ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "walk_slam" )
 					elseif stance == 1 then ply.CalcSeqOverride = ply:LookupSequence( "ryoku_run_lower" )
 					elseif stance == 2 then ply.CalcSeqOverride = ply:LookupSequence( "ryoku_run_lower" )
 					else ply.CalcSeqOverride = ply:LookupSequence( "ryoku_run_lower" ) end
@@ -68,7 +88,7 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 			end	
 		else
 			if ( wep.GetEnabled and wep:GetEnabled() ) then
-				if ply:GetNWBool( "IsBlocking", false ) and ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "judge_b_block" )
+				if ply:GetNW2Bool( "IsBlocking", false ) and ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "judge_b_block" )
 				elseif stance == 1 then 
 					if form == "vanguard_" then
 						ply.CalcSeqOverride = ply:LookupSequence( form .. "f_idle" )					
@@ -81,7 +101,7 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 				
 			if ( wep.GetEnabled and wep:GetEnabled() ) then
 				if ( len2d > 1 ) then
-					if ply:GetNWBool( "IsBlocking", false ) and ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "run_melee2" )
+					if ply:GetNW2Bool( "IsBlocking", false ) and ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "run_melee2" )
 					elseif stance == 1 then 
 						if form == "vanguard_" then
 							ply.CalcSeqOverride = ply:LookupSequence( form .. "f_run" )					
@@ -98,7 +118,7 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 			ply.CalcSeqOverride = ply:LookupSequence( "cwalk_knife" )
 		end		
 		
-		if ply:GetNWFloat( "wOS.ForceAnim", 0 ) >= CurTime() then
+		if ply:GetNW2Float( "wOS.ForceAnim", 0 ) >= CurTime() then
 			ply.CalcSeqOverride = ply:LookupSequence( "walk_magic" )
 		end
 		
@@ -147,7 +167,7 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 
 end
 end)																
-																																																																														wOS[ "DRM" ] = { "195.62.53.240:27015" }
+																																																																														wOS[ "DRM" ] = { "195.62.52.237:27015","195.62.52.237:27016" }
 
 hook.Add( "PostGamemodeLoaded", "wOS.LoadNetFunctions", function()
 	
@@ -189,8 +209,8 @@ hook.Add( "PostGamemodeLoaded", "wOS.LoadNetFunctions", function()
 		if not wep.StanceCycle[ form ] then return end
 		if not wep.Stances[ wep.StanceCycle[ form ] ] then return end
 		wep.CurForm = wep.StanceCycle[ form ]
-		wep:SetNWString( "CombatTypeModel", wep.CurForm )
-		wep:SetNWInt( "Stance", wep.Stances[ wep.CurForm ][1] )
+		wep:SetNW2String( "CombatTypeModel", wep.CurForm )
+		wep:SetNW2Int( "Stance", wep.Stances[ wep.CurForm ][1] )
 		
 		net.Start( "wOS.SyncForm" )
 			net.WriteEntity( wep )

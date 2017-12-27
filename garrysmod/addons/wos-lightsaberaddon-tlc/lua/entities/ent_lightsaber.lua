@@ -101,7 +101,7 @@ end
 
 function ENT:OnDisabled( bRemove )
 	if ( CLIENT ) then
-		if ( bRemove ) then rb655_SaberClean( self:EntIndex() ) end
+		if ( bRemove ) then rb655_SaberClean_wos( self:EntIndex() ) end
 		return
 	end
 
@@ -168,21 +168,21 @@ function ENT:Draw()
 		if ( bladeNum && self:LookupAttachment( "blade" .. bladeNum ) > 0 ) then
 			blades = blades + 1
 			local pos, dir = self:GetSaberPosAng( bladeNum )
-			rb655_RenderBlade( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:WaterLevel() > 2, false, blades )
+			rb655_RenderBlade_wos( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:WaterLevel() > 2, false, blades )
 			bladesFound = true
 		end
 
 		if ( quillonNum && self:LookupAttachment( "quillon" .. quillonNum ) > 0 ) then
 			blades = blades + 1
 			local pos, dir = self:GetSaberPosAng( quillonNum, true )
-			rb655_RenderBlade( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:WaterLevel() > 2, true, blades )
+			rb655_RenderBlade_wos( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:WaterLevel() > 2, true, blades )
 		end
 
 	end
 
 	if ( !bladesFound ) then
 		local pos, dir = self:GetSaberPosAng()
-		rb655_RenderBlade( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:WaterLevel() > 2 )
+		rb655_RenderBlade_wos( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:WaterLevel() > 2 )
 	end
 
 end
@@ -264,8 +264,8 @@ function ENT:BladeThink( startpos, dir )
 	} )
 
 	if ( trace.Hit ) then
-		rb655_DrawHit( trace.HitPos, trace.HitNormal )
-		rb655_LS_DoDamage( trace, self )
+		rb655_DrawHit_wos( trace.HitPos, trace.HitNormal )
+		rb655_LS_DoDamage_wos( trace, self )
 	end
 
 	return trace.Hit

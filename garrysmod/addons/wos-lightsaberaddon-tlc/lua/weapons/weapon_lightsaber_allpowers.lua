@@ -15,12 +15,12 @@
   | |  __/ (__| | | | | | | (_) | | (_) | (_| | |  __/\__ \
   |_|\___|\___|_| |_|_| |_|\___/|_|\___/ \__, |_|\___||___/
                                          |___/             
--------------------------------------------------------------------]]--[[
+----------------------------- Copyright 2017, David "King David" Wiltos ]]--[[
 							  
 	Lua Developer: King David
 	Contact: http://steamcommunity.com/groups/wiltostech
 		
-----------------------------------------]]--
+-- Copyright 2017, David "King David" Wiltos ]]--
 
 AddCSLuaFile()
 
@@ -50,7 +50,7 @@ SWEP.Secondary.Automatic = true
 SWEP.Secondary.Ammo = "none"
 
 ------------------------------------------------------------THINGS YOU WILL EDIT ARE BELOW HERE-------------------------------------------------------------------------
-SWEP.PrintName = "Jedi Master Lightsaber" --Name of the lightsaber
+SWEP.PrintName = "Force Master Saber" --Name of the lightsaber
 SWEP.Class = "weapon_lightsaber_allpowers" --The file name of this swep
 SWEP.DualWielded = false --Should this be a dual wielded saber?
 SWEP.CanMoveWhileAttacking = false -- Can the user move while attacking
@@ -59,9 +59,11 @@ SWEP.SaberBurnDamage = 25 -- How much damage the saber does when it's colliding 
 SWEP.MaxForce = 100 --The maximum amount of force in the meter
 SWEP.RegenSpeed = 1 --The MULTIPLIER for the regen speed. Half speed = 0.5, Double speed = 2, etc.
 SWEP.CanKnockback = true --Should this saber be able to push people back when they get hit?
-SWEP.ForcePowerList = { "Force Leap", "Force Absorb", "Force Heal", "Group Heal", "Cloak", "Advanced Cloak", "Charge", "Force Reflect", "Saber Throw", "Force Repulse", "Force Push", "Force Pull", "Meditate" } 
+SWEP.ForcePowerList = { "Force Leap", "Force Absorb", "Force Heal", "Group Heal", "Cloak", "Advanced Cloak", "Charge", "Force Lightning", "Shadow Strike", "Saber Throw", "Force Repulse", "Force Push", "Force Pull", "Slash", "Channel Hatred", "Kyber Slam", "Lightning Coil" } 
 --Force powers you want the saber to have ( REMEMBER TO PUT A COMMA AFTER EACH ONE, AND COPY THE TITLE EXACTLY AS IT'S LISTED )
 --For a list of options, just look at the keys in autorun/client/wos_forcematerialbuilding.lua
+
+SWEP.DevestatorList = { "Kyber Slam", "Lightning Coil", "Sonic Discharge" } 
 
 --Use these options to overwrite the player's commands
 SWEP.UseHilt = false -- Model path of the hilt
@@ -80,6 +82,24 @@ SWEP.UseSecLength = false
 SWEP.UseSecWidth = false
 SWEP.UseSecColor = false
 SWEP.UseSecDarkInner = false
+
+SWEP.CustomSettings = 
+{
+	Corrupted = true,
+	Unstable = false,
+}
+
+--[[ Use this to overwrite the ULX Forms/Stances for this particular swep ( [ "FORMNAME" ] = { STANCENUM1, STANCENUM2, STANCENUM3 } )
+	Example:
+	SWEP.UseForms = {
+	["Aggressive"] = { 1, 3 }, 
+	["Defensive"] = { 2 }, 
+}
+]]--
+
+SWEP.UseForms = {
+	["Defensive"] = { 1, 2, 3 }, 
+}
 
 -----------------------------------------------------------END OF EDIT----------------------------------------------------------------
 

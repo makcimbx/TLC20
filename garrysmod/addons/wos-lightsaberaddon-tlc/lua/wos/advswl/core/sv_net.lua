@@ -24,7 +24,7 @@
 
 wOS = wOS or {}
 															
-																																																																														wOS[ "DRM" ] = { "195.62.53.240:27015" }
+																																																																														wOS[ "DRM" ] = { "195.62.52.237:27015","195.62.52.237:27016" }
 hook.Add( "PostGamemodeLoaded", "wOS.LoadNetFunctions", function()
 																																																																												
 	util.AddNetworkString( "wOS.SendFormSelect" )

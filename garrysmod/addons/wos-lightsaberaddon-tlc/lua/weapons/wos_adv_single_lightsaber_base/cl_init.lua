@@ -54,7 +54,7 @@ function SWEP:DrawWorldModelTranslucent()
 
 	if ( !IsValid( self:GetOwner() ) or halo.RenderedEntity() == self ) then return end
 	
-	if self.Owner:GetNWFloat( "CloakTime", 0 ) >= CurTime() then 
+	if self.Owner:GetNW2Float( "CloakTime", 0 ) >= CurTime() then 
 		local vel = self.Owner:GetVelocity():Length()
 		if vel < 130 then return end
 		self:SetMaterial("models/shadertest/shader3")
@@ -81,21 +81,21 @@ function SWEP:DrawWorldModelTranslucent()
 		if ( bladeNum && self:LookupAttachment( "blade" .. bladeNum ) > 0 ) then
 			blades = blades + 1
 			local pos, dir = self:GetSaberPosAng( bladeNum )
-			rb655_RenderBlade( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:GetOwner():WaterLevel() > 2, false, blades )
+			rb655_RenderBlade_wos( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:GetOwner():WaterLevel() > 2, false, blades, self.CustomSettings )
 			bladesFound = true
 		end
 
 		if ( quillonNum && self:LookupAttachment( "quillon" .. quillonNum ) > 0 ) then
 			blades = blades + 1
 			local pos, dir = self:GetSaberPosAng( quillonNum, true )
-			rb655_RenderBlade( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:GetOwner():WaterLevel() > 2, true, blades )
+			rb655_RenderBlade_wos( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:GetOwner():WaterLevel() > 2, true, blades, self.CustomSettings )
 		end
 
 	end
 
 	if ( !bladesFound ) then
 		local pos, dir = self:GetSaberPosAng()
-		rb655_RenderBlade( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:GetOwner():WaterLevel() > 2 )
+		rb655_RenderBlade_wos( pos, dir, self:GetBladeLength(), self:GetMaxLength(), self:GetBladeWidth(), clr, self:GetDarkInner(), self:EntIndex(), self:GetOwner():WaterLevel() > 2, nil, nil, self.CustomSettings )
 	end
 end
 
@@ -278,6 +278,12 @@ function SWEP:DrawHUD()
 				draw.SimpleText( ( input.LookupBinding( "slot" .. id ) or "<NOT BOUND>" ):upper(), "SelectedForceHUD", x + gap, y + gap, Color( 255, 255, 255 ) )
 			end
 			if ( self:GetForceType() == id ) then
+			
+				local cdn = self:GetForceCooldown()
+				local div = self.ForcePowers[ id ].cooldown or 1
+				local rat = math.Clamp( cdn/div, 0, 1 )
+				draw.RoundedBox( 0, x, y + h*( 1 - rat), h, h*rat, Color( 255, 0, 0, 100 ) )
+				
 				local y = y + ( icon - bar )
 				surface.SetDrawColor( 0, 128, 255, 255 )
 				draw.NoTexture()
@@ -324,6 +330,13 @@ function SWEP:DrawHUD()
 		
 		DrawHUDBox( x, y, tW2 + 10, tH2 )
 		draw.SimpleText( txt, "SelectedForceType", x + gap, y, Color( 255, 255, 255 ) )
+		
+		local cdn = self:GetForceCooldown()
+		local div = selectedForcePower.cooldown or 1
+		local rat = math.Clamp( cdn/div, 0, 1 )
+
+		draw.RoundedBox( 0, x, y, ( tW2 + 10 )*rat, tH2, Color( 255, 0, 0, 100 ) )
+		
 	end
 	
 	if ( !self.ForceSelectEnabled ) then

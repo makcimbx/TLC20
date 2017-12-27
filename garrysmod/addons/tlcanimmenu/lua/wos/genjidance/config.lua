@@ -48,3 +48,10 @@ wOS.RollMod.Animations[25] = "death_dance_loop"
 wOS.RollMod.Animations[27] = "kungfu_standing_kick01"
 wOS.RollMod.Animations[28] = "aoc_peasant_idle5"
 wOS.RollMod.Animations[29] = "tlc_animation_russiandance"
+wOS.RollMod.Animations[30] = "tlc_animation_chest"
+wOS.RollMod.Animations[31] = "tlc_animation_otjim"
+wOS.RollMod.Animations[32] = "tlc_animation_prised"
+wOS.RollMod.Animations[33] = "tlc_animation_sdatsya"
+wOS.RollMod.Animations[34] = "tlc_animation_stoika"
+
+

@@ -70,6 +70,11 @@ local DCalledTime = 0
 
 hook.Add( "CalcView", "wOS.CameraModeHooks", function( ply, pos, ang )
 	if ( !IsValid( ply ) or !ply:Alive() or ply:InVehicle() or ply:GetViewEntity() != ply ) then return end
+	
+	if wOS.CraftingMenu then
+		if wOS.CraftingMenu:IsVisible() then return end
+	end
+	
 	if ( !LocalPlayer().GetActiveWeapon or !IsValid( LocalPlayer():GetActiveWeapon() ) or !LocalPlayer():GetActiveWeapon().IsLightsaber ) then return end
 
 	if LocalPlayer():GetActiveWeapon().FirstPerson then 
@@ -86,8 +91,8 @@ hook.Add( "CalcView", "wOS.CameraModeHooks", function( ply, pos, ang )
 			fov = 100, 
 			drawviewer = true
 		}
-	elseif LocalPlayer():GetNWFloat( "wOS.DevestatorTime", 0 ) >= CurTime() then
-		local dtime = LocalPlayer():GetNWFloat( "wOS.DevestatorTime", 0 )
+	elseif LocalPlayer():GetNW2Float( "wOS.DevestatorTime", 0 ) >= CurTime() then
+		local dtime = LocalPlayer():GetNW2Float( "wOS.DevestatorTime", 0 )
 		if !LocalPlayer().LastDevestator or LocalPlayer().LastDevestator < CurTime() then
 			LocalPlayer().LastDevestator = dtime + 0.2
 			DCalledtime = CurTime()
@@ -135,7 +140,7 @@ hook.Add( "CalcView", "wOS.CameraModeHooks", function( ply, pos, ang )
 end )
 
 hook.Add( "CreateMove", "rb655_lightsaber_no_fall_damage_wos", function( cmd/* ply, mv, cmd*/ )
-	if ( CurTime() - LocalPlayer():GetNWFloat( "SWL_FeatherFall", CurTime() - 2 ) < 0.25 ) then
+	if ( CurTime() - LocalPlayer():GetNW2Float( "wOS.SaberAttackDelay", CurTime() - 2 ) < 0.25 ) then
 		cmd:ClearButtons() -- No attacking, we are busy
 		cmd:ClearMovement() -- No moving, we are busy
 	end
@@ -170,13 +175,13 @@ hook.Add( "PreDrawHalos", "wOS.ForceHolograms", function()
 	for _,ply in pairs( player.GetAll() ) do
 		if not IsValid( ply ) then continue end
 		if not ply:Alive() then continue end
-		if ply:GetNWFloat( "ReflectTime", 0 ) >= CurTime() then
+		if ply:GetNW2Float( "ReflectTime", 0 ) >= CurTime() then
 			table.insert( reflectors, ply )
 		end
-		if ply:GetNWFloat( "RageTime", 0 ) >= CurTime() then
+		if ply:GetNW2Float( "RageTime", 0 ) >= CurTime() then
 			table.insert( ragers, ply )
 		end
-		if ply:GetNWBool( "wOS.IsChanneling", false ) then
+		if ply:GetNW2Bool( "wOS.IsChanneling", false ) then
 			table.insert( channelers, ply )
 		end
 	end
@@ -191,7 +196,7 @@ hook.Add( "PostPlayerDraw", "wOS.Lightsaber.HolsterDrawing", function( ply )
 	if ( !ply.LightsaberMDL ) then
 		ply.LightsaberMDL = {}
 	end
-	if ply:GetNWFloat( "CloakTime", 0 ) >= CurTime() then return end
+	if ply:GetNW2Float( "CloakTime", 0 ) >= CurTime() then return end
 	
 	local pi = -30
 	local radian = 0
@@ -263,7 +268,7 @@ ColorModify[ "$pp_colour_mulg" ] 		= 0
 ColorModify[ "$pp_colour_mulb" ] 		= 0
 
 hook.Add( "RenderScreenspaceEffects", "wOS.DisorientForEmerald", function()
-	if LocalPlayer():GetNWFloat( "wOS.SonicTime", 0 ) < CurTime() then return end
+	if LocalPlayer():GetNW2Float( "wOS.SonicTime", 0 ) < CurTime() then return end
 	
 	ColorModify[ "$pp_colour_brightness" ] 	= -0.4*math.cos( CurTime()*3 )
 	ColorModify[ "$pp_colour_contrast" ] 	= 3*math.sin( CurTime()*3 )

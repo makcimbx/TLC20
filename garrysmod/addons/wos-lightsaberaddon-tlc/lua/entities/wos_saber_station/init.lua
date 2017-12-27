@@ -16,8 +16,22 @@ function ENT:Initialize()
 end
 
 function ENT:Use( ply )
+
+	local saber_craft = table.Copy( wOS.DefaultPersonalSaber )
+	for typ, item in pairs( ply.PersonalSaberItems ) do
+		local data = wOS:GetItemData( item )
+		if not data then continue end
+		if not wOS:CanEquipItem( ply, data ) then continue end
+		data.OnEquip( saber_craft )
+	end	
 	
-	ply:SendLua( [[wOS:OpenSaberCrafting()]] )
+	net.Start( "wOS.Crafting.OpenCraftingMenu" )
+		net.WriteTable( ply.PersonalSaberItems )
+		net.WriteTable( ply.SecPersonalSaberItems )
+		net.WriteTable( saber_craft )
+		net.WriteTable( ply.SaberInventory )
+		net.WriteTable( ply.SaberMiscItems )
+	net.Send( ply )
 	
 end
 

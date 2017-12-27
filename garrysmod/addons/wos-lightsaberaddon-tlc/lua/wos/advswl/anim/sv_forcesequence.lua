@@ -31,16 +31,16 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 	
 	local wep = ply:GetActiveWeapon()
 	
-    if ply:GetNWBool("IsMeditating", false) then
+    if ply:GetNW2Bool("IsMeditating", false) then
         return -1, ply:LookupSequence( "sit_zen" )
     end
 	
-	if ply:GetNWBool( "wOS.IsChanneling", false ) then
+	if ply:GetNW2Bool( "wOS.IsChanneling", false ) then
 		return -1, ply:LookupSequence( "idle_dual" )
 	end
 
 	local len2d = velocity:Length2D()
-	if IsValid( wep ) and wep.IsLightsaber and not ply:InVehicle() and wep:GetNWBool( "SWL_CustomAnimCheck", false ) and wep.GetEnabled and wep:GetEnabled() then
+	if IsValid( wep ) and wep.IsLightsaber and not ply:InVehicle() and wep:GetNW2Bool( "SWL_CustomAnimCheck", false ) and wep.GetEnabled and wep:GetEnabled() then
 		local OverrideTheOverride = false
 		
 		local stance = wep:GetStance()
@@ -53,26 +53,26 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 			local formdata = wOS.Form.Duals[ form ][ stance ]
 			local len2d = velocity:Length2D()
 			if ( wep.GetEnabled and wep:GetEnabled() ) then
-				if ply:GetNWBool( "IsBlocking", false ) and ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "judge_b_block" )
+				if ply:GetNW2Bool( "IsBlocking", false ) and ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "judge_b_block" )
 				else ply.CalcSeqOverride = ply:LookupSequence( formdata[ "idle" ] ) end
 			end
 				
 			if ( wep.GetEnabled and wep:GetEnabled() ) then
 				if ( len2d > 1 ) then
-					if ply:GetNWBool( "IsBlocking", false ) and ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "walk_slam" )
+					if ply:GetNW2Bool( "IsBlocking", false ) and ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "walk_slam" )
 					else ply.CalcSeqOverride = ply:LookupSequence( formdata[ "run" ] ) end
 				end
 			end	
 		else
 			local formdata = wOS.Form.Singles[ form ][ stance ]
 			if ( wep.GetEnabled and wep:GetEnabled() ) then
-				if ply:GetNWBool( "IsBlocking", false ) and ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "judge_b_block" )
+				if ply:GetNW2Bool( "IsBlocking", false ) and ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "judge_b_block" )
 				else ply.CalcSeqOverride = ply:LookupSequence( formdata[ "idle" ] ) end 
 			end
 				
 			if ( wep.GetEnabled and wep:GetEnabled() ) then
 				if ( len2d > 1 ) then
-					if ply:GetNWBool( "IsBlocking", false ) and ply:GetNWFloat( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "run_melee2" )
+					if ply:GetNW2Bool( "IsBlocking", false ) and ply:GetNW2Float( "BlockTime", 0 ) >= CurTime() then ply.CalcSeqOverride = ply:LookupSequence( "run_melee2" )
 					else ply.CalcSeqOverride = ply:LookupSequence( formdata[ "run" ] ) end
 				end
 			end
@@ -82,7 +82,7 @@ function GAMEMODE:CalcMainActivity( ply, velocity )
 			ply.CalcSeqOverride = ply:LookupSequence( "cwalk_knife" )
 		end		
 		
-		if ply:GetNWFloat( "wOS.ForceAnim", 0 ) >= CurTime() then
+		if ply:GetNW2Float( "wOS.ForceAnim", 0 ) >= CurTime() then
 			ply.CalcSeqOverride = ply:LookupSequence( "walk_magic" )
 		end
 		

@@ -84,6 +84,7 @@ SWEP.FPCamTime = 0
 SWEP.BlockDrainRate = 0.1
 SWEP.DevestatorTime = 0
 SWEP.UltimateCooldown = 0
+SWEP.Cooldowns = {}
 
 -- We have NPC support, but it SUCKS
 list.Add( "NPCUsableWeapons", { class = "wos_adv_single_lightsaber_base", title = SWEP.PrintName } )
@@ -103,13 +104,23 @@ function SWEP:SelectTargets( num, dist )
 	if not dist then
 		dist = 512
 	end
-
-	--[[local tr = util.TraceLine( {
-		start = self.Owner:GetShootPos(),
-		endpos = self.Owner:GetShootPos() + self.Owner:GetAimVector() * dist,
-		filter = self.Owner
-	} )]]
-
+	
+	local selectedForcePower = self:GetActiveForcePowerType( self:GetForceType() )
+	if not selectedForcePower then return t end
+	if selectedForcePower.manualaim then
+		local tr = util.TraceLine({
+			start = self.Owner:GetShootPos(),
+			endpos = self.Owner:GetShootPos() + self.Owner:GetAimVector() * dist,
+			filter = self.Owner
+		})
+		
+		local ent = tr.Entity
+		if not IsValid( ent ) then return t end
+		if !ent:GetModel() or ent:GetModel() == "" or ent == self.Owner or ent:Health() < 1 then return t end
+		if ent:GetNW2Float( "CloakTime", 0 ) >= CurTime() then return t end
+		return { ent }
+	end
+	
 	local p = {}
 	for id, ply in pairs( ents.GetAll() ) do
 		if ( !ply:GetModel() or ply:GetModel() == "" or ply == self.Owner or ply:Health() < 1 ) then continue end
@@ -117,7 +128,7 @@ function SWEP:SelectTargets( num, dist )
 		if ( string.find( ply:GetModel() or "", "chunk" ) ) then continue end
 		if ( string.find( ply:GetModel() or "", "_shard" ) ) then continue end
 		if ( string.find( ply:GetModel() or "", "_splinters" ) ) then continue end
-		if ply:GetNWFloat( "CloakTime", 0 ) >= CurTime() then continue end
+		if ply:GetNW2Float( "CloakTime", 0 ) >= CurTime() then continue end
 		
 		local tr = util.TraceLine( {
 			start = self.Owner:GetShootPos(),
@@ -176,7 +187,7 @@ function SWEP:GetActiveDevestatorType( id )
 end
 
 function SWEP:OnRestore()
-	self.Owner:SetNWFloat( "SWL_FeatherFall", 0 )
+	self.Owner:SetNW2Float( "wOS.SaberAttackDelay", 0 )
 end
 
 function SWEP:SetNextAttack( delay )
@@ -208,6 +219,8 @@ function SWEP:SetupDataTables()
 	self:NetworkVar( "Float", 7, "DevEnergy" )
 	self:NetworkVar( "Float", 8, "FPCamTime" )
 	self:NetworkVar( "Float", 9, "Delay" )	
+	self:NetworkVar( "Float", 10, "BlockDrain" ) 
+	self:NetworkVar( "Float", 11, "ForceCooldown" )
 	
 	self:NetworkVar( "Bool", 0, "DarkInner" )
 	self:NetworkVar( "Bool", 1, "SecDarkInner" )
@@ -218,6 +231,7 @@ function SWEP:SetupDataTables()
 	self:NetworkVar( "Int", 2, "IncorrectPlayerModel" )
 	self:NetworkVar( "Int", 3, "Stance" )
 	self:NetworkVar( "Int", 4, "Form" )
+	self:NetworkVar( "Int", 5, "MaxForce" )
 	
 	self:NetworkVar( "Vector", 0, "CrystalColor" )
 	self:NetworkVar( "Vector", 1, "SecCrystalColor" )
@@ -231,77 +245,6 @@ function SWEP:SetupDataTables()
 	end
 	
 end
-
-function SWEP:LoadToolValues( ply )
-	
-	if self.LoadDelay >= CurTime() then return end
-	
-	self:SetMaxLength( math.Clamp( ply:GetInfoNum( "rb655_lightsaber_dual_bladel_single", 42 ), 32, 64 ) )
-	self:SetSecMaxLength( math.Clamp( ply:GetInfoNum( "rb655_lightsaber_dual_bladel", 42 ), 32, 64 ) )
-	self:SetCrystalColor( Vector( ply:GetInfo( "rb655_lightsaber_dual_red_single" ), ply:GetInfo( "rb655_lightsaber_dual_green_single" ), ply:GetInfo( "rb655_lightsaber_dual_blue_single" ) ) )
-	self:SetSecCrystalColor( Vector( ply:GetInfo( "rb655_lightsaber_dual_red" ), ply:GetInfo( "rb655_lightsaber_dual_green" ), ply:GetInfo( "rb655_lightsaber_dual_blue" ) ) )
-	self:SetDarkInner( ply:GetInfo( "rb655_lightsaber_dual_dark_single" ) == "1" )
-	self:SetSecDarkInner( ply:GetInfo( "rb655_lightsaber_dual_dark" ) == "1" )
-	self:SetWorldModel( ply:GetInfo( "rb655_lightsaber_dual_model_single" ) )
-	self:SetSecWorldModel( ply:GetInfo( "rb655_lightsaber_dual_model" ) )
-	self:SetBladeWidth( math.Clamp( ply:GetInfoNum( "rb655_lightsaber_dual_bladew_single", 2 ), 2, 4 ) )
-	self:SetSecBladeWidth( math.Clamp( ply:GetInfoNum( "rb655_lightsaber_dual_bladew", 2 ), 2, 4 ) )
-	
-	self.LoopSound = ply:GetInfo( "rb655_lightsaber_humsound" )
-	self.SwingSound = ply:GetInfo( "rb655_lightsaber_swingsound" )
-	self:SetOnSound( ply:GetInfo( "rb655_lightsaber_onsound" ) )
-	self:SetOffSound( ply:GetInfo( "rb655_lightsaber_offsound" ) )
-
-	if self.UseLength then
-		self:SetMaxLength( self.UseLength )
-	end
-	if self.UseColor then
-		self:SetCrystalColor( Vector( self.UseColor.r, self.UseColor.g, self.UseColor.b ) )
-	end
-	if self.UseDarkInner then
-		self:SetDarkInner( self.UseDarkInner == 1 )
-	end
-	if self.UseHilt then
-		self:SetWorldModel( self.UseHilt )
-	end
-	if self.UseWidth then
-		self:SetBladeWidth( self.UseWidth )
-	end
-	if self.UseLoopSound then
-		self.LoopSound = self.UseLoopSound
-	end
-	if self.UseSwingSound then
-		self.SwingSound = self.UseSwingSound
-	end
-	if self.UseOnSound then
-		self:SetOnSound( self.UseOnSound )
-	end
-	if self.UseOffSound then
-		self:SetOffSound( self.UseOffSound )
-	end
-	
-	if self.UseSecLength then
-		self:SetSecMaxLength( self.UseSecLength )
-	end
-	if self.UseSecColor then
-		self:SetSecCrystalColor( Vector( self.UseSecColor.r, self.UseSecColor.g, self.UseSecColor.b ) )
-	end
-	if self.UseSecDarkInner then
-		self:SetSecDarkInner( self.UseSecDarkInner == 1 )
-	end
-	if self.UseSecHilt then
-		self:SetSecWorldModel( self.UseSecHilt )
-	end
-	if self.UseSecWidth then
-		self:SetSecBladeWidth( self.UseSecWidth )
-	end
-	
-	self.LoadDelay = CurTime() + 0.5
-	
-	self.WorldModel = self:GetWorldModel()
-	
-end
-
 
 function SWEP:Initialize()
 	self.LoopSound = self.LoopSound or "lightsaber/saber_loop" .. math.random( 1, 8 ) .. ".wav"
@@ -552,20 +495,22 @@ end
 function SWEP:PrimaryAttack()
 	if ( !IsValid( self.Owner ) ) then return end
 	if self.Owner.IsBlocking then return end
-	if self.HeavyCharge then return end
+	if self.HeavyCharge then 
+		if self.HeavyCharge >= CurTime() then return end
+	end
 	if ( prone and self.Owner:IsProne() ) then self.Owner:SetAnimation( PLAYER_ATTACK1 ); self:SetNextAttack( 1.0 ); return end
-	if not self:GetNWBool( "SWL_CustomAnimCheck", false ) then self.Owner:SetAnimation( PLAYER_ATTACK1 ); self:SetNextAttack( 1.0 ); return end
+	if not self:GetNW2Bool( "SWL_CustomAnimCheck", false ) then self.Owner:SetAnimation( PLAYER_ATTACK1 ); self:SetNextAttack( 1.0 ); return end
 	
 	if self.Owner:KeyDown(IN_USE) and self:GetEnabled() then
 		if SERVER then
 			self:StanceUpdate()
 		end
-		self.CurStance = self:SetNWInt("Stance", self.CurStance )
+		self.CurStance = self:SetNW2Int("Stance", self.CurStance )
 		self:SetNextAttack( 0.1 )
 		return
 	end
-	self.CurStance = self:GetNWInt("Stance", 1 )	
-	self.CurForm = self:GetNWString("CombatTypeModel", "judge_" )	
+	self.CurStance = self:GetNW2Int("Stance", 1 )	
+	self.CurForm = self:GetNW2String("CombatTypeModel", "judge_" )	
 	if self:GetEnabled() then
 		if wOS.EnableStamina then
 			if not self.Owner:CanUseStamina( false ) then return end
@@ -600,22 +545,12 @@ function SWEP:SecondaryAttack()
 	
 	if self.HeavyCharge then return end
 	
-	if self.Owner:KeyDown(IN_USE) and self:GetEnabled() and self:GetNWBool( "SWL_CustomAnimCheck", false ) and !( prone and self.Owner:IsProne() ) then return end
-
-
-	if ( !IsValid( self.Owner ) or !self:GetActiveForcePowerType( self:GetForceType() ) ) then return end
-	if ( game.SinglePlayer() && SERVER ) then self:CallOnClient( "SecondaryAttack", "" ) end
-
-	local selectedForcePower = self:GetActiveForcePowerType( self:GetForceType() )
-	if ( !selectedForcePower ) then return end
-
-	local ret = hook.Run( "CanUseLightsaberForcePower", self.Owner, selectedForcePower.name )
-	if ( ret == false ) then return end
-
-	if ( selectedForcePower.action ) then
-		selectedForcePower.action( self )
-		if ( GetConVarNumber( "rb655_lightsaber_infinite" ) != 0 ) then self:SetForce( 100 ) end
+	if self.Owner:KeyDown(IN_USE) and self:GetEnabled() and self:GetNW2Bool( "SWL_CustomAnimCheck", false ) and !( prone and self.Owner:IsProne() ) then return end
+	
+	if SERVER then
+		self:HandleForcePower()
 	end
+
 end
 
 function SWEP:Reload()
@@ -630,9 +565,9 @@ function SWEP:Reload()
 				if self.FormPos > #self.Forms then
 					self.FormPos = 1
 				end
-				self:SetNWString( "CombatTypeModel", self.Forms[ self.FormPos ] )
+				self:SetNW2String( "CombatTypeModel", self.Forms[ self.FormPos ] )
 				self.StancePos = 1
-				self:SetNWInt( "Stance", self.Stances[ self:GetNWString( "CombatTypeModel", "judge_" ) ][self.StancePos] )
+				self:SetNW2Int( "Stance", self.Stances[ self:GetNW2String( "CombatTypeModel", "judge_" ) ][self.StancePos] )
 			end
 		end
 	end
@@ -662,7 +597,7 @@ function SWEP:GetTargetHoldType()
 	if ( self:GetWorldModel() == "models/weapons/starwars/w_maul_saber_staff_hilt.mdl" ) then return "knife" end
 	if ( self:LookupAttachment( "blade2" ) && self:LookupAttachment( "blade2" ) > 0 ) then return "knife" end
 
-	return "melee2"
+	return "knife"
 end
 
 -- --------------------------------------------------------- Drop / Deploy / Holster / Enable / Disable --------------------------------------------------------- --
@@ -687,7 +622,7 @@ end
 
 function SWEP:OnDisabled( bRemoved )
 	if ( CLIENT ) then
-		if ( bRemoved ) then rb655_SaberClean( self:EntIndex() ) end
+		rb655_SaberClean_wos( self:EntIndex() )
 		return true
 	end
 
@@ -699,6 +634,12 @@ function SWEP:OnDisabled( bRemoved )
 end
 
 function SWEP:OnEnabledOrDisabled( name, old, new )
+
+	if ( CLIENT ) then
+		rb655_SaberClean_wos( self:EntIndex() )
+	end
+
+
 	if ( old == new ) then return end
 
 	if ( new ) then
@@ -729,10 +670,8 @@ function SWEP:Deploy()
 	if SERVER and IsValid(ply) then
 		self:SetStandard()
 	end
-	self.CurStance = self:GetNWInt("Stance", 1 )
-	self.CurForm = self:GetNWString( "CombatTypeModel", "judge_" )
-	
-	self:LoadToolValues( ply )
+	self.CurStance = self:GetNW2Int("Stance", 1 )
+	self.CurForm = self:GetNW2String( "CombatTypeModel", "judge_" )
 
 	if ( self:GetEnabled() ) then 
 		self:OnEnabled( true ) 
@@ -752,7 +691,7 @@ end
 function SWEP:Holster()
 	if ( self:GetEnabled() ) then self:PlayWeaponSound( self:GetOffSound() ) end
 	self.Owner.IsBlocking = false
-	self.Owner:SetNWBool( "IsMeditating", false )
+	self.Owner:SetNW2Bool( "IsMeditating", false )
 	return self:OnDisabled( true )
 end
 
@@ -910,30 +849,24 @@ function SWEP:OnForceChanged( name, old, new )
 		self.NextForce = CurTime() + 4
 	end
 end
-
+SWEP.BlockCoolDown = 0
 function SWEP:Think()
 	self.WorldModel = self:GetWorldModel()
 	self:SetModel( self:GetWorldModel() )
 	
-	if self.Owner:KeyDown( IN_WALK ) and !self.Owner:KeyDown( IN_SPEED ) and ( ( wOS.EnableStamina and self.Owner:GetStamina() > 0 ) or self:GetForce() > 0 ) and self:GetEnabled() and !( prone and self.Owner:IsProne() ) then
-		self.Owner:SetNWBool( "IsBlocking", true )
-		self.Owner:SetNWFloat( "BlockTime", CurTime() + 0.4 )
+	if self.Owner:KeyDown( IN_WALK ) and !self.Owner:KeyDown( IN_SPEED ) and ( ( wOS.EnableStamina and self.Owner:GetStamina() > 1 ) or ( !wOS.EnableStamina and self:GetForce() > 1 ) ) and self:GetEnabled() and !( prone and self.Owner:IsProne() ) and self:GetNextPrimaryFire() < CurTime() then
+		self.Owner:SetNW2Bool( "IsBlocking", true )
+		self.Owner:SetNW2Float( "BlockTime", CurTime() + 0.4 )
 		if wOS.EnableStamina then
-			self.Owner:AddStamina( -0.2 )
+			self.Owner:AddStamina( -1*self:GetBlockDrain() )
 		else
-			self:SetForce( self:GetForce() - self.BlockDrainRate )
+			self:SetForce( self:GetForce() - self:GetBlockDrain() )
 		end
 		self.Owner.IsBlocking = true	
 	else
-		self.Owner:SetNWBool( "IsBlocking", false )
-		self.Owner.IsBlocking = false
-	end
-
-	local selectedForcePower = self:GetActiveForcePowerType( self:GetForceType() )
-	if ( selectedForcePower && selectedForcePower.think && !self.Owner:KeyDown( IN_USE ) ) then
-		local ret = hook.Run( "CanUseLightsaberForcePower", self.Owner, selectedForcePower.name )
-		if ( ret != false && selectedForcePower.think ) then
-			selectedForcePower.think( self )
+		self.Owner:SetNW2Bool( "IsBlocking", false )
+		if self.Owner.IsBlocking then
+			self.Owner.IsBlocking = false
 		end
 	end
 	
@@ -947,11 +880,11 @@ function SWEP:DrawHitEffects( trace, traceBack )
 	if ( self:GetBladeLength() <= 0 ) then return end
 
 	if ( trace.Hit ) then
-		rb655_DrawHit( trace.HitPos, trace.HitNormal )
+		rb655_DrawHit_wos( trace.HitPos, trace.HitNormal )
 	end
 
 	if ( traceBack && traceBack.Hit ) then
-		rb655_DrawHit( traceBack.HitPos, traceBack.HitNormal )
+		rb655_DrawHit_wos( traceBack.HitPos, traceBack.HitNormal )
 	end
 end
 

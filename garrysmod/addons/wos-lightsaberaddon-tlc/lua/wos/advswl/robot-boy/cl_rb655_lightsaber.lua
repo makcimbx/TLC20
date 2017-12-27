@@ -25,7 +25,7 @@ I can't possibly provide support for all the edits and I can't know what your ed
 
 -- game.AddDecal( "LSScorch", "effects/rb655_scorch" ) -- Why doesn't it work?
 
-function rb655_DrawHit( pos, dir )
+function rb655_DrawHit_wos( pos, dir )
 	local effectdata = EffectData()
 	effectdata:SetOrigin( pos )
 	effectdata:SetNormal( dir )

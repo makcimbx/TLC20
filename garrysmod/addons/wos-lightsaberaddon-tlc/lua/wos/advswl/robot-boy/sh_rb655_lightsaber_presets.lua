@@ -126,24 +126,27 @@ local HardLaserTrailInner = Material( "lightsaber/hard_light_trail_inner" )
 local HardLaserTrailEnd = Material( "lightsaber/hard_light_trail_end" )
 local HardLaserTrailEndInner = Material( "lightsaber/hard_light_trail_end_inner" )
 
+local CorruptedLaser = Material( "effects/stunstick" )
+local CorruptedLaserInner = Material( "models/effects/splodearc_sheet" )
+
 --[[local HardLaserTrailEnd = Material( "lightsaber/hard_light_trail" )
 local HardLaserTrailEndInner = Material( "lightsaber/hard_light_trail_inner" )]]
 
-local gOldBladePositions = {}
+local gOldBladePositions_wos = {}
 local gTrailLength = 1
 
-function rb655_RenderBlade( pos, dir, len, maxlen, width, color, black_inner, eid, underwater, quillon, bladeNum )
+function rb655_RenderBlade_wos( pos, dir, len, maxlen, width, color, black_inner, eid, underwater, quillon, bladeNum, settings )
 	--render.DrawLine( pos + dir * len*-2, pos + dir * len*2, color, true )
-
+	settings = settings or {}
 	quillon = quillon or false
 	bladeNum = bladeNum or 1
 
 	if ( quillon ) then
-		len = rb655_CalculateQuillonLength( len, maxlen )
-		maxlen = rb655_CalculateQuillonMaxLength( maxlen )
+		len = rb655_CalculateQuillonLength_wos( len, maxlen )
+		maxlen = rb655_SaberClean_wos( maxlen )
 	end
 
-	if ( len <= 0 ) then rb655_SaberClean( eid, bladeNum ) return end
+	if ( len <= 0 ) then rb655_SaberClean_wos( eid, bladeNum ) return end
 
 	if ( underwater ) then
 		local ed = EffectData()
@@ -152,15 +155,47 @@ function rb655_RenderBlade( pos, dir, len, maxlen, width, color, black_inner, ei
 		ed:SetRadius( len )
 		util.Effect( "rb655_saber_underwater", ed )
 	end
+	
+	if settings.Corrupted then
+		local ed = EffectData()
+		ed:SetOrigin( pos )
+		ed:SetNormal( dir )
+		ed:SetRadius( len )
+		ed:SetAngles( Angle( color.r, color.g, color.b ) )
+		util.Effect( "wos_corrupted_burn", ed )	
+	end
+	
+	if settings.Unstable then
+		local ed = EffectData()
+		ed:SetOrigin( pos )
+		ed:SetNormal( dir )
+		ed:SetRadius( len )
+		ed:SetAngles( Angle( color.r, color.g, color.b ) )
+		util.Effect( "wos_unstable_discharge", ed )
+	end
 
 	local inner_color = color_white
 	if ( black_inner ) then inner_color = Color( 0, 0, 0 ) end
 
-	render.SetMaterial( HardLaser )
-	render.DrawBeam( pos, pos + dir * len, width * 1.3, 1, 0.01, color )
+	if settings.Corrupted then
+		render.SetMaterial( CorruptedLaser )
+		render.DrawBeam( pos, pos + dir * len, width * 1.3, 0.6, 0, color )	
+		render.DrawBeam( pos, pos + dir * len, width * 1.3, 0.8, 0, color )	
+		render.DrawBeam( pos, pos + dir * len, width * 1.3, 1.4, 0, color )	
+		render.DrawBeam( pos + dir*len*0.5, pos + dir * len*1.2, width * 1.3, 1, 0.01, color )	
 
-	render.SetMaterial( HardLaserInner )
-	render.DrawBeam( pos, pos + dir * len, width * 1.2, 1, 0.01, inner_color )
+		render.SetMaterial( HardLaserInner )
+		render.DrawBeam( pos, pos + dir * len, width * 1.2, 1, 0.01, inner_color )
+	elseif settings.Unstable then
+		render.SetMaterial( HardLaserInner )
+		render.DrawBeam( pos, pos + dir * len, width * 0.9, 1, 0.01, inner_color )	
+	else
+		render.SetMaterial( HardLaser )
+		render.DrawBeam( pos, pos + dir * len, width * 1.3, 1, 0.01, color )
+
+		render.SetMaterial( HardLaserInner )
+		render.DrawBeam( pos, pos + dir * len, width * 1.2, 1, 0.01, inner_color )
+	end
 
 	-- Dynamic light
 	if ( !quillon ) then
@@ -176,14 +211,16 @@ function rb655_RenderBlade( pos, dir, len, maxlen, width, color, black_inner, ei
 			SaberLight.DieTime = CurTime() + 0.1
 		end
 	end
-
+	
+	if settings.Corrupted or settings.Unstable or settings.CraftingSaber then return end
+	
 	local prevB = pos
 	local prevT = pos + dir * len
 
-	if ( !gOldBladePositions[ eid ] ) then gOldBladePositions[ eid ] = {} end
-	if ( !gOldBladePositions[ eid ][ bladeNum ] ) then gOldBladePositions[ eid ][ bladeNum ] = {} end
+	if ( !gOldBladePositions_wos[ eid ] ) then gOldBladePositions_wos[ eid ] = {} end
+	if ( !gOldBladePositions_wos[ eid ][ bladeNum ] ) then gOldBladePositions_wos[ eid ][ bladeNum ] = {} end
 
-	for id, prevpos in ipairs( gOldBladePositions[ eid ][ bladeNum ] ) do
+	for id, prevpos in ipairs( gOldBladePositions_wos[ eid ][ bladeNum ] ) do
 		local posB = prevpos.pos
 		local posT = prevpos.pos + prevpos.dir * prevpos.len
 		--local posB = prevB
@@ -213,19 +250,18 @@ function rb655_RenderBlade( pos, dir, len, maxlen, width, color, black_inner, ei
 	end
 end
 
-function rb655_SaberClean( eid, bladeNum )
-	if ( !bladeNum ) then gOldBladePositions[ eid ] = nil return end
-	if ( gOldBladePositions[ eid ] ) then
-		gOldBladePositions[ eid ][ bladeNum ] = nil
+function rb655_SaberClean_wos( eid, bladeNum )
+	if ( !bladeNum ) then gOldBladePositions_wos[ eid ] = nil return end
+	if ( gOldBladePositions_wos[ eid ] ) then
+		gOldBladePositions_wos[ eid ][ bladeNum ] = nil
 	end
 end
 
 -- Extremely ugly hack workaround :(
-function rb655_ProcessBlade( eid, pos, dir, len, bladeNum )
-	if ( !gOldBladePositions[ eid ] ) then gOldBladePositions[ eid ] = {} end
-	if ( !gOldBladePositions[ eid ][ bladeNum ] ) then gOldBladePositions[ eid ][ bladeNum ] = {} end
-
-	local hax = gOldBladePositions[ eid ][ bladeNum ]
+function rb655_ProcessBlade_wos( eid, pos, dir, len, bladeNum )
+	if ( !gOldBladePositions_wos[ eid ] ) then gOldBladePositions_wos[ eid ] = {} end
+	if ( !gOldBladePositions_wos[ eid ][ bladeNum ] ) then gOldBladePositions_wos[ eid ][ bladeNum ] = {} end
+	local hax = gOldBladePositions_wos[ eid ][ bladeNum ]
 	for i = 0, gTrailLength - 1 do
 		hax[ gTrailLength - i ] = hax[ gTrailLength - i - 1 ]
 		if ( gTrailLength - i == 1 ) then
@@ -234,17 +270,14 @@ function rb655_ProcessBlade( eid, pos, dir, len, bladeNum )
 	end
 end
 
-function rb655_CalculateQuillonMaxLength( maxLength )
-	return maxLength / 7
-end
-
-function rb655_CalculateQuillonLength( length, maxLength )
-	local len = rb655_CalculateQuillonMaxLength( length )
-	local maxLen = rb655_CalculateQuillonMaxLength( maxLength )
+function rb655_CalculateQuillonLength_wos( length, maxLength )
+	local len = maxLength/7
+	local maxLen = maxLength/7
 	return math.Clamp( maxLen - ( maxLength - length ), 0, len )
 end
 
-function rb655_ProcessLightsaberEntity( ent )
+function rb655_ProcessLightsaberEntity_wos( ent )
+	--if not IsValid( ent ) then return end
 	local bladesFound = false -- true if the model is OLD and does not have blade attachments
 	local blades = 0
 	for id, t in pairs( ent:GetAttachments() ) do
@@ -256,7 +289,7 @@ function rb655_ProcessLightsaberEntity( ent )
 		if ( bladeNum && ent:LookupAttachment( "blade" .. bladeNum ) > 0 ) then
 			blades = blades + 1
 			local pos, ang = ent:GetSaberPosAng( bladeNum )
-			rb655_ProcessBlade( ent:EntIndex(), pos, ang, ent:GetBladeLength(), blades )
+			rb655_ProcessBlade_wos( ent:EntIndex(), pos, ang, ent:GetBladeLength(), blades )
 
 			bladesFound = true
 		end
@@ -264,13 +297,13 @@ function rb655_ProcessLightsaberEntity( ent )
 		if ( quillonNum && ent:LookupAttachment( "quillon" .. quillonNum ) > 0 ) then
 			blades = blades + 1
 			local pos, ang = ent:GetSaberPosAng( quillonNum, true )
-			rb655_ProcessBlade( ent:EntIndex(), pos, ang, rb655_CalculateQuillonLength( ent:GetBladeLength(), ent:GetMaxLength() ), blades )
+			rb655_ProcessBlade_wos( ent:EntIndex(), pos, ang, rb655_CalculateQuillonLength_wos( ent:GetBladeLength(), ent:GetMaxLength() ), blades )
 		end
 	end
 
 	if ( !bladesFound ) then
 		local pos, ang = ent:GetSaberPosAng()
-		rb655_ProcessBlade( ent:EntIndex(), pos, ang, ent:GetBladeLength(), 1 )
+		rb655_ProcessBlade_wos( ent:EntIndex(), pos, ang, ent:GetBladeLength(), 1 )
 	end
 end
 
@@ -280,14 +313,16 @@ hook.Add( "Think", "rb655_lightsaber_ugly_fixes_wOS", function()
 		for id, ent in pairs( ents.FindByClass( class ) ) do
 			if ent.IsDualLightsaber then continue end
 			if ( !IsValid( ent:GetOwner() ) || ent:GetOwner():GetActiveWeapon() != ent || !ent.GetBladeLength || ent:GetBladeLength() <= 0 ) then continue end
-
-			rb655_ProcessLightsaberEntity( ent )
+			rb655_ProcessLightsaberEntity_wos( ent )
 		end
 	end
 
 	for id, ent in pairs( ents.FindByClass( "ent_lightsaber*" ) ) do
 		if ( !ent.GetBladeLength || ent:GetBladeLength() <= 0 ) then continue end
-
-		rb655_ProcessLightsaberEntity( ent )
+		rb655_ProcessLightsaberEntity_wos( ent )
 	end
+end )
+
+hook.Add( "InitPostEntity", "wOS.RemoveRobotBoyHolster!", function()
+	hook.Remove( "PostPlayerDraw", "rb655_lightsaber" )
 end )

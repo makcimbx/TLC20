@@ -54,17 +54,8 @@ wOS.DefaultSaberModels = { "models/sgg/starwars/weapons/w_anakin_ep2_saber_hilt.
 wOS.SaberGroupModels = {}
 -- The saber models you want people of a particular ulx group to have access to. Same formatting as the above only this time it is wrapped in a key similar to the forms
 -- You can give a group access to all sabers by doing this: wOS.SaberGroupModels[ "superadmin" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "superadmin" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "user" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "event_maker" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "vip" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "noaccess" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "admin" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "administration" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "owner" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "minivip" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "commander" ] = table.Copy( wOS.AllSaberModels )
-wOS.SaberGroupModels[ "headadmin" ] = table.Copy( wOS.AllSaberModels )
+wOS.SaberGroupModels[ "user" ] = { "models/sgg/starwars/weapons/w_anakin_ep2_saber_hilt.mdl", }
+wOS.SaberGroupModels[ "founder" ] = table.Copy( wOS.AllSaberModels )
 
 wOS.SaberTeamModels = {}
 -- I think you get the idea of how to do this by now pal, you're a smart guy

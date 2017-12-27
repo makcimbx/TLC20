@@ -24,10 +24,12 @@
 
 hook.Add( "ScalePlayerDamage", "TakeNoDamageWhileBlockING_WOS", function( ent, hitgroup, dmginfo )
 	if not ent:IsPlayer() then return end
-	if ( IsValid( ent ) && IsValid( ent:GetActiveWeapon() ) && ent:GetActiveWeapon().IsLightsaber ) then
-		if ent.IsBlocking then
+	local wep = ent:GetActiveWeapon()
+	if ( IsValid( ent ) && IsValid( wep ) && wep.IsLightsaber ) then
+		if ent:GetNW2Float( "BlockTime", 0 ) >= CurTime() then
 			if dmginfo:IsDamageType( DMG_BULLET ) || dmginfo:IsDamageType( DMG_SHOCK ) then
-				local angle = ( dmginfo:GetAttacker():GetPos() - ent:GetPos() ):Angle()
+				local att = dmginfo:GetAttacker()
+				local angle = ( att:GetPos() - ent:GetPos() ):Angle()
 				if ( math.AngleDifference( angle.y, ent:EyeAngles().y ) <= 35 ) and ( math.AngleDifference( angle.y, ent:EyeAngles().y ) >= -35 ) then 
 					local bullet = {}
 					bullet.Num 		= 1
@@ -39,16 +41,23 @@ hook.Add( "ScalePlayerDamage", "TakeNoDamageWhileBlockING_WOS", function( ent, h
 					bullet.Damage	= dmginfo:GetDamage()
 					if bullet.Damage < 0 then bullet.Damage = bullet.Damage*-1 end
 					bullet.AmmoType = "Pistol"
-					bullet.TracerName = dmginfo:GetAttacker():GetActiveWeapon().Tracer or dmginfo:GetAttacker():GetActiveWeapon().TracerName or "Ar2Tracer"
+					bullet.TracerName = att:GetActiveWeapon().Tracer or att:GetActiveWeapon().TracerName or "Ar2Tracer"
 					ent:FireBullets( bullet )
 					ent:EmitSound( "lightsaber/saber_hit_laser" .. math.random( 1, 4 ) .. ".wav" )
 					dmginfo:SetDamage( 0 )
 					if wOS.EnableStamina then
 						ent:AddStamina( -5 )
 					else
-						ent:GetActiveWeapon():SetForce( ent:GetActiveWeapon():GetForce() - 5 )
+						wep:SetForce( wep:GetForce() - 5 )
 					end
 					ent:SetSequenceOverride( "h_block", 0.5 )
+					if wep.UseSkills then
+						if ent.PlayerSaberBlocks then
+							for _, block in pairs( ent.PlayerSaberBlocks) do
+								block( ent, att, wep )
+							end
+						end
+					end
 				end
 			end
 		end
@@ -80,13 +89,13 @@ timer.Simple( 8, function()
 
 	hook.Add( "EntityTakeDamage", "arb655_sabers_reflect_wos", function( ply, dmginfo )
 		if ( !ply.GetActiveWeapon || !ply:IsPlayer() ) then return end
-		if ply:GetNWFloat( "ReflectTime", 0 ) < CurTime() then return end
+		if ply:GetNW2Float( "ReflectTime", 0 ) < CurTime() then return end
 		local attacker = dmginfo:GetAttacker()
 		if !IsValid( attacker ) then return end
 		if !attacker:IsPlayer() then return end
 		local damage = dmginfo:GetDamage()
 		dmginfo:SetDamage( 0 )
-		if attacker:GetNWFloat( "ReflectTime", 0 ) > CurTime() then return end
+		if attacker:GetNW2Float( "ReflectTime", 0 ) > CurTime() then return end
 		
 		local reflectdamage = DamageInfo()
 		reflectdamage:SetAttacker( ply )
@@ -97,8 +106,8 @@ timer.Simple( 8, function()
 end )
 
 hook.Add( "PlayerDeath", "wOS.UndoMeditate", function( ply, _, _ )
-	ply:SetNWBool( "IsMeditating", false )
-	ply:SetNWFloat( "CloakTime", 0 )
+	ply:SetNW2Bool( "IsMeditating", false )
+	ply:SetNW2Float( "CloakTime", 0 )
 	ply.KyberSlam = false
 	ply:SetSequenceOverride()
 end )
@@ -115,7 +124,7 @@ hook.Add( "OnPlayerHitGround", "wOS.ActivateDevestators", function( ply, inWater
 
 	local wep = ply:GetActiveWeapon()
 	if not IsValid( wep ) or not wep.IsLightsaber then return end
-	if ply:GetNWFloat( "wOS.DevestatorTime", 0 ) < CurTime() then return end
+	if ply:GetNW2Float( "wOS.DevestatorTime", 0 ) < CurTime() then return end
 	if ply.KyberSlam then
 		local slam = ents.Create( "wos_kyber_slam" )
 		slam:SetPos( ply:GetPos() )
