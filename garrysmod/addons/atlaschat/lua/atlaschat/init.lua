@@ -197,7 +197,7 @@ util.AddNetworkString("atlaschat.crtrnkex")
 util.AddNetworkString("atlaschat.crtrnkgt")
 
 net.Receive("atlaschat.crtrnk", function(bits, player)
-	local isAdmin = serverguard.player:HasPermission(pPlayer, "atlaschat_create_rank")--player:IsSuperAdmin()
+	local isAdmin = player:IsSuperAdmin()
 	
 	if (isAdmin) then
 		local userGroup = net.ReadString()

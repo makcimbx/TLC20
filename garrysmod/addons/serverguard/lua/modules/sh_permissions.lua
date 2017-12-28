@@ -81,10 +81,6 @@ serverguard.permission:Add("Tabs_RemoveTab");
 serverguard.permission:Add("Tabs_GetList");
 serverguard.permission:Add("Tabs_GetHelp");
 
-
-serverguard.permission:Add("atlaschat_create_rank");
-
-
 hook.Add("PhysgunPickup", "serverguard.PhysgunPickup", function(pPlayer, pEntity)
 	if (pEntity:IsPlayer() and serverguard.player:HasPermission(pPlayer, "Physgun Player") and serverguard.player:CanTarget(pPlayer, pEntity)) then
 		pPlayer.sg_physgunPlayer = pEntity;
