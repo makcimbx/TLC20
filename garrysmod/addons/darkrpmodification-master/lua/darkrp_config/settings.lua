@@ -336,6 +336,7 @@ GM.Config.DisallowDrop = {
 -- The list of weapons people spawn with.
 GM.Config.DefaultWeapons = {
     "keys",
+	"wos_inventory",
 }
 
 -- Override categories.
