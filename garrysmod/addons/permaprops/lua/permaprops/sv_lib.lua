@@ -119,26 +119,6 @@ function PermaProps.PPEntityFromTable( data, id )
 		ent:Spawn()
 
 	end
-	
-	local phys = ent:GetPhysicsObject()
-
-	if(ent:GetClass()=="prop_ragdoll")then
-		for i=0, ent:GetPhysicsObjectCount() - 1 do -- "ragdoll" being a ragdoll entity
-
-			local phys2 = ent:GetPhysicsObjectNum( i )
-			phys2:EnableGravity( false )
-
-		end
-	else
-		if ( IsValid(phys) ) then
-			if(ent:IsPlayer())then
-				ent:SetGravity( 0 )
-			else
-				phys:EnableGravity( false )
-			end
-		end
-	end
-	
 
 	ent:SetRenderMode( data.RenderMode or RENDERMODE_NORMAL )
 	ent:SetColor( data.Color or Color(255, 255, 255, 255) )
