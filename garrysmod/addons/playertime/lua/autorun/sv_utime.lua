@@ -5,26 +5,53 @@ if not SERVER then return end
 utime_welcome = CreateConVar( "utime_welcome", "1", FCVAR_ARCHIVE )
 
 if not sql.TableExists( "utime" ) then
-	sql.Query( "CREATE TABLE IF NOT EXISTS utime ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, player INTEGER NOT NULL, totaltime INTEGER NOT NULL, lastvisit INTEGER NOT NULL );" )
-	sql.Query( "CREATE INDEX IDX_UTIME_PLAYER ON utime ( player DESC );" )
+	atlaschat.sql.Query("CREATE TABLE IF NOT EXISTS utime ( id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT, player BIGINT NOT NULL, totaltime BIGINT NOT NULL, lastvisit BIGINT NOT NULL );")
+	atlaschat.sql.Query("CREATE INDEX IDX_UTIME_PLAYER ON utime ( player DESC );")
 end
 
 function onJoin( ply )
 	local uid = ply:UniqueID()
-	local row = sql.QueryRow( "SELECT totaltime, lastvisit FROM utime WHERE player = " .. uid .. ";" )
-	local time = 0 
+	local db = mysqloo.connect( RP_MySQLConfig.Host, RP_MySQLConfig.Username, RP_MySQLConfig.Password, RP_MySQLConfig.Database_name, RP_MySQLConfig.Database_port )
 
-	if row then
+	function db:onConnected()
+		--MsgC(Color(255,0,0), "Database has connected!" )
+	end
+
+	function db:onConnectionFailed( err )
+		MsgC(Color(255,0,0), "Connection to database failed!" )
+	end
+
+	db:connect()
+	
+	local row = nil
+	
+	local query = db:query("SELECT totaltime FROM utime WHERE player = " .. SQLStr(uid ) .. " LIMIT 1") -- In mysqloo 9 a query can be started before the database is connected
+	function query:onSuccess(data)
+		if (data and #data > 0) then
+			row = data[1].totaltime
+		end
+	end
+
+	function query:onError(err)
+		MsgC(Color(255,0,0),"An error occured while executing the query: " .. err)
+	end
+
+	query:start()
+	query:wait(false)
+	
+	
+	local time = 0 
+	if row != nil then
 		if utime_welcome:GetBool() then
 			
 		end
-		sql.Query( "UPDATE utime SET lastvisit = " .. os.time() .. " WHERE player = " .. uid .. ";" )
-		time = row.totaltime
+		atlaschat.sql.Query("UPDATE utime SET lastvisit = " .. SQLStr(os.time() ) .. " WHERE player = " .. SQLStr(uid ) .. ";")
+		time = row
 	else
 		if utime_welcome:GetBool() then
 			
 		end
-		sql.Query( "INSERT into utime ( player, totaltime, lastvisit ) VALUES ( " .. uid .. ", 0, " .. os.time() .. " );" )
+		atlaschat.sql.Query("INSERT into utime ( player, totaltime, lastvisit ) VALUES ( " .. SQLStr(uid ) .. ", 0, " .. SQLStr(os.time() ) .. " );")
 	end
 	ply:SetUTime( time )
 	ply:SetUTimeStart( CurTime() )
@@ -32,7 +59,7 @@ end
 hook.Add( "PlayerInitialSpawn", "UTimeInitialSpawn", onJoin )
 
 function updatePlayer( ply )
-	sql.Query( "UPDATE utime SET totaltime = " .. math.floor( ply:GetUTimeTotalTime() ) .. " WHERE player = " .. ply:UniqueID() .. ";" )
+	atlaschat.sql.Query("UPDATE utime SET totaltime = " .. SQLStr(math.floor( ply:GetUTimeTotalTime() ) ) .. " WHERE player = " .. SQLStr(ply:UniqueID() ) .. ";")
 end
 hook.Add( "PlayerDisconnected", "UTimeDisconnect", updatePlayer )
 

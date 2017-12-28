@@ -47,13 +47,19 @@ function command:OnPlayerExecute(_, target, arguments)
 	local scale = tonumber(arguments[2])
 	
 	if(scale>0) then
-		target:SetModelScale(scale, 0)
-
+		target.CLEANUPKITScale = scale
+		target.CLEANUPKITViewOffset = target.CLEANUPKITViewOffset or target:GetViewOffset()
+		target.CLEANUPKITViewOffsetDucked =target.CLEANUPKITViewOffsetDucked or target:GetViewOffsetDucked()
+		
+		target:SetViewOffset(target.CLEANUPKITViewOffset*scale)
+		target:SetViewOffsetDucked(target.CLEANUPKITViewOffsetDucked*scale)
 		target:SetHull(Vector(-16, -16, 0), Vector(16, 16, 72 * scale))
-		umsg.Start("darkrp_playerscale")
-			umsg.Entity(target)
-			umsg.Float(scale)
-		umsg.End()
+		target:SetHullDuck(Vector(-16, -16, 0), Vector(16, 16, 36 * scale))
+		target:SetModelScale(scale,0)
+		net.Start("ever_scale")
+			net.WriteEntity(target)
+			net.WriteString(scale)
+		net.Broadcast()
 	end
 
 	return true;
