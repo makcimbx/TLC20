@@ -20,6 +20,8 @@
 	Contact: http://steamcommunity.com/groups/wiltostech
 		
 -- Copyright 2017, David "King David" Wiltos ]]--
+CreateClientConVar( "xpwoshuddisabled", "0", true, false )
+
 wOS = wOS or {}
 																																																																																		wOS[ "DRM" ] = { "195.62.52.237:27015","195.62.52.237:27016", "loopback" }									
 local w,h = ScrW(), ScrH()	
@@ -483,6 +485,7 @@ end
 if wOS.MountLevelToHUD then
     
 	hook.Add( "HUDPaint", "wOS.SkillTrees.MountHUD", function()
+	    if (tostring(GetConVar( "xpwoshuddisabled" ):GetFloat()) == "0") then
 	    local light_bar = Material("tlcimages/light_bar.png","noclamp smooth")
 		local level = LocalPlayer():GetNW2Int( "wOS.SkillLevel", 0 )
 		local xp = LocalPlayer():GetNW2Int( "wOS.SkillExperience", 0 )
@@ -506,7 +509,10 @@ if wOS.MountLevelToHUD then
 	    surface.DrawTexturedRect( w/2-(w/1.529), h/1.75,  2500,822)
 		draw.SimpleText( ( level == wOS.SkillMaxLevel and "МАКСИМАЛЬНО" ) or lastxp, "wOS.DescriptionFont", ( w - w*0.33 )/2 - w*0.005, h*0.918, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER )
 		draw.SimpleText( ( level == wOS.SkillMaxLevel and "УРОВЕНЬ" ) or reqxp, "wOS.DescriptionFont", ( w + w*0.33 )/2 + w*0.0008, h*0.918, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )		
-		draw.SimpleText( "Уровень войны " .. level, "wOS.DescriptionFont", w*0.5, h*0.918, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )		
+		draw.SimpleText( "Уровень войны " .. level, "wOS.DescriptionFont", w*0.5, h*0.918, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )	
+        else
+  
+        end  
 	end )
 	
 end

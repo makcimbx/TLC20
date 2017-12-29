@@ -871,7 +871,10 @@ local opstring=tostring
 local zcolorbase=Color(0,255,0,200) local hookAdd=hook.Add
 local xp_bar = Material("tlcimages/uptab.png","noclamp smooth")
 
+CreateClientConVar( "eventhuddisabled", "0", true, false )
+
 local function HUDPaint()
+if (tostring(GetConVar( "eventhuddisabled" ):GetFloat()) == "0") then
 local ENOPLJourHeure="zeventplan1"..ENOPL.Jour..ENOPL.Heure
 local ENOPLJourHeureS="zeventplan1"..ENOPL.Jour..ENOPL.Heure+1
 local y=30
@@ -893,6 +896,9 @@ draw.SimpleText(GetGlobalString(ENOPLJourHeureS),"Trebuchet18",ScrW()/1.85+abc2/
 else
 draw.SimpleText(tra_scrp_nordahl_noevent,"Trebuchet18",ScrW()/1.85+abc2/2,39+y,Color(255,103,55),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,100))
 end
+end
+else
+
 end
 end
 hook.Add("HUDPaint","nordahl_hud_planning",HUDPaint);
