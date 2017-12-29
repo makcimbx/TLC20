@@ -481,8 +481,9 @@ function wOS:HasSkillPoints( tree, tier, skill )
 end
 
 if wOS.MountLevelToHUD then
-
+    
 	hook.Add( "HUDPaint", "wOS.SkillTrees.MountHUD", function()
+	    local light_bar = Material("tlcimages/light_bar.png","noclamp smooth")
 		local level = LocalPlayer():GetNW2Int( "wOS.SkillLevel", 0 )
 		local xp = LocalPlayer():GetNW2Int( "wOS.SkillExperience", 0 )
 		local reqxp = wOS.XPScaleFormula( level )
@@ -494,13 +495,18 @@ if wOS.MountLevelToHUD then
 		if level == wOS.SkillMaxLevel then
 			rat = 1
 		end
-		draw.RoundedBox( 3, ( w - w*0.43 )/2, 0, w*0.43, h*0.035, Color( 25, 25, 25, 245 ) )
+		
+		
+
 		surface.SetDrawColor( color_white )
-		surface.DrawOutlinedRect( ( w - w*0.33 )/2, h*0.005, w*0.33, h*0.02 )
-		surface.DrawRect( (w - w*0.33 )/2, h*0.005, w*0.33*rat, h*0.02 )
-		draw.SimpleText( ( level == wOS.SkillMaxLevel and "МАКСИМАЛЬНО" ) or lastxp, "wOS.DescriptionFont", ( w - w*0.33 )/2 - w*0.005, h*0.015, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER )
-		draw.SimpleText( ( level == wOS.SkillMaxLevel and "УРОВЕНЬ" ) or reqxp, "wOS.DescriptionFont", ( w + w*0.33 )/2 + w*0.005, h*0.015, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )		
-		draw.SimpleText( "Уровень " .. level, "wOS.DescriptionFont", w*0.5, h*0.015, Color( 0, 128, 255, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )		
+		surface.DrawOutlinedRect( ( w - w*0.33 )/2, h*0.91, w*0.33, h*0.02 )
+		surface.DrawRect( (w - w*0.33 )/2, h*0.91, w*0.33*rat, h*0.02 )
+		surface.SetMaterial(light_bar)
+	    surface.SetDrawColor(255,255,255,255)
+	    surface.DrawTexturedRect( w/2-(w/1.529), h/1.75,  2500,822)
+		draw.SimpleText( ( level == wOS.SkillMaxLevel and "МАКСИМАЛЬНО" ) or lastxp, "wOS.DescriptionFont", ( w - w*0.33 )/2 - w*0.005, h*0.918, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER )
+		draw.SimpleText( ( level == wOS.SkillMaxLevel and "УРОВЕНЬ" ) or reqxp, "wOS.DescriptionFont", ( w + w*0.33 )/2 + w*0.0008, h*0.918, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )		
+		draw.SimpleText( "Уровень войны " .. level, "wOS.DescriptionFont", w*0.5, h*0.918, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )		
 	end )
 	
 end
