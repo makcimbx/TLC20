@@ -256,16 +256,8 @@ bfUI.registerElement( "АДМИНЫ", {
 
 	headerMessage = "Этот лист показывает администрацию в онлайне, обращайтесь к ним если у вас есть проблемы.",
 	staff = {
-		[ "admin" ] = {
-			name = "Администратор",
-			color = Color( 255, 255, 255 ),
-		},
-		[ "superadmin" ] = {
-			name = "Супер Администратор",
-			color = Color( 51, 125, 255 ),
-		},
-		[ "headadmin" ] = {
-			name = "Главный Администратор",
+		[ "founder" ] = {
+			name = "founder",
 			color = Color( 255, 0, 0 ),
 		},
 		--[[

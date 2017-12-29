@@ -47,7 +47,7 @@ bfUI.addDataCheck( "staff", function( data, frame )
 
     local groupUsers = {}
     for Id, client in ipairs( player.GetAll() ) do
-        local usergroup = client:GetUserGroup()
+        local usergroup = serverguard.player:GetRank(client)
         if not staffGroups[ usergroup ] then continue end
 
         if not groupUsers[ usergroup ] then groupUsers[ usergroup ] = {} end

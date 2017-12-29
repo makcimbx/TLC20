@@ -63,8 +63,12 @@ hook.Add( "PlayerSpawn", "EverII_PlayerSpawn", spawn )
 local function change(ply, oldTeam, newTeam)
 	ply:StripAmmo()
 	ply.newSpawn = true
+	local d = ply:GetMaxHealth()==ply:Health()
 	local h = ply:getJobTable().maxHP or 100
 	ply:SetMaxHealth(h)
+	if(d)then
+		ply:SetHealth(h)
+	end
 end
 hook.Add( "OnPlayerChangedTeam", "EverII_OnPlayerChangedTeam", change )
 

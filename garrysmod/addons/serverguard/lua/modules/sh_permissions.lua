@@ -81,6 +81,13 @@ serverguard.permission:Add("Tabs_RemoveTab");
 serverguard.permission:Add("Tabs_GetList");
 serverguard.permission:Add("Tabs_GetHelp");
 
+serverguard.permission:Add("SpawnWeapon");
+serverguard.permission:Add("SpawnVehicle");
+serverguard.permission:Add("SpawnEntities");
+serverguard.permission:Add("SpawnNPC");
+
+serverguard.permission:Add("Train");
+
 hook.Add("PhysgunPickup", "serverguard.PhysgunPickup", function(pPlayer, pEntity)
 	if (pEntity:IsPlayer() and serverguard.player:HasPermission(pPlayer, "Physgun Player") and serverguard.player:CanTarget(pPlayer, pEntity)) then
 		pPlayer.sg_physgunPlayer = pEntity;
