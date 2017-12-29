@@ -1649,7 +1649,7 @@ hook.Add( "Think", "wOS.Crafting.HUDTraces", function()
 				lookingat.Renders = function( pan )
 					if not IsValid( pan.Item ) then pan = nil return end
 					local ww, hh = pan.SizeX, pan.SizeY
-					pan:Text( "Combat Level: " .. pan.Item:GetSkillLevel(), "wOS.ItemTitles", 0, 0, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )			
+					everkekul = pan.Item:GetSkillLevel()
 				end
 				lookingat:SetUIScale( 200 )	
 			end

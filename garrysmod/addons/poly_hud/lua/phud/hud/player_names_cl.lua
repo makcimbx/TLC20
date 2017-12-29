@@ -91,6 +91,11 @@ addWidget(Color(0, 153, 255), 'phud-3d2d-factfont', function(pl)
 	local level = pl:getDarkRPVar('level') or "-"
   return  phud.language.getPhrase('LVL')..': ' .. level
 end)
+addWidget(Color(0, 153, 255), 'phud-3d2d-factfont', function(pl)
+	local level = everkekul or "-"
+  return  phud.language.getPhrase('LVLWAR')..': ' .. level
+end)
+
 local drawPlayer
 drawPlayer = function(pl)
   local LocalPlayer = LocalPlayer()
