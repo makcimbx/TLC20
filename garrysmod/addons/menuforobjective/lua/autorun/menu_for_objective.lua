@@ -1,7 +1,7 @@
 if CLIENT then	
-
+    CreateClientConVar( "objhuddisabled", "0", true, false )
     local function HUDPaint()
-		
+		if (tostring(GetConVar( "objhuddisabled" ):GetFloat()) == "0") then
 		local posX = 0
 
 		local posY = 50
@@ -22,7 +22,9 @@ if CLIENT then
 		draw.DrawText(s4 or "", "HudHintTextLarge", 40+posX,30+125+60+10+posY,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 		draw.DrawText(s5 or "", "HudHintTextLarge", 40+posX,30+125+60+25+posY,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 		draw.DrawText(s6 or "", "HudHintTextLarge", 40+posX,30+125+60+40+posY,Color(255,255,255,220), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+		else
 		
+		end
     end
     hook.Add("HUDPaint", "manolis:MVLevels:DrawThisShitAntiCheat", HUDPaint) 
 
@@ -71,7 +73,7 @@ if CLIENT then
 		end
 
 		Editor.PANEL = PNL
-		Editor.PANEL:SetPos(ScrW() - 1500,200)
+		Editor.PANEL:SetPos(ScrW()/6,200)
 		
 		Editor.PANEL.Sheet = Editor.PANEL:Add( "DPropertySheet" )
 		Editor.PANEL.Sheet:Dock(LEFT)

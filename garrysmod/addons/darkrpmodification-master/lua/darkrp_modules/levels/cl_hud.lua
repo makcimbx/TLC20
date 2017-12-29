@@ -1,5 +1,7 @@
 // Love Manolis Vrondakis. @vrondakis
 
+CreateClientConVar( "xpvrodhuddisabled", "0", true, false )
+
 surface.CreateFont( "HeadBar", { // XP Bar font
 	 font = "Tahoma",
 	 size = 13,
@@ -59,6 +61,7 @@ end
 local OldXP = 0
 local xp_bar = Material("tlcimages/xp_bar.png","noclamp smooth")
 local function HUDPaint()
+    if (tostring(GetConVar( "xpvrodhuddisabled" ):GetFloat()) == "0") then
 	if not LevelSystemConfiguration then return end
 	if not LevelSystemConfiguration.EnableHUD then return end
 	local PlayerLevel = LocalPlayer():getDarkRPVar('level') or 1
@@ -94,6 +97,9 @@ local function HUDPaint()
 
 
 	DrawDisplay()
+	else
+	
+	end
 end
 hook.Add("HUDPaint", "manolis:MVLevels:HUDPaintA", HUDPaint) // IS THAT UNIQUE ENOUGH FOR YOU, FUCKING GMOD HOOKING BULLSHIT.
 

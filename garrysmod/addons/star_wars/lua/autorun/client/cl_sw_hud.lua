@@ -1,3 +1,5 @@
+CreateClientConVar( "radhuddisabled", "0", true, false )
+
 local bHUD = surface.GetTextureID("ggui/star_wars/hud_back")
 local fHUD = surface.GetTextureID("ggui/star_wars/hud_front")
 local hBar = surface.GetTextureID("ggui/star_wars/health_bar")
@@ -211,6 +213,7 @@ local prg = 0
 
 local lps = Vector(0,0,0)
 local function drawRadar()
+    if (tostring(GetConVar( "radhuddisabled" ):GetFloat()) == "0") then
     surface.SetTexture(radar)
     surface.DrawTexturedRect(SW.RadarPos.x , SW.RadarPos.y , 256 , 256)
     local pw = drawCilinder(SW.RadarPos.x + 108 , SW.RadarPos.y + 102 , 95 , 16 , 0)
@@ -290,6 +293,9 @@ local function drawRadar()
     surface.SetTexture(radarOut)
     surface.SetDrawColor(Color(255 , 255 , 255 , 255))
     surface.DrawTexturedRect(SW.RadarPos.x , SW.RadarPos.y , 256 , 256)
+	else
+	
+	end
 end
 
 local function drawWeapon()
