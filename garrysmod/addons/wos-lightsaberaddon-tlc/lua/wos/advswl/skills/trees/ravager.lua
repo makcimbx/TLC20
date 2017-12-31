@@ -64,7 +64,7 @@ TREE.Tier[1][1] = {
 	Icon = "wos/skilltrees/ravager/strength.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) ply:SetMaxHealth( ply:GetMaxHealth() + 50 ) end,
+	OnPlayerSpawn = {Health = 50,  MaxHealth = 50},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -75,7 +75,7 @@ TREE.Tier[1][2] = {
 	Icon = "wos/skilltrees/ravager/agility.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) ply:SetRunSpeed( ply:GetRunSpeed()*1.05 ) end,
+	OnPlayerSpawn = {RunSpeedX = 1.05},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }

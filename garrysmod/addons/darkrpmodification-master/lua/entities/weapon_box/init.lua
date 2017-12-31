@@ -49,8 +49,11 @@ function ENT:OnTakeDamage(dmginfo)
 	self.Entity:TakePhysicsDamage(dmginfo)
 end
 
+local nextuse = 0
+
 function ENT:Use(activator, caller)
-	if (activator:IsPlayer()) then
+	if (activator:IsPlayer() and nextuse<CurTime()) then
+		nextuse = CurTime()+1
 		BOX_PlayerLoadout(activator)
 	end
 end

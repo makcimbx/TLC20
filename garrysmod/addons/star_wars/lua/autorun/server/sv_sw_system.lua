@@ -1,6 +1,6 @@
 util.AddNetworkString("SW.ShowHitMarker")
 
-hook.Add("EntityTakeDamage" , "SW.TakeDamage" , function(ent , dmg)
+--[[hook.Add("EntityTakeDamage" , "SW.TakeDamage" , function(ent , dmg)
     if (not SW.DrawHitMarkers) then return end
     if (not dmg:GetAttacker():IsPlayer()) then return end
     if ((ent.LastDamage or 0) > CurTime()) then return end
@@ -17,3 +17,4 @@ hook.Add("EntityTakeDamage" , "SW.TakeDamage" , function(ent , dmg)
         net.Send(dmg:GetAttacker())
     end
 end)
+]]--

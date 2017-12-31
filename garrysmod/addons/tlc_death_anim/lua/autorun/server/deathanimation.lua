@@ -74,12 +74,12 @@ hook.Add( 'PlayerDeath', 'DeathAnimation', function( victim, inflictor, attacker
 	if IsValid( victim:GetRagdollEntity() ) then -- Remove the default ragdoll
 		victim:GetRagdollEntity():Remove()
 	end
-	
+	local vea = victim:GetVelocity()
 	local animent = ents.Create( 'base_gmodentity' ) -- The entity used for the death animation
 	SetEntityStuff( animent, victim )
 	animent:Spawn()
 	animent:Activate()
-	
+	animent:SetVelocity( vea )
 	victim:Spectate( OBS_MODE_CHASE ) -- Make them spectate
 	victim:SpectateEntity( animent ) -- Spectate this entity
 	
@@ -120,10 +120,13 @@ hook.Add( 'PlayerDeath', 'DeathAnimation', function( victim, inflictor, attacker
 		SetEntityStuff( rag, animent )
 		rag:Spawn()
 		rag:Activate()
+		rag:SetVelocity(vea)
+		rag:GetPhysicsObject( ):SetVelocity(vea)
 		TransferBones( animent, rag )
 		animent:Remove()
 		victim:SpectateEntity( rag ) -- Spectate the ragdoll now (this makes the screen jump over a bit though)
 		victim.Ragdoll = rag
+		ApplyRagdollPhys(rag,"",vea)
 		victim.LetRespawn = true -- Let them respawn now
 	end )
 	

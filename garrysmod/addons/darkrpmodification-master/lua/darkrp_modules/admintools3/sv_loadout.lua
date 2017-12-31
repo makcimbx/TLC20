@@ -34,7 +34,29 @@ function GM:PlayerLoadout(ply)
     ply:SwitchToDefaultWeapon()
 end
 
+local meta = FindMetaTable( "Player" )
+
+function meta:GetMaxArmor()
+	return self.MaxArmor or 0;
+end
+
+function meta:SetMaxArmor(a)
+	self.MaxArmor = a
+	self:SetNWInt( "MaxArmor",a )
+end
+
+local function wos_everarmorfunc(ply)
+	local wos_armor = 0
+	for _, v in pairs( ply.PlayerSkillSpawns or {} ) do
+		if(type(v)=="table")then
+			wos_armor = wos_armor + (v.Armor or 0)
+		end
+	end
+	return wos_armor
+end
+
 function BOX_PlayerLoadout(ply)
+	local am = wos_everarmorfunc(ply)
 	if(ply.newSpawn == true)then
 		ply.newSpawn = false
 		local jobTable = ply:getJobTable()
@@ -42,21 +64,81 @@ function BOX_PlayerLoadout(ply)
 		for k,v in pairs(jobTable.weapons or {}) do
 			ply:Give(v,true)
 		end
+		ply:SetArmor((ply:getJobTable().maxAM or 0) + am)
 	else
-		if((ply:getJobTable().maxAM or 0)==ply:Armor())then
+		if (((ply:getJobTable().maxAM or 0) + (am or 0))==ply:Armor())then
 			DarkRP.notify(ply, 1, 4, "Ты не можешь взять больше!")
 		else
-			ply:SetArmor(ply:getJobTable().maxAM or 0)
+			ply:SetArmor((ply:getJobTable().maxAM or 0) + am)
 		end
 	end
 end
+
+--[[
+
+	Health
+	MaxHealth
+	Armor
+	RunSpeed
+	RunSpeedX
+	
+]]--
+
+local function wos_everspawnfunc(ply)
+	for _, v in pairs( ply.PlayerSkillSpawns or {} ) do
+		if(type(v)=="table")then
+			ply:SetMaxHealth(ply:GetMaxHealth() + (v.MaxHealth or 0))
+			ply:SetHealth(ply:Health() + (v.Health or 0))
+			ply:SetRunSpeed( ply:GetRunSpeed() + (v.RunSpeed or 0) )
+			ply:SetRunSpeed( ply:GetRunSpeed() * (v.RunSpeedX or 0) )
+		else
+			if(type(v)=="function")then
+				v(ply)
+			end
+		end
+	end
+	ply.AppliedSkills = true
+end
+
+local function wos_evermhpfunc(ply)
+	for _, v in pairs( ply.PlayerSkillSpawns or {} ) do
+		if(type(v)=="table")then
+			ply:SetMaxHealth(ply:GetMaxHealth() + (v.MaxHealth or 0))
+		end
+	end
+end
+
+local function wos_everhpfunc(ply)
+	for _, v in pairs( ply.PlayerSkillSpawns or {} ) do
+		if(type(v)=="table")then
+			ply:SetHealth(ply:Health() + (v.Health or 0))
+		end
+	end
+end
+
+local function PostSetCurrentSkillHooks( ply )
+	local h = ply:getJobTable().maxHP or 100
+	local a = ply:getJobTable().maxAM or 0
+	local d = ply:GetMaxHealth()==ply:Health()
+	ply:SetMaxHealth(h)
+	ply:SetMaxArmor(a + wos_everarmorfunc(ply))
+	wos_evermhpfunc(ply)
+	if(d)then
+		ply:SetHealth(h)
+		wos_everhpfunc(ply)
+	end
+end
+hook.Add( "PostSetCurrentSkillHooks", "EverPostSetCurrentSkillHooks",PostSetCurrentSkillHooks  )
 
 local function spawn( ply )
 	ply:StripAmmo()
 	ply.newSpawn = true
 	local h = ply:getJobTable().maxHP or 100
+	local a = ply:getJobTable().maxAM or 0
 	ply:SetMaxHealth(h)
+	ply:SetMaxArmor(a + wos_everarmorfunc(ply))
 	ply:SetHealth(h)
+	wos_everspawnfunc(ply)
 end
 hook.Add( "PlayerSpawn", "EverII_PlayerSpawn", spawn )
 
@@ -65,9 +147,13 @@ local function change(ply, oldTeam, newTeam)
 	ply.newSpawn = true
 	local d = ply:GetMaxHealth()==ply:Health()
 	local h = ply:getJobTable().maxHP or 100
+	local a = ply:getJobTable().maxAM or 0
 	ply:SetMaxHealth(h)
+	ply:SetMaxArmor(a + wos_everarmorfunc(ply))
+	wos_evermhpfunc(ply)
 	if(d)then
 		ply:SetHealth(h)
+		wos_everhpfunc(ply)
 	end
 end
 hook.Add( "OnPlayerChangedTeam", "EverII_OnPlayerChangedTeam", change )
@@ -110,6 +196,7 @@ end
 local function spawn3( ply )
 	ply:SetPos( Vector(-8153.135742, 6200.348145, -14824.129883) )
 	ply:SetEyeAngles( Angle(59.736351, 148.419388, 0.000000) )
+	ply:SetMaxArmor(100)
 end
 hook.Add( "PlayerInitialSpawn", "PlayerInitialSpawn", spawn2 )
 

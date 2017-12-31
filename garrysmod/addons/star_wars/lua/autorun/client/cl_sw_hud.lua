@@ -340,7 +340,7 @@ hook.Add("HUDPaint" , "StarWars.HUDPaint" , function()
         draw.DrawNonParsedText(LocalPlayer():Health() .."HP" , "sw_ui_14" , 140 + 512 * p-4, ScrH() - 101 , color_white , 2)
 	end
 
-    p = 0.47 * (LocalPlayer():Armor() / 100)
+    p = 0.47 * (LocalPlayer():Armor() / LocalPlayer():GetMaxArmor())
     surface.DrawTexturedRectUV(140 , ScrH() - 88 , 512 * p , 128 , 0 , 0 , p , 1)
     surface.SetTexture(fBar)
     if (SW.EnableHungerMod) then
@@ -360,8 +360,14 @@ hook.Add("HUDPaint" , "StarWars.HUDPaint" , function()
     drawWeapon()
 end)
 
+
 local plyMeta = FindMetaTable("Player")
 local Page = Material("icon16/page_white_text.png")
+
+function plyMeta:GetMaxArmor()
+	print(self:GetNWInt( "MaxArmor" ) or 100)
+	return self:GetNWInt( "MaxArmor" ) or 100;
+end
 
 timer.Simple(0 , function()
     plyMeta.drawPlayerInfo = function(self)

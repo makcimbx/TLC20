@@ -203,7 +203,7 @@ function meta:SetCurrentSkillHooks()
 			end
 		end
 	end
-	
+	hook.Call( "PostSetCurrentSkillHooks",nil,self )
 end
 
 function wOS:RegisterSkillTree( DATA )
@@ -272,9 +272,6 @@ hook.Add( "PlayerSpawn", "wOS.SkillTree.ActivatePlayerSpawns", function( ply )
 	if ply:IsBot() then return end
 	timer.Simple( 0.5, function()
 		ply.CanUseDuals = false
-		for _, spawn in pairs( ply.PlayerSkillSpawns ) do
-			spawn( ply )
-		end
 		if ply:HasWeapon( "weapon_lightsaber_personal" ) and ply.CanUseDuals then
 			ply:Give( "weapon_lightsaber_personal_dual" )
 		end
