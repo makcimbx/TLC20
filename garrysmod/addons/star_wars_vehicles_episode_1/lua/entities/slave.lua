@@ -12,7 +12,7 @@ ENT.AdminOnly = true;
 
 ENT.EntModel = "models/firespray/firespray1.mdl"
 ENT.Vehicle = "Slave"
-ENT.StartHealth = 7000;
+ENT.StartHealth = 5000;
 ENT.Allegiance = "Empire";
 
 if SERVER then

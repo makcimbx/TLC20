@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.EntModel = "models/sweaw/ships/rep_v19torrent.mdl"
 ENT.Vehicle = "V19Torrent"
-ENT.StartHealth = 3000;
+ENT.StartHealth = 4500;
 ENT.Allegiance = "Republic";
 
 if SERVER then

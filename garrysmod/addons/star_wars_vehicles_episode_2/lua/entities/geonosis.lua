@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.EntModel = "models/geon/geon1.mdl"
 ENT.Vehicle = "Geonosis"
-ENT.StartHealth = 500;
+ENT.StartHealth = 4500;
 ENT.Allegiance = "CIS";
 
 if SERVER then

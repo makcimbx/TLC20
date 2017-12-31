@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.Vehicle = "STAP";
 ENT.EntModel = "models/stap/stap1.mdl";
-ENT.StartHealth = 1000;
+ENT.StartHealth = 3000;
 
 if SERVER then
 

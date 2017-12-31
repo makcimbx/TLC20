@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.Vehicle = "Speeder";
 ENT.EntModel = "models/SGG/Starwars/landspeeder.mdl";
-ENT.StartHealth = 1000;
+ENT.StartHealth = 3250;
 
 if SERVER then
 

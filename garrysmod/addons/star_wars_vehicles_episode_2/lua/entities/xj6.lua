@@ -12,7 +12,7 @@ ENT.AdminSpawnable = false;
 
 ENT.Vehicle = "XJ6";
 ENT.EntModel = "models/xj-6/syphadias/xj-6hull.mdl";
-ENT.StartHealth = 1000;
+ENT.StartHealth = 3250;
 
 if SERVER then
 

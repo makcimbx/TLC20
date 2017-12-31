@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.Vehicle = "MTT";
 ENT.EntModel = "models/starwars/syphadias/mtt/mobiletrooptransport.mdl";
-ENT.StartHealth = 12000;
+ENT.StartHealth = 13500;
 
 if SERVER then
 

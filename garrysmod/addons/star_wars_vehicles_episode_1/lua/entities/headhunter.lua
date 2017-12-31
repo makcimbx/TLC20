@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.EntModel = "models/z95/z951.mdl"
 ENT.Vehicle = "Headhunter"
-ENT.StartHealth = 1500;
+ENT.StartHealth = 3750;
 ENT.Allegiance = "Rebels";
 
 if SERVER then

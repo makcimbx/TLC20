@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false; // Is it only Admin spawnable?
 
 ENT.EntModel = "models/arc170/arc1701.mdl" // The model for the vehicle you're using
 ENT.Vehicle = "ARC170" // The name of the vehicle, this is very important.
-ENT.StartHealth = 2000; // How much health the vehicle will have
+ENT.StartHealth = 5000; // How much health the vehicle will have
 ENT.Allegiance = "Republic";
 
 if SERVER then

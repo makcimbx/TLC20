@@ -12,7 +12,7 @@ ENT.AdminSpawnable = false;
 
 ENT.Vehicle = "TX130";
 ENT.EntModel = "models/tx130t/tx130t1.mdl";
-ENT.StartHealth = 4000;
+ENT.StartHealth = 10000;
 
 if SERVER then
 

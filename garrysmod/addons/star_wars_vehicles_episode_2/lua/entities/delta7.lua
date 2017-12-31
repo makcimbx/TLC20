@@ -12,7 +12,7 @@ ENT.AdminSpawnable = false;
 
 ENT.EntModel = "models/jedi1/jedi1.mdl"
 ENT.Vehicle = "Delta7"
-ENT.StartHealth = 1500;
+ENT.StartHealth = 4000;
 ENT.Allegiance = "Republic";
 
 if SERVER then

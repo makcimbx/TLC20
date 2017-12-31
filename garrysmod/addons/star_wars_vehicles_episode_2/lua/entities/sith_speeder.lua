@@ -13,7 +13,7 @@ ENT.Vehicle = "SithSpeed"; // The unique name for the speeder.
 ENT.EntModel = "models/sith_speeder/syphadias/sith_speeder.mdl"; // The path to your model
 
 
-ENT.StartHealth = 1000; // Starting Health
+ENT.StartHealth = 3000; // Starting Health
 if SERVER then
 
 ENT.NextUse = {Use = CurTime(),Fire = CurTime()};

@@ -32,7 +32,7 @@ function IsSWSpeeder(class)
 	return false;
 
 end
-ENT.StartHealth = 1000;
+ENT.StartHealth = 3000;
 if SERVER then
 
 ENT.NextUse = {Use = CurTime(),Fire = CurTime()};

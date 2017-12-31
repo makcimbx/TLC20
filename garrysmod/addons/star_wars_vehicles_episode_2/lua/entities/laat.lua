@@ -18,7 +18,7 @@ if SERVER then
 
 ENT.FireSound = Sound("weapons/tie_shoot.wav");
 ENT.NextUse = {Wings = CurTime(),Use = CurTime(),Fire = CurTime(),Doors = CurTime(),};
-ENT.StartHealth = 7500;
+ENT.StartHealth = 12500;
 
 AddCSLuaFile();
 function ENT:SpawnFunction(pl, tr)

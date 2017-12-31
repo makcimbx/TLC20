@@ -12,7 +12,7 @@ ENT.AdminOnly = true;
 
 ENT.EntModel = "models/blockrun/blockaderunner.mdl"
 ENT.Vehicle = "Blockade"
-ENT.StartHealth = 50000;
+ENT.StartHealth = 30000;
 ENT.Allegiance = "Rebels";
 
 if SERVER then

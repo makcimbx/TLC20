@@ -12,7 +12,7 @@ ENT.AdminSpawnable = false;
 
 ENT.Vehicle = "AAT";
 ENT.EntModel = "models/aat/aat_hull1.mdl";
-ENT.StartHealth = 8000;
+ENT.StartHealth = 10000;
 
 if SERVER then
 

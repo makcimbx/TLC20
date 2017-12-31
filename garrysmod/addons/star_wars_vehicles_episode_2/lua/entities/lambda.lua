@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.EntModel = "models/starwars/lordtrilobite/ships/lambda_shuttle/lambda_shuttle_landed.mdl"
 ENT.Vehicle = "LambdaShuttle"
-ENT.StartHealth = 15000;
+ENT.StartHealth = 17500;
 ENT.Allegiance = "Empire";
 
 ENT.WingsModel = "models/starwars/lordtrilobite/ships/lambda_shuttle/lambda_shuttle_fly_down.mdl"

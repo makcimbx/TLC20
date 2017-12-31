@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.EntModel = "models/starwars/syphadias/ships/n1/n1-hull.mdl"
 ENT.Vehicle = "N1v2"
-ENT.StartHealth = 1500;
+ENT.StartHealth = 3750;
 ENT.Allegiance = "Republic";
 
 if SERVER then

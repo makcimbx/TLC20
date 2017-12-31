@@ -13,7 +13,7 @@ ENT.Vehicle = "SpeederBike"; // The unique name for the speeder.
 ENT.EntModel = "models/SGG/Starwars/speeder_bike.mdl"; // The path to your model
 
 
-ENT.StartHealth = 1000;
+ENT.StartHealth = 3000;
 if SERVER then
 
 ENT.NextUse = {Use = CurTime(),Fire = CurTime()};

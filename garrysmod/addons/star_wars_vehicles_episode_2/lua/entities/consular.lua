@@ -20,7 +20,7 @@ ENT.AdminOnly = true; //Set to true for an Admin vehicle.
  
 ENT.EntModel = "models/consular_c/syphadias/consular_c_m.mdl" //The oath to the model you want to use.
 ENT.Vehicle = "ConsularC" //The internal name for the ship. It cannot be the same as a different ship.
-ENT.StartHealth = 50000; //How much health they should have.
+ENT.StartHealth = 35000; //How much health they should have.
 ENT.Allegiance = "Republic";
 
 if SERVER then

@@ -12,7 +12,7 @@ ENT.AdminSpawnable = false;
 
 ENT.EntModel = "models/soulless/soulless1.mdl"
 ENT.Vehicle = "Soulless"
-ENT.StartHealth = 1500;
+ENT.StartHealth = 4000;
 ENT.Allegiance = "CIS";
 
 if SERVER then

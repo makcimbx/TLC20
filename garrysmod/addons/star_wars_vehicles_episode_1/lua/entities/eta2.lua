@@ -11,7 +11,7 @@ ENT.AdminSpawnable = false;
 
 ENT.EntModel = "models/eta2r/eta2r1.mdl"
 ENT.Vehicle = "EtaR"
-ENT.StartHealth = 1000;
+ENT.StartHealth = 4500;
 ENT.Allegiance = "Republic";
 
 if SERVER then

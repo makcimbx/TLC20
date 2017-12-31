@@ -12,7 +12,7 @@ ENT.AdminSpawnable = false;
 ENT.EntModel = "models/tri/tri1.mdl"
 ENT.Vehicle = "DroidTri"
 ENT.Allegiance = "CIS";
-ENT.StartHealth = 750;
+ENT.StartHealth = 3750;
 
 if SERVER then
 
