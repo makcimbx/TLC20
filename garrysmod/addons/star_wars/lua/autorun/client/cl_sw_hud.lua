@@ -365,7 +365,6 @@ local plyMeta = FindMetaTable("Player")
 local Page = Material("icon16/page_white_text.png")
 
 function plyMeta:GetMaxArmor()
-	print(self:GetNWInt( "MaxArmor" ) or 100)
 	return self:GetNWInt( "MaxArmor" ) or 100;
 end
 

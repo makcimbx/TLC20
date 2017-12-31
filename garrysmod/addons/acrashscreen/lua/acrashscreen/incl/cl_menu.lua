@@ -342,12 +342,12 @@ function PANEL:Paint( w, h )
 				TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 				
 			draw.SimpleText(
-				"Вы будете автоматически переподключены когда сервер вернется в онлайн!", 'acrashscreen_small',
+				"Вы НЕ будете автоматически переподключены когда сервер вернется в онлайн!", 'acrashscreen_small',
 				w*0.5 + 2, 120 + 2, Color( 0, 0, 0 ),
 				TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 				
 			draw.SimpleText(
-				"Вы будете автоматически переподключены когда сервер вернется в онлайн!", 'acrashscreen_small',
+				"Вы НЕ будете автоматически переподключены когда сервер вернется в онлайн!", 'acrashscreen_small',
 				w*0.5, 120, Color( 255, 255, 255 ),
 					TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 				
