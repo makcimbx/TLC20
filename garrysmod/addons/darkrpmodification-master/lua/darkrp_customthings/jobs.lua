@@ -43,6 +43,11 @@ TEAM_501CT = DarkRP.createJob("501-й Клон Солдат", {
 	admin = 0,
 	vote = false,
 	level = 1,
+	PlayerSpawn = function(ply)
+    ply:SetBodygroup(1,0)
+    ply:SetBodygroup(2,4)
+    ply:SetBodygroup(3,2)
+    end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
