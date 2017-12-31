@@ -101,20 +101,28 @@ TEAM_501GRENADETRP = DarkRP.createJob("501-й Гранатометчик", {
 	category = "501st legion",
 })
 
-TEAM_501CPL = DarkRP.createJob("501-й Капрал", {
-	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/501st_lieutenant/501st_lieutenant.mdl",
-	description = [[Поздравляем, теперь вы капрал 501-го легиона!]],
-	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c5"},
-	command = "501cpl",
-	max = 0,
-	salary = 0,
-	admin = 0,
-	vote = false,
-	level = 20,
-	hasLicense = false,
-	candemote = false,
-	category = "501st legion",
+TEAM_501CPL = DarkRP.createJob("501-й Капрал", { 
+color = Color(50, 50, 255, 255), 
+model = "models/player/ven/bf2_reg/501st/bf2501.mdl", 
+description = [[Поздравляем, теперь вы капрал 501-го легиона!]], 
+weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c5"}, 
+command = "501cpl", 
+max = 0, 
+salary = 0, 
+admin = 0, 
+vote = false, 
+level = 20, 
+OnPlayerChangedTeam = function(ply) 
+ply:SetBodygroup(0,1) 
+ply:SetBodygroup(1,1) 
+ply:SetBodygroup(2,1) 
+ply:SetBodygroup(3,1) 
+ply:SetBodygroup(4,1) 
+ply:SetBodygroup(5,1) 
+end, 
+hasLicense = false, 
+candemote = false, 
+category = "501st legion", 
 })
 
 TEAM_501SGT = DarkRP.createJob("501-й Сержант", {

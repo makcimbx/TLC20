@@ -61,20 +61,22 @@ TREE.Tier[1] = {}
 TREE.Tier[1][1] = {
 	Name = "Урон 1",
 	Description = "+5% к урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/torment.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {DamageP = 0.05  },
+	OnPlayerSpawn = {Damager = true, DamageP = 0.05  },
 	OnPlayerDeath = function( ply ) end, 
 	OnSaberDeploy = function( wep ) end,
 }
 TREE.Tier[1][2] = {
 	Name = "Крит. урон 1",
 	Description = "+5% к критическому урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/emergent.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {CritP = 0.05  },
+	OnPlayerSpawn = {Damager = true,CritP = 0.05  },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -83,20 +85,22 @@ TREE.Tier[2] = {}
 TREE.Tier[2][1] = {
 	Name = "Урон 2",
 	Description = "+5% к урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/torment.png",
 	PointsRequired = 1,
 	Requirements = {[1] = {1}},
-	OnPlayerSpawn = {DamageP = 0.05 },
+	OnPlayerSpawn = {Damager = true,DamageP = 0.05 },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
 TREE.Tier[2][2] = {
 	Name = "Крит. урон 2",
 	Description = "+5% к критическому урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/emergent.png",
 	PointsRequired = 1,
 	Requirements = {[1] = {2}},
-	OnPlayerSpawn = {CritP = 0.05  },
+	OnPlayerSpawn = {Damager = true,CritP = 0.05  },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -105,42 +109,36 @@ TREE.Tier[3] = {}
 TREE.Tier[3][1] = {
 	Name = "Урон 3",
 	Description = "+5% к урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/torment.png",
 	PointsRequired = 3,
 	Requirements = {[2] = {1}},
-	OnPlayerSpawn = {DamageP = 0.05},
+	OnPlayerSpawn = {Damager = true,DamageP = 0.05},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
 TREE.Tier[3][2] = {
 	Name = "Крит. урон 3",
 	Description = "+5% к критическому урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/emergent.png",
 	PointsRequired = 1,
 	Requirements = {[2] = {2}},
-	OnPlayerSpawn = {CritP = 0.05  },
+	OnPlayerSpawn = {Damager = true,CritP = 0.05  },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[4] = {}
 TREE.Tier[4][1] = {
-	Name = "Урон 4",
-	Description = "+5% к урону",
+	Name = "Берсерк",
+	Description = "Чем меньше у вас ХП тем быстрее вы передвигаетесь,",
+	Description2 = " но получаете +10% урона",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/torment.png",
-	PointsRequired = 4,
-	Requirements = {[3] = {1}},
-	OnPlayerSpawn = {DamageP = 0.05},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
-}
-TREE.Tier[4][2] = {
-	Name = "Крит. урон 4",
-	Description = "+5% к критическому урону",
-	Icon = "wos/skilltrees/ravager/emergent.png",
-	PointsRequired = 1,
-	Requirements = {[3] = {2}},
-	OnPlayerSpawn = {CritP = 0.05  },
+	PointsRequired = 30,
+	Requirements = {[3] = {1,2}},
+	OnPlayerSpawn = {Damager = true,TakeDamageP = 0.1,Berserk = true},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -149,20 +147,22 @@ TREE.Tier[5] = {}
 TREE.Tier[5][1] = {
 	Name = "Урон 5",
 	Description = "+10% к урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/torment.png",
 	PointsRequired = 5,
-	Requirements = {[4] = {1}},
-	OnPlayerSpawn = {DamageP = 0.1},
+	Requirements = {[3] = {1}},
+	OnPlayerSpawn = {Damager = true,DamageP = 0.1},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
 TREE.Tier[5][2] = {
 	Name = "Крит. урон 5",
 	Description = "+5% к критическому урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/emergent.png",
 	PointsRequired = 1,
-	Requirements = {[4] = {2}},
-	OnPlayerSpawn = {CritP = 0.05  },
+	Requirements = {[3] = {2}},
+	OnPlayerSpawn = {Damager = true,CritP = 0.05  },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -172,20 +172,34 @@ TREE.Tier[6] = {}
 TREE.Tier[6][1] = {
 	Name = "Урон 6",
 	Description = "+10% к урону",
+	ETree = "Убийца",
 	Icon = "wos/skilltrees/ravager/torment.png",
 	PointsRequired = 6,
 	Requirements = {[5] = {1}},
-	OnPlayerSpawn = {DamageP = 0.1},
+	OnPlayerSpawn = {Damager = true,DamageP = 0.1},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
-TREE.Tier[6][2] = {
+TREE.Tier[6][3] = {
 	Name = "Крит. урон 6",
+	ETree = "Убийца",
 	Description = "+5% к критическому урону",
 	Icon = "wos/skilltrees/ravager/emergent.png",
 	PointsRequired = 1,
 	Requirements = {[5] = {2}},
-	OnPlayerSpawn = {CritP = 0.1  },
+	OnPlayerSpawn = {Damager = true,CritP = 0.1  },
+	OnPlayerDeath = function( ply ) end,
+	OnSaberDeploy = function( wep ) end,
+}
+TREE.Tier[6][2] = {
+	Name = "Берсерк",
+	Description = "Чем меньше у вас ХП тем быстрее вы передвигаетесь,",
+	Description2 = " но получаете +10% урона",
+	ETree = "Убийца",
+	Icon = "wos/skilltrees/ravager/torment.png",
+	PointsRequired = 30,
+	Requirements = {[4] = {1}},
+	OnPlayerSpawn = {Damager = true,TakeDamageP = 0.1,Berserk = true},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }

@@ -61,10 +61,11 @@ TREE.Tier[1] = {}
 TREE.Tier[1][1] = {
 	Name = "Health 1",
 	Description = "Adds 50 Health to your current Health",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {Health = 50,  MaxHealth = 50},
+	OnPlayerSpawn = {Tank = true, Health = 50,  MaxHealth = 50},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -72,10 +73,11 @@ TREE.Tier[1][1] = {
 TREE.Tier[1][2] = {
 	Name = "Armor 1",
 	Description = "Adds 10 Armor to your current Armor",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/armor.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {Armor = 10 },
+	OnPlayerSpawn = {Tank = true, Armor = 10 },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -95,12 +97,13 @@ TREE.Tier[2] = {}
 TREE.Tier[2][1] = {
 	Name = "Health 2",
 	Description = "Adds 50 Health to your current Health",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 2,
 	Requirements = {
 	[1] = { 1 },
 	},
-	OnPlayerSpawn = {Health = 50,  MaxHealth = 50},
+	OnPlayerSpawn = {Tank = true, Health = 50,  MaxHealth = 50},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -108,12 +111,13 @@ TREE.Tier[2][1] = {
 TREE.Tier[2][2] = {
 	Name = "Armor 2",
 	Description = "Adds 10 Armor to your current Armor",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/armor.png",
 	PointsRequired = 2,
 	Requirements = {
 	[1] = { 2 },
 	},
-	OnPlayerSpawn = {Armor = 10 },
+	OnPlayerSpawn = {Tank = true, Armor = 10 },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -135,12 +139,13 @@ TREE.Tier[3] = {}
 TREE.Tier[3][1] = {
 	Name = "Health 3",
 	Description = "Adds 50 Health to your current Health",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 3,
 	Requirements = {
 	[2] = { 1 },
 	},
-	OnPlayerSpawn = {Health = 50,  MaxHealth = 50},
+	OnPlayerSpawn = {Tank = true, Health = 50,  MaxHealth = 50},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -148,12 +153,13 @@ TREE.Tier[3][1] = {
 TREE.Tier[3][2] = {
 	Name = "Armor 3",
 	Description = "Adds 10 Armor to your current Armor",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/armor.png",
 	PointsRequired = 3,
 	Requirements = {
 	[2] = { 2 },
 	},
-	OnPlayerSpawn = {Armor = 10 },
+	OnPlayerSpawn = {Tank = true, Armor = 10 },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -175,12 +181,13 @@ TREE.Tier[4] = {}
 TREE.Tier[4][1] = {
 	Name = "Health 4",
 	Description = "Adds 50 Health to your current Health",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 4,
 	Requirements = {
 	[3] = { 1 },
 	},
-	OnPlayerSpawn = {Health = 50,  MaxHealth = 50},
+	OnPlayerSpawn = {Tank = true, Health = 50,  MaxHealth = 50},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -188,12 +195,13 @@ TREE.Tier[4][1] = {
 TREE.Tier[4][2] = {
 	Name = "Armor 4",
 	Description = "Adds 10 Armor to your current Armor",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/armor.png",
 	PointsRequired = 4,
 	Requirements = {
 	[3] = { 2 },
 	},
-	OnPlayerSpawn = {Armor = 10 },
+	OnPlayerSpawn = {Tank = true, Armor = 10 },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -215,12 +223,13 @@ TREE.Tier[5] = {}
 TREE.Tier[5][1] = {
 	Name = "Health 5",
 	Description = "Adds 100 Health to your current Health",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 5,
 	Requirements = {
 	[4] = { 1 },
 	},
-	OnPlayerSpawn ={Health = 100,  MaxHealth = 100},
+	OnPlayerSpawn ={Tank = true, Health = 100,  MaxHealth = 100},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -228,17 +237,18 @@ TREE.Tier[5][1] = {
 TREE.Tier[5][2] = {
 	Name = "Armor 5",
 	Description = "Adds 40 Armor to your current Armor",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/armor.png",
 	PointsRequired = 5,
 	Requirements = {
 	[4] = { 2 },
 	},
-	OnPlayerSpawn = {Armor = 60 },
+	OnPlayerSpawn = {Tank = true, Armor = 60 },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
-
-TREE.Tier[5][3] = {
+ 
+TREE.Tier[5][3] = { 
 	Name = "Speed 5",
 	Description = "Adds 40 Speed to your current Speed",
 	Icon = "wos/skilltrees/characterstats/speed.png",
@@ -250,18 +260,19 @@ TREE.Tier[5][3] = {
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
-
+ 
 
 TREE.Tier[6] = {}
 TREE.Tier[6][1] = {
 	Name = "Health 6",
 	Description = "Adds 100 Health to your current Health",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 6,
 	Requirements = {
 	[5] = { 1 },
 	},
-	OnPlayerSpawn = {Health = 100,  MaxHealth = 100},
+	OnPlayerSpawn = {Tank = true, Health = 100,  MaxHealth = 100},
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }
@@ -269,12 +280,13 @@ TREE.Tier[6][1] = {
 TREE.Tier[6][2] = {
 	Name = "Armor 6",
 	Description = "Adds 100 Armor to your current Armor",
+	ETree = "Танк",
 	Icon = "wos/skilltrees/characterstats/armor.png",
 	PointsRequired = 6,
 	Requirements = {
 	[5] = { 2 },
 	},
-	OnPlayerSpawn = {Armor = 100 },
+	OnPlayerSpawn = {Tank = true, Armor = 100 },
 	OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) end,
 }

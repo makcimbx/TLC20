@@ -4,9 +4,10 @@ if not SERVER then return end
 
 utime_welcome = CreateConVar( "utime_welcome", "1", FCVAR_ARCHIVE )
 
-atlaschat.sql.Query("CREATE TABLE IF NOT EXISTS utime ( id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT, player BIGINT NOT NULL, totaltime BIGINT NOT NULL, lastvisit BIGINT NOT NULL );")
-atlaschat.sql.Query("CREATE INDEX IDX_UTIME_PLAYER ON utime ( player DESC );")
-
+timer.Simple(1,function()
+	atlaschat.sql.Query("CREATE TABLE IF NOT EXISTS utime ( id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT, player BIGINT NOT NULL, totaltime BIGINT NOT NULL, lastvisit BIGINT NOT NULL );")
+	atlaschat.sql.Query("CREATE INDEX IDX_UTIME_PLAYER ON utime ( player DESC );")
+end)
 
 function onJoin( ply )
 	local uid = ply:UniqueID()

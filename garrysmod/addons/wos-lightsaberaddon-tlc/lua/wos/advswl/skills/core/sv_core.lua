@@ -215,6 +215,8 @@ function wOS:RegisterSkillTree( DATA )
 	local transfer = {}
 	transfer.Name = DATA.Name
 	transfer.Description = DATA.Description
+	transfer.Description2 = DATA.Description2 or ""
+	transfer.ETree = DATA.ETree or ""
 	transfer.TreeIcon = DATA.TreeIcon
 	transfer.BackgroundColor = DATA.BackgroundColor
 	transfer.MaxTiers = DATA.MaxTiers
@@ -227,6 +229,8 @@ function wOS:RegisterSkillTree( DATA )
 			transfer.Tier[ i ][ slot ] = {}
 			transfer.Tier[ i ][ slot ].Name = dat.Name
 			transfer.Tier[ i ][ slot ].Description = dat.Description
+			transfer.Tier[ i ][ slot ].Description2 = dat.Description2
+			transfer.Tier[ i ][ slot ].ETree = dat.ETree
 			transfer.Tier[ i ][ slot ].Icon = dat.Icon
 			
 			resource.AddFile( "materials/" .. dat.Icon ) -- Auto resource add! Round TWO

@@ -34,7 +34,47 @@ function GM:PlayerLoadout(ply)
     ply:SwitchToDefaultWeapon()
 end
 
-local meta = FindMetaTable( "Player" )
+local meta = FindMetaTable( "Player" );
+
+
+function meta:checkTree(tree)
+	local curTree = self.maintree
+	
+	if(curTree == nil)then
+		self:SetPData("curTree",tree)
+		self:SetNWString("curTree",tree)
+		self.maintree = tree
+		return true
+	else
+		if(tree == curTree)then
+			return true
+		else
+			return false
+		end
+	end
+end
+
+function meta:addResetPoints(points)
+	self:SetPData("resetPoints",self.resetPoints+points)
+	ply.resetPoints = self.resetPoints+points
+	self:SetNWString("resetPoints",ply.resetPoints.."")
+end
+
+function meta:checkResetPoints()
+	local points = self.resetPoints
+	
+	if(points-1>=0)then
+		self:SetPData("resetPoints",points-1)
+		self.resetPoints = points-1
+		self:SetPData("curTree",nil) 
+		self.maintree = nil
+		self:SetNWString("resetPoints",self.resetPoints.."")
+		self:SetNWString("curTree",self.maintree)
+		return true
+	else
+		return false
+	end
+end
 
 function meta:GetMaxArmor()
 	return self.MaxArmor or 0;
@@ -197,8 +237,12 @@ local function spawn3( ply )
 	ply:SetPos( Vector(-8153.135742, 6200.348145, -14824.129883) )
 	ply:SetEyeAngles( Angle(59.736351, 148.419388, 0.000000) )
 	ply:SetMaxArmor(100)
+	ply.maintree = ply:GetPData("curTree",nil) 
+	ply.resetPoints = tonumber(ply:GetPData("resetPoints","1"))
+	ply:SetNWString("resetPoints",ply.resetPoints.."")
+	ply:SetNWString("curTree",ply.maintree)
 end
-hook.Add( "PlayerInitialSpawn", "PlayerInitialSpawn", spawn2 )
+hook.Add( "PlayerInitialSpawn", "EverSuper_DalarinPidorPlayerInitialSpawn", spawn3 )
 
 local function spawn2( ply )
 	if(ply.video_newSpawn != true)then

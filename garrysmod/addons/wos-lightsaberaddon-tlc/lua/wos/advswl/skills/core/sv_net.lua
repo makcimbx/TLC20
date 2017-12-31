@@ -36,7 +36,6 @@ net.Receive( "wOS.SkillTree.ChooseSkill", function( len, ply )
 	local tree = net.ReadString()
 	local tier = net.ReadInt( 32 )
 	local skill = net.ReadInt( 32 )
-	
 	local skilldata = wOS.SkillTrees[ tree ]
 	if not skilldata then return end
 	if skilldata.UserGroups then
@@ -51,6 +50,24 @@ net.Receive( "wOS.SkillTree.ChooseSkill", function( len, ply )
 	
 	skilldata = skilldata[ skill ]
 	if not skilldata then return end	
+	
+	--skilldata.OnPlayerSpawn.Damager
+	--skilldata.OnPlayerSpawn.Tank
+	--ply:checkTree()
+	if(skilldata.OnPlayerSpawn.Damager or false == true)then 
+		if(not ply:checkTree("Убийца"))then
+			ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
+			ply:SendLua( [[ notification.AddLegacy( "[wOS] Вы не можете вкачать данный скилл так как начали вкачиват скиллы Танка!", NOTIFY_ERROR, 3 ) ]] )
+			return
+		end
+	end
+	if(skilldata.OnPlayerSpawn.Tank or false == true)then 
+		if(not ply:checkTree("Танк"))then
+			ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
+			ply:SendLua( [[ notification.AddLegacy( "[wOS] Вы не можете вкачать данный скилл так как начали вкачиват скиллы Дамагера!", NOTIFY_ERROR, 3 ) ]] )
+			return
+		end
+	end
 	
 	if ply:GetSkillPoints() < skilldata.PointsRequired then 
 		ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
@@ -78,6 +95,12 @@ end )
 
 net.Receive( "wOS.SkillTree.ResetAllSkills", function( len, ply )
 
+	if not ply:checkResetPoints() then 
+		ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
+		ply:SendLua( [[ notification.AddLegacy( "[wOS] Недостаточно очков сброса скиллов!!", NOTIFY_ERROR, 3 ) ]] )
+		return
+	end
+	
 	local total = 0
 
 	for tree, sdata in pairs( ply.SkillTree ) do

@@ -87,6 +87,7 @@ local HELP_TEXT = [[Это ваше меню развития персонажа
 
 Некоторые навыки в дереве требуют предыдущих навыков для получения. Вы можете увидеть необходимые навыки, следуя белой линии между ними.
 ]]
+
 function wOS:OpenSkillTreeMenu()
 
 	if self.SkillMenu then 
@@ -177,7 +178,7 @@ function wOS:OpenSkillTreeMenu()
 			surface.SetDrawColor( color_white )
 			surface.DrawOutlinedRect( ww*0.3, hh/2 - ww*0.1, ww*0.4, ww*0.2 )	
 			draw.SimpleText( "Вы уверены, что хотите сбросить свои скиллы?", "wOS.SkillTreeMain", ww/2, hh/2 - ww*0.09, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP )	
-			draw.SimpleText( "ВЫ БУДЕТЕ УБИТЫ КОГДА СДЕЛАЕТЕ ЭТО", "wOS.SkillTreeMain", ww/2, hh/2 - ww*0.07, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP )	
+			draw.SimpleText( "ВЫ БУДЕТЕ УБИТЫ КОГДА СДЕЛАЕТЕ ЭТО", "wOS.SkillTreeMain", ww/2, hh/2 - ww*0.07, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP )
 		end
 		confirm.Think = function( pan )
 			if not self.SkillMenu then pan:Remove() end
@@ -210,8 +211,12 @@ function wOS:OpenSkillTreeMenu()
 			end
 			draw.SimpleText( "СДЕЛАЙ ЭТО", "wOS.SkillTreeMain", ww/2, hh/2, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 		end
-		resetyes.DoClick = function() net.Start( "wOS.SkillTree.ResetAllSkills" ) net.SendToServer() confirm:Remove() end
+		resetyes.DoClick = function()
+			net.Start( "wOS.SkillTree.ResetAllSkills" ) net.SendToServer() 
+			confirm:Remove() 
+		end
 	end
+	
 	
 	local skilltrees = {}
 	skilltrees[ "Help Menu" ] = { BackgroundColor = Color( 25, 25, 25, 155 ), Name = "Help Menu", Description = "Тут мини-обучение", Help = "" }
@@ -257,11 +262,15 @@ function wOS:OpenSkillTreeMenu()
 		draw.SimpleText( ( level == wOS.SkillMaxLevel and "LEVEL" ) or reqxp, "wOS.DescriptionFont", ww*0.665, hh*0.974, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )		
 		draw.SimpleText( xp, "wOS.DescriptionFont", ww*0.5, hh*0.974, Color( 0, 128, 255, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )		
 		draw.SimpleText( "Уровень Войны: " .. level, "wOS.TitleFont", padx, hh - pady, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM )		
-		draw.SimpleText( "Скилл поинты: " .. LocalPlayer():GetNW2Int( "wOS.SkillPoints", 0 ), "wOS.TitleFont", ww - padx, hh - pady, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )		
+		draw.SimpleText( "Скилл поинты: " .. LocalPlayer():GetNW2Int( "wOS.SkillPoints", 0 ), "wOS.TitleFont", ww - padx, hh - pady, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )				
+		draw.SimpleText( "Главная ветка: " .. LocalPlayer():GetNWString( "curTree", "*" ), "wOS.TitleFont", ww - padx, hh - 2.5*pady, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )	
+		draw.SimpleText( "Очки сброса: " .. LocalPlayer():GetNWString( "resetPoints", "0" ), "wOS.TitleFont", padx, hh - 2.5* pady, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM )
+		--self:SetNWString("resetPoints",self.resetPoints)
+		--self:SetNWString("curTree",self.maintree)	
 	end
 	
 	local skills_window = vgui.Create( "DPanel", main_frame )
-	skills_window:SetSize( skw, skh )
+	skills_window:SetSize( skw, skh-1.5*pady )
 	skills_window:SetPos( padx, sh*0.3 )
 	skills_window.Paint = function( pan, ww, hh )
 		draw.RoundedBox( 0, 0, 0, ww, hh, Color( 25, 25, 25, 155 ) )
@@ -409,7 +418,7 @@ function wOS:OpenSkillTreeMenu()
 	end	
 	
 	self.SkillInfoPanel = vgui.Create( "DPanel" )
-	self.SkillInfoPanel:SetSize( mw*0.26, mh*0.08 )
+	self.SkillInfoPanel:SetSize( mw*0.26, mh*0.12 )
 	self.SkillInfoPanel:SetPos( w, h )
 	self.SkillInfoPanel.Data = false
 	self.SkillInfoPanel.Paint = function( pan, ww, hh )	
@@ -419,7 +428,9 @@ function wOS:OpenSkillTreeMenu()
 		
 		if self.SkillInfoPanel.Data then
 			draw.SimpleText( pan.Data.Name, "wOS.TitleFont", ww*0.04, hh*0.25, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )
-			draw.SimpleText( pan.Data.Description, "wOS.DescriptionFont", ww*0.04, hh*0.5, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )
+			draw.SimpleText( pan.Data.ETree or "", "wOS.TitleFont", ww*0.96, hh*0.25, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER )
+			draw.SimpleText( pan.Data.Description, "wOS.DescriptionFont", ww*0.04, hh*0.45, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )--
+			draw.SimpleText( (pan.Data.Description2 or "") .."", "wOS.DescriptionFont", ww*0.04, hh*0.60, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )--pan.Data.Description
 			if not wOS:HasSkillEquipped( pan.Data.Tree, pan.Data.Tier, pan.Data.Skill ) then
 				if wOS:CanEquipSkill( pan.Data.Tree, pan.Data.Tier, pan.Data.Skill ) then
 					draw.SimpleText( "Необходимо " .. pan.Data.PointsRequired .. " скилл поинтов", "wOS.DescriptionFont", ww*0.04, hh*0.75, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )
