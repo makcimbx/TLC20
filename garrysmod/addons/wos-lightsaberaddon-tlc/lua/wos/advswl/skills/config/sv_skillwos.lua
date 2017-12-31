@@ -49,7 +49,7 @@ wOS.ShouldSkillUseMySQL = true
 wOS.VrondrakisSync = false
 
 --How many levels do you need to progress in order to get skill points?
-wOS.LevelsPerSkillPoint = 5
+wOS.LevelsPerSkillPoint = 1
 
 --How many skill points do you get when you achieve those levels above?
 wOS.SkillPointPerLevel = 1
