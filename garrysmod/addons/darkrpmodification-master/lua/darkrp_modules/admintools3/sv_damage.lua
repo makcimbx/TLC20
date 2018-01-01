@@ -21,6 +21,36 @@ local function GetResist(ply)
 	return dmg
 end
 
+hook.Add("HealthChanged","HealthChanged_Ever_Damage",function(ply)
+	local b = GetBerserk(ply)
+	if(b == true)then
+		
+		local playerClass = baseclass.Get(player_manager.GetPlayerClass(ply))
+		local walk = playerClass.WalkSpeed >= 0 and playerClass.WalkSpeed or GAMEMODE.Config.walkspeed
+		local run = playerClass.RunSpeed >= 0 and playerClass.RunSpeed or GAMEMODE.Config.runspeed
+		local crouch = playerClass.CrouchedWalkSpeed
+		
+		local hpp = 1-ply:Health()/ply:GetMaxHealth()
+		ply:SetWalkSpeed(walk + walk*(hpp))
+		ply:SetRunSpeed(run + run*(hpp))
+		ply:SetCrouchedWalkSpeed(crouch + crouch*(hpp))
+	end
+end)
+
+hook.Add("Think","Think_Ever_Damage",function()
+	for k,v in pairs(player.GetAll())do
+		if(v.lasthp == nil)then
+			v.lasthp = v:Health()
+		else
+			if(v.lasthp != v:Health())then
+				v.lasthp = v:Health()
+				hook.Call("HealthChanged",nil,v)
+			end
+		end
+	end
+end)
+
+
 local function GetCrit(ply)
 	local crit = 1.5
 	for _, v in pairs( ply.PlayerSkillSpawns or {} ) do
@@ -61,28 +91,16 @@ function GM:EntityTakeDamage( target, dmginfo )
 		if(b == true)then
 			local r = GetResist(target)
 			dmg = dmg + dmg*r
-			--[[
-			    self:SetWalkSpeed(playerClass.WalkSpeed >= 0 and playerClass.WalkSpeed or GAMEMODE.Config.walkspeed)
-				self:SetRunSpeed(playerClass.RunSpeed >= 0 and playerClass.RunSpeed or GAMEMODE.Config.runspeed)
-
-				hook.Call("UpdatePlayerSpeed", GAMEMODE, self) -- Backwards compatitibly, do not use
-
-				self:SetCrouchedWalkSpeed(playerClass.CrouchedWalkSpeed)
-				self:SetDuckSpeed(playerClass.DuckSpeed)
-				self:SetUnDuckSpeed(playerClass.UnDuckSpeed)
-				self:SetJumpPower(playerClass.JumpPower)
-				self:AllowFlashlight(playerClass.CanUseFlashlight)
-			]]--
+			
 			local playerClass = baseclass.Get(player_manager.GetPlayerClass(target))
 			local walk = playerClass.WalkSpeed >= 0 and playerClass.WalkSpeed or GAMEMODE.Config.walkspeed
 			local run = playerClass.RunSpeed >= 0 and playerClass.RunSpeed or GAMEMODE.Config.runspeed
 			local crouch = playerClass.CrouchedWalkSpeed
 			
-			local hpp = math.Clamp( target:GetMaxHealth()/target:Health(), 0, 10 )
-			target:SetRunSpeed(walk + walk*(hpp-1))
-			target:SetWalkSpeed(run + run*(hpp-1))
-			target:SetCrouchedWalkSpeed(crouch + crouch*(hpp-1))
-			print(target)
+			local hpp = 1-target:Health()/target:GetMaxHealth()
+			target:SetWalkSpeed(walk + walk*(hpp))
+			target:SetRunSpeed(run + run*(hpp))
+			target:SetCrouchedWalkSpeed(crouch + crouch*(hpp))
 		end
 	end
 	

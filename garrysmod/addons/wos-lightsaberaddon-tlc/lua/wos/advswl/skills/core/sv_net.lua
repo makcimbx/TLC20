@@ -54,20 +54,17 @@ net.Receive( "wOS.SkillTree.ChooseSkill", function( len, ply )
 	--skilldata.OnPlayerSpawn.Damager
 	--skilldata.OnPlayerSpawn.Tank
 	--ply:checkTree()
-	if(skilldata.OnPlayerSpawn.Damager or false == true)then 
-		if(not ply:checkTree("Убийца"))then
-			ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
-			ply:SendLua( [[ notification.AddLegacy( "[wOS] Вы не можете вкачать данный скилл так как начали вкачиват скиллы Танка!", NOTIFY_ERROR, 3 ) ]] )
-			return
+	if(type(skilldata.OnPlayerSpawn)=="table")then
+		if(skilldata.ETree != nil)then
+			local t = ply:checkTree(skilldata.ETree)
+			if(t!=true)then
+				ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
+				ply:SendLua( [[ notification.AddLegacy( "[wOS] Вы не можете вкачать данный скилл так как вкачали скиллы ветки ]]..t..[[!", NOTIFY_ERROR, 3 ) ]] )
+				return
+			end
 		end
 	end
-	if(skilldata.OnPlayerSpawn.Tank or false == true)then 
-		if(not ply:checkTree("Танк"))then
-			ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
-			ply:SendLua( [[ notification.AddLegacy( "[wOS] Вы не можете вкачать данный скилл так как начали вкачиват скиллы Дамагера!", NOTIFY_ERROR, 3 ) ]] )
-			return
-		end
-	end
+	
 	
 	if ply:GetSkillPoints() < skilldata.PointsRequired then 
 		ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )

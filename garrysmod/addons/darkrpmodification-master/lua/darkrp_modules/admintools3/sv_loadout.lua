@@ -49,7 +49,7 @@ function meta:checkTree(tree)
 		if(tree == curTree)then
 			return true
 		else
-			return false
+			return curTree
 		end
 	end
 end
