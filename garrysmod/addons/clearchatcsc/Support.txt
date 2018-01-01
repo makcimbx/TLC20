@@ -1,6 +1,0 @@
-When requesting support, please include the following:
-	API Key (from lua/autorun/sv_cc_csc.lua)
-	All IP addresses that your servers are running from
-	The IP address that is not working correctly
-
-This will massivley speed up support times.

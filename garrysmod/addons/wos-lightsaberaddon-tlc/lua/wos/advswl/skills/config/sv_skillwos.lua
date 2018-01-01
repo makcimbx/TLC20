@@ -72,27 +72,27 @@ wOS.TimeBetweenXP = 600
 
 --Default is the DEFAULT xp awarded if they aren't getting special XP. Only change the numbers for this one!
 wOS.ExperienceTable[ "Default" ] = {
-		Meditation = 5,
-		PlayerKill = 50,
-		NPCKill = 10,
-		XPPerInt = 3,
-		XPPerHeal = 3,
+		Meditation = 50,
+		PlayerKill = 500,
+		NPCKill = 100,
+		XPPerInt = 30,
+		XPPerHeal = 30,
 }
 
 wOS.ExperienceTable[ "vip" ] = {
-		Meditation = 10,
-		PlayerKill = 100,
-		NPCKill = 20,
-		XPPerInt = 7,
-		XPPerHeal = 3,
+		Meditation = 100,
+		PlayerKill = 1000,
+		NPCKill = 200,
+		XPPerInt = 70,
+		XPPerHeal = 30,
 }
 
 wOS.ExperienceTable[ "superadmin" ] = {
-		Meditation = 15,
-		PlayerKill = 150,
-		NPCKill = 30,
-		XPPerInt = 10,
-		XPPerHeal = 3,
+		Meditation = 150,
+		PlayerKill = 1500,
+		NPCKill = 300,
+		XPPerInt = 100,
+		XPPerHeal = 30,
 }
 
 
