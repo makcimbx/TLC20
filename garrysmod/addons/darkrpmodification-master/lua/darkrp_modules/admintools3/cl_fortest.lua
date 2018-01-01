@@ -110,7 +110,6 @@ function GlideStop()
 	pos = nil
 	ang = nil
 
-	hook.Call("PostServerIntro")
 end
 
 hook.Add( "Think", "Ever_Key_Spawn", function()

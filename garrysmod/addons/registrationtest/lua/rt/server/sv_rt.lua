@@ -80,10 +80,12 @@ end)
 net.Receive("addnagrada",function(l,pl)
 	if(pl.allgood == true)then
 		local legion = rtLang.Legions[tonumber(net.ReadString())].prof
-		--RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", pl:SteamID(), RPExtraTeams[legion].Name )
-		--pl:changeTeam(legion,true,true)
+		RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", pl:SteamID(), RPExtraTeams[legion].Name )
+		pl:changeTeam(legion,true,true)
 		pl:addXP(pl.trainXp, true)
-		pl.sempai:addXP(10000, true)
+		if(IsValid(pl.sempai))then
+			pl.sempai:addXP(10000, true)
+		end
 		pl.trainXp = nil
 		pl:SetNWEntity( "sempai",NULL )
 		pl.train_wait = nil
@@ -130,11 +132,10 @@ function rt_edit( pl, cmd, arg )
 end
 concommand.Add("rtedit", rt_edit)]]--
 
-function rt_questions(pl, cmd, args)
+net.Receive("StartTest",function(l,ply)
 	--local questions = sql.Query("SELECT `question`, `answers` FROM `rt_questions`")
-	rt_startq(pl)
-end
-concommand.Add("rt_questions", rt_questions)
+	rt_startq(ply)
+end)
 
 function rt_startq(pl)
 	net.Start("questions")

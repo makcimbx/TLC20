@@ -80,7 +80,6 @@ function GlideSpawnStart()
 		else
 			stage = stage + 1
 		end
-		 print(d_v)
 		pos = d_v
 		ang = d_a
 	end )

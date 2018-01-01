@@ -345,3 +345,44 @@ end;
 
 serverguard.command:Add(command);
 
+
+command = {};
+command.help		= "Addskill.";
+command.command 	= "addskill";
+command.arguments	= {"player","skill count"};
+command.permissions	= "addskill";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.bSingleTarget = true;
+
+function command:OnPlayerExecute(_, target, arguments)
+
+	local count = tonumber(arguments[2])
+
+	target:AddSkillPoints( count )
+	
+	serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(player), SERVERGUARD.NOTIFY.WHITE, " добавил ",SERVERGUARD.NOTIFY.RED, count.."", SERVERGUARD.NOTIFY.WHITE, " скилл поинтов ", SERVERGUARD.NOTIFY.RED, target:Name());
+	
+	return true;
+end;
+serverguard.command:Add(command);
+
+
+command = {};
+command.help		= "AddSkillsReload.";
+command.command 	= "addskillreload";
+command.arguments	= {"player","reload points"};
+command.permissions	= "addskillreload";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+command.bSingleTarget = true;
+
+function command:OnPlayerExecute(_, target, arguments)
+
+	local count = tonumber(arguments[2])
+
+	target:addResetPoints(count)
+	
+	serverguard.Notify(nil, SERVERGUARD.NOTIFY.GREEN, serverguard.player:GetName(player), SERVERGUARD.NOTIFY.WHITE, " добавил ",SERVERGUARD.NOTIFY.RED, count.."", SERVERGUARD.NOTIFY.WHITE, " очков сброса навыков ", SERVERGUARD.NOTIFY.RED, target:Name());
+	
+	return true;
+end;
+serverguard.command:Add(command);

@@ -56,8 +56,8 @@ end
 
 function meta:addResetPoints(points)
 	self:SetPData("resetPoints",self.resetPoints+points)
-	ply.resetPoints = self.resetPoints+points
-	self:SetNWString("resetPoints",ply.resetPoints.."")
+	self.resetPoints = self.resetPoints+points
+	self:SetNWString("resetPoints",self.resetPoints.."")
 end
 
 function meta:checkResetPoints()

@@ -79,47 +79,47 @@ concommand.Add("reloadboxes",function( ply, cmd, args )
 end)
 
 function ApplyRagdollPhys(r,g,v)
-	if(g == "" or g == nil)then
-		g = true
-		if(GravityEnabled())then
-			g = false
-		end
-	end
-	
-	for i=0, r:GetPhysicsObjectCount() - 1 do -- "ragdoll" being a ragdoll entity
-
-		local phys = r:GetPhysicsObjectNum( i )
-		phys:EnableGravity( g )
-		if(v!=nil)then
-			phys:SetVelocityInstantaneous( v )
-		end
-	end
+	--if(g == "" or g == nil)then
+	--	g = true
+	--	if(GravityEnabled())then
+	--		g = false
+	--	end
+	--end
+	--
+	--for i=0, r:GetPhysicsObjectCount() - 1 do -- "ragdoll" being a ragdoll entity
+	--
+	--	local phys = r:GetPhysicsObjectNum( i )
+	--	--phys:EnableGravity( g )
+	--	if(v!=nil)then
+	--		--phys:SetVelocityInstantaneous( v )
+	--	end
+	--end
 end
 
 function ApplyGPhys(e,g)
-	local phys = e:GetPhysicsObject()
+	--local phys = e:GetPhysicsObject()
 
-	if(e:GetClass()=="prop_ragdoll")then
-		ApplyRagdollPhys(e,tobool( g ))
-	else
-		if ( IsValid(phys) ) then
-			if(e:IsPlayer())then
-				ApplyPlayerPhys(e,g)
-			else
-				ApplyEntPhys(phys,tobool( g ))
-			end
-		end
-	end
+	--if(e:GetClass()=="prop_ragdoll")then
+	--	--ApplyRagdollPhys(e,tobool( g ))
+	--else
+	--	if ( IsValid(phys) ) then
+	--		if(e:IsPlayer())then
+	--			--ApplyPlayerPhys(e,g)
+	--		else
+	--			--ApplyEntPhys(phys,tobool( g ))
+	--		end
+	--	end
+	--end
 end
 
 local function ApplyPlayerPhys(p,g)
-	p:SetGravity( g )
+	--p:SetGravity( g )
 end
 
 local function ApplyEntPhys(ph,g)
-	if(GravityEnabled())then
-		ph:EnableGravity( g )
-	end
+	--if(GravityEnabled())then
+		--ph:EnableGravity( g )
+	--end
 end
 
 --[[local function spawn12( ply )
