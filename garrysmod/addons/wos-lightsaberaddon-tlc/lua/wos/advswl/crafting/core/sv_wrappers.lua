@@ -53,7 +53,7 @@ function wOS.CraftingDatabase:Initialize()
 	
 	if DATA then
 		local TRANS = DATA:CreateTransaction()
-		TRANS:Query( "CREATE TABLE IF NOT EXISTS leveldata " .. MYSQL_COLUMNS_GENERAL )
+		TRANS:Query( "CREATE TABLE IF NOT EXISTS cleveldata " .. MYSQL_COLUMNS_GENERAL )
 		TRANS:Query( "CREATE TABLE IF NOT EXISTS saberdata " .. MYSQL_COLUMNS_CRAFTED )
 		TRANS:Query( "CREATE TABLE IF NOT EXISTS inventory " .. MYSQL_COLUMNS_INVENTORY )
 		TRANS:Query( "CREATE TABLE IF NOT EXISTS rawmaterials " .. MYSQL_COLUMNS_RAWINVENTORY )
@@ -115,7 +115,7 @@ function wOS.CraftingDatabase:LoadData( ply )
 	
 	if DATA then
 		local TRANS = DATA:CreateTransaction()		
-		TRANS:Query( "SELECT * FROM leveldata WHERE SteamID = '" .. steam64 .. "'" )
+		TRANS:Query( "SELECT * FROM cleveldata WHERE SteamID = '" .. steam64 .. "'" )
 		TRANS:Query( "SELECT * FROM saberdata WHERE SteamID = '" .. steam64 .. "'" )
 		TRANS:Query( "SELECT * FROM inventory WHERE SteamID = '" .. steam64 .. "'" )
 		TRANS:Query( "SELECT * FROM rawmaterials WHERE SteamID = '" .. steam64 .. "'" )
@@ -125,14 +125,14 @@ function wOS.CraftingDatabase:LoadData( ply )
 			local creation_needed = false		
 			local queries = transaction:getQueries()
 			local C_TRANS = DATA:CreateTransaction()	
-			local leveldata = queries[1]:getData()
-			if table.Count( leveldata ) < 1 then
+			local cleveldata = queries[1]:getData()
+			if table.Count( cleveldata ) < 1 then
 				creation_needed = true
-				C_TRANS:Query( "INSERT INTO leveldata ( SteamID, Level, Experience ) VALUES ( '" .. steam64 .. "','"  .. 0 .. "','" .. 0 .. "')" )
+				C_TRANS:Query( "INSERT INTO cleveldata ( SteamID, Level, Experience ) VALUES ( '" .. steam64 .. "','"  .. 0 .. "','" .. 0 .. "')" )
 			else
-				leveldata = leveldata[1]
-				ply:SetSaberLevel( leveldata.Level )
-				ply:SetSaberXP( leveldata.Experience )
+				cleveldata = cleveldata[1]
+				ply:SetSaberLevel( cleveldata.Level )
+				ply:SetSaberXP( cleveldata.Experience )
 			end
 			local itemdata = queries[2]:getData()
 			if table.Count( itemdata ) < 1 then
@@ -371,7 +371,7 @@ function wOS.CraftingDatabase:SaveData( ply )
 		end
 
 		local TRANS = DATA:CreateTransaction()		
-		TRANS:Query( "UPDATE leveldata SET Level = " .. ply:GetSaberLevel() .. ", Experience = " .. ply:GetSaberXP() .. " WHERE SteamID = " .. steam64 )
+		TRANS:Query( "UPDATE cleveldata SET Level = " .. ply:GetSaberLevel() .. ", Experience = " .. ply:GetSaberXP() .. " WHERE SteamID = " .. steam64 )
 		TRANS:Query( "UPDATE saberdata SET PrimaryItems = '" .. DATA:escape( builddata ) .. "', SecondaryItems = '" .. DATA:escape( builddata2 ) .. "', MiscItems = '" .. DATA:escape( builddata3 ) .. "' WHERE SteamID = " .. steam64 )
 		TRANS:Query( "UPDATE inventory SET Items = '" .. invdata .. "' WHERE SteamID = " .. steam64 )
 		for blueprint, data in pairs( ply.Blueprints ) do

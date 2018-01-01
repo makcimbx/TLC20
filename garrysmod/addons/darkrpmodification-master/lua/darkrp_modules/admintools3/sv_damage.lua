@@ -2,7 +2,7 @@
 local function GetBerserk(ply)
 	for _, v in pairs( ply.PlayerSkillSpawns or {} ) do
 		if(type(v)=="table")then
-			if(Berserk!=nil)then
+			if(v.Berserk!=nil)then
 				return true
 			end
 		end
@@ -11,10 +11,11 @@ local function GetBerserk(ply)
 end
 
 local function GetResist(ply)
-	local dmg = 1.5
+	local dmg = 1
 	for _, v in pairs( ply.PlayerSkillSpawns or {} ) do
 		if(type(v)=="table")then
 			dmg = dmg + (v.TakeDamageP or 0)
+			dmg = dmg - (v.TakeDamagePP or 0)
 		end
 	end
 	return dmg
@@ -60,17 +61,28 @@ function GM:EntityTakeDamage( target, dmginfo )
 		if(b == true)then
 			local r = GetResist(target)
 			dmg = dmg + dmg*r
-			local oldrun = target:GetRunSpeed() - (target.oldrun or 0)
-			local oldwalk = target:GetWalkSpeed() - (target.oldwalk or 0)
-			local oldcrouch = target:GetCrouchedWalkSpeed() - (target.oldcrouch or 0)
+			--[[
+			    self:SetWalkSpeed(playerClass.WalkSpeed >= 0 and playerClass.WalkSpeed or GAMEMODE.Config.walkspeed)
+				self:SetRunSpeed(playerClass.RunSpeed >= 0 and playerClass.RunSpeed or GAMEMODE.Config.runspeed)
+
+				hook.Call("UpdatePlayerSpeed", GAMEMODE, self) -- Backwards compatitibly, do not use
+
+				self:SetCrouchedWalkSpeed(playerClass.CrouchedWalkSpeed)
+				self:SetDuckSpeed(playerClass.DuckSpeed)
+				self:SetUnDuckSpeed(playerClass.UnDuckSpeed)
+				self:SetJumpPower(playerClass.JumpPower)
+				self:AllowFlashlight(playerClass.CanUseFlashlight)
+			]]--
+			local playerClass = baseclass.Get(player_manager.GetPlayerClass(target))
+			local walk = playerClass.WalkSpeed >= 0 and playerClass.WalkSpeed or GAMEMODE.Config.walkspeed
+			local run = playerClass.RunSpeed >= 0 and playerClass.RunSpeed or GAMEMODE.Config.runspeed
+			local crouch = playerClass.CrouchedWalkSpeed
 			
 			local hpp = math.Clamp( target:GetMaxHealth()/target:Health(), 0, 10 )
-			target:GetRunSpeed(oldrun + oldrun*(hpp-1))
-			target:GetWalkSpeed(oldwalk + oldwalk*(hpp-1))
-			target:GetCrouchedWalkSpeed(oldcrouch + oldcrouch*(hpp-1))
-			target.oldrun = oldrun*(hpp-1)
-			target.oldwalk = oldwalk*(hpp-1)
-			target.oldcrouch = oldcrouch*(hpp-1)
+			target:SetRunSpeed(walk + walk*(hpp-1))
+			target:SetWalkSpeed(run + run*(hpp-1))
+			target:SetCrouchedWalkSpeed(crouch + crouch*(hpp-1))
+			print(target)
 		end
 	end
 	
