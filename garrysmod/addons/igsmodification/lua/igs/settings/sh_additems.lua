@@ -71,24 +71,132 @@
 	Обратите внимание, иконка и баннер здесь не указаны
 	Так делать можно, они просто не будут отображены
 ****************************************************************************/
--- IGS("VIP на месяц", "vip_na_mesyac"):SetULXGroup("vip")
--- 	:SetPrice(150)
--- 	:SetTerm(30) -- 30 дней
--- 	:SetCategory("Группы")
--- 	:SetDescription("С этой покупкой вы станете офигенными, потому что в ней воооот такая куча крутых возможностей")
+local MINIVIP = IGS.NewGroup("Mini-VIP")
 
--- IGS("PREMIUM навсегда", "premium_navsegda"):SetULXGroup("premium")
--- 	:SetPrice(400)
--- 	:SetTerm(_NAVSEGDA_) -- навсегда
--- 	:SetCategory("Группы")
--- 	:SetDescription("А с этой покупкой еще офигеннее, чем с покупкой VIP")
+local VIP = IGS.NewGroup("VIP")
 
--- IGS("Тестовая операторка", "demo_operator"):SetULXGroup("operator")
--- 	:SetPrice(30)
--- 	:SetTerm(0) -- одноразовое. Можно ввобще убрать строку
--- 	:SetCategory("Группы")
--- 	:SetDescription("С этой покупкой вы можете попробовать себя в роли оператора. Права исчезнут после перезахода")
+local ADMIN = IGS.NewGroup("Admin")
 
+local SUPERADMIN = IGS.NewGroup("Superadmin")
+
+local HEADADMIN = IGS.NewGroup("HeadAdmin")
+
+MINIVIP:AddItem(
+ IGS("Mini-VIP на месяц", "mini_vip_na_mesyac")
+ 	:SetPrice(250)
+ 	:SetTerm(30) -- 30 дней
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'mini-vip', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'mini-vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
+
+MINIVIP:AddItem(
+ IGS("Mini-VIP навсегда", "mini_vip_navsegda")
+ 	:SetPrice(625)
+ 	:SetTerm(_NAVSEGDA_) -- навсегда
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'mini-vip', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'mini-vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
+	
+VIP:AddItem(
+IGS("VIP на месяц", "vip_na_mesyac")
+ 	:SetPrice(500)
+ 	:SetTerm(30) -- 30 дней
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'vip', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
+
+VIP:AddItem(
+ IGS("VIP навсегда", "vip_navsegda")
+ 	:SetPrice(1250)
+ 	:SetTerm(_NAVSEGDA_) -- навсегда
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'vip', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
+	
+ADMIN:AddItem(
+IGS("Admin на месяц", "admin_na_mesyac")
+ 	:SetPrice(1000)
+ 	:SetTerm(30) -- 30 дней
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'admin', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'admin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
+
+ADMIN:AddItem(
+ IGS("Admin навсегда", "admin_navsegda")
+ 	:SetPrice(2500)
+ 	:SetTerm(_NAVSEGDA_) -- навсегда
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'admin', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'admin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
+	
+SUPERADMIN:AddItem(
+IGS("Superadmin на месяц", "super_na_mesyac")
+ 	:SetPrice(1500)
+ 	:SetTerm(30) -- 30 дней
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'superadmin', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'superadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
+
+SUPERADMIN:AddItem(
+ IGS("Superadmin навсегда", "super_navsegda")
+ 	:SetPrice(3750)
+ 	:SetTerm(_NAVSEGDA_) -- навсегда
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'superadmin', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'superadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
+
+HEADADMIN:AddItem(
+ IGS("HeadAdmin навсегда", "headadmin_navsegda")
+ 	:SetPrice(5000)
+ 	:SetTerm(_NAVSEGDA_) -- навсегда
+ 	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, 'headadmin', 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == 'headadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+ 	:SetCategory("SERVERGUARD группы")
+)
 
 /****************************************************************************
 	Донат группы FAdmin
@@ -145,11 +253,11 @@ LVL:AddItem(
 
 local weaponArray = { 
 --{name="LL-30M",price=200,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=21,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая."}, 
-{name="LL-30M",price=800,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=_NAVSEGDA_,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая."}, 
+{name="LL-30M",price=200,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=_NAVSEGDA_,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая."}, 
 --{name="DC-15AM",price=300,code="tfa_swch_dc15a_alt",model="models/weapons/w_dc15a_neue.mdl",time=21,disc="DC-15AM - Бластерная винтовка компании «БласТех Индастриз». Урон: 80. Скор.Выстр. в мин.: 400RPM. Точность: Высокая."}, 
-{name="DC-15AM",price=900,code="tfa_swch_dc15a_alt",model="models/weapons/w_dc15a_neue.mdl",time=_NAVSEGDA_,disc="DC-15AM - Бластерная винтовка компании «БласТех Индастриз». Урон: 80. Скор.Выстр. в мин.: 400RPM. Точность: Высокая."}, 
+{name="DC-15AM",price=300,code="tfa_swch_dc15a_alt",model="models/weapons/w_dc15a_neue.mdl",time=_NAVSEGDA_,disc="DC-15AM - Бластерная винтовка компании «БласТех Индастриз». Урон: 80. Скор.Выстр. в мин.: 400RPM. Точность: Высокая."}, 
 --{name="DC-15AMS",price=400,code="tfa_swch_dc15a_shadow",model="models/weapons/w_dc15a_neue2_shadow.mdl",time=21,disc="DC-15AMS - Бластерная винтовка компании «БласТех Индастриз». Урон: 60x2. Скор.Выстр. в мин.: 350RPM. Точность: Высокая."}, 
-{name="DC-15AMS",price=1200,code="tfa_swch_dc15a_shadow",model="models/weapons/w_dc15a_neue2_shadow.mdl",time=_NAVSEGDA_,disc="DC-15AMS - Бластерная винтовка компании «БласТех Индастриз». Урон: 60x2. Скор.Выстр. в мин.: 350RPM. Точность: Высокая."}, 
+{name="DC-15AMS",price=400,code="tfa_swch_dc15a_shadow",model="models/weapons/w_dc15a_neue2_shadow.mdl",time=_NAVSEGDA_,disc="DC-15AMS - Бластерная винтовка компании «БласТех Индастриз». Урон: 60x2. Скор.Выстр. в мин.: 350RPM. Точность: Высокая."}, 
 }
 
 for k,v in pairs(weaponArray)do
@@ -169,47 +277,33 @@ end
 ****************************************************************************/
 	
 	
-local SQUAD = IGS.NewGroup("Squad")
-
-local SIERRASQUAD = IGS.NewGroup("Sierra Squad")
-
-local ZULUSQUAD = IGS.NewGroup("Zulu Squad")
-
-local BETASQUAD = IGS.NewGroup("Beta Squad")
 
 local JEDI = IGS.NewGroup("Джедаи")
 
 local RC = IGS.NewGroup("RC")
 
 local jobnames = {
-	{name="RC Shadow",id="rc_shadow",price=500,group=RC},
-	{name="RC Fixer",id="rc_fixer",price=500,group=RC},
-	{name="RC Sev",id="rc_sev",price=500,group=RC},
-	{name="RC Boss",id="rc_boss",price=500,group=RC},
-	{name="RC Gregor",id="rc_gregor",price=500,group=RC},
-	{name="RC Scorch",id="rcscorch",price=500,group=RC},
-	{name="RC Black Tiger",id="rc_black",price=500,group=RC},
-	{name="RC Bosky",id="rc_bosky",price=500,group=RC},
-	{name="RC Scraps",id="rc_scraps",price=500,group=RC},
-	{name="RC Throttle",id="rc_throttle",price=500,group=RC},
-	{name="RC Trigger",id="rc_trigger",price=500,group=RC},
-	{name="RC Wookie",id="rc_wookie",price=500,group=RC},
-	{name="RC Archangel",id="rc_archangel",price=500,group=SQUAD},
-	{name="RC Grip",id="rc_grip",price=500,group=SQUAD},
-	{name="RC Eyeshard",id="rc_eyeshard",price=500,group=SQUAD},
-	{name="RC Huskie",id="rc_huskie",price=500,group=SQUAD},
-	{name="RC Stripe",id="rc_stripe",price=500,group=SIERRASQUAD},
-	{name="RC Kurz",id="rc_kurz",price=500,group=SIERRASQUAD},
-	{name="RC Contort",id="rc_contort",price=500,group=SIERRASQUAD},
-	{name="RC Scorpion",id="rc_scorpion",price=500,group=SIERRASQUAD},
-	{name="RC Watson",id="rc_watson",price=500,group=ZULUSQUAD},
-	{name="RC Price",id="rc_price",price=500,group=ZULUSQUAD},
-	{name="RC Nuck",id="rc_nuck",price=500,group=ZULUSQUAD},
-	{name="RC Tranker",id="rc_tranker",price=500,group=ZULUSQUAD},
-	{name="RC Acer",id="rc_acer",price=500,group=BETASQUAD},
-	{name="RC Grinder",id="rc_grinder",price=500,group=BETASQUAD},
-	{name="RC Headshot",id="rc_headshot",price=500,group=BETASQUAD},
-	{name="RC Thumbs",id="rc_thumbs",price=500,group=BETASQUAD},
+	{name="RC Sev",id="rc_shadow",price=500,group=RC},
+	{name="RC Scorch",id="rc_fixer",price=500,group=RC},
+	{name="RC Gregor",id="rc_sev",price=500,group=RC},
+	{name="RC Fixer",id="rc_boss",price=500,group=RC},
+	{name="RC Boss",id="rc_gregor",price=500,group=RC},
+	{name="RC Archangel",id="rcscorch",price=500,group=RC},
+	{name="RC Contort",id="rc_black",price=500,group=RC},
+	{name="RC Eyeshard",id="rc_bosky",price=500,group=RC},
+	{name="RC Grip",id="rc_scraps",price=500,group=RC},
+	{name="RC Huskie",id="rc_throttle",price=500,group=RC},
+	{name="RC Kurz",id="rc_trigger",price=500,group=RC},
+	{name="RC Scorpion",id="rc_wookie",price=500,group=RC},
+	{name="RC Stripe",id="rc_archangel",price=500,group=RC},
+	{name="RC Watson",id="rc_grip",price=500,group=RC},
+	{name="RC Nuck",id="rc_eyeshard",price=500,group=RC},
+	{name="RC Price",id="rc_huskie",price=500,group=RC},
+	{name="RC Tranker",id="rc_stripe",price=500,group=RC},
+	{name="RC Acer",id="rc_kurz",price=500,group=RC},
+	{name="RC Headshot",id="rc_contort",price=500,group=RC},
+	{name="RC Grinder",id="rc_scorpion",price=500,group=RC},
+	{name="RC Thumbs",id="rc_watson",price=500,group=RC},
 	{name="Юнлинг",id="unling",price=400,group=JEDI},
 	{name="Джедай Падаван",id="jedi_padavan",price=500,group=JEDI},
 	{name="Джедай Рыцарь",id="jedi_ricar",price= 600,group=JEDI},
