@@ -38,7 +38,7 @@ local meta = FindMetaTable( "Player" );
 function meta:checkTree(tree)
 	local curTree = self.maintree
 	
-	if(curTree == nil)then
+	if(curTree == "*" or curTree == "" or curTree == "-")then
 		self:SetPData("curTree",tree)
 		self:SetNWString("curTree",tree)
 		self.maintree = tree
@@ -62,12 +62,6 @@ function meta:checkResetPoints()
 	local points = self.resetPoints
 	
 	if(points-1>=0)then
-		self:SetPData("resetPoints",points-1)
-		self.resetPoints = points-1
-		self:SetPData("curTree",nil) 
-		self.maintree = nil
-		self:SetNWString("resetPoints",self.resetPoints.."")
-		self:SetNWString("curTree",self.maintree)
 		return true
 	else
 		return false
@@ -210,7 +204,7 @@ end
 local function spawn3( ply )
 	ply:SetPos( Vector(-8153.135742, 6200.348145, -14824.129883) )
 	ply:SetEyeAngles( Angle(59.736351, 148.419388, 0.000000) )
-	ply.maintree = ply:GetPData("curTree",nil) 
+	ply.maintree = ply:GetPData("curTree","*") 
 	ply.resetPoints = tonumber(ply:GetPData("resetPoints","1"))
 	ply:SetNWString("resetPoints",ply.resetPoints.."")
 	ply:SetNWString("curTree",ply.maintree)
@@ -312,12 +306,12 @@ end)
 function meta:UpdateSpeeds()
 	local playerClass = baseclass.Get(player_manager.GetPlayerClass(self))
 
-    self:SetWalkSpeed(self.swsd + self.sws)
-    self:SetRunSpeed(self.srsd + self.srs)
-    self:SetCrouchedWalkSpeed(self.scwsd + self.scws)
-    self:SetDuckSpeed(self.sdsd + self.sds)
-    self:SetUnDuckSpeed(self.sudsd + self.suds)
-    self:SetJumpPower(self.sjpd + self.sjp)
+    self:SetWalkSpeed(self.swsd + self.sws + (self.swsb or 0))
+    self:SetRunSpeed(self.srsd + self.srs + (self.srsb or 0))
+    self:SetCrouchedWalkSpeed(self.scwsd + self.scws + (self.scwsb or 0))
+    self:SetDuckSpeed(self.sdsd + self.sds + (self.sdsb or 0))
+    self:SetUnDuckSpeed(self.sudsd + self.suds + (self.sudsb or 0))
+    self:SetJumpPower(self.sjpd + self.sjp + (self.sjpb or 0))
 	
 	self.swso = self.sws
 	self.srso = self.srs

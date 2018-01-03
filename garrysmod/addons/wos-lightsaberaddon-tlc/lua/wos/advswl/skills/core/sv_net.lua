@@ -110,6 +110,12 @@ net.Receive( "wOS.SkillTree.ResetAllSkills", function( len, ply )
 		ply.SkillTree[ name ] = {}
 		ply.EquippedSkills[ name ] = {}
 	end
+	
+	ply:addResetPoints(-1)
+	
+	ply:SetPData("curTree","*") 
+	ply.maintree = "*"
+	ply:SetNWString("curTree",ply.maintree)
 
 	wOS.SkillDatabase:SaveData( ply )
 	wOS:TransmitSkillData( ply )

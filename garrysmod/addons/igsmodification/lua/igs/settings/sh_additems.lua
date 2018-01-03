@@ -374,3 +374,58 @@ for k,v in pairs(jobnames)do
  		).Global = true
 	end
 end
+
+local SKILLS = IGS.NewGroup("Скилы")
+local RESETSKILLS = IGS.NewGroup("Сброс скиллов")
+
+SKILLS:AddItem(
+ IGS("1 скиллпоинт", "1skill")
+ 	:SetPrice(10)
+ 	:SetTerm(0)
+ 	:SetOnActivate(function(pl)
+		pl:AddSkillPoints(1)
+	end)
+	:SetCategory("Система скиллов")
+).Global = true
+
+
+SKILLS:AddItem(
+ IGS("5 скиллпоинт", "5skill")
+ 	:SetPrice(45)
+ 	:SetTerm(0)
+ 	:SetOnActivate(function(pl)
+		pl:AddSkillPoints(1)
+	end)
+	:SetCategory("Система скиллов")
+).Global = true
+
+
+SKILLS:AddItem(
+ IGS("10 скиллпоинт", "10skill")
+ 	:SetPrice(90)
+ 	:SetTerm(0)
+ 	:SetOnActivate(function(pl)
+		pl:AddSkillPoints(1)
+	end)
+	:SetCategory("Система скиллов")
+).Global = true
+
+SKILLS:AddItem(
+ IGS("50 скиллпоинт", "50skill")
+ 	:SetPrice(450)
+ 	:SetTerm(0)
+ 	:SetOnActivate(function(pl)
+		pl:AddSkillPoints(1)
+	end)
+	:SetCategory("Система скиллов")
+).Global = true
+
+RESETSKILLS:AddItem(
+ IGS("1 очко сброса", "1skillrestore")
+ 	:SetPrice(50)
+ 	:SetTerm(0)
+ 	:SetOnActivate(function(pl)
+		pl:AddSkillResetPoints(1)
+	end)
+	:SetCategory("Система скиллов")
+).Global = true
