@@ -71,17 +71,17 @@
 	Обратите внимание, иконка и баннер здесь не указаны
 	Так делать можно, они просто не будут отображены
 ****************************************************************************/
---[[local MINIVIP = IGS.NewGroup("Mini-VIP")
+local MINIVIP = IGS.NewGroup("Mini-VIP")
 
 local VIP = IGS.NewGroup("VIP")
 
 local SUPERADMIN = IGS.NewGroup("Superadmin")
 
-local HEADADMIN = IGS.NewGroup("HeadAdmin")]]--
+local HEADADMIN = IGS.NewGroup("HeadAdmin")
 
 local ADMIN = IGS.NewGroup("Admin")
 
-local serv_groups = {
+--[[local serv_groups = {
 	{
 		name = "Админ на всегда",
 		id = "admin_forever",
@@ -121,8 +121,8 @@ for k,v in pairs(serv_groups)do
 			end)
 	).Global = true
 end
-
---[[MINIVIP:AddItem(
+]]--
+MINIVIP:AddItem(
  IGS("Mini-VIP на месяц", "mini_vip_na_mesyac")
  	:SetPrice(250)
  	:SetTerm(30) -- 30 дней
@@ -133,7 +133,7 @@ end
 		return serverguard.player:GetRank(pl) == 'mini-vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+).Global = true
 
 MINIVIP:AddItem(
  IGS("Mini-VIP навсегда", "mini_vip_navsegda")
@@ -146,7 +146,7 @@ MINIVIP:AddItem(
 		return serverguard.player:GetRank(pl) == 'mini-vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+).Global = true
 	
 VIP:AddItem(
 IGS("VIP на месяц", "vip_na_mesyac")
@@ -159,7 +159,7 @@ IGS("VIP на месяц", "vip_na_mesyac")
 		return serverguard.player:GetRank(pl) == 'vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+).Global = true
 
 VIP:AddItem(
  IGS("VIP навсегда", "vip_navsegda")
@@ -172,7 +172,7 @@ VIP:AddItem(
 		return serverguard.player:GetRank(pl) == 'vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+).Global = true
 	
 ADMIN:AddItem(
 IGS("Admin на месяц", "admin_na_mesyac")
@@ -185,7 +185,7 @@ IGS("Admin на месяц", "admin_na_mesyac")
 		return serverguard.player:GetRank(pl) == 'admin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+).Global = true
 
 ADMIN:AddItem(
  IGS("Admin навсегда", "admin_navsegda")
@@ -198,7 +198,7 @@ ADMIN:AddItem(
 		return serverguard.player:GetRank(pl) == 'admin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+).Global = true
 	
 SUPERADMIN:AddItem(
 IGS("Superadmin на месяц", "super_na_mesyac")
@@ -211,7 +211,7 @@ IGS("Superadmin на месяц", "super_na_mesyac")
 		return serverguard.player:GetRank(pl) == 'superadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+).Global = true
 
 SUPERADMIN:AddItem(
  IGS("Superadmin навсегда", "super_navsegda")
@@ -224,7 +224,7 @@ SUPERADMIN:AddItem(
 		return serverguard.player:GetRank(pl) == 'superadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+).Global = true
 
 HEADADMIN:AddItem(
  IGS("HeadAdmin навсегда", "headadmin_navsegda")
@@ -237,7 +237,7 @@ HEADADMIN:AddItem(
 		return serverguard.player:GetRank(pl) == 'headadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)]]--
+).Global = true
 
 /****************************************************************************
 	Донат группы FAdmin
