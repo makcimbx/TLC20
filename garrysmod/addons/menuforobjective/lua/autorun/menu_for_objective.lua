@@ -1,5 +1,5 @@
 if CLIENT then	
-    CreateClientConVar( "objhuddisabled", "0", true, false )
+    CreateClientConVar( "objhuddisabled", "1", true, false )
     local function HUDPaint()
 		if (tostring(GetConVar( "objhuddisabled" ):GetFloat()) == "0") then
 		local posX = 0
