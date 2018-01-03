@@ -64,8 +64,8 @@ TREE.Tier[1][1] = {
 	Icon = "wos/skilltrees/forms/defensive.png",
 	PointsRequired = 2,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Defensive", 1 ) end,
 }
 
@@ -75,8 +75,8 @@ TREE.Tier[1][2] = {
 	Icon = "wos/skilltrees/forms/aggressive.png",
 	PointsRequired = 2,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Aggressive", 1 ) end,
 }
 
@@ -86,8 +86,8 @@ TREE.Tier[1][3] = {
 	Icon = "wos/skilltrees/forms/versatile.png",
 	PointsRequired = 2,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Versatile", 2 ) end,
 }
 
@@ -97,8 +97,8 @@ TREE.Tier[1][4] = {
 	Icon = "wos/skilltrees/forms/agile.png",
 	PointsRequired = 2,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Agile", 3 ) end,
 }
 
@@ -111,8 +111,8 @@ TREE.Tier[2][1] = {
 	Requirements = {
 	[1] = { 1 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Defensive", 2 ) end,
 }
 
@@ -124,8 +124,8 @@ TREE.Tier[2][2] = {
 	Requirements = {
 	[1] = { 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Aggressive", 2 ) end,
 }
 
@@ -137,8 +137,8 @@ TREE.Tier[2][3] = {
 	Requirements = {
 	[1] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Versatile", 1 ) end,
 }
 
@@ -150,8 +150,8 @@ TREE.Tier[2][4] = {
 	Requirements = {
 	[1] = { 4 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Agile", 2 ) end,
 }
 
@@ -164,8 +164,8 @@ TREE.Tier[3][1] = {
 	Requirements = {
 	[2] = { 1 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Defensive", 3 ) end,
 }
 
@@ -177,8 +177,8 @@ TREE.Tier[3][2] = {
 	Requirements = {
 	[2] = { 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Aggressive", 3 ) end,
 }
 
@@ -190,8 +190,8 @@ TREE.Tier[3][3] = {
 	Requirements = {
 	[2] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Versatile", 3 ) end,
 }
 
@@ -203,8 +203,8 @@ TREE.Tier[3][4] = {
 	Requirements = {
 	[2] = { 4 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Agile", 1 ) end,
 }
 wOS:RegisterSkillTree( TREE )

@@ -26,7 +26,7 @@ function command:Execute(ply, silent, arguments)
 			serverguard.Notify(ply,SERVERGUARD.NOTIFY.WHITE,"Ждите в течении", SERVERGUARD.NOTIFY.GREEN," 5 минут",SERVERGUARD.NOTIFY.WHITE," прибытия",SERVERGUARD.NOTIFY.RED," инструктора",SERVERGUARD.NOTIFY.WHITE,", либо вам будет предложено",SERVERGUARD.NOTIFY.RED,SERVERGUARD.NOTIFY.WHITE, " автоматическое обучение.");
   
 			ply.pause = false
-			table.insert(TrainPlayer,{ply = ply,tm = 300})
+			table.insert(TrainPlayer,{ply = ply,tm = 1})
 			ply.train_wait = true
 			ply:SetNWBool( "train_wait", true )
 			ply:SendLua("StartTTimer()")
@@ -45,8 +45,12 @@ command.permissions	= "Offertrain";
 command.immunity 	= SERVERGUARD.IMMUNITY.ANY;
 command.bSingleTarget = true;
 
+local allowedjobs = {
+	--[TEAM_CADET] = true,
+}
+
 function command:OnPlayerExecute(ply, target, arguments)
-	if(ply == target)then return end
+	if(ply == target or allowedjobs[ply:Team()] != true)then return end
 	if(game.GetMap()!="rp_chancellor_tlc_b1")then return end
 	if target.train_wait!=nil and target.sempai == nil then 
 		target.pause = true

@@ -54,14 +54,12 @@ net.Receive( "wOS.SkillTree.ChooseSkill", function( len, ply )
 	--skilldata.OnPlayerSpawn.Damager
 	--skilldata.OnPlayerSpawn.Tank
 	--ply:checkTree()
-	if(type(skilldata.OnPlayerSpawn)=="table")then
-		if(skilldata.ETree != nil)then
-			local t = ply:checkTree(skilldata.ETree)
-			if(t!=true)then
-				ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
-				ply:SendLua( [[ notification.AddLegacy( "[wOS] Вы не можете вкачать данный скилл так как вкачали скиллы ветки ]]..t..[[!", NOTIFY_ERROR, 3 ) ]] )
-				return
-			end
+	if(skilldata.ETree != nil)then
+		local t = ply:checkTree(skilldata.ETree)
+		if(t!=true)then
+			ply:SendLua( [[ surface.PlaySound( "buttons/lightswitch2.wav" ) ]] )
+			ply:SendLua( [[ notification.AddLegacy( "[wOS] Вы не можете вкачать данный скилл так как вкачали скиллы ветки ]]..t..[[!", NOTIFY_ERROR, 3 ) ]] )
+			return
 		end
 	end
 	

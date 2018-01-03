@@ -64,8 +64,8 @@ TREE.Tier[1][1] = {
 	Icon = "wos/forceicons/cloak.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Cloak" ) end,
 }
 
@@ -75,8 +75,8 @@ TREE.Tier[1][2] = {
 	Icon = "wos/forceicons/reflect.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Reflect" ) end,
 }
 
@@ -86,8 +86,8 @@ TREE.Tier[1][3] = {
 	Icon = "wos/forceicons/lightning.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Lightning" ) end,
 }
 
@@ -97,8 +97,8 @@ TREE.Tier[1][4] = {
 	Icon = "wos/forceicons/pull.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Pull" ) end,
 }
 
@@ -108,8 +108,8 @@ TREE.Tier[1][5] = {
 	Icon = "wos/forceicons/rage.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Rage" ) end,
 }
 
@@ -119,8 +119,8 @@ TREE.Tier[1][6] = {
 	Icon = "wos/forceicons/push.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Push" ) end,
 }
 
@@ -134,8 +134,8 @@ TREE.Tier[2][1] = {
 	Requirements = {
 	[1] = { 1 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Shadow Strike" ) end,
 }
 
@@ -147,8 +147,8 @@ TREE.Tier[2][2] = {
 	Requirements = {
 	[1] = { 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Heal" ) end,
 }
 
@@ -160,8 +160,8 @@ TREE.Tier[2][3] = {
 	Requirements = {
 	[1] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Lightning Strike" ) end,
 }
 
@@ -173,8 +173,8 @@ TREE.Tier[2][4] = {
 	Requirements = {
 	[1] = { 4, 5, 6 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Leap" ) end,
 }
 
@@ -186,8 +186,8 @@ TREE.Tier[2][5] = {
 	Requirements = {
 	[1] = { 6 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Repulse" ) end,
 }
 
@@ -200,8 +200,8 @@ TREE.Tier[3][1] = {
 	Requirements = {
 	[2] = { 1 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Advanced Cloak" ) end,
 }
 
@@ -213,8 +213,8 @@ TREE.Tier[3][2] = {
 	Requirements = {
 	[2] = { 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Group Heal" ) end,
 }
 
@@ -226,8 +226,8 @@ TREE.Tier[3][3] = {
 	Requirements = {
 	[2] = { 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Absorb" ) end,
 }
 
@@ -239,8 +239,8 @@ TREE.Tier[3][4] = {
 	Requirements = {
 	[2] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Storm" ) end,
 }
 
@@ -252,8 +252,8 @@ TREE.Tier[3][5] = {
 	Requirements = {
 	[2] = { 4, 5 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Charge" ) end,
 }
 
@@ -266,8 +266,8 @@ TREE.Tier[4][1] = {
 	Requirements = {
 	[3] = { 1, 2, 3 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Combust" ) end,
 }
 
@@ -279,8 +279,8 @@ TREE.Tier[4][2] = {
 	Requirements = {
 	[3] = { 4, 5 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Saber Throw" ) end,
 }
 
@@ -293,8 +293,8 @@ TREE.Tier[5][1] = {
 	Requirements = {
 	[4] = { 1, 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddDevestator( "Kyber Slam" ) end,
 }
 
@@ -306,8 +306,8 @@ TREE.Tier[5][2] = {
 	Requirements = {
 	[4] = { 1, 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddDevestator( "Lightning Coil" ) end,
 }
 
@@ -319,8 +319,8 @@ TREE.Tier[5][3] = {
 	Requirements = {
 	[4] = { 1, 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddDevestator( "Sonic Discharge" ) end,
 }
 

@@ -32,11 +32,11 @@ _this.serverPort = "27015"
 -- Set backgroundUrls to false to use backgroundColor instead
 _this.backgroundUrls = {
 	{ 
-		"http://195.62.52.237/1.jpg", -- Image URL
+		"spawnicons/models/aat/1.jpg", -- Image URL
 		1920, 1080, -- Width, Height
 		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
 	},
-	{ 
+	--[[{ 
 		"http://195.62.52.237/2.jpg", -- Image URL
 		1920, 1080, -- Width, Height
 		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
@@ -45,7 +45,7 @@ _this.backgroundUrls = {
 		"http://195.62.52.237/3.jpg", -- Image URL
 		1920, 1080, -- Width, Height
 		true -- true is Fill, false is Stretch. Fill and Stretch explained: http://i.imgur.com/jlzYCvT.png
-	}
+	}]]--
 }
 
 -- Color of the background, will only be shown if the background image is disabled

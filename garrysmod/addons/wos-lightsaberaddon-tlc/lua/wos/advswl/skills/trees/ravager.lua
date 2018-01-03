@@ -64,9 +64,10 @@ TREE.Tier[1][1] = {
 	Icon = "wos/skilltrees/ravager/strength.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {Health = 50,  MaxHealth = 50},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetHealth( ply:Health() + 50) ply:SetMaxHealth(ply:GetMaxHealth() + 50) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[1][2] = {
@@ -75,9 +76,10 @@ TREE.Tier[1][2] = {
 	Icon = "wos/skilltrees/ravager/agility.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {RunSpeedX = 1.05},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function(ply) timer.Simple(0.1,function() local hpp = 0.05 ply:Ssws(ply:Gsws() + ply:getswsd()*(hpp)) ply:Ssrs(ply:Gsrs() + ply:getsrsd()*(hpp)) ply:Sscws(ply:Gscws() + ply:getscwsd()*(hpp)) end) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[1][3] = {
@@ -86,8 +88,8 @@ TREE.Tier[1][3] = {
 	Icon = "wos/skilltrees/ravager/combatant.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep.SaberDamage = wep.SaberDamage + 30 end,
 }
 
@@ -97,8 +99,8 @@ TREE.Tier[1][4] = {
 	Icon = "wos/skilltrees/ravager/emergent.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep.SaberBurnDamage = wep.SaberBurnDamage + 10 end,
 }
 
@@ -112,8 +114,8 @@ TREE.Tier[2][1] = {
 	Requirements = {
 	[1] = { 1, 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep.BlockDrainRate = wep.BlockDrainRate*0.75 end,
 }
 
@@ -123,8 +125,8 @@ TREE.Tier[2][2] = {
 	Icon = "wos/skilltrees/ravager/torment.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Rage" ) end,
 }
 
@@ -136,8 +138,8 @@ TREE.Tier[2][3] = {
 	Requirements = {
 	[1] = { 3, 4 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Saber Throw" ) end,
 }
 
@@ -150,8 +152,8 @@ TREE.Tier[3][1] = {
 	Requirements = {
 	[2] = { 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) 
 		wep.SaberDamage = wep.SaberDamage*1.5 
 		wep.MaxForce = wep.MaxForce*0.25
@@ -166,8 +168,8 @@ TREE.Tier[3][2] = {
 	Requirements = {
 	[2] = { 1, 3 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Channel Hatred" ) end,
 }
 
@@ -180,8 +182,8 @@ TREE.Tier[4][1] = {
 	Requirements = {
 	[3] = { 2 },
 	},
-	OnPlayerSpawn = function( ply ) end,
-	OnPlayerDeath = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
+	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) wep:AddForm( "Aggressive", 1 ) end,
 }
 
@@ -194,7 +196,7 @@ TREE.Tier[5][1] = {
 	Requirements = {
 	[4] = { 1 },
 	},
-	OnPlayerSpawn = function( ply ) end,
+	--OnPlayerSpawn = function( ply ) end,
 	OnPlayerDeath = function( ply ) 
 		local effectdata = EffectData()
 		effectdata:SetOrigin( ply:GetPos() )
@@ -202,7 +204,7 @@ TREE.Tier[5][1] = {
 		ply:EmitSound( "weapons/explode3.wav" )
 		util.BlastDamage( ply, ply, ply:GetPos(), 50, 100 )  
 	end,
-	OnSaberDeploy = function( wep ) end,
+	--OnSaberDeploy = function( wep ) end,
 
 }
 

@@ -65,9 +65,9 @@ TREE.Tier[1][1] = {
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {Tank = true, Health = 50,  MaxHealth = 50},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetHealth( ply:Health() + 50) ply:SetMaxHealth(ply:GetMaxHealth() + 50) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[1][2] = {
@@ -77,9 +77,9 @@ TREE.Tier[1][2] = {
 	Icon = "wos/skilltrees/characterstats/armor.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {Tank = true, Armor = 10 },
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetMaxArmor(ply:GetMaxArmor()+10) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[1][3] = {
@@ -88,9 +88,9 @@ TREE.Tier[1][3] = {
 	Icon = "wos/skilltrees/characterstats/speed.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = {RunSpeed = 15 },
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) ply:Sscws(ply:Gscws() + 15) end) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[2] = {}
@@ -103,9 +103,9 @@ TREE.Tier[2][1] = {
 	Requirements = {
 	[1] = { 1 },
 	},
-	OnPlayerSpawn = {Tank = true, Health = 50,  MaxHealth = 50},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetHealth( ply:Health() + 50) ply:SetMaxHealth(ply:GetMaxHealth() + 50) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[2][2] = {
@@ -117,9 +117,9 @@ TREE.Tier[2][2] = {
 	Requirements = {
 	[1] = { 2 },
 	},
-	OnPlayerSpawn = {Tank = true, Armor = 10 },
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetMaxArmor(ply:GetMaxArmor()+10) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[2][3] = {
@@ -130,9 +130,9 @@ TREE.Tier[2][3] = {
 	Requirements = {
 	[1] = { 3 },
 	},
-	OnPlayerSpawn = {RunSpeed = 15},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) ply:Sscws(ply:Gscws() + 15) end) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[3] = {}
@@ -145,9 +145,9 @@ TREE.Tier[3][1] = {
 	Requirements = {
 	[2] = { 1 },
 	},
-	OnPlayerSpawn = {Tank = true, Health = 50,  MaxHealth = 50},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetHealth( ply:Health() + 50) ply:SetMaxHealth(ply:GetMaxHealth() + 50) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[3][2] = {
@@ -159,9 +159,9 @@ TREE.Tier[3][2] = {
 	Requirements = {
 	[2] = { 2 },
 	},
-	OnPlayerSpawn = {Tank = true, Armor = 10 },
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetMaxArmor(ply:GetMaxArmor()+10) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[3][3] = {
@@ -172,9 +172,9 @@ TREE.Tier[3][3] = {
 	Requirements = {
 	[2] = { 3 },
 	},
-	OnPlayerSpawn = {RunSpeed = 15 },
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) ply:Sscws(ply:Gscws() + 15) end) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[4] = {}
@@ -187,9 +187,9 @@ TREE.Tier[4][1] = {
 	Requirements = {
 	[3] = { 1 },
 	},
-	OnPlayerSpawn = {Tank = true, Health = 50,  MaxHealth = 50},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetHealth( ply:Health() + 50) ply:SetMaxHealth(ply:GetMaxHealth() + 50) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[4][2] = {
@@ -201,9 +201,9 @@ TREE.Tier[4][2] = {
 	Requirements = {
 	[3] = { 2 },
 	},
-	OnPlayerSpawn = {Tank = true, Armor = 10 },
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetMaxArmor(ply:GetMaxArmor()+10) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[4][3] = {
@@ -214,9 +214,9 @@ TREE.Tier[4][3] = {
 	Requirements = {
 	[3] = { 3 },
 	},
-	OnPlayerSpawn = {RunSpeed = 15},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) ply:Sscws(ply:Gscws() + 15) end) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[5] = {}
@@ -229,9 +229,9 @@ TREE.Tier[5][1] = {
 	Requirements = {
 	[4] = { 1 },
 	},
-	OnPlayerSpawn ={Tank = true, Health = 100,  MaxHealth = 100},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetHealth( ply:Health() + 100) ply:SetMaxHealth(ply:GetMaxHealth() + 100) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[5][2] = {
@@ -243,9 +243,9 @@ TREE.Tier[5][2] = {
 	Requirements = {
 	[4] = { 2 },
 	},
-	OnPlayerSpawn = {Tank = true, Armor = 60 },
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetMaxArmor(ply:GetMaxArmor()+40) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
  
 TREE.Tier[5][3] = { 
@@ -256,9 +256,9 @@ TREE.Tier[5][3] = {
 	Requirements = {
 	[4] = { 3 },
 	},
-	OnPlayerSpawn = {RunSpeed = 30},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 40) ply:Ssrs(ply:Gsrs() + 40) ply:Sscws(ply:Gscws() + 40) end) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
  
 
@@ -272,9 +272,9 @@ TREE.Tier[6][1] = {
 	Requirements = {
 	[5] = { 1 },
 	},
-	OnPlayerSpawn = {Tank = true, Health = 100,  MaxHealth = 100},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetHealth( ply:Health() + 100) ply:SetMaxHealth(ply:GetMaxHealth() + 100) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[6][2] = {
@@ -286,9 +286,9 @@ TREE.Tier[6][2] = {
 	Requirements = {
 	[5] = { 2 },
 	},
-	OnPlayerSpawn = {Tank = true, Armor = 100 },
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) ply:SetMaxArmor(ply:GetMaxArmor()+100) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 TREE.Tier[6][3] = {
@@ -299,9 +299,9 @@ TREE.Tier[6][3] = {
 	Requirements = {
 	[5] = { 3 },
 	},
-	OnPlayerSpawn = {RunSpeed = 50},
-	OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 75) ply:Ssrs(ply:Gsrs() + 75) ply:Sscws(ply:Gscws() + 75) end) end,
+	--OnPlayerDeath = function( ply ) end,
+	--OnSaberDeploy = function( wep ) end,
 }
 
 wOS:RegisterSkillTree( TREE )

@@ -173,13 +173,11 @@ function _this:getRandomBackground()
 	local randomBackground = backgroundUrls[ random ]
 	
 	if not cachedBackgrounds[ random ] then
+
 		
-		_this:getHTMLMaterial( randomBackground[ 1 ], function( material )
-			
 			-- Cache the background
-			cachedBackgrounds[ random ] = { material, randomBackground[ 2 ], randomBackground[ 3 ], randomBackground[ 4 ] }
+			cachedBackgrounds[ random ] = { Material(randomBackground[ 1 ]), randomBackground[ 2 ], randomBackground[ 3 ], randomBackground[ 4 ] }
 			
-		end)
 		
 		-- Set a loaded background instead, we don't want to wait for our background to load
 		for i=0, 1000 do

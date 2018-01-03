@@ -71,17 +71,58 @@
 	Обратите внимание, иконка и баннер здесь не указаны
 	Так делать можно, они просто не будут отображены
 ****************************************************************************/
-local MINIVIP = IGS.NewGroup("Mini-VIP")
+--[[local MINIVIP = IGS.NewGroup("Mini-VIP")
 
 local VIP = IGS.NewGroup("VIP")
 
-local ADMIN = IGS.NewGroup("Admin")
-
 local SUPERADMIN = IGS.NewGroup("Superadmin")
 
-local HEADADMIN = IGS.NewGroup("HeadAdmin")
+local HEADADMIN = IGS.NewGroup("HeadAdmin")]]--
 
-MINIVIP:AddItem(
+local ADMIN = IGS.NewGroup("Admin")
+
+local serv_groups = {
+	{
+		name = "Админ на всегда",
+		id = "admin_forever",
+		price = 400,
+		category = "Группы",
+		discription = "Крутя",
+		rank = "admin",
+		time = 86400*0,--0 навсегда || другие числа - в секундах
+		igstime = _NAVSEGDA_,--_NAVSEGDA_ навсегда || 0 единоразовая || другие числа - в днях
+		group = ADMIN,
+	},
+	{
+		name = "Админ на 30 дней",
+		id = "admin_30days",
+		price = 100,
+		category = "Группы",
+		discription = "Крутя2",
+		rank = "admin",
+		time = 86400*30,--0 навсегда || другие числа - в секундах
+		igstime = 30,--_NAVSEGDA_ навсегда || 0 единоразовая || другие числа - в днях
+		group = ADMIN,
+	},
+}
+
+for k,v in pairs(serv_groups)do
+	v.group:AddItem(
+		IGS(v.name, v.id)
+			:SetPrice(v.price)
+			:SetTerm(v.igstime) -- навсегда
+			:SetCategory(v.category)
+			:SetDescription(v.discription)
+			:SetOnActivate(function(pl)
+				serverguard.player:SetRank(pl, v.rank, v.time, true)
+			end)
+			:SetValidator(function(pl)
+				return serverguard.player:GetRank(pl) == v.rank, true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+			end)
+	).Global = true
+end
+
+--[[MINIVIP:AddItem(
  IGS("Mini-VIP на месяц", "mini_vip_na_mesyac")
  	:SetPrice(250)
  	:SetTerm(30) -- 30 дней
@@ -196,7 +237,7 @@ HEADADMIN:AddItem(
 		return serverguard.player:GetRank(pl) == 'headadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
  	:SetCategory("SERVERGUARD группы")
-)
+)]]--
 
 /****************************************************************************
 	Донат группы FAdmin
@@ -233,7 +274,8 @@ LVL:AddItem(
  	:SetEXP(7000)
 	:SetStackable(true)
  	:SetCategory("Система уровней")
-)
+	
+).Global = true
 
 LVL:AddItem(
  IGS("70000 опыта","exp_70000")
@@ -241,7 +283,7 @@ LVL:AddItem(
  	:SetEXP(70000)
 	:SetStackable(true)
  	:SetCategory("Система уровней")
-)
+).Global = true
 
 LVL:AddItem(
  IGS("700000 опыта","exp_700000")
@@ -249,7 +291,7 @@ LVL:AddItem(
  	:SetEXP(700000)
 	:SetStackable(true)
  	:SetCategory("Система уровней")
-)
+).Global = true
 
 local weaponArray = { 
 --{name="LL-30M",price=200,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=21,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая."}, 
@@ -269,6 +311,7 @@ for k,v in pairs(weaponArray)do
 		:SetCategory("Оружие")
 		:SetIcon(v.model, true) -- true значит, что указана моделька, а не ссылка
 		:SetDescription(v.disc)
+		.Global = true
 end
 
 	
@@ -320,6 +363,7 @@ for k,v in pairs(jobnames)do
 			:SetPrice(v.price)
 			:SetOnActivate(function(ply) RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", ply:SteamID(),v.name ) end)
 			--:SetOnRemove(function(s64) RunConsoleCommand( "bwhitelist_remove_from_whitelist_steamid", s64,v.name ) end)
+			.Global = true
 	else
 		v.group:AddItem(
 			IGS(v.name,v.id)
@@ -327,6 +371,6 @@ for k,v in pairs(jobnames)do
 				:SetPrice(v.price)
 				:SetOnActivate(function(ply) RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", ply:SteamID(),v.name ) end)
 				--:SetOnRemove(function(s64) RunConsoleCommand( "bwhitelist_remove_from_whitelist_steamid", s64,v.name ) end)
- 		)
+ 		).Global = true
 	end
 end

@@ -132,11 +132,102 @@ function meta:SetCurrentSkillHooks()
 			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnPlayerDeath then
-					self.PlayerSkillDeaths[ #self.PlayerSkillSpawns + 1 ] = data.OnPlayerDeath
+					self.PlayerSkillDeaths[ #self.PlayerSkillDeaths + 1 ] = data.OnPlayerDeath
 				end
 			end
 		end
 	end
+	
+	
+	
+	self.PlayerTakeDamage = {}
+	for name, _ in pairs( self.SkillTree ) do
+		local sdata = wOS.SkillTrees[ name ]
+		if sdata then
+			if sdata.JobRestricted then
+				local found = false
+				for _, job in pairs( sdata.JobRestricted ) do
+					if _G[ job ] == self:Team() then 
+						found = true
+						break 
+					end
+				end
+				if not found then continue end
+			end
+			for skill, data in pairs( self.SkillTree[ name ] ) do
+				if data.OnPlayerTakeDamage then
+					self.PlayerTakeDamage[ #self.PlayerTakeDamage + 1 ] = data.OnPlayerTakeDamage
+				end
+			end
+		end
+	end
+	
+	self.PlayerMakeDamage = {}
+	for name, _ in pairs( self.SkillTree ) do
+		local sdata = wOS.SkillTrees[ name ]
+		if sdata then
+			if sdata.JobRestricted then
+				local found = false
+				for _, job in pairs( sdata.JobRestricted ) do
+					if _G[ job ] == self:Team() then 
+						found = true
+						break 
+					end
+				end
+				if not found then continue end
+			end
+			for skill, data in pairs( self.SkillTree[ name ] ) do
+				if data.OnPlayerMakeDamage then
+					self.PlayerMakeDamage[ #self.PlayerMakeDamage + 1 ] = data.OnPlayerMakeDamage
+				end
+			end
+		end
+	end
+	
+	self.PlayerPostMakeDamage = {}
+	for name, _ in pairs( self.SkillTree ) do
+		local sdata = wOS.SkillTrees[ name ]
+		if sdata then
+			if sdata.JobRestricted then
+				local found = false
+				for _, job in pairs( sdata.JobRestricted ) do
+					if _G[ job ] == self:Team() then 
+						found = true
+						break 
+					end
+				end
+				if not found then continue end
+			end
+			for skill, data in pairs( self.SkillTree[ name ] ) do
+				if data.OnPlayerPostMakeDamage then
+					self.PlayerPostMakeDamage[ #self.PlayerPostMakeDamage + 1 ] = data.OnPlayerPostMakeDamage
+				end
+			end
+		end
+	end
+	
+	self.HealthChange = {}
+	for name, _ in pairs( self.SkillTree ) do
+		local sdata = wOS.SkillTrees[ name ]
+		if sdata then
+			if sdata.JobRestricted then
+				local found = false
+				for _, job in pairs( sdata.JobRestricted ) do
+					if _G[ job ] == self:Team() then 
+						found = true
+						break 
+					end
+				end
+				if not found then continue end
+			end
+			for skill, data in pairs( self.SkillTree[ name ] ) do
+				if data.OnHealthChanged then
+					self.HealthChange[ #self.HealthChange + 1 ] = data.OnHealthChanged
+				end
+			end
+		end
+	end
+	
 	
 	self.PlayerSaberDeploys = {}
 	for name, _ in pairs( self.SkillTree ) do

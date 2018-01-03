@@ -118,6 +118,25 @@ IGS.LVL.Add(20000):SetName("МультиМиллиардер")
 	
 IGS.LVL.Add(25000):SetName("Нахуй с дороги")
 IGS.LVL.Add(30000):SetName("Сядь в лужу, я пройду")
-IGS.LVL.Add(35000):SetName("Круче только Мега")
-IGS.LVL.Add(40000):SetName("Круче только Евер")
+IGS.LVL.Add(35000):SetName("Круче только Еппа Свин")
+IGS.LVL.Add(40000):SetName("Круче только Евер Кодер")
 IGS.LVL.Add(50000):SetName("Круче только Анти Чит")
+
+
+hook.Add("IGS.OnSuccessPurchase","DoItemGlobal",function(pl, ITEM, isGlobal, iID)
+	if isGlobal then return end -- дальше делать нечего
+
+	if ITEM.global then
+		-- IGS.MovePurchase(db_id, nil, fCallback)
+
+		if IGS.C.Inv_Enabled then
+			local s64 = pl:SteamID64()
+			IGS.DeleteInventoryItem(iID, function(ok)
+				if !ok then return end
+				IGS.StoreInvItem(s64, ITEM:UID(), true)
+			end)
+		else
+			print("Если инвентарь выключен, то пока работать не будет")
+		end
+	end
+end)

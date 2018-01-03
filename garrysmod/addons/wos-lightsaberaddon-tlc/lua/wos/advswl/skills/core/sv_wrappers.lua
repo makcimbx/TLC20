@@ -95,6 +95,7 @@ function wOS.SkillDatabase:LoadData( ply )
 		TRANS:Start(function(transaction, status, err)
 			if (!status) then error(err) end
 			
+			local creation_needed = false
 			local queries = transaction:getQueries()
 			local C_TRANS = DATA:CreateTransaction()	
 			local leveldata = queries[1]:getData()
@@ -108,7 +109,6 @@ function wOS.SkillDatabase:LoadData( ply )
 				ply:SetSkillPoints( leveldata.SkillPoints )
 			end
 			
-			local creation_needed = false
 			for i = 2, index do
 				local skilldata = queries[i]:getData()
 				local name = skill_trans[ i ]

@@ -79,7 +79,8 @@ end)
 
 net.Receive("addnagrada",function(l,pl)
 	if(pl.allgood == true)then
-		local legion = rtLang.Legions[tonumber(net.ReadString())].prof
+		local id = tonumber(net.ReadString())
+		local legion = rtLang.Legions[id].prof
 		RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", pl:SteamID(), RPExtraTeams[legion].Name )
 		pl:changeTeam(legion,true,true)
 		pl:addXP(pl.trainXp, true)
