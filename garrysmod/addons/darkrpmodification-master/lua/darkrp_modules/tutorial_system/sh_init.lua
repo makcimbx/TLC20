@@ -1,17 +1,3 @@
-local trainprof = {
-	"",
-}
-
-local function CheckJob(ply)
-	local tm = ply:Team()
-	for k,v in pairs(trainprof)do
-		if(tm==v)then
-			return true
-		end
-	end
-	return false
-end
-
 
 local command = {};
 command.help = "train me pls.";
