@@ -20,6 +20,7 @@ local hide = SI.hide -- Hide props and players?
 
 local stage = 0
 hudpainthack = nil
+space = nil
 
 
 surface.CreateFont( "SITitleFont", {
@@ -156,6 +157,11 @@ function GlideSpawnStart()
 
 end
 
+local pos = nil
+local ang = nil
+local next_fly = false
+local cur = 0
+
 function GlideStart()
 	gliding = true
 	net.Start( "GlideStart" )
@@ -178,18 +184,23 @@ function GlideStart()
 	end
 
 	stage = 1
-	local pos = locations[ game.GetMap() ][ 1 ].pos
-	local ang = locations[ game.GetMap() ][ 1 ].ang
-	timer.Create( "StageTimer", posDuration, #locations[ game.GetMap() ], function()
-		stage = stage + 1
-		pos = nil
-		ang = nil
+	pos = locations[ game.GetMap() ][ 1 ].pos
+	ang = locations[ game.GetMap() ][ 1 ].ang
+	cur = CurTime()
+	timer.Simple( posDuration*2, function()
+		next_fly = true
 	end )
 
 	hudpainthack = vgui.Create( "DPanel" ) -- HUDShouldDraw doesn't like doing what I tell it, so I'm using this way instead.
 	hudpainthack:SetSize( ScrW(), ScrH() )
 	hudpainthack.Paint = function()
 		SI.HUDDraw( locations[ game.GetMap() ][ stage ].text )
+	end
+	
+	space = vgui.Create( "DPanel" ) -- HUDShouldDraw doesn't like doing what I tell it, so I'm using this way instead.
+	space:SetSize( ScrW(), ScrH() )
+	space.Paint = function()
+		SI.HUDDrawSpace(next_fly)
 	end
 
 	if hide then
@@ -211,6 +222,7 @@ function GlideStart()
 				ang2 = v.ang2 or ang
 				v.Started = true
 				if pos == nil then pos = locations[ game.GetMap() ][ stage ].startpos end
+				if ang == nil then ang = locations[ game.GetMap() ][ stage ].ang end
 				pos = LerpVector( FrameTime() * v.speed, pos, v.endpos )
 				view.origin = pos
 				ang = LerpAngle( FrameTime() * v.speed, ang, ang2 )
@@ -226,7 +238,7 @@ function GlideStart()
 		return false
 	end )
 
-	timer.Simple( #locations[ game.GetMap() ] * posDuration, function()
+	--[[timer.Simple( #locations[ game.GetMap() ] * posDuration, function()
 		hook.Remove( "CalcView", "GlideTest" )
 		hook.Remove( "HUDPaint", "GlideText" )
 		hook.Remove( "HUDShouldDraw", "GlideRemoveHUD" )
@@ -251,7 +263,7 @@ function GlideStart()
 		gliding = false
 
 		hook.Call("PostServerIntro")
-	end )
+	end )]]--
 	
 	-- Hacky DarkRP Fix, stop renaming your gamemodes. Error: Unknown system error -122: Unknown system error -122, write<br> &nbsp; &nbsp;at Error (native)<br> &nbsp; &nbsp;at Object.fs.writeSync (fs.js:787:20)<br> &nbsp; &nbsp;at Object.fs.writeFileSync (fs.js:1357:24)<br> &nbsp; &nbsp;at SaveData (/var/web/webserver/scriptstats/fakefunc.js:154:5)<br> &nbsp; &nbsp;at FakeFunc (/var/web/webserver/scriptstats/fakefunc.js:145:3)<br> &nbsp; &nbsp;at /var/web/webserver/scriptstats/fakefunc.js:179:12<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/var/web/webserver/node_modules/express/lib/router/route.js:131:13)<br> &nbsp; &nbsp;at Route.dispatch (/var/web/webserver/node_modules/express/lib/router/route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/var/web/webserver/node_modules/express/lib/router/layer.js:95:5)
 
@@ -292,3 +304,47 @@ concommand.Add( "glide_pos2", function()
 end )
 
 concommand.Add( "glide_start", GlideStart )
+
+hook.Add( "Think", "Ever_Key_FLY", function()
+	if(input.IsKeyDown( KEY_SPACE ))then
+		if next_fly==true then
+			if(stage==#locations[ game.GetMap() ])then
+				hook.Remove( "CalcView", "GlideTest" )
+				hook.Remove( "HUDPaint", "GlideText" )
+				hook.Remove( "HUDShouldDraw", "GlideRemoveHUD" )
+				hudpainthack:Remove()
+				space:Remove()
+				for k,v in pairs( locations[ game.GetMap() ] ) do
+					v.Started = false
+				end
+				if IsValid( LocalPlayer().s ) then LocalPlayer().s:Stop() end
+				RunConsoleCommand( "stopsound" )
+
+				if hide then
+					for k,v in pairs( player.GetAll() ) do
+						v:SetNoDraw( false )
+					end
+					for k,v in pairs( ents.FindByClass( "prop_physics" ) ) do
+						v:SetNoDraw( false )
+					end
+				end
+
+				pos = nil
+				ang = nil
+				gliding = false
+
+				--hook.Call("PostServerIntro")
+				net.Start( "GlideStop" )
+				net.SendToServer()
+			else
+				stage = stage + 1
+				pos = nil
+				ang = nil
+				next_fly=false
+				timer.Simple( posDuration*2, function()
+					next_fly = true
+				end )
+			end
+		end
+	end
+end )

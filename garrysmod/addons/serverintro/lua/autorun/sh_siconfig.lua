@@ -11,7 +11,7 @@ SI.locations[ "rp_chancellor_tlc_b1" ] = { -- You can change the map name to wha
 		speed = 0.1, 
 		text = "This is our map.",
 	},
-	--[[{ 
+	{ 
 		startpos = Vector( 248, 640, -150 ),
 		endpos = Vector( 248, 3500, -150 ), 
 		ang = Angle( 0, 105, 0 ), 
@@ -33,7 +33,7 @@ SI.locations[ "rp_chancellor_tlc_b1" ] = { -- You can change the map name to wha
 		speed = 0.1,
 		text = "We hope you enjoy your stay.",
 		ang2 = Angle( 0, 45, 0 ),
-	},]]--
+	},
 }
 
 
@@ -116,4 +116,24 @@ function SI.HUDDraw( text,d ) // Only change this if you know how to make a HUD.
 	end
 	draw.RoundedBox( 0, x, ScrH() - y, ScrW() - 2*x, h, color )
 	markup.Parse( "<font=DermaLarge>".. s .. text .. s2.."</font>", ScrW() - 2*h ):Draw( ScrW() / 2, ScrH() - y+h/2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+end 
+
+function SI.HUDDrawSpace( d ) // Only change this if you know how to make a HUD. Text is the current text from the location. text is a MarkupObject generated from the text string in each section.
+	d = d or false
+	local x = 100
+	local h = 50
+	local y = ScrH()+h
+	local s = ""
+	local s2 = ""
+	local color = Color( 0, 0, 0, 210 )
+	if(d == true )then
+		x = 0
+		y = 150
+		h = 50
+		--s = "<colour=0, 0, 0, 255>"
+		--s2 = "</colour>"
+		--color = Color( 150, 150, 150, 210 )
+	end
+	draw.RoundedBox( 0, ScrW()/2-ScrW()/4,  ScrH()/2+2*h+y, ScrW()/2, h, color )
+	markup.Parse( "<font=DermaLarge>".. s .. "Нажмите пробел для продолжения" .. s2.."</font>", ScrW() - 2*h ):Draw( ScrW()/2,  ScrH()/2+2*h+h/2+y, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 end 

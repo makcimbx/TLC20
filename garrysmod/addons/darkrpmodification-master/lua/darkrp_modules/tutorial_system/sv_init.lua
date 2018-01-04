@@ -84,7 +84,7 @@ net.Receive("startEvertest",function(len,ply)
 			serverguard.Notify(ply,SERVERGUARD.NOTIFY.WHITE,"Ждите в течении", SERVERGUARD.NOTIFY.GREEN," 5 минут",SERVERGUARD.NOTIFY.WHITE," прибытия",SERVERGUARD.NOTIFY.RED," инструктора",SERVERGUARD.NOTIFY.WHITE,", либо вам будет предложено",SERVERGUARD.NOTIFY.RED,SERVERGUARD.NOTIFY.WHITE, " автоматическое обучение.");
   
 			ply.pause = false
-			table.insert(TrainPlayer,{ply = ply,tm = 300})
+			table.insert(TrainPlayer,{ply = ply,tm = 0})
 			ply.train_wait = true
 			ply:SetNWBool( "train_wait", true )
 			ply:SendLua("StartTTimer()")

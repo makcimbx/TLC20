@@ -6,6 +6,7 @@
 util.AddNetworkString( "GlideStart" )
 util.AddNetworkString( "GlideSpawnStart" )
 util.AddNetworkString( "GlideSpawnStop" )
+util.AddNetworkString( "GlideStop" )
 
 if not SI.useYoutube and SI.music then
 	resource.AddFile( SI.music ) 
@@ -59,7 +60,7 @@ net.Receive( "GlideStart", function( len, ply )
 	if not ply.Gliding then
 		ply:Freeze( true )
 		ply.Stage = 1
-		timer.Create( "StageTimer" .. ply:UniqueID(), SI.posDuration, #SI.locations[ game.GetMap() ], function()
+		--[[timer.Create( "StageTimer" .. ply:UniqueID(), SI.posDuration, #SI.locations[ game.GetMap() ], function()
 			if IsValid( ply ) then
 				ply.Stage = ply.Stage + 1
 			end
@@ -69,8 +70,14 @@ net.Receive( "GlideStart", function( len, ply )
 				ply.Gliding = false
 				ply:Freeze( false )
 			end
-		end )
+		end )]]--
 		ply.Gliding = true
 	end
 end )
 
+net.Receive( "GlideStop", function( len, ply )
+	if ply.Gliding then
+		ply.Gliding = false
+		ply:Freeze( false )
+	end
+end )
