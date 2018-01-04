@@ -226,6 +226,8 @@ net.Receive("questions", function()
 	end	]]--
 end)
 
+local maxplys = 0--5
+
 function Legion()
 	
 	local tbl = table.Copy( rtLang.Legions )
@@ -243,7 +245,7 @@ function Legion()
 		end
 	end
 	for a,z in pairs(tbl)do
-		if(math.abs(mn-z.n)>=5) then
+		if(math.abs(mn-z.n)>=maxplys) then
 			z.can = false
 		end
 	end
