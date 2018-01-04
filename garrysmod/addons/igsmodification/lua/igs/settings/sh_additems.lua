@@ -380,7 +380,7 @@ local RESETSKILLS = IGS.NewGroup("Сброс скиллов")
 
 SKILLS:AddItem(
  IGS("1 скиллпоинт", "1skill")
- 	:SetPrice(10)
+ 	:SetPrice(25)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillPoints(1)
@@ -391,7 +391,7 @@ SKILLS:AddItem(
 
 SKILLS:AddItem(
  IGS("5 скиллпоинт", "5skill")
- 	:SetPrice(45)
+ 	:SetPrice(125)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillPoints(1)
@@ -402,7 +402,7 @@ SKILLS:AddItem(
 
 SKILLS:AddItem(
  IGS("10 скиллпоинт", "10skill")
- 	:SetPrice(90)
+ 	:SetPrice(250)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillPoints(1)
@@ -412,7 +412,7 @@ SKILLS:AddItem(
 
 SKILLS:AddItem(
  IGS("50 скиллпоинт", "50skill")
- 	:SetPrice(450)
+ 	:SetPrice(1250)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillPoints(1)
@@ -422,7 +422,7 @@ SKILLS:AddItem(
 
 RESETSKILLS:AddItem(
  IGS("1 очко сброса", "1skillrestore")
- 	:SetPrice(50)
+ 	:SetPrice(100)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillResetPoints(1)
