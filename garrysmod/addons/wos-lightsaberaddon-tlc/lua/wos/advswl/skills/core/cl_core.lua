@@ -516,14 +516,13 @@ if wOS.MountLevelToHUD then
 		
 
 		surface.SetDrawColor( color_white )
-		surface.DrawOutlinedRect( ( w - w*0.33 )/2, h*0.91, w*0.33, h*0.02 )
-		surface.DrawRect( (w - w*0.33 )/2, h*0.91, w*0.33*rat, h*0.02 )
+		--surface.DrawOutlinedRect( ( w - w*0.33 )/2, h*0.91, w*0.33, h*0.02 )
+		surface.DrawRect( ScrW()/2-2500/8, h*0.91, w*0.248*1, h*0.02 )
 		surface.SetMaterial(light_bar)
 	    surface.SetDrawColor(255,255,255,255)
-	    surface.DrawTexturedRect( w/2-(w/1.529), h/1.75,  2500,822)
-		surface.DrawTexturedRect( ScrW()/2-(746/0.602), 0.92501660369963090792295883371258*ScrH()-46/2-(46/0.118),  2500,822)
-		draw.SimpleText( ( level == wOS.SkillMaxLevel and "МАКСИМАЛЬНО" ) or lastxp, "wOS.DescriptionFont", ( w - w*0.33 )/2 - w*0.005, h*0.918, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER )
-		draw.SimpleText( ( level == wOS.SkillMaxLevel and "УРОВЕНЬ" ) or reqxp, "wOS.DescriptionFont", ( w + w*0.33 )/2 + w*0.0008, h*0.918, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )		
+		surface.DrawTexturedRect( ScrW()/2-2500/2, h*0.91-822/2.248,  2500,822)
+		draw.SimpleText( ( level == wOS.SkillMaxLevel and "МАКСИМАЛЬНО" ) or lastxp, "wOS.DescriptionFont", ScrW()/2-2500/8.1, h*0.918, Color( 0, 191,255,255 ), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )
+		draw.SimpleText( ( level == wOS.SkillMaxLevel and "УРОВЕНЬ" ) or reqxp, "wOS.DescriptionFont", ScrW()/2+2500/8.3, h*0.918, Color( 0, 191,255,255 ), TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER )		
 		draw.SimpleText( "Уровень войны " .. level, "wOS.DescriptionFont", w*0.5, h*0.918, Color( 0, 191,255,255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )	
         else
   
