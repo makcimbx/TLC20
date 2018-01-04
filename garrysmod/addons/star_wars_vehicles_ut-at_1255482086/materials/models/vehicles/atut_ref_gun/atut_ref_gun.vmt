@@ -1,0 +1,7 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/vehicles\atut_ref_gun/atut_ref_gun.vtf"
+	"$surfaceprop" "metal"
+	"$model" 1
+}
+
