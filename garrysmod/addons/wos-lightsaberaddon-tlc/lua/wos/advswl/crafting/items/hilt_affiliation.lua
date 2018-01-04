@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Affiliation Hilt"
+ITEM.Name = "Присоединяемая рукоятка"
 
-ITEM.Description = "Lightsaber Hilt"
+ITEM.Description = "Рукоятка светового меча"
 
 ITEM.Type = WOSTYPE.HILT
 

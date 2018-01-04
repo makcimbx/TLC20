@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Darth Maul"
+ITEM.Name = "Двойная Рукоятка Дарта Мола"
 
-ITEM.Description = "The original staff saber"
+ITEM.Description = "Рукоятка светового меча"
 
 ITEM.Type = WOSTYPE.HILT
 

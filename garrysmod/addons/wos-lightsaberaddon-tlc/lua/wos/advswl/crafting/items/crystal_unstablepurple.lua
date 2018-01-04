@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Unstable Crystal ( Purple )"
+ITEM.Name = "Нестабильный Кристалл ( Фиолетовый )"
 
-ITEM.Description = "A broken crystal, giving an unsteady blade"
+ITEM.Description = "Сломанный кристалл, дающий непостоянное лезвие"
 
 ITEM.Type = WOSTYPE.CRYSTAL
 

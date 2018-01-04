@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Proficiency Amplifier"
+ITEM.Name = "Усилитель опыта"
 
-ITEM.Description = "Increases proficiency XP by 20%"
+ITEM.Description = "Повышает получение опыта на 20%"
 
 ITEM.Type = WOSTYPE.MISC2
 

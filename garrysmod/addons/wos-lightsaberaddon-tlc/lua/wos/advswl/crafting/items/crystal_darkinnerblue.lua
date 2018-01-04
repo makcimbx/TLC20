@@ -1,10 +1,10 @@
 local ITEM = {}
 
 --The name of the item ( is also an identifier for spawning the item )
-ITEM.Name = "Dark Inner Crystal ( Blue )"
+ITEM.Name = "Dark Inner Кристалл ( Синий )"
 
 --The description that appears with the item name
-ITEM.Description = "Basic Dark Inner Crystal"
+ITEM.Description = "Базовый Dark Inner Кристалл"
 
 --The category it belongs to
 ITEM.Type = WOSTYPE.CRYSTAL

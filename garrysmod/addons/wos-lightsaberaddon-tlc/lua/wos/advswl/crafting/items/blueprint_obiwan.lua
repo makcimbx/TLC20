@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Obiwan's Hilt Blueprint"
+ITEM.Name = "Черетеж рукоятки Оби-Вана"
 
-ITEM.Description = "To succeed, one must learn to create"
+ITEM.Description = "Чтобы добиться успеха, нужно научиться создавать"
 
 ITEM.Type = WOSTYPE.BLUEPRINT
 

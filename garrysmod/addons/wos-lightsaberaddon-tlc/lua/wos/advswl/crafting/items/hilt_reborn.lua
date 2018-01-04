@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Reborn Hilt"
+ITEM.Name = "Рукоять возрождение"
 
-ITEM.Description = "Lightsaber Hilt"
+ITEM.Description = "Рукоятка светового меча"
 
 ITEM.Type = WOSTYPE.HILT
 

@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Null Refractor ( Unstable )"
+ITEM.Name = "Нулевой рефрактор ( Нестабильный )"
 
-ITEM.Description = "Nullifies the output for an injectable beam"
+ITEM.Description = "Обнуляет выход для инъекционного пучка"
 
 ITEM.Type = WOSTYPE.CRYSTAL
 

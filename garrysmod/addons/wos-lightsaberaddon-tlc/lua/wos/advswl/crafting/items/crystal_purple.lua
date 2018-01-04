@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Crystal ( Purple )"
+ITEM.Name = "Кристалл ( Фиолетовый )"
 
-ITEM.Description = "Basic Crystal"
+ITEM.Description = "Базовый Кристалл"
 
 ITEM.Type = WOSTYPE.CRYSTAL
 
