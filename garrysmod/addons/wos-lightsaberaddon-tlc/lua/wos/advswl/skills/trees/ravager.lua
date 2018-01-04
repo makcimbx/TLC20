@@ -76,7 +76,7 @@ TREE.Tier[1][2] = {
 	Icon = "wos/skilltrees/ravager/agility.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function(ply) timer.Simple(0.1,function() local hpp = 0.05 ply:Ssws(ply:Gsws() + ply:getswsd()*(hpp)) ply:Ssrs(ply:Gsrs() + ply:getsrsd()*(hpp)) ply:Sscws(ply:Gscws() + ply:getscwsd()*(hpp)) end) end,
+	OnPlayerSpawn = function(ply) timer.Simple(0.1,function() local hpp = 0.05 ply:Ssws(ply:Gsws() + ply:getswsd()*(hpp)) ply:Ssrs(ply:Gsrs() + ply:getsrsd()*(hpp)) end) end,
 	--OnPlayerSpawn = function( ply ) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,

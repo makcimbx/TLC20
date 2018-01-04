@@ -297,7 +297,7 @@ end
 
 timer.Create("Think_Ever_Speed",0.5,0,function()
 	for k,v in pairs(player.GetAll())do
-		if(v.sws!=v.swso or v.srs!=v.srso or v.scws!=v.scwso or v.sds!=v.sdso or v.suds!=v.sudso or v.sjp!=v.sjpo or v.af!=v.afo)then
+		if(v.sws!=v.swso or v.srs!=v.srso or v.sds!=v.sdso or v.suds!=v.sudso or v.sjp!=v.sjpo or v.af!=v.afo)then
 			v:UpdateSpeeds()
 		end
 	end
@@ -308,14 +308,12 @@ function meta:UpdateSpeeds()
 
     self:SetWalkSpeed(self.swsd + self.sws + (self.swsb or 0))
     self:SetRunSpeed(self.srsd + self.srs + (self.srsb or 0))
-    self:SetCrouchedWalkSpeed(self.scwsd + self.scws + (self.scwsb or 0))
     self:SetDuckSpeed(self.sdsd + self.sds + (self.sdsb or 0))
     self:SetUnDuckSpeed(self.sudsd + self.suds + (self.sudsb or 0))
     self:SetJumpPower(self.sjpd + self.sjp + (self.sjpb or 0))
 	
 	self.swso = self.sws
 	self.srso = self.srs
-	self.scwso = self.scws
 	self.sdso = self.sds
 	self.sudso = self.suds
 	self.sjpo = self.sjp

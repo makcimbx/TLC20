@@ -88,7 +88,7 @@ TREE.Tier[1][3] = {
 	Icon = "wos/skilltrees/characterstats/speed.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) ply:Sscws(ply:Gscws() + 15) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -130,7 +130,7 @@ TREE.Tier[2][3] = {
 	Requirements = {
 	[1] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) ply:Sscws(ply:Gscws() + 15) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -172,7 +172,7 @@ TREE.Tier[3][3] = {
 	Requirements = {
 	[2] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) ply:Sscws(ply:Gscws() + 15) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -214,7 +214,7 @@ TREE.Tier[4][3] = {
 	Requirements = {
 	[3] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) ply:Sscws(ply:Gscws() + 15) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -256,7 +256,7 @@ TREE.Tier[5][3] = {
 	Requirements = {
 	[4] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 40) ply:Ssrs(ply:Gsrs() + 40) ply:Sscws(ply:Gscws() + 40) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 40) ply:Ssrs(ply:Gsrs() + 40) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -299,7 +299,7 @@ TREE.Tier[6][3] = {
 	Requirements = {
 	[5] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 75) ply:Ssrs(ply:Gsrs() + 75) ply:Sscws(ply:Gscws() + 75) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 75) ply:Ssrs(ply:Gsrs() + 75) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
