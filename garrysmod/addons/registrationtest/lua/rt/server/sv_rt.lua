@@ -8,7 +8,6 @@ util.AddNetworkString("adminselectquestion")
 util.AddNetworkString("editquestionmenu")
 util.AddNetworkString("editquestion")
 util.AddNetworkString("addnagrada")
-util.AddNetworkString("offerStartTest")
 
 
 hook.Add("Initialize", "firsttimeconnect", function()
@@ -133,18 +132,6 @@ function rt_edit( pl, cmd, arg )
 	end
 end
 concommand.Add("rtedit", rt_edit)]]--
-
-net.Receive("offerStartTest",function(l,ply)
-	EverDerma("Обучение","Начать тест?",{{text="Да",
-		func = function() 
-			net.Start("startEvertest") net.WriteBool(true) net.SendToServer()
-		end},
-		{text="Нет",
-		func = function()
-			net.Start("startEvertest") net.WriteBool(false) net.SendToServer()
-		end}
-	})
-end)
 
 net.Receive("StartTest",function(l,ply)
 	--local questions = sql.Query("SELECT `question`, `answers` FROM `rt_questions`")

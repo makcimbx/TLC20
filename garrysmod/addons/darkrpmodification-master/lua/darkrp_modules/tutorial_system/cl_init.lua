@@ -1,6 +1,13 @@
 local function TrainEnd()
-	net.Start("offerStartTest")
-	net.SendToServer()
+	EverDerma("Обучение","Начать тест?",{{text="Да",
+		func = function() 
+			net.Start("startEvertest") net.WriteBool(true) net.SendToServer()
+		end},
+		{text="Нет",
+		func = function()
+			net.Start("startEvertest") net.WriteBool(false) net.SendToServer()
+		end}
+	})
 end
 
 hook.Add( "PostServerIntro", "Ever_PostServerIntro", function( ply )
