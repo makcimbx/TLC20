@@ -56,40 +56,42 @@ function GM:EntityTakeDamage( target, dmginfo )
 	
 	if( not target:IsNPC() and not target:IsPlayer())then return end
 	
-	print("Normal damage: "..dmg)
+	EverPrint("Normal damage: "..dmg,Color(153,153,255))
 	
 	if(attacker:IsPlayer())then
 		local p = 1
 		local c = 1
 		for k,v in pairs(attacker.PlayerMakeDamage or {})do
 			local d,c = v(target, attacker, dmg,crit)
-			p = p + (d/dmg)
-			c = c + (c/crit)
+			p = p + d
+			c = c + c
 		end
 		dmg = dmg + dmg*p
-		crit = crit + c
+		crit = crit + crit*c
 	end
-	print("Post attacker skills damage: "..dmg)
+	EverPrint("Post attacker skills damage: "..dmg,Color(153,153,255))
 	
 	if(target:IsPlayer())then
 		local p = 1
 		local c = 1
 		for k,v in pairs(target.PlayerTakeDamage or {})do
 			local d,c = v(target, attacker, dmg,crit)
-			p = p + (d/dmg)
-			c = c + (c/crit)
+			p = p + d
+			c = c + c
 		end
 		dmg = dmg + dmg*p
-		crit = crit + c
+		crit = crit + crit*c
 	end
-	print("Post target skills damage: "..dmg)
+	EverPrint("Post target skills damage: "..dmg,Color(153,153,255))
 	
 	local pr = math.random(0,100)
 	local pr2 = 3
 	if(pr<=pr2)then
 		dmg = dmg + dmg*crit
 	end
-	print("Post critical damage: "..dmg)
+	EverPrint("Post critical damage: "..dmg,Color(153,153,255))
+	
+	
 	if(attacker:IsPlayer())then
 		for k,v in pairs(attacker.PlayerPostMakeDamage or {})do
 			v(target, attacker, dmg,crit)
