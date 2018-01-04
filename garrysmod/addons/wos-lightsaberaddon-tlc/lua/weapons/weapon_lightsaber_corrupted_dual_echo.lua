@@ -107,8 +107,10 @@ SWEP.CustomSettings =
 
 if !SWEP.DualWielded then
 	SWEP.Base = "wos_adv_single_lightsaber_base"
+	DEFINE_BASECLASS( "wos_adv_single_lightsaber_base" )
 else
 	SWEP.Base = "wos_adv_dual_lightsaber_base"
+	DEFINE_BASECLASS( "wos_adv_dual_lightsaber_base" )
 end
 
 
