@@ -85,7 +85,7 @@ function GM:EntityTakeDamage( target, dmginfo )
 	print("Post target skills damage: "..dmg)
 	
 	local pr = math.random(0,100)
-	local pr2 = 10
+	local pr2 = 3
 	if(pr<=pr2)then
 		dmg = dmg + dmg*crit
 	end

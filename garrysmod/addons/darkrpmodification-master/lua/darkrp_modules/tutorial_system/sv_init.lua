@@ -3,6 +3,7 @@ util.AddNetworkString( "sendtrain" )
 util.AddNetworkString( "gettrain" )
 util.AddNetworkString( "offertest" )
 util.AddNetworkString( "startEvertest" )
+util.AddNetworkString( "startTutorialAfterAll" )
 
 TrainPlayer = {}
 
@@ -69,6 +70,7 @@ end)
 
 net.Receive("startEvertest",function(len,ply)
 	local d = net.ReadBool()
+	local t = net.ReadBool() or false
 	
 	if(IsValid(ply.presempai))then
 		if(d == true)then
@@ -78,14 +80,19 @@ net.Receive("startEvertest",function(len,ply)
 			serverguard.Notify(ply.presempai, SERVERGUARD.NOTIFY.RED,ply:Name(),SERVERGUARD.NOTIFY.RED," отклонил тест!");
 		end
 	else
+	
 		if(d == true)then
-			ply:SendLua("GlideStart()")
-			ply:SendLua("StopTTimer()")
+			if(t==true)then
+				ply:SendLua("GlideStart()")
+				ply:SendLua("StopTTimer()")
+			else
+				rt_startq(ply)
+			end
 		else
 			serverguard.Notify(ply,SERVERGUARD.NOTIFY.WHITE,"Ждите в течении", SERVERGUARD.NOTIFY.GREEN," 5 минут",SERVERGUARD.NOTIFY.WHITE," прибытия",SERVERGUARD.NOTIFY.RED," инструктора",SERVERGUARD.NOTIFY.WHITE,", либо вам будет предложено",SERVERGUARD.NOTIFY.RED,SERVERGUARD.NOTIFY.WHITE, " автоматическое обучение.");
   
 			ply.pause = false
-			table.insert(TrainPlayer,{ply = ply,tm = 0})
+			table.insert(TrainPlayer,{ply = ply,tm = 300})
 			ply.train_wait = true
 			ply:SetNWBool( "train_wait", true )
 			ply:SendLua("StartTTimer()")
