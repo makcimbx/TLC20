@@ -41,7 +41,7 @@ TREE.MaxTiers = 2
 
 --Add user groups that are allowed to use this tree. If anyone is allowed, set this to FALSE ( TREE.UserGroups = false )
 TREE.UserGroups = false
-
+timer.Simple(5,function()
 TREE.TeamAllowed = {
 	[TEAM_JEDIP2] = true,
 	[TEAM_JEDIP] = true,
@@ -138,4 +138,4 @@ TREE.Tier[2][3] = {
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Leap" ) end,
 }
 
-wOS:RegisterSkillTree( TREE )
+wOS:RegisterSkillTree( TREE ))
