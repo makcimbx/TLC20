@@ -34,7 +34,7 @@ TEAM_CADET = DarkRP.createJob("Кадет", {
 
 TEAM_501CT = DarkRP.createJob("501-й Клон Солдат", {
 	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/sm_ct_trooper/sm_ct_trooper.mdl",
+	model = "models/gonzo/helmetlessclone/helmetlessclone.mdl",
 	description = [[]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "501ct",
@@ -42,12 +42,12 @@ TEAM_501CT = DarkRP.createJob("501-й Клон Солдат", {
 	salary = 0,
 	admin = 0,
 	vote = false,
+	maxHP=500,
+	maxAM=100,
 	level = 1,
-	PlayerSpawn = function(ply)
-    ply:SetBodygroup(1,0)
-    ply:SetBodygroup(2,4)
-    ply:SetBodygroup(3,2)
-    end,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(1,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
@@ -55,7 +55,7 @@ TEAM_501CT = DarkRP.createJob("501-й Клон Солдат", {
 
 TEAM_501TRP = DarkRP.createJob("501-й Солдат", {
 	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/501st_trooper/501st_trooper.mdl",
+	model = "models/player/ven/bf2_reg/501st/bf2501.mdl",
 	description = [[Поздравляем, теперь вы часть 501-го легиона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "501trp",
@@ -64,6 +64,17 @@ TEAM_501TRP = DarkRP.createJob("501-й Солдат", {
 	admin = 0,
 	vote = false,
 	level = 10,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,0)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
@@ -80,6 +91,8 @@ TEAM_501GUNNER = DarkRP.createJob("501-й Пулеметчик", {
 	admin = 0,
 	vote = false,
 	level = 20,
+	maxHP=500,
+	maxAM=100,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
@@ -96,38 +109,55 @@ TEAM_501GRENADETRP = DarkRP.createJob("501-й Гранатометчик", {
 	admin = 0,
 	vote = false,
 	level = 20,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,1) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	ply:SetBodygroup(7,0)
+	ply:SetBodygroup(8,1)
+	ply:SetBodygroup(9,0)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
 })
 
-TEAM_501CPL = DarkRP.createJob("501-й Капрал", { 
-	color = Color(50, 50, 255, 255), 
-	model = "models/player/ven/bf2_reg/501st/bf2501.mdl", 
-	description = [[Поздравляем, теперь вы капрал 501-го легиона!]], 
-	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c5"}, 
-	command = "501cpl", 
-	max = 0, 
-	salary = 0, 
-	admin = 0, 
-	vote = false, 
-	level = 20, 
-	OnPlayerChangedTeam = function(ply) 
-	ply:SetBodygroup(0,1) 
-	ply:SetBodygroup(1,1) 
-	ply:SetBodygroup(2,1) 
-	ply:SetBodygroup(3,1) 
-	ply:SetBodygroup(4,1) 
-	ply:SetBodygroup(5,1) 
-	end, 
-	hasLicense = false, 
-	candemote = false, 
-	category = "501st legion", 
+TEAM_501CPL = DarkRP.createJob("501-й Капрал", {
+	color = Color(50, 50, 255, 255),
+	model = "models/player/ven/bf2_reg/501st/bf2501.mdl",
+	description = [[Поздравляем, теперь вы капрал 501-го легиона!]],
+	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c5"},
+	command = "501cpl",
+	max = 0,
+	salary = 0,
+	admin = 0,
+	vote = false,
+	level = 20,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
+	hasLicense = false,
+	candemote = false,
+	category = "501st legion",
 })
 
 TEAM_501SGT = DarkRP.createJob("501-й Сержант", {
 	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/501st_sergeant/501st_sergeant.mdl",
+	model = "models/player/ven/bf2_reg/501st/bf2501.mdl",
 	description = [[Поздравляем, теперь вы сержант 501-го легиона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c6"},
 	command = "501sgt",
@@ -136,6 +166,17 @@ TEAM_501SGT = DarkRP.createJob("501-й Сержант", {
 	admin = 0,
 	vote = false,
 	level = 30,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
@@ -143,7 +184,7 @@ TEAM_501SGT = DarkRP.createJob("501-й Сержант", {
 
 TEAM_501LT = DarkRP.createJob("501-й Лейтенант", {
 	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/501st_captain/501st_captain.mdl",
+	model = "models/player/ven/bf2_reg/501st/bf2501.mdl",
 	description = [[Поздравляем, теперь вы сержант 501-го легиона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "501lt",
@@ -152,6 +193,17 @@ TEAM_501LT = DarkRP.createJob("501-й Лейтенант", {
 	admin = 0,
 	vote = false,
 	level = 40,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
@@ -159,7 +211,7 @@ TEAM_501LT = DarkRP.createJob("501-й Лейтенант", {
 
 TEAM_501CPT = DarkRP.createJob("501-й Капитан", {
 	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/501st_captain/501st_captain.mdl",
+	model = "models/player/ven/bf2_reg/501st/bf2501.mdl",
 	description = [[Поздравляем, теперь вы капитан 501-го легиона!]],
 	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "501cpt",
@@ -168,6 +220,17 @@ TEAM_501CPT = DarkRP.createJob("501-й Капитан", {
 	admin = 0,
 	vote = false,
 	level = 50,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
@@ -175,7 +238,7 @@ TEAM_501CPT = DarkRP.createJob("501-й Капитан", {
 
 TEAM_501MJR = DarkRP.createJob("501-й Майор", {
 	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/501st_major/501st_major.mdl",
+	model = "models/player/ven/bf2_reg/501st/bf2501.mdl",
 	description = [[Поздравляем, теперь вы майор 501-го легиона!]],
 	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "501mjr",
@@ -184,6 +247,17 @@ TEAM_501MJR = DarkRP.createJob("501-й Майор", {
 	admin = 0,
 	vote = false,
 	level = 60,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)	
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
@@ -191,7 +265,7 @@ TEAM_501MJR = DarkRP.createJob("501-й Майор", {
 
 TEAM_501COL = DarkRP.createJob("501-й Подполковник", {
 	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/501st_commander/501st_commander.mdl",
+	model = "models/player/ven/bf2_reg/501st/bf2501.mdl",
 	description = [[Поздравляем, теперь вы подполковник 501-го легиона!]],
 	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "501col",
@@ -200,22 +274,35 @@ TEAM_501COL = DarkRP.createJob("501-й Подполковник", {
 	admin = 0,
 	vote = false,
 	level = 80,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
 })
 
-TEAM_501CO = DarkRP.createJob("501-й Клон-коммандер", {
+TEAM_501CO = DarkRP.createJob("501-й Командир", {
 	color = Color(50, 50, 255, 255),
-	model = "models/player/smitty/bf2_reg/sm_rex/sm_rex.mdl",
+	model = "models/player/ven/bf2_reg/rex/bf2rex.mdl",
 	description = [[Поздравляем, теперь вы командир 501-го легиона!]],
-	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8"},
+	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "501co",
 	max = 0,
 	salary = 0,
 	admin = 0,
 	vote = false,
-	level = 100,
+	level = 1,
+	maxHP=500,
+	maxAM=100,
 	hasLicense = false,
 	candemote = false,
 	category = "501st legion",
@@ -224,7 +311,7 @@ TEAM_501CO = DarkRP.createJob("501-й Клон-коммандер", {
 
 TEAM_212CT = DarkRP.createJob("212-й Клон Солдат", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_ct_trooper/sm_ct_trooper.mdl",
+	model = "models/gonzo/helmetlessclone/helmetlessclone.mdl",
 	description = [[]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "212ct",
@@ -233,6 +320,11 @@ TEAM_212CT = DarkRP.createJob("212-й Клон Солдат", {
 	admin = 0,
 	vote = false,
 	level = 1,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(1,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "212 AB",
@@ -240,13 +332,22 @@ TEAM_212CT = DarkRP.createJob("212-й Клон Солдат", {
 
 TEAM_212TRP = DarkRP.createJob("212-й Солдат", {
 	color = Color(244, 210, 74, 255),
-    model = "models/player/smitty/bf2_reg/sm_212th_trooper/sm_212th_trooper.mdl",	
+    model = "models/player/ven/bf2_reg/212th/bf2212.mdl",	
 	description = [[Поздравляем, теперь вы часть 212-го штурмового батальона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "212trp",
 	max = 0,
 	salary = 50,
 	level = 10,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,0)
+	end,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -257,13 +358,22 @@ TEAM_212TRP = DarkRP.createJob("212-й Солдат", {
 
 TEAM_212CPL = DarkRP.createJob("212-й Капрал", {
 	color = Color(244, 210, 74, 255),
-    model = "models/player/smitty/bf2_reg/sm_212th_lieutenant/sm_212th_lieutenant.mdl",	
+    model = "models/player/ven/bf2_reg/212th/bf2212.mdl",	
 	description = [[Поздравляем, теперь вы капрал 212-го штурмового батальона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c5"},
 	command = "212cpl",
 	max = 0,
 	salary = 50,
 	level = 20,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -274,13 +384,22 @@ TEAM_212CPL = DarkRP.createJob("212-й Капрал", {
 
 TEAM_212SGT = DarkRP.createJob("212-й Сержант", {
 	color = Color(244, 210, 74, 255),
-    model = "models/player/smitty/bf2_reg/sm_212th_sergeant/sm_212th_sergeant.mdl",	
+    model = "models/player/ven/bf2_reg/212th/bf2212.mdl",	
 	description = [[Поздравляем, теперь вы сержант 212-го штурмового батальона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c6"},
 	command = "212sgt",
 	max = 0,
 	salary = 50,
 	level = 30,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -291,13 +410,22 @@ TEAM_212SGT = DarkRP.createJob("212-й Сержант", {
 
 TEAM_212LT = DarkRP.createJob("212-й Лейтенант", {
 	color = Color(244, 210, 74, 255),
-    model = "models/player/smitty/bf2_reg/sm_212th_captain/sm_212th_captain.mdl",	
+    model = "models/player/ven/bf2_reg/212th/bf2212.mdl",	
 	description = [[Поздравляем, теперь вы лейтенант 212-го штурмового батальона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "212lt",
 	max = 0,
 	salary = 50,
 	level = 40,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -308,13 +436,22 @@ TEAM_212LT = DarkRP.createJob("212-й Лейтенант", {
 
 TEAM_212CPT = DarkRP.createJob("212-й Капитан", {
 	color = Color(244, 210, 74, 255),
-    model = "models/player/smitty/bf2_reg/sm_212th_captain/sm_212th_captain.mdl",	
+    model = "models/player/ven/bf2_reg/212th/bf2212.mdl",	
 	description = [[Поздравляем, теперь вы капитан 212-го штурмового батальона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "212cpt",
 	max = 0,
 	salary = 50,
 	level = 50,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	end,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -325,13 +462,22 @@ TEAM_212CPT = DarkRP.createJob("212-й Капитан", {
 
 TEAM_212MJR = DarkRP.createJob("212-й Майор", {
 	color = Color(244, 210, 74, 255),
-    model = "models/player/smitty/bf2_reg/sm_212th_major/sm_212th_major.mdl",	
+    model = "models/player/ven/bf2_reg/212th/bf2212.mdl",	
 	description = [[Поздравляем, теперь вы майор 212-го штурмового батальона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "212MJR",
 	max = 0,
 	salary = 50,
 	level = 60,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)	
+	end,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -342,13 +488,22 @@ TEAM_212MJR = DarkRP.createJob("212-й Майор", {
 
 TEAM_212COL = DarkRP.createJob("212-й Подполковник", {
 	color = Color(244, 210, 74, 255),
-    model = "models/player/smitty/bf2_reg/sm_212th_commander/sm_212th_commander.mdl",	
+    model = "models/player/ven/bf2_reg/212th/bf2212.mdl",	
 	description = [[Поздравляем, теперь вы подполковник 212-го штурмового батальона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "212col",
 	max = 0,
 	salary = 50,
 	level = 80,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -357,15 +512,15 @@ TEAM_212COL = DarkRP.createJob("212-й Подполковник", {
 	candemote = false,
 })
 
-TEAM_212CO = DarkRP.createJob("212-й Клон-коммандер", {
+TEAM_212CO = DarkRP.createJob("212-й Командир", {
 	color = Color(244, 210, 74, 255),
-    model = "models/player/smitty/bf2_reg/sm_cody/sm_cody.mdl",	
+    model = "models/player/ven/bf2_reg/cody/bf2cody.mdl",	
 	description = [[Поздравляем, теперь вы командир 212-го штурмового батальона!]],
-	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8"},
+	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "212co",
 	max = 0,
 	salary = 50,
-	level = 100,
+	level = 1,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -376,7 +531,7 @@ TEAM_212CO = DarkRP.createJob("212-й Клон-коммандер", {
 
 TEAM_2NDTRP = DarkRP.createJob("212-й Пулеметчик", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_212th_trooper/sm_212th_trooper.mdl",
+	model = "models/gonzo/swbf2heavygunner/212th/212th.mdl",
 	description = [[Поздравляем, теперь вы пулеметчик 212!]],
 	weapons = {"tfa_swch_z6","tfa_dc17chrome","clone_card_c5"},
 	command = "212heavygunner",
@@ -393,7 +548,7 @@ TEAM_2NDTRP = DarkRP.createJob("212-й Пулеметчик", {
 
 TEAM_2NDGRENADE = DarkRP.createJob("212-й Гранатометчик", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_212th_lieutenant/sm_212th_lieutenant.mdl",
+	model = "models/gonzo/vnvariants/212/212.mdl",
 	description = [[Поздравляем, теперь вы гранатометчик 212!]],
 	weapons = {"tfa_swch_clonelauncher","tfa_dc15s_ashura","clone_card_c5"},
 	command = "212grenade",
@@ -401,6 +556,18 @@ TEAM_2NDGRENADE = DarkRP.createJob("212-й Гранатометчик", {
 	salary = 60,
 	admin = 0,
 	level = 30,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,1) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	ply:SetBodygroup(7,0)
+	ply:SetBodygroup(8,1)
+	ply:SetBodygroup(9,0)
+	end,
 	maxHP=500,
 	maxAM=100,
 	vote = false,
@@ -411,7 +578,7 @@ TEAM_2NDGRENADE = DarkRP.createJob("212-й Гранатометчик", {
 
 TEAM_41CT = DarkRP.createJob("41-й Клон Солдат", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/sm_ct_trooper/sm_ct_trooper.mdl",
+	model = "models/gonzo/helmetlessclone/helmetlessclone.mdl",
 	description = [[]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "41ct",
@@ -420,6 +587,11 @@ TEAM_41CT = DarkRP.createJob("41-й Клон Солдат", {
 	admin = 0,
 	vote = false,
 	level = 1,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(1,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "41st legion",
@@ -427,7 +599,7 @@ TEAM_41CT = DarkRP.createJob("41-й Клон Солдат", {
 
 TEAM_41THTRP = DarkRP.createJob("41-й Солдат", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/41stgc_trooper/41stgc_trooper.mdl",
+	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы часть 41-го Легиона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","clone_card_c5"},
 	command = "41thtrp",
@@ -437,6 +609,15 @@ TEAM_41THTRP = DarkRP.createJob("41-й Солдат", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "41st legion",
 	candemote = false,
@@ -444,7 +625,7 @@ TEAM_41THTRP = DarkRP.createJob("41-й Солдат", {
 
 TEAM_41THCPL = DarkRP.createJob("41-й Капрал", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/41stgc_lieutenant/41stgc_lieutenant.mdl",
+	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы капрал 41-го Легиона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","clone_card_c5"},
 	command = "41thcpl",
@@ -454,6 +635,15 @@ TEAM_41THCPL = DarkRP.createJob("41-й Капрал", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "41st legion",
 	candemote = false,
@@ -461,7 +651,7 @@ TEAM_41THCPL = DarkRP.createJob("41-й Капрал", {
 
 TEAM_41THSGT = DarkRP.createJob("41-й Сержант", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/41stgc_sergeant/41stgc_sergeant.mdl",
+	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы сержант 41-го Легиона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","clone_card_c6"},
 	command = "41thsgt",
@@ -471,6 +661,15 @@ TEAM_41THSGT = DarkRP.createJob("41-й Сержант", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "41st legion",
 	candemote = false,
@@ -478,7 +677,7 @@ TEAM_41THSGT = DarkRP.createJob("41-й Сержант", {
 
 TEAM_41THLT = DarkRP.createJob("41-й Лейтенант", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/41stgc_captain/41stgc_captain.mdl",
+	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы лейтенант 41-го Легиона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "41thlt",
@@ -488,6 +687,15 @@ TEAM_41THLT = DarkRP.createJob("41-й Лейтенант", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "41st legion",
 	candemote = false,
@@ -495,7 +703,7 @@ TEAM_41THLT = DarkRP.createJob("41-й Лейтенант", {
 
 TEAM_41THCPT = DarkRP.createJob("41-й Капитан", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/41stgc_captain/41stgc_captain.mdl",
+	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы капитан 41-го Легиона!]],
 	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "41thcpt",
@@ -505,6 +713,15 @@ TEAM_41THCPT = DarkRP.createJob("41-й Капитан", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "41st legion",
 	candemote = false,
@@ -512,7 +729,7 @@ TEAM_41THCPT = DarkRP.createJob("41-й Капитан", {
 
 TEAM_41THMJR = DarkRP.createJob("41-й Майор", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/41stgc_major/41stgc_major.mdl",
+	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы майор 41-го Легиона!]],
 	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "41thmjr",
@@ -522,6 +739,15 @@ TEAM_41THMJR = DarkRP.createJob("41-й Майор", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "41st legion",
 	candemote = false,
@@ -529,7 +755,7 @@ TEAM_41THMJR = DarkRP.createJob("41-й Майор", {
 
 TEAM_41THCOL = DarkRP.createJob("41-й Подполковник", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/41stgc_commander/41stgc_commander.mdl",
+	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы майор 41-го Легиона!]],
 	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "41thcol",
@@ -539,19 +765,28 @@ TEAM_41THCOL = DarkRP.createJob("41-й Подполковник", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,1) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "41st legion",
 	candemote = false,
 })
 
-TEAM_41THCO = DarkRP.createJob("41-й Клон-коммандер", {
+TEAM_41THCO = DarkRP.createJob("41-й Командир", {
 	color = Color(133, 133, 133),
-	model = "models/player/smitty/bf2_reg/sm_gree/sm_gree.mdl",
+	model = "models/player/ven/bf2_reg/gree/bf2gree.mdl",
 	description = [[Поздравляем, теперь вы командир 41-го Легиона!]],
-	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8"},
+	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "41thco",
 	max = 0,
-	level = 100,
+	level = 1,
 	salary = 50,
 	admin = 0,
 	maxHP=500,
@@ -563,7 +798,7 @@ TEAM_41THCO = DarkRP.createJob("41-й Клон-коммандер", {
 
 TEAM_GCSCOUT = DarkRP.createJob("41-й Разведчик", {
 	color = Color(62, 126, 52, 255),
-	model = "models/smitty/bf_gc/gc_trooper.mdl",
+	model = "models/smitty/bf_gc/sm_faie_alt.mdl",
 	description = [[Поздравляем, теперь вы разведчик 41-го Легиона!]],
 	weapons = {"tfa_swch_dc15a_scoped", "tfa_dc15s_ashura", "zeus_flashbang", "zeus_smokegranade", "realistic_hook","clone_card_c5"},
 	command = "gcscout",
@@ -574,7 +809,7 @@ TEAM_GCSCOUT = DarkRP.createJob("41-й Разведчик", {
 	maxHP=500,
 	maxAM=100,
 	vote = false,
-	category = "Green company",
+	category = "41st legion",
 	candemote = false,
 })
 
@@ -591,14 +826,14 @@ TEAM_GCSNP = DarkRP.createJob("41-й Снайпер", {
 	maxHP=500,
 	maxAM=100,
 	vote = false,
-	category = "Green company",
+	category = "41st legion",
 	candemote = false,
 })
 
 
 TEAM_91CT = DarkRP.createJob("91-й Клон Солдат", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/smitty/bf2_reg/sm_ct_trooper/sm_ct_trooper.mdl",
+	model = "models/gonzo/helmetlessclone/helmetlessclone.mdl",
 	description = [[]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "91ct",
@@ -607,6 +842,11 @@ TEAM_91CT = DarkRP.createJob("91-й Клон Солдат", {
 	admin = 0,
 	vote = false,
 	level = 1,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(1,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "91st Recon Corps",
@@ -614,7 +854,7 @@ TEAM_91CT = DarkRP.createJob("91-й Клон Солдат", {
 
 TEAM_91TRP = DarkRP.createJob("91-й Солдат", {
 	color = Color(200, 0, 25, 255),
-	model = {"models/player/smitty/bf2_reg/91st_trooper/91st_trooper.mdl"},
+	model = {"models/player/ven/bf2_reg/91st/bf291.mdl"},
 	description = [[Поздравляем, теперь вы часть 91-го батальона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","clone_card_c5"},
 	command = "91trp",
@@ -624,6 +864,15 @@ TEAM_91TRP = DarkRP.createJob("91-й Солдат", {
 	level = 10,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "91st Recon Corps",
 	candemote = false,
@@ -631,7 +880,7 @@ TEAM_91TRP = DarkRP.createJob("91-й Солдат", {
 
 TEAM_91CPL = DarkRP.createJob("91-й Капрал", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/smitty/bf2_reg/91st_lieutenant/91st_lieutenant.mdl",
+	model = {"models/player/ven/bf2_reg/91st/bf291.mdl"},
 	description = [[Поздравляем, теперь вы часть 91-го батальона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","clone_card_c5"},
 	command = "91cpl",
@@ -641,6 +890,15 @@ TEAM_91CPL = DarkRP.createJob("91-й Капрал", {
 	level = 20,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "91st Recon Corps",
 	candemote = false,
@@ -648,7 +906,7 @@ TEAM_91CPL = DarkRP.createJob("91-й Капрал", {
 
 TEAM_91SGT = DarkRP.createJob("91-й Сержант", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/smitty/bf2_reg/91st_sergeant/91st_sergeant.mdl",
+	model = {"models/player/ven/bf2_reg/91st/bf291.mdl"},
 	description = [[Вы сержант 91-го разведывательного корпуса!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","clone_card_c6"},
 	command = "91sgt",
@@ -658,6 +916,15 @@ TEAM_91SGT = DarkRP.createJob("91-й Сержант", {
 	level = 30,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "91st Recon Corps",
 	candemote = false,
@@ -665,7 +932,7 @@ TEAM_91SGT = DarkRP.createJob("91-й Сержант", {
 
 TEAM_91LT = DarkRP.createJob("91-й Лейтенант", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/smitty/bf2_reg/91st_captain/91st_captain.mdl",
+	model = {"models/player/ven/bf2_reg/91st/bf291.mdl"},
 	description = [[Поздравляем, теперь вы Лейтенант 91-го батальона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "91lt",
@@ -675,6 +942,15 @@ TEAM_91LT = DarkRP.createJob("91-й Лейтенант", {
 	level = 40,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "91st Recon Corps",
 	candemote = false,
@@ -682,7 +958,7 @@ TEAM_91LT = DarkRP.createJob("91-й Лейтенант", {
 
 TEAM_91CPT = DarkRP.createJob("91-й Капитан", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/smitty/bf2_reg/91st_captain/91st_captain.mdl",
+	model = {"models/player/ven/bf2_reg/91st/bf291.mdl"},
 	description = [[Поздравляем, теперь вы Капитан 91-го батальона!]],
 	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "91cpt",
@@ -692,6 +968,15 @@ TEAM_91CPT = DarkRP.createJob("91-й Капитан", {
 	level = 50,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "91st Recon Corps",
 	candemote = false,
@@ -699,7 +984,7 @@ TEAM_91CPT = DarkRP.createJob("91-й Капитан", {
 
 TEAM_91MJR = DarkRP.createJob("91-й Майор", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/smitty/bf2_reg/91st_major/91st_major.mdl",
+	model = {"models/player/ven/bf2_reg/91st/bf291.mdl"},
 	description = [[Поздравляем, теперь вы Майор 91-го батальона!]],
 	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "91mjr",
@@ -709,6 +994,15 @@ TEAM_91MJR = DarkRP.createJob("91-й Майор", {
 	level = 60,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)	
+	end,
 	vote = false,
 	category = "91st Recon Corps",
 	candemote = false,
@@ -716,7 +1010,7 @@ TEAM_91MJR = DarkRP.createJob("91-й Майор", {
 
 TEAM_91COL = DarkRP.createJob("91-й Подполковник", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/smitty/bf2_reg/91st_commander/91st_commander.mdl",
+	model = {"models/player/ven/bf2_reg/91st/bf291.mdl"},
 	description = [[Поздравляем, теперь вы Подполковник 91-го полка!]],
 	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "91col",
@@ -726,21 +1020,30 @@ TEAM_91COL = DarkRP.createJob("91-й Подполковник", {
 	level = 80,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "91st Recon Corps",
 	candemote = false,
 })
 
-TEAM_91CO = DarkRP.createJob("91-й Клон-коммандер", {
+TEAM_91CO = DarkRP.createJob("91-й Командир", {
 	color = Color(200, 0, 25, 255),
-	model = {"models/player/smitty/bf2_reg/91st_neyo/91st_neyo.mdl",},	
+	model = {"models/player/ven/bf2_reg/neyo/bf2neyo.mdl"},
 	description = [[Поздравляем, теперь вы Командир 91-го батальона!]],
-	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8"},
+	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "91co",
 	max = 1,
 	salary = 500,
 	admin = 0,
-	level = 100,
+	level = 1,
 	maxHP=500,
 	maxAM=100,
 	vote = false,
@@ -785,7 +1088,7 @@ TEAM_91SNP = DarkRP.createJob("91-й Снайпер", {
 
 TEAM_327CT = DarkRP.createJob("327-й Клон Солдат", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_ct_trooper/sm_ct_trooper.mdl",
+	model = "models/gonzo/helmetlessclone/helmetlessclone.mdl",
 	description = [[]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "327ct",
@@ -794,6 +1097,11 @@ TEAM_327CT = DarkRP.createJob("327-й Клон Солдат", {
 	admin = 0,
 	vote = false,
 	level = 1,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(1,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "327st",
@@ -801,7 +1109,7 @@ TEAM_327CT = DarkRP.createJob("327-й Клон Солдат", {
 
 TEAM_327TRP = DarkRP.createJob("327-й Солдат", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_trooper/sm_327th_trooper.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы часть 327-го легиона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "327trp",
@@ -811,6 +1119,15 @@ TEAM_327TRP = DarkRP.createJob("327-й Солдат", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "327st",
 	candemote = false,
@@ -818,7 +1135,7 @@ TEAM_327TRP = DarkRP.createJob("327-й Солдат", {
 
 TEAM_327CPL = DarkRP.createJob("327-й Капрал", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_lieutenant/sm_327th_lieutenant.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы капрал 327-го легиона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_swch_dc17","clone_card_c5"},
 	command = "327cpl",
@@ -828,6 +1145,15 @@ TEAM_327CPL = DarkRP.createJob("327-й Капрал", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "327st",
 	candemote = false,
@@ -835,7 +1161,7 @@ TEAM_327CPL = DarkRP.createJob("327-й Капрал", {
 
 TEAM_327SGT = DarkRP.createJob("327-й Сержант ", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_sergeant/sm_327th_sergeant.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы сержант 327-го легиона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c6"},
 	command = "327sgt",
@@ -852,7 +1178,7 @@ TEAM_327SGT = DarkRP.createJob("327-й Сержант ", {
 
 TEAM_327LT = DarkRP.createJob("327-й Лейтенант", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_captain/sm_327th_captain.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы Лейтенант 327-го звездного корпуса!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "327lt",
@@ -862,6 +1188,15 @@ TEAM_327LT = DarkRP.createJob("327-й Лейтенант", {
 	level = 50,
 	maxHP=650,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "327st",
 	candemote = false,	
@@ -869,7 +1204,7 @@ TEAM_327LT = DarkRP.createJob("327-й Лейтенант", {
 
 TEAM_327CPT = DarkRP.createJob("327-й Капитан ", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_captain/sm_327th_captain.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы Капитан 327-го легиона!]],
 	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "327cpt",
@@ -879,6 +1214,15 @@ TEAM_327CPT = DarkRP.createJob("327-й Капитан ", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "327st",
 	candemote = false,
@@ -886,7 +1230,7 @@ TEAM_327CPT = DarkRP.createJob("327-й Капитан ", {
 
 TEAM_327MJR = DarkRP.createJob("327-й Майор", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_major/sm_327th_major.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы майор 327-го легиона!]],
 	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "327mjr",
@@ -896,6 +1240,15 @@ TEAM_327MJR = DarkRP.createJob("327-й Майор", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)	
+	end,
 	vote = false,
 	category = "327st",
 	candemote = false,
@@ -903,7 +1256,7 @@ TEAM_327MJR = DarkRP.createJob("327-й Майор", {
 
 TEAM_327COL = DarkRP.createJob("327-й Подполковник", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_commander/sm_327th_commander.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы Подполковник 327-го легиона!]],
 	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "327col",
@@ -913,20 +1266,29 @@ TEAM_327COL = DarkRP.createJob("327-й Подполковник", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "327st",
 	candemote = false,
 })
 
-TEAM_327CO = DarkRP.createJob("327-й Клон-коммандер", {
+TEAM_327CO = DarkRP.createJob("327-й Командир", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_bly/sm_bly.mdl",
+	model = "models/player/ven/bf2_reg/bly/bf2bly.mdl",
 	description = [[Поздравляем, теперь вы Командир 327-го легиона!]],
-	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8"},
+	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "327co",
 	max = 0,
 	salary = 80,
-	level = 100,
+	level = 1,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -937,7 +1299,7 @@ TEAM_327CO = DarkRP.createJob("327-й Клон-коммандер", {
 
 TEAM_327JETTRP = DarkRP.createJob("327-й Солдат c ранцем", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_trooper/sm_327th_trooper.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы Солдат c ранцем 327-го легиона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c5"},
 	command = "327jettrp",
@@ -954,7 +1316,7 @@ TEAM_327JETTRP = DarkRP.createJob("327-й Солдат c ранцем", {
 
 TEAM_327FLAMETRP = DarkRP.createJob("327-й Огнеметчик", {
 	color = Color(150, 75, 0),
-	model = "models/player/smitty/bf2_reg/sm_327th_sergeant/sm_327th_sergeant.mdl",
+	model = "models/player/ven/bf2_reg/327th/bf2327.mdl",
 	description = [[Поздравляем, теперь вы Сержант с ранцем 327-го легиона!]],
 	weapons = {"flamethrower_basic","tfa_dc15s_ashura","zeus_thermaldet","zeus_smokegranade","clone_card_c5"},
 	command = "327flametrp",
@@ -972,7 +1334,7 @@ TEAM_327FLAMETRP = DarkRP.createJob("327-й Огнеметчик", {
 
 TEAM_104CT = DarkRP.createJob("104-й Клон Солдат", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_ct_trooper/sm_ct_trooper.mdl",
+	model = "models/gonzo/helmetlessclone/helmetlessclone.mdl",
 	description = [[]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "104ct",
@@ -981,6 +1343,11 @@ TEAM_104CT = DarkRP.createJob("104-й Клон Солдат", {
 	admin = 0,
 	vote = false,
 	level = 1,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(1,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "104st",
@@ -988,7 +1355,7 @@ TEAM_104CT = DarkRP.createJob("104-й Клон Солдат", {
 
 TEAM_104TRP = DarkRP.createJob("104-й Солдат", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_trooper/sm_104th_trooper.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы часть 104-го батальона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "104trp",
@@ -998,6 +1365,15 @@ TEAM_104TRP = DarkRP.createJob("104-й Солдат", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "104st",
 	candemote = false,
@@ -1005,7 +1381,7 @@ TEAM_104TRP = DarkRP.createJob("104-й Солдат", {
 
 TEAM_104CPL = DarkRP.createJob("104-й Капрал", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_lieutenant/sm_104th_lieutenant.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы капрал 104-го батальона!]],
 	weapons = {"tfa_swch_dc15a", "tfa_swch_dc17","clone_card_c5"},
 	command = "104cpl",
@@ -1015,6 +1391,15 @@ TEAM_104CPL = DarkRP.createJob("104-й Капрал", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "104st",
 	candemote = false,
@@ -1022,7 +1407,7 @@ TEAM_104CPL = DarkRP.createJob("104-й Капрал", {
 
 TEAM_104SGT = DarkRP.createJob("104-й Сержант ", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_sergeant/sm_104th_sergeant.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы сержант 104-го батальона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","clone_card_c6"},
 	command = "104sgt",
@@ -1032,6 +1417,15 @@ TEAM_104SGT = DarkRP.createJob("104-й Сержант ", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "104st",
 	candemote = false,
@@ -1039,7 +1433,7 @@ TEAM_104SGT = DarkRP.createJob("104-й Сержант ", {
 
 TEAM_104LT = DarkRP.createJob("104-й Лейтенант", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_captain/sm_104th_captain.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы Лейтенант 104-го батальона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "104lt",
@@ -1049,6 +1443,15 @@ TEAM_104LT = DarkRP.createJob("104-й Лейтенант", {
 	level = 40,
 	maxHP=650,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "104st",
 	candemote = false,	
@@ -1056,7 +1459,7 @@ TEAM_104LT = DarkRP.createJob("104-й Лейтенант", {
 
 TEAM_104CPT = DarkRP.createJob("104-й Капитан ", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_captain/sm_104th_captain.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы Капитан 104-го батальона!]],
 	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "140cpt",
@@ -1066,6 +1469,15 @@ TEAM_104CPT = DarkRP.createJob("104-й Капитан ", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "104st",
 	candemote = false,
@@ -1073,7 +1485,7 @@ TEAM_104CPT = DarkRP.createJob("104-й Капитан ", {
 
 TEAM_104MJR = DarkRP.createJob("104-й Майор", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_major/sm_104th_major.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы майор 104-го батальона!]],
 	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "104mjr",
@@ -1083,6 +1495,15 @@ TEAM_104MJR = DarkRP.createJob("104-й Майор", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)	
+	end,
 	vote = false,
 	category = "104st",
 	candemote = false,
@@ -1090,7 +1511,7 @@ TEAM_104MJR = DarkRP.createJob("104-й Майор", {
 
 TEAM_104COL = DarkRP.createJob("104-й Подполковник", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_commander/sm_104th_commander.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы Подполковник 104-го батальона!]],
 	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c7"},
 	command = "104col",
@@ -1100,20 +1521,29 @@ TEAM_104COL = DarkRP.createJob("104-й Подполковник", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "104st",
 	candemote = false,
 })
 
-TEAM_104CO = DarkRP.createJob("104-й Клон-коммандер", {
+TEAM_104CO = DarkRP.createJob("104-й Командир", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_wolffe/sm_wolffe.mdl",
+	model = "models/player/ven/bf2_reg/wolffe/bf2wolffe.mdl",
 	description = [[Поздравляем, теперь вы Командир 104-го легиона!]],
-	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8"},
+	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "104co",
 	max = 0,
 	salary = 80,
-	level = 100,
+	level = 1,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -1124,7 +1554,7 @@ TEAM_104CO = DarkRP.createJob("104-й Клон-коммандер", {
 
 TEAM_104FLMTRP = DarkRP.createJob("104-й Огнеметчик", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_trooper/sm_104th_trooper.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы огнеметчик 104-го легиона!]],
 	weapons = {"flamethrower_basic","tfa_dc15s_ashura","zeus_thermaldet","zeus_smokegranade","clone_card_c5"},
 	command = "104flmtrp",
@@ -1141,7 +1571,7 @@ TEAM_104FLMTRP = DarkRP.createJob("104-й Огнеметчик", {
 
 TEAM_104JETTRP = DarkRP.createJob("104-й Солдат с ранцем", {
 	color = Color(92, 183, 222, 255),
-	model = "models/player/smitty/bf2_reg/sm_104th_trooper/sm_104th_trooper.mdl",
+	model = "models/player/ven/bf2_reg/104th/bf2104.mdl",
 	description = [[Поздравляем, теперь вы солдат с ранцем 104-го легиона!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c5"},
 	command = "104jettrp",
@@ -1159,7 +1589,7 @@ TEAM_104JETTRP = DarkRP.createJob("104-й Солдат с ранцем", {
 
 TEAM_EODCT = DarkRP.createJob("EOD Клон Солдат", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_ct_trooper/sm_ct_trooper.mdl",
+	model = "models/gonzo/helmetlessclone/helmetlessclone.mdl",
 	description = [[]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "eodct",
@@ -1168,6 +1598,11 @@ TEAM_EODCT = DarkRP.createJob("EOD Клон Солдат", {
 	admin = 0,
 	vote = false,
 	level = 1,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(1,1)
+	end,
 	hasLicense = false,
 	candemote = false,
 	category = "EOD",
@@ -1175,7 +1610,7 @@ TEAM_EODCT = DarkRP.createJob("EOD Клон Солдат", {
 
 TEAM_EODTRP = DarkRP.createJob("EOD Солдат", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_eod_trooper/sm_eod_trooper.mdl",
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
 	description = [[Поздравляем, теперь вы часть EOD!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c5"},
 	command = "eodtrp",
@@ -1185,6 +1620,15 @@ TEAM_EODTRP = DarkRP.createJob("EOD Солдат", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "EOD",
 	candemote = false,
@@ -1192,7 +1636,7 @@ TEAM_EODTRP = DarkRP.createJob("EOD Солдат", {
 
 TEAM_EODCPL = DarkRP.createJob("EOD Капрал", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_eod_lieutenant/sm_eod_lieutenant.mdl",
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
 	description = [[Поздравляем, теперь вы капрал EOD!]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","zeus_thermaldet","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c5"},
 	command = "eodcpl",
@@ -1202,6 +1646,15 @@ TEAM_EODCPL = DarkRP.createJob("EOD Капрал", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "EOD",
 	candemote = false,
@@ -1209,7 +1662,7 @@ TEAM_EODCPL = DarkRP.createJob("EOD Капрал", {
 
 TEAM_EODSGT = DarkRP.createJob("EOD Сержант", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_eod_sergeant/sm_eod_sergeant.mdl",
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
 	description = [[Поздравляем, теперь вы сержант EOD!]],
 	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","seal6-c4","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c6"},
 	command = "eodsgt",
@@ -1219,6 +1672,15 @@ TEAM_EODSGT = DarkRP.createJob("EOD Сержант", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "EOD",
 	candemote = false,
@@ -1226,7 +1688,7 @@ TEAM_EODSGT = DarkRP.createJob("EOD Сержант", {
 
 TEAM_EODLT = DarkRP.createJob("EOD Лейтенант", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_eod_captain/sm_eod_captain.mdl",
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
 	description = [[Поздравляем, теперь вы лейтенант EOD!]],
 	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","seal6-c4","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c7"},
 	command = "eodlt",
@@ -1236,6 +1698,15 @@ TEAM_EODLT = DarkRP.createJob("EOD Лейтенант", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "EOD",
 	candemote = false,
@@ -1243,7 +1714,7 @@ TEAM_EODLT = DarkRP.createJob("EOD Лейтенант", {
 
 TEAM_EODCPT = DarkRP.createJob("EOD Капитан", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_eod_captain/sm_eod_captain.mdl",
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
 	description = [[Поздравляем, теперь вы капитан EOD!]],
 	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","weapon_swrc_det","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c7"},
 	command = "eodcpt",
@@ -1253,6 +1724,15 @@ TEAM_EODCPT = DarkRP.createJob("EOD Капитан", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "EOD",
 	candemote = false,
@@ -1260,7 +1740,7 @@ TEAM_EODCPT = DarkRP.createJob("EOD Капитан", {
 
 TEAM_EODMJR = DarkRP.createJob("EOD Майор", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_eod_major/sm_eod_major.mdl",
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
 	description = [[Поздравляем, теперь вы майор EOD!]],
 	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","weapon_swrc_det","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c7"},
 	command = "eodmjr",
@@ -1270,6 +1750,15 @@ TEAM_EODMJR = DarkRP.createJob("EOD Майор", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)	
+	end,
 	vote = false,
 	category = "EOD",
 	candemote = false,
@@ -1277,7 +1766,7 @@ TEAM_EODMJR = DarkRP.createJob("EOD Майор", {
 
 TEAM_EODCOL = DarkRP.createJob("EOD Подполковник", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_eod_major/sm_eod_major.mdl",
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
 	description = [[Поздравляем, теперь вы подполковник EOD!]],
 	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","weapon_swrc_det","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c7"},
 	command = "eodcol",
@@ -1287,23 +1776,41 @@ TEAM_EODCOL = DarkRP.createJob("EOD Подполковник", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "EOD",
 	candemote = false,
 })
 
-TEAM_EODCO = DarkRP.createJob("EOD Клон-коммандер", {
+TEAM_EODCO = DarkRP.createJob("EOD Командир", {
 	color = Color(244, 210, 74, 255),
-	model = "models/player/smitty/bf2_reg/sm_eod_commander/sm_eod_commander.mdl",
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
 	description = [[Поздравляем, теперь вы Командир EOD!]],
-	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","weapon_swrc_det","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c8"},
+	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","weapon_swrc_det","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c8","weapon_physgun"},
 	command = "eodco",
 	max = 0,
 	salary = 100,
-	level = 100,
+	level = 1,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "EOD",
 	candemote = false,
@@ -1312,7 +1819,7 @@ TEAM_EODCO = DarkRP.createJob("EOD Клон-коммандер", {
 
 TEAM_74CT = DarkRP.createJob("74-й Клон Солдат", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/smitty/bf2_reg/sm_ct_trooper/sm_ct_trooper.mdl",
+	model = "models/gonzo/helmetlessclone/helmetlessclone.mdl",
 	description = [[]],
 	weapons = {"tfa_dc15s_ashura","tfa_dc17chrome","clone_card_c5"},
 	command = "74ct",
@@ -1321,14 +1828,19 @@ TEAM_74CT = DarkRP.createJob("74-й Клон Солдат", {
 	admin = 0,
 	vote = false,
 	level = 1,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(1,1)
+	end,
 	hasLicense = false,
 	candemote = false,
-	category = "74th medicacal corps",
+	category = "74th medical corps",
 })
 
 TEAM_74TRP = DarkRP.createJob("74-й Солдат", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/grady/starwars/74th_corporal.mdl",
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы часть 74!]],
 	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c5"},
 	command = "74trp",
@@ -1338,14 +1850,24 @@ TEAM_74TRP = DarkRP.createJob("74-й Солдат", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,0) 
+	ply:SetSkin(1) 
+	end,
 	vote = false,
-	category = "74th medicacal corps",
+	category = "74th medical corps",
 	candemote = false,
 })
 
 TEAM_74CPL = DarkRP.createJob("74-й Капрал", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/grady/starwars/74th_lieutenant.mdl",
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы капрал 74!]],
 	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator"},
 	command = "74cpl",
@@ -1355,14 +1877,24 @@ TEAM_74CPL = DarkRP.createJob("74-й Капрал", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1) 
+	ply:SetSkin(1) 
+	end,
 	vote = false,
-	category = "74th medical",
+	category = "74th medical corps",
 	candemote = false,
 })
 
 TEAM_74SGT = DarkRP.createJob("74-й Сержант", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/grady/starwars/74th_sergeant.mdl",
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы Сержант 74!]],
 	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c6"},
 	command = "74sgt",
@@ -1372,6 +1904,16 @@ TEAM_74SGT = DarkRP.createJob("74-й Сержант", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,0) 
+	ply:SetSkin(1) 
+	end,
 	vote = false,
 	category = "74th medical corps",
 	candemote = false,
@@ -1379,7 +1921,7 @@ TEAM_74SGT = DarkRP.createJob("74-й Сержант", {
 
 TEAM_74LT = DarkRP.createJob("74-й Лейтенант", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/grady/starwars/74th_captain.mdl",
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы Лейтенант 74!]],
 	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c7"},
 	command = "74lt",
@@ -1389,6 +1931,16 @@ TEAM_74LT = DarkRP.createJob("74-й Лейтенант", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,1) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1) 
+	ply:SetSkin(1) 
+	end,
 	vote = false,
 	category = "74th medical corps",
 	candemote = false,
@@ -1396,7 +1948,7 @@ TEAM_74LT = DarkRP.createJob("74-й Лейтенант", {
 
 TEAM_74CPT = DarkRP.createJob("74-й Капитан", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/grady/starwars/74th_captain.mdl",
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы капитан 74!]],
 	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c7"},
 	command = "74cpt",
@@ -1406,6 +1958,16 @@ TEAM_74CPT = DarkRP.createJob("74-й Капитан", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1) 
+	ply:SetSkin(1) 
+	end,
 	vote = false,
 	category = "74th medical corps",
 	candemote = false,
@@ -1413,7 +1975,7 @@ TEAM_74CPT = DarkRP.createJob("74-й Капитан", {
 
 TEAM_74MJR = DarkRP.createJob("74-й Майор", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/grady/starwars/74th_major.mdl",
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы майор 74!]],
 	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c7"},
 	command = "74mjr",
@@ -1423,6 +1985,16 @@ TEAM_74MJR = DarkRP.createJob("74-й Майор", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1) 
+	ply:SetBodygroup(6,1) 
+	ply:SetSkin(1) 
+	end,
 	vote = false,
 	category = "74th medical corps",
 	candemote = false,
@@ -1430,7 +2002,7 @@ TEAM_74MJR = DarkRP.createJob("74-й Майор", {
 
 TEAM_74COL = DarkRP.createJob("74-й Подполковник", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/grady/starwars/74th_major.mdl",
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы подполковник 74!]],
 	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c7"},
 	command = "74col",
@@ -1440,23 +2012,43 @@ TEAM_74COL = DarkRP.createJob("74-й Подполковник", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,1) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1) 
+	ply:SetBodygroup(6,1) 
+	ply:SetSkin(1) 
+	end,
 	vote = false,
-	category = "74th medical",
+	category = "74th medical corps",
 	candemote = false,
 })
 
-TEAM_74CO = DarkRP.createJob("74-й Клон-коммандер", {
+TEAM_74CO = DarkRP.createJob("74-й Командир", {
 	color = Color(200, 0, 25, 255),
-	model = "models/player/grady/starwars/74th_commander.mdl",
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы Командир 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c8"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c8","weapon_physgun"},
 	command = "74co",
 	max = 0,
-	level = 0,
+	level = 1,
 	salary = 500,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,1) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,1) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1) 
+	ply:SetBodygroup(6,1) 
+	ply:SetSkin(1) 
+	end,
 	vote = false,
 	category = "74th medical corps",
 	candemote = false,
@@ -1609,7 +2201,7 @@ TEAM_ARCMJR = DarkRP.createJob("ЭРК Майор", {
 	salary = 100,
 	level = 90,
 	admin = 0,
-	maxHP=700,
+	maxHP=600,
 	maxAM=100,
 	vote = false,
 	category = "ARC",
@@ -1633,7 +2225,7 @@ TEAM_ARCCOL = DarkRP.createJob("ЭРК Подполковник", {
 	candemote = false,
 })
 
-TEAM_ARCCO = DarkRP.createJob("ЭРК Клон-коммандер", {
+TEAM_ARCCO = DarkRP.createJob("ЭРК Командир", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcyellow/arcyellow.mdl",
 	description = [[Поздравляем, теперь вы командир Элитного Разведывательного Коммандос!]],
@@ -1641,7 +2233,7 @@ TEAM_ARCCO = DarkRP.createJob("ЭРК Клон-коммандер", {
 	command = "arcco",
 	max = 0,
 	salary = 100,
-	level = 100,
+	level = 1,
 	admin = 0,
 	maxHP=600,
 	maxAM=100,
@@ -2028,7 +2620,7 @@ TEAM_RCTHUMBS = DarkRP.createJob("RC Thumbs", {
 
 TEAM_GUARDTRP = DarkRP.createJob("Гвардия Солдат", {
 	color = Color(50, 50, 255),
-	model = "models/player/smitty/bf2_reg/st_trooper/st_trooper.mdl",
+	model = "models/player/ven/bf2_reg/st/bf2st.mdl",
 	description = [[Поздравляем, теперь вы часть Гвардии!]],
 	weapons = {"tfa_dc15s_ashura_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c5"},
 	command = "guardtrp",
@@ -2038,6 +2630,15 @@ TEAM_GUARDTRP = DarkRP.createJob("Гвардия Солдат", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "Guard",
 	candemote = false,
@@ -2045,7 +2646,7 @@ TEAM_GUARDTRP = DarkRP.createJob("Гвардия Солдат", {
 
 TEAM_GUARDCPL = DarkRP.createJob("Гвардия Капрал", {
 	color = Color(50, 50, 255),
-	model = "models/player/smitty/bf2_reg/st_lieutenant/st_lieutenant.mdl",
+	model = "models/player/ven/bf2_reg/st/bf2st.mdl",
 	description = [[Поздравляем, теперь вы капрал Гвардии!]],
 	weapons = {"tfa_dc15s_ashura_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c5"},
 	command = "guardcpl",
@@ -2055,6 +2656,15 @@ TEAM_GUARDCPL = DarkRP.createJob("Гвардия Капрал", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,0) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "Guard",
 	candemote = false,
@@ -2062,7 +2672,7 @@ TEAM_GUARDCPL = DarkRP.createJob("Гвардия Капрал", {
 
 TEAM_GUARDSGT = DarkRP.createJob("Гвардия Сержант", {
 	color = Color(50, 50, 255),
-	model = "models/player/smitty/bf2_reg/st_sergeant/st_sergeant.mdl",
+	model = "models/player/ven/bf2_reg/st/bf2st.mdl",
 	description = [[Поздравляем, теперь вы сержант Гвардии!]],
 	weapons = {"tfa_dc15s_ashura_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c6"},
 	command = "guardsgt",
@@ -2072,6 +2682,15 @@ TEAM_GUARDSGT = DarkRP.createJob("Гвардия Сержант", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,0)
+	end,
 	vote = false,
 	category = "Guard",
 	candemote = false,
@@ -2079,7 +2698,7 @@ TEAM_GUARDSGT = DarkRP.createJob("Гвардия Сержант", {
 
 TEAM_GUARDLT = DarkRP.createJob("Гвардия Лейтенант", {
 	color = Color(50, 50, 255),
-	model = "models/player/smitty/bf2_reg/st_captain/st_captain.mdl",
+	model = "models/player/ven/bf2_reg/st/bf2st.mdl",
 	description = [[Поздравляем, теперь вы Лейтенант Гвардии!]],
 	weapons = {"tfa_dc15s_ashura_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c7"},
 	command = "guardlt",
@@ -2089,6 +2708,15 @@ TEAM_GUARDLT = DarkRP.createJob("Гвардия Лейтенант", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "Guard",
 	candemote = false,
@@ -2096,7 +2724,7 @@ TEAM_GUARDLT = DarkRP.createJob("Гвардия Лейтенант", {
 
 TEAM_GUARDCPT = DarkRP.createJob("Гвардия Капитан", {
 	color = Color(50, 50, 255),
-	model = "models/player/smitty/bf2_reg/st_captain/st_captain.mdl",
+	model = "models/player/ven/bf2_reg/st/bf2st.mdl",
 	description = [[Поздравляем, теперь вы Капитан Гвардии!]],
 	weapons = {"tfa_dc15a_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c7"},
 	command = "guardcpt",
@@ -2106,6 +2734,15 @@ TEAM_GUARDCPT = DarkRP.createJob("Гвардия Капитан", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0) 
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "Guard",
 	candemote = false,
@@ -2113,7 +2750,7 @@ TEAM_GUARDCPT = DarkRP.createJob("Гвардия Капитан", {
 
 TEAM_GUARDMJR = DarkRP.createJob("Гвардия Майор", {
 	color = Color(50, 50, 255),
-	model = "models/player/smitty/bf2_reg/st_major/st_major.mdl",
+	model = "models/player/ven/bf2_reg/st/bf2st.mdl",
 	description = [[Поздравляем, теперь вы Майор Гвардии!]],
 	weapons = {"tfa_dc15a_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c7"},
 	command = "guardmjr",
@@ -2123,6 +2760,15 @@ TEAM_GUARDMJR = DarkRP.createJob("Гвардия Майор", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)	
+	end,
 	vote = false,
 	category = "Guard",
 	candemote = false,
@@ -2130,7 +2776,7 @@ TEAM_GUARDMJR = DarkRP.createJob("Гвардия Майор", {
 
 TEAM_GUARDCOL = DarkRP.createJob("Гвардия Подполковник", {
 	color = Color(50, 50, 255),
-	model = "models/player/smitty/bf2_reg/cmd_thorn/cmd_thorn.mdl",
+	model = "models/player/ven/bf2_reg/st/bf2st.mdl",
 	description = [[Поздравляем, теперь вы подполковник Гвардии!]],
 	weapons = {"tfa_dc15a_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c7"},
 	command = "guardcol",
@@ -2140,20 +2786,29 @@ TEAM_GUARDCOL = DarkRP.createJob("Гвардия Подполковник", {
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1)
+	ply:SetBodygroup(6,1)
+	end,
 	vote = false,
 	category = "Guard",
 	candemote = false,
 })
 
-TEAM_GUARDCO = DarkRP.createJob("Гвардия Клон-коммандер", {
+TEAM_GUARDCO = DarkRP.createJob("Гвардия Командир", {
 	color = Color(50, 50, 255),
 	model = "models/player/ven/bf2_reg/fox/bf2fox.mdl",
 	description = [[Поздравляем, теперь вы Командир Гвардии!]],
-	weapons = {"tfa_dc15a_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c8"},
+	weapons = {"tfa_dc15a_custom", "tfa_dc17_custom", "weapon_cuff_elastic", "weapon_stunstick", "zeus_flashbang","weapon_combineshield","clone_card_c8","weapon_physgun"},
 	command = "guardco",
 	max = 4,
 	salary = 130,
-	level = 100,
+	level = 1,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -2282,15 +2937,15 @@ TEAM_PILOTCOL = DarkRP.createJob("127-ое-крыло Пилот Подполк�
 	candemote = false,
 })
 
-TEAM_PILOTCO = DarkRP.createJob("127-ое-крыло Пилот Клон-коммандер", {
+TEAM_PILOTCO = DarkRP.createJob("127-ое-крыло Пилот Командир", {
 	color = Color(253, 162, 82),
 	model = "models/player/smitty/bf2_reg/orange_pilot_commander/orange_pilot_commander.mdl",
 	description = [[Поздравляем, теперь вы Пилот Командир 127-го-крыла-авиаподдержки]],
-	weapons = {"tfa_dc15s_ashura", "tfa_dc17chrome","clone_card_c8"},
+	weapons = {"tfa_dc15s_ashura", "tfa_dc17chrome","clone_card_c8","weapon_physgun"},
 	command = "pilotco",
 	max = 1,
 	salary = 500,
-	level = 100,
+	level = 1,
 	admin = 0,
 	maxHP=500,
 	maxAM=100,
@@ -2304,7 +2959,7 @@ TEAM_ENSIN = DarkRP.createJob("Энсин", {
 	color = Color(0, 200, 0, 255),
 	model = "models/smitty/bf2_reg/black_officer/black_officer.mdl",
 	description = [[Поздравляем, теперь вы Энсин]],
-	weapons = {"tfa_dc17chrome","clone_card_c3nevy"},
+	weapons = {"tfa_dc17chrome","clone_card_c3nevy","weapon_lightsaber_training"},
 	command = "ensin",
 	max = 0,
 	salary = 750,
@@ -2852,7 +3507,7 @@ TEAM_MUNDI = DarkRP.createJob("Ки-Ади Мунди", {
 	candemote = false,
 })
 
-TEAM_MUNDI = DarkRP.createJob("Сэси Тийн", {
+TEAM_SAESEE = DarkRP.createJob("Сэси Тийн", {
 	color = Color(60, 200, 255, 255),
 	model = "models/cultist_kun/sw/saesee_tiin.mdl",
 	description = [[.]],
