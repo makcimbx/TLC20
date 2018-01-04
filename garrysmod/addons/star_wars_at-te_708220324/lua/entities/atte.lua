@@ -10,7 +10,7 @@ ENT.Spawnable = false;
 ENT.AdminOnly = false;
 
 ENT.Vehicle = "ATTE"; 
-ENT.EntModel = "models/starwars/syphadias/ships/AT-TE/AT-TE.mdl"; 
+ENT.EntModel = "models/swbf3/vehicles/rep_at-te.mdl"; 
 
 
 ENT.StartHealth = 15000; // Starting Health
@@ -38,8 +38,8 @@ function ENT:Initialize()
 	local driverAng = self:GetAngles()+Angle(0,-90,0); // The angle of the drivers seat
 	self:SpawnChairs(driverPos,driverAng,false)
 	
-	self.ForwardSpeed = 100; //Your speed
-	self.BoostSpeed = 150; // Boost Speed
+	self.ForwardSpeed = 40; //Your speed
+	self.BoostSpeed = 50; // Boost Speed
 	self.AccelSpeed = 3; // Acceleration
 	self.WeaponLocations = {
 		Main = self:GetPos()+self:GetRight()*100+self:GetUp()*15, // Position of weapon
@@ -193,6 +193,31 @@ end
 function ENT:Think()
 
 	if(self.Inflight) then
+	    
+		if self:GetNWInt("Speed") >= 5 and self:GetNWInt("Speed") < 10 then
+				self:ResetSequence( self:LookupSequence( "tsikl" ) );
+				self:ResetSequenceInfo()
+				self:SetPlaybackRate( 0.5 )
+	elseif self:GetNWInt("Speed")  >= 10 and self:GetNWInt("Speed") < 20 then
+				self:ResetSequence( self:LookupSequence( "tsikl" ) );
+				self:ResetSequenceInfo()
+				self:SetPlaybackRate( 0.65 )
+	elseif self:GetNWInt("Speed")  >= 20 and self:GetNWInt("Speed") < 30 then
+				self:ResetSequence( self:LookupSequence( "tsikl" ) );
+				self:ResetSequenceInfo()
+				self:SetPlaybackRate( 0.8 )
+	elseif self:GetNWInt("Speed")  >= 30 then
+				self:ResetSequence( self:LookupSequence( "tsikl" ) );
+				self:ResetSequenceInfo()
+				self:SetPlaybackRate( 1.0 )
+	end
+			
+			
+		if self:GetNWInt("Speed") <= 0 then
+				self:SetSequence( self:LookupSequence( "idle" ) );
+				self:ResetSequenceInfo()
+				self:SetCycle( 0 )
+		end
 		
 		if(IsValid(self.Pilot)) then
 			self.Turret.LastAng = self.Turret:GetAngles();
