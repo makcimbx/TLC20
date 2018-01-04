@@ -50,13 +50,13 @@ SWEP.Secondary.Automatic = true
 SWEP.Secondary.Ammo = "none"
 
 ------------------------------------------------------------THINGS YOU WILL EDIT ARE BELOW HERE-------------------------------------------------------------------------
-SWEP.PrintName = "Dual Lightsaber (Unstable)" --Name of the lightsaber
-SWEP.Class = "weapon_lightsaber_unstable_dual_echo" --The file name of this swep
+SWEP.PrintName = "Dual Lightsaber (Corrupted)" --Name of the lightsaber
+SWEP.Class = "weapon_lightsaber_corrupted_dual_echo" --The file name of this swep
 SWEP.DualWielded = true --Should this be a dual wielded saber?
 SWEP.CanMoveWhileAttacking = true -- Can the user move while attacking
 SWEP.SaberDamage = 500 --How much damage the saber does when it's being swung
 SWEP.SaberBurnDamage = 25 -- How much damage the saber does when it's colliding with someone ( coming in contact with laser )
-SWEP.MaxForce = 200 --The maximum amount of force in the meter
+SWEP.MaxForce = 100 --The maximum amount of force in the meter
 SWEP.RegenSpeed = 1 --The MULTIPLIER for the regen speed. Half speed = 0.5, Double speed = 2, etc.
 SWEP.CanKnockback = true --Should this saber be able to push people back when they get hit?
 SWEP.ForcePowerList = { "Meditate" } 
@@ -98,8 +98,8 @@ SWEP.UseSecDarkInner = false
 
 SWEP.CustomSettings = 
 {
-	Corrupted = false,
-	Unstable = true,
+	Corrupted = true,
+	Unstable = false,
 }
 
 -----------------------------------------------------------END OF EDIT----------------------------------------------------------------
