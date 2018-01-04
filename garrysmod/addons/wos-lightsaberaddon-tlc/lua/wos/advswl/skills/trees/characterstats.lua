@@ -47,7 +47,7 @@ TREE.UserGroups = false
 --	
 --}
 
---TREE.Tier = {}
+TREE.Tier = {}
 
 --Tier format is as follows:
 --To create the TIER Table, do the following
