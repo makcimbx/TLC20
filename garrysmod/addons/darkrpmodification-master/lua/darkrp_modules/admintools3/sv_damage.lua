@@ -60,26 +60,32 @@ function GM:EntityTakeDamage( target, dmginfo )
 	
 	if(attacker:IsPlayer())then
 		local p = 1
+		local c = 1
 		for k,v in pairs(attacker.PlayerMakeDamage or {})do
 			local d,c = v(target, attacker, dmg,crit)
-			p = p + (1-(d/dmg))
-			crit = crit + c
+			p = p + (d/dmg)
+			c = c + (c/crit)
 		end
 		dmg = dmg + dmg*p
+		crit = crit + c
 	end
 	print("Post attacker skills damage: "..dmg)
 	
 	if(target:IsPlayer())then
+		local p = 1
+		local c = 1
 		for k,v in pairs(target.PlayerTakeDamage or {})do
 			local d,c = v(target, attacker, dmg,crit)
-			dmg = dmg + d
-			crit = crit + c
+			p = p + (d/dmg)
+			c = c + (c/crit)
 		end
+		dmg = dmg + dmg*p
+		crit = crit + c
 	end
 	print("Post target skills damage: "..dmg)
 	
 	local pr = math.random(0,100)
-	local pr2 = math.random(15,30)
+	local pr2 = 10
 	if(pr<=pr2)then
 		dmg = dmg + dmg*crit
 	end
