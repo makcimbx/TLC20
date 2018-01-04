@@ -333,7 +333,7 @@ hook.Add( "Think", "Ever_Key_FLY", function()
 				ang = nil
 				gliding = false
 
-				--hook.Call("PostServerIntro")
+				hook.Call("PostServerIntro")
 				net.Start( "GlideStop" )
 				net.SendToServer()
 			else

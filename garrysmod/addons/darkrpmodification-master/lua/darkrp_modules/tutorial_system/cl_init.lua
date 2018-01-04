@@ -1,6 +1,6 @@
 local function TrainEnd()
-		net.Start("StartTest")
-		net.SendToServer()
+	net.Start("offerStartTest")
+	net.SendToServer()
 end
 
 hook.Add( "PostServerIntro", "Ever_PostServerIntro", function( ply )
@@ -20,6 +20,10 @@ net.Receive("sendtrain",function()
 end)
 
 net.Receive("offertest",function(l,ply)
+	local t = "Начать тест?"
+	if(net.ReadBool())then
+		t = "Начать обучение?"
+	end
 	local d = false
 	EverDerma("Обучение","Начать тест?",{{text="Да",
 		func = function() 

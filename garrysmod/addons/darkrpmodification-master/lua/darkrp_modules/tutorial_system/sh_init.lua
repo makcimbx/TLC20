@@ -12,7 +12,7 @@ function command:Execute(ply, silent, arguments)
 			serverguard.Notify(ply,SERVERGUARD.NOTIFY.WHITE,"Ждите в течении", SERVERGUARD.NOTIFY.GREEN," 5 минут",SERVERGUARD.NOTIFY.WHITE," прибытия",SERVERGUARD.NOTIFY.RED," инструктора",SERVERGUARD.NOTIFY.WHITE,", либо вам будет предложено",SERVERGUARD.NOTIFY.RED,SERVERGUARD.NOTIFY.WHITE, " автоматическое обучение.");
   
 			ply.pause = false
-			table.insert(TrainPlayer,{ply = ply,tm = 1})
+			table.insert(TrainPlayer,{ply = ply,tm = 300})
 			ply.train_wait = true
 			ply:SetNWBool( "train_wait", true )
 			ply:SendLua("StartTTimer()")
@@ -71,6 +71,7 @@ function command:OnPlayerExecute(ply, target, arguments)
 	if(game.GetMap()!="rp_chancellor_tlc_b1")then return end
 	if target.sempai==ply then
 		net.Start("offertest")
+			net.WriteBool(false)
 		net.Send(target)
 	else
 		serverguard.Notify(ply, SERVERGUARD.NOTIFY.RED,"Вы не обучаете данного игрока!");

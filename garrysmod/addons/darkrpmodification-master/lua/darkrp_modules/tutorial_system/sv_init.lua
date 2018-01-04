@@ -9,6 +9,7 @@ TrainPlayer = {}
 
 local function AutoTrain(ply)
 	net.Start("offertest")
+		net.WriteBool(true)
 	net.Send(ply)
 end
 
