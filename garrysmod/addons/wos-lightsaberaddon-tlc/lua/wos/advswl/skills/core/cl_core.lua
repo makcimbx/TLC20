@@ -224,6 +224,9 @@ function wOS:OpenSkillTreeMenu()
 		if data.UserGroups then
 			if not table.HasValue( data.UserGroups, LocalPlayer():GetUserGroup() ) then continue end
 		end
+		if data.TeamAllowed then
+			if TeamAllowed[LocalPlayer():Team()] or false == true then continue end
+		end
 		skilltrees[ name ] = data
 	end
 	

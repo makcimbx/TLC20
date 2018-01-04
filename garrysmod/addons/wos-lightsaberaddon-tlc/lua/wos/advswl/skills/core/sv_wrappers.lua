@@ -126,6 +126,11 @@ function wOS.SkillDatabase:LoadData( ply )
 							flag = true
 						end
 					end
+					if treedata.TeamAllowed then
+						if TeamAllowed[ply:Team()] or false == true then
+							flag = true
+						end
+					end
 					for _, readdata in pairs( skills ) do
 						local data = string.Explode( ",", readdata )
 						local tier = tonumber( data[1] )
@@ -187,6 +192,11 @@ function wOS.SkillDatabase:LoadData( ply )
 				local total = 0
 				if treedata.UserGroups then
 					if not table.HasValue( treedata.UserGroups, ply:GetUserGroup() ) then 
+						flag = true
+					end
+				end
+				if treedata.TeamAllowed then
+					if TeamAllowed[ply:Team()] or false == true then
 						flag = true
 					end
 				end

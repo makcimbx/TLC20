@@ -312,6 +312,7 @@ function wOS:RegisterSkillTree( DATA )
 	transfer.BackgroundColor = DATA.BackgroundColor
 	transfer.MaxTiers = DATA.MaxTiers
 	transfer.UserGroups = DATA.UserGroups
+	transfer.TeamAllowed = DATA.TeamAllowed
 	transfer.JobRestricted = DATA.JobRestricted
 	transfer.Tier = {}
 	for i, skills in pairs( DATA.Tier ) do

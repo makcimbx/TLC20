@@ -42,7 +42,12 @@ TREE.MaxTiers = 6
 --Add user groups that are allowed to use this tree. If anyone is allowed, set this to FALSE ( TREE.UserGroups = false )
 TREE.UserGroups = false
 
-TREE.Tier = {}
+--TREE.TeamAllowed = {
+--	[TEAM_***] = true, 
+--	
+--}
+
+--TREE.Tier = {}
 
 --Tier format is as follows:
 --To create the TIER Table, do the following
