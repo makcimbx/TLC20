@@ -127,7 +127,7 @@ function wOS.SkillDatabase:LoadData( ply )
 						end
 					end
 					if treedata.TeamAllowed then
-						if TeamAllowed[ply:Team()] or false == true then
+						if not (treedata.TeamAllowed[ply:getJobTable().command] or false) then
 							flag = true
 						end
 					end
@@ -196,7 +196,7 @@ function wOS.SkillDatabase:LoadData( ply )
 					end
 				end
 				if treedata.TeamAllowed then
-					if TeamAllowed[ply:Team()] or false == true then
+					if not (treedata.TeamAllowed[LocalPlayer():getJobTable().command] or false) then
 						flag = true
 					end
 				end

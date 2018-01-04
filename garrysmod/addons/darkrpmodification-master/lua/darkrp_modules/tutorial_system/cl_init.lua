@@ -1,7 +1,7 @@
 local function TrainEnd()
 	EverDerma("Обучение","Начать тест?",{{text="Да",
 		func = function() 
-			net.Start("startEvertest") net.WriteBool(true) net.WriteBool(true) net.SendToServer()
+			net.Start("startEvertest") net.WriteBool(true) net.SendToServer()
 		end},
 		{text="Нет",
 		func = function()
@@ -28,14 +28,13 @@ end)
 
 net.Receive("offertest",function(l,ply)
 	local t = "Начать тест?"
-	local d = net.ReadBool() or false
-	if(d==true)then
+	local auto = net.ReadBool() or false
+	if(auto==true)then
 		t = "Начать обучение?"
 	end
-	local d = false
 	EverDerma("Обучение",t,{{text="Да",
 		func = function() 
-			net.Start("startEvertest") net.WriteBool(true) net.SendToServer()
+			net.Start("startEvertest") net.WriteBool(true) net.WriteBool(auto) net.SendToServer()
 		end},
 		{text="Нет",
 		func = function()

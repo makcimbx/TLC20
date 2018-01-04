@@ -108,6 +108,11 @@ function meta:SetCurrentSkillHooks()
 				end
 				if not found then continue end
 			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
+			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnPlayerSpawn then
 					self.PlayerSkillSpawns[ #self.PlayerSkillSpawns + 1 ] = data.OnPlayerSpawn
@@ -129,6 +134,11 @@ function meta:SetCurrentSkillHooks()
 					end
 				end
 				if not found then continue end
+			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
 			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnPlayerDeath then
@@ -154,6 +164,11 @@ function meta:SetCurrentSkillHooks()
 				end
 				if not found then continue end
 			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
+			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnPlayerTakeDamage then
 					self.PlayerTakeDamage[ #self.PlayerTakeDamage + 1 ] = data.OnPlayerTakeDamage
@@ -175,6 +190,11 @@ function meta:SetCurrentSkillHooks()
 					end
 				end
 				if not found then continue end
+			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
 			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnPlayerMakeDamage then
@@ -198,6 +218,11 @@ function meta:SetCurrentSkillHooks()
 				end
 				if not found then continue end
 			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
+			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnPlayerPostMakeDamage then
 					self.PlayerPostMakeDamage[ #self.PlayerPostMakeDamage + 1 ] = data.OnPlayerPostMakeDamage
@@ -219,6 +244,11 @@ function meta:SetCurrentSkillHooks()
 					end
 				end
 				if not found then continue end
+			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
 			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnHealthChanged then
@@ -243,6 +273,11 @@ function meta:SetCurrentSkillHooks()
 				end
 				if not found then continue end
 			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
+			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnSaberDeploy then
 					self.PlayerSaberDeploys[ #self.PlayerSaberDeploys + 1 ] = data.OnSaberDeploy
@@ -265,9 +300,14 @@ function meta:SetCurrentSkillHooks()
 				end
 				if not found then continue end
 			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
+			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnSaberDamaged then
-					self.PlayerSaberSlashes[ #self.PlayerSaberDeploys + 1 ] = data.OnSaberDamaged
+					self.PlayerSaberSlashes[ #self.PlayerSaberSlashes + 1 ] = data.OnSaberDamaged
 				end
 			end
 		end
@@ -286,6 +326,11 @@ function meta:SetCurrentSkillHooks()
 					end
 				end
 				if not found then continue end
+			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
 			end
 			for skill, data in pairs( self.SkillTree[ name ] ) do
 				if data.OnSaberBlocked then
@@ -368,6 +413,7 @@ hook.Add( "PlayerSpawn", "wOS.SkillTree.ActivatePlayerSpawns", function( ply )
 	if ply:IsBot() then return end
 	timer.Simple( 0.5, function()
 		ply.CanUseDuals = false
+		ply:SetCurrentSkillHooks()
 		if ply:HasWeapon( "weapon_lightsaber_personal" ) and ply.CanUseDuals then
 			ply:Give( "weapon_lightsaber_personal_dual" )
 		end

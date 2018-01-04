@@ -11,6 +11,7 @@ TrainPlayer = {}
 local function AutoTrain(ply)
 	net.Start("offertest")
 		net.WriteBool(true)
+		net.WriteBool(true)
 	net.Send(ply)
 end
 
@@ -70,7 +71,7 @@ end)
 
 net.Receive("startEvertest",function(len,ply)
 	local d = net.ReadBool()
-	local t = net.ReadBool() or false
+	local auto = net.ReadBool() or false
 	
 	if(IsValid(ply.presempai))then
 		if(d == true)then
@@ -82,7 +83,7 @@ net.Receive("startEvertest",function(len,ply)
 	else
 	
 		if(d == true)then
-			if(t==true)then
+			if(auto==true)then
 				ply:SendLua("GlideStart()")
 				ply:SendLua("StopTTimer()")
 			else

@@ -305,46 +305,53 @@ end )
 
 concommand.Add( "glide_start", GlideStart )
 
+local onetap = false
 hook.Add( "Think", "Ever_Key_FLY", function()
 	if(input.IsKeyDown( KEY_SPACE ))then
-		if next_fly==true then
-			if(stage==#locations[ game.GetMap() ])then
-				hook.Remove( "CalcView", "GlideTest" )
-				hook.Remove( "HUDPaint", "GlideText" )
-				hook.Remove( "HUDShouldDraw", "GlideRemoveHUD" )
-				hudpainthack:Remove()
-				space:Remove()
-				for k,v in pairs( locations[ game.GetMap() ] ) do
-					v.Started = false
-				end
-				if IsValid( LocalPlayer().s ) then LocalPlayer().s:Stop() end
-				RunConsoleCommand( "stopsound" )
-
-				if hide then
-					for k,v in pairs( player.GetAll() ) do
-						v:SetNoDraw( false )
+		if(onetap == false)then
+			onetap = true
+			if next_fly==true then
+				if(stage==#locations[ game.GetMap() ])then
+					hook.Remove( "CalcView", "GlideTest" )
+					hook.Remove( "HUDPaint", "GlideText" )
+					hook.Remove( "HUDShouldDraw", "GlideRemoveHUD" )
+					hudpainthack:Remove()
+					space:Remove()
+					for k,v in pairs( locations[ game.GetMap() ] ) do
+						v.Started = false
 					end
-					for k,v in pairs( ents.FindByClass( "prop_physics" ) ) do
-						v:SetNoDraw( false )
+					if IsValid( LocalPlayer().s ) then LocalPlayer().s:Stop() end
+					RunConsoleCommand( "stopsound" )
+
+					if hide then
+						for k,v in pairs( player.GetAll() ) do
+							v:SetNoDraw( false )
+						end
+						for k,v in pairs( ents.FindByClass( "prop_physics" ) ) do
+							v:SetNoDraw( false )
+						end
 					end
+
+					pos = nil
+					ang = nil
+					gliding = false
+					next_fly = false
+
+					hook.Call("PostServerIntro")
+					net.Start( "GlideStop" )
+					net.SendToServer()
+				else
+					stage = stage + 1
+					pos = nil
+					ang = nil
+					next_fly=false
+					timer.Simple( posDuration*2, function()
+						next_fly = true
+					end )
 				end
-
-				pos = nil
-				ang = nil
-				gliding = false
-
-				hook.Call("PostServerIntro")
-				net.Start( "GlideStop" )
-				net.SendToServer()
-			else
-				stage = stage + 1
-				pos = nil
-				ang = nil
-				next_fly=false
-				timer.Simple( posDuration*2, function()
-					next_fly = true
-				end )
 			end
 		end
+	else
+		onetap = false
 	end
 end )

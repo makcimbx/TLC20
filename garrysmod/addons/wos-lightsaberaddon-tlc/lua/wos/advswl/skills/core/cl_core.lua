@@ -225,7 +225,7 @@ function wOS:OpenSkillTreeMenu()
 			if not table.HasValue( data.UserGroups, LocalPlayer():GetUserGroup() ) then continue end
 		end
 		if data.TeamAllowed then
-			if TeamAllowed[LocalPlayer():Team()] or false == true then continue end
+			if not (data.TeamAllowed[LocalPlayer():getJobTable().command] or false) then continue end
 		end
 		skilltrees[ name ] = data
 	end
@@ -455,7 +455,6 @@ function wOS:OpenSkillTreeMenu()
 end
 
 function wOS:HasSkillEquipped( tree, tier, skill )
-
 	if not self.EquippedSkills[ tree ] then return false end
 	if not self.EquippedSkills[ tree ][ tier ] then return false end
 	

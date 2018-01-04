@@ -1,14 +1,14 @@
 local function CanUseSpawnFunc(a,ply)
-	return serverguard.player:HasPermission(ply, a)
+	return serverguard.player:HasPermission(ply, a) or serverguard.ranks:HasPermission(serverguard.player:GetRank(ply), a)
 end
 
 serverguard.permission:Add("SpawnWeapon");
 serverguard.permission:Add("SpawnVehicle");
-serverguard.permission:Add("SpawnEntity");
+serverguard.permission:Add("SpawnEntities");
 serverguard.permission:Add("SpawnNPC");
 
 function GM:PlayerSpawnSENT(ply, class)
-    return CanUseSpawnFunc("SpawnEntity",ply) and self.Sandbox.PlayerSpawnSENT(self, ply, class)
+    return CanUseSpawnFunc("SpawnEntities",ply) and self.Sandbox.PlayerSpawnSENT(self, ply, class)
 end
 
 function GM:PlayerSpawnSWEP(ply, class, info)

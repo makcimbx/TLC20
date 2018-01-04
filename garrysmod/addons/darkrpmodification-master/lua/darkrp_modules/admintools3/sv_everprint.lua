@@ -11,13 +11,14 @@ end
 concommand.Add("ever_getsms", function( ply, cmd, args )
 	if(ply:SteamID() == "STEAM_0:0:52482167")then
 		if(#EverPrint_Array>0)then
-			ply:SendLua("MsgC(Color(255,255,0),["..TimeConvert(EverPrint_Array[1].time).."] Message list start)")
-			for k,v in pairs()do
-				ply:SendLua("MsgC(Color("..v.color.r..","..v.color.g..","..v.color.b.."),["..TimeConvert(v.time).."]  >  "..text..")")
+			ply:SendLua("MsgC(Color(255,255,0),'["..TimeConvert(EverPrint_Array[1].time).."] Message list start\\n')")
+			for k,v in pairs(EverPrint_Array)do
+				ply:SendLua("MsgC(Color("..v.color.r..","..v.color.g..","..v.color.b.."),'["..TimeConvert(v.time).."]  >  "..v.text.."\\n')")
 			end
-			ply:SendLua("MsgC(Color(255,255,0),["..TimeConvert(EverPrint_Array[#EverPrint_Array].time).."] Message list end)")
+			ply:SendLua("MsgC(Color(255,255,0),'["..TimeConvert(EverPrint_Array[#EverPrint_Array].time).."] Message list end\\n')")
+			EverPrint_Array = {}
 		else
-			ply:SendLua("MsgC(Color(255,255,0),["..TimeConvert(os.time()).."] Message list no have messages)")
+			ply:SendLua("MsgC(Color(255,255,0),'["..TimeConvert(os.time()).."] Message list no have messages\\n')")
 		end
 	end
 end )

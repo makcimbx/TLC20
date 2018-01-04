@@ -36,7 +36,6 @@ net.Receive( "wOS.SkillTree.SendPlayerData", function()
 		local ply = net.ReadEntity()
 		ply.EquippedSkills = table.Copy( equipped_skills )
 	end
-
 end )
 
 wOS.TreeIcons = {}

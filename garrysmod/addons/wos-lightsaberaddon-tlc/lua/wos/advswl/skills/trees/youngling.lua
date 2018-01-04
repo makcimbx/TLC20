@@ -22,6 +22,7 @@
 		
 -- Copyright 2017, David "King David" Wiltos ]]--
 
+
 local TREE = {}
 
 --Name of the skill tree
@@ -41,34 +42,33 @@ TREE.MaxTiers = 2
 
 --Add user groups that are allowed to use this tree. If anyone is allowed, set this to FALSE ( TREE.UserGroups = false )
 TREE.UserGroups = false
-timer.Simple(5,function()
+
 TREE.TeamAllowed = {
-	[TEAM_JEDIP2] = true,
-	[TEAM_JEDIP] = true,
-	[TEAM_JEDIK] = true,
-	[TEAM_JEDIS] = true,
-	[TEAM_JEDIQ] = true,
-	[TEAM_JEDIKO] = true,
-	[TEAM_JEDIM] = true,
-	[TEAM_YODA] = true,
-	[TEAM_KENOBI] = true,
-	[TEAM_WINDU] = true,
-	[TEAM_KOON] = true,
-	[TEAM_SKYWALKER] = true,
-	[TEAM_SECURA] = true,
-	[TEAM_MUNDI] = true,
-	[TEAM_SAESEE] = true,
-	[TEAM_JEDIBATTLEMASTER] = true,
-	[TEAM_FISTO] = true,
-	[TEAM_TI] = true,
-	[TEAM_TANO] = true,
-	[TEAM_TANO22] = true,
-	[TEAM_TANO3] = true,
-	[TEAM_TANO4] = true,
-	[TEAM_TANO5] = true,
-	[TEAM_TANO6] = true,
-	[TEAM_TANO7] = true
-	
+	["youngling"] = true,
+	["padawan"] = true,
+	["knight"] = true,
+	["Sentinel"] = true,
+	["Guardian"] = true,
+	["jediko"] = true,
+	["Echo"] = true,
+	["yoda"] = true,
+	["kenobi"] = true,
+	["windu"] = true,
+	["koon"] = true,
+	["skywalker"] = true,
+	["secura"] = true,
+	["mundi"] = true,
+	["saeseetiin"] = true,
+	["jedibattlemaster"] = true,
+	["fisto"] = true,
+	["ti"] = true,
+	["tano"] = true,
+	["tano22"] = true,
+	["tano3"] = true,
+	["tano4"] = true,
+	["tano5"] = true,
+	["tano6"] = true,
+	["tano7"] = true,
 }
 
 TREE.Tier = {}
@@ -138,4 +138,4 @@ TREE.Tier[2][3] = {
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Leap" ) end,
 }
 
-wOS:RegisterSkillTree( TREE ) end)
+wOS:RegisterSkillTree( TREE )
