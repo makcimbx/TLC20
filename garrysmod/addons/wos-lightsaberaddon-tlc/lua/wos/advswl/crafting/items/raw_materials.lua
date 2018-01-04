@@ -23,24 +23,24 @@
 
 
 wOS:RegisterItem( {
-	Name = "Очищенная сталь",
-	Description = "Сырье",
+	Name = "Refined Steel",
+	Description = "Raw Material",
 	Type = WOSTYPE.RAWMATERIAL,
 	Rarity = 35,
 	Model = "models/gangwars/crafting/ingot.mdl",
 } )
 
 wOS:RegisterItem( {
-	Name = "Стекло",
-	Description = "Сырье",
+	Name = "Glass",
+	Description = "Raw Material",
 	Type = WOSTYPE.RAWMATERIAL,
 	Rarity = 60,
 	Model = "models/gibs/glass_shard03.mdl",
 } )
 
 wOS:RegisterItem( {
-	Name = "Алюминиевый сплав",
-	Description = "Сырье",
+	Name = "Aluminum Alloy",
+	Description = "Raw Material",
 	Type = WOSTYPE.RAWMATERIAL,
 	Rarity = 100,
 	Model = "models/gibs/metal_gib4.mdl",

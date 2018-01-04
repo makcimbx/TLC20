@@ -1,10 +1,10 @@
 local ITEM = {}
 
 --The name of the item ( is also an identifier for spawning the item )
-ITEM.Name = "Нестабильный Кристалл ( Бирюзовый )"
+ITEM.Name = "Unstable Crystal ( Cyan )"
 
 --The description that appears with the item name
-ITEM.Description = "Сломанный кристалл, дающий непостоянное лезвие"
+ITEM.Description = "A broken crystal, giving an unsteady blade"
 
 --The category it belongs to
 ITEM.Type = WOSTYPE.CRYSTAL

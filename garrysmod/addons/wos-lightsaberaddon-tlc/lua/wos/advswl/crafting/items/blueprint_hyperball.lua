@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Черетеж Гипершара"
+ITEM.Name = "Hyperball Blueprint"
 
-ITEM.Description = "Способ укротить ваш внутренний заряд"
+ITEM.Description = "A way to tame your inner charge"
 
 ITEM.Type = WOSTYPE.BLUEPRINT
 

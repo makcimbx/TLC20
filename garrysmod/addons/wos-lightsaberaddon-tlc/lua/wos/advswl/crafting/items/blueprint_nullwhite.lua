@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Чертеж Обнулятора"
+ITEM.Name = "Nullifier Blueprint"
 
-ITEM.Description = "Способ для уселения меча"
+ITEM.Description = "Creates a way to amplify all else"
 
 ITEM.Type = WOSTYPE.BLUEPRINT
 

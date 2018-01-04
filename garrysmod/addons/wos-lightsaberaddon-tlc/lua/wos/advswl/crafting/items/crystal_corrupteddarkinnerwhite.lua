@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Поврежденный кристалл ( Dark Inner White )"
+ITEM.Name = "Corrupted Crystal ( Dark Inner White )"
 
-ITEM.Description = "Треснувший кристалл от собсвтенной силы."
+ITEM.Description = "Cracked by the force, it bleeds with it's ignition"
 
 ITEM.Type = WOSTYPE.CRYSTAL
 

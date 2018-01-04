@@ -25,12 +25,12 @@
 wOS = wOS or {}
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Прыжок силы",
+		name = "Force Leap",
 		icon = "L",
 		image = "wos/forceicons/leap.png",
 		cooldown = 2,
 		manualaim = false,
-		description = "Прыжок длиннее и выше обычного. Целься выше, что бы прыгнуть дальше/выше",
+		description = "Jump longer and higher. Aim higher to jump higher/further.",
 		action = function( self )
 			if ( self:GetForce() < 10 || !self.Owner:IsOnGround() ) then return end
 			self:SetForce( self:GetForce() - 10 )
@@ -48,14 +48,14 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-			name = "Рывок",
+			name = "Charge",
 			icon = "CH",
 			distance = 600,
 			image = "wos/forceicons/charge.png",
 			target = 1,
 			cooldown = 0,
 			manualaim = false,
-			description = "Выпад в сторону вашего врага.",
+			description = "Lunge at your enemy",
 			action = function( self )
 				local ent = self:SelectTargets( 1, 600 )[ 1 ]
 				if !IsValid( ent ) then self:SetNextAttack( 0.2 ) return end
@@ -73,11 +73,11 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Поглощение силы",
+		name = "Force Absorb",
 		icon = "A",
 		image = "wos/forceicons/absorb.png",
 		cooldown = 0,
-		description = "Зажми ПКМ, что бы защитить себя от ранений.",
+		description = "Hold Mouse 2 to protect yourself from harm",
 		action = function( self )
 			if ( self:GetForce() < 1 ) then return end
 			self:SetForce( self:GetForce() - 0.1 )
@@ -88,12 +88,12 @@ wOS.ForcePowers:RegisterNewPower({
 })
 	
 wOS.ForcePowers:RegisterNewPower({
-		name = "Бросок меча",
+		name = "Saber Throw",
 		icon = "T",
 		image = "wos/forceicons/throw.png",
 		cooldown = 0,
 		manualaim = false,
-		description = "Бросок светового меча. Он вернется к тебе.",
+		description = "Throws your lightsaber. It will return to you.",
 		action = function(self)
 			if self:GetForce() < 20 then return end
 			self:SetForce( self:GetForce() - 20 )
@@ -120,13 +120,13 @@ wOS.ForcePowers:RegisterNewPower({
 }) 
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Исцеление силы",
+		name = "Force Heal",
 		icon = "H",
 		image = "wos/forceicons/heal.png",
 		cooldown = 0,
 		target = 1,
 		manualaim = false,
-		description = "Исцеляет раны вашей цели.",
+		description = "Heals your target.",
 		action = function( self )
 			if ( self:GetForce() < 10 ) then return end
 			local foundents = 0
@@ -158,12 +158,12 @@ wOS.ForcePowers:RegisterNewPower({
 }) 
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Массовое исцеление",
+		name = "Group Heal",
 		icon = "GH",
 		image = "wos/forceicons/group_heal.png",
 		cooldown = 0,
 		manualaim = false,
-		description = "Исцеляет всех поблизости, включая тебя.",
+		description = "Heals all around you.",
 		action = function( self )
 			if ( self:GetForce() < 75 ) then return end
 			local players = 0
@@ -193,11 +193,11 @@ wOS.ForcePowers:RegisterNewPower({
 })
 	
 wOS.ForcePowers:RegisterNewPower({
-		name = "Маскировка",
+		name = "Cloak",
 		icon = "C",
 		image = "wos/forceicons/cloak.png",
 		cooldown = 0,
-		description = "Окутайте себя силой на 10 секунд.",
+		description = "Shrowd yourself with the force for 10 seconds",
 		action = function( self )
 		if ( self:GetForce() < 50 || !self.Owner:IsOnGround() ) then return end
 			if self.Owner:GetNW2Float( "CloakTime", 0 ) >= CurTime() then return end
@@ -210,11 +210,11 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Отражение силы",
+		name = "Force Reflect",
 		icon = "FR",
 		image = "wos/forceicons/reflect.png",
 		cooldown = 0,
-		description = "Око за око.",
+		description = "An eye for an eye",
 		action = function( self )
 		if ( self:GetForce() < 50 || !self.Owner:IsOnGround() ) then return end
 			if self.Owner:GetNW2Float( "ReflectTime", 0 ) >= CurTime() then return end
@@ -227,11 +227,11 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Ярость",
+		name = "Rage",
 		icon = "RA",
 		image = "wos/forceicons/rage.png",
 		cooldown = 0,
-		description = "Высвободи свою злость.",
+		description = "Unleash your anger",
 		action = function( self )
 		if ( self:GetForce() < 50 || !self.Owner:IsOnGround() ) then return end
 			if self.Owner:GetNW2Float( "RageTime", 0 ) >= CurTime() then return end
@@ -244,14 +244,14 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Теневой удар",
+		name = "Shadow Strike",
 		icon = "SS",
 		distance = 30,
 		image = "wos/forceicons/shadow_strike.png",
 		cooldown = 0,
 		target = 1,
 		manualaim = false,
-		description = "Из тьмы, он охотится.",
+		description = "From the darkness it preys",
 		action = function( self )
 			if self.Owner:GetNW2Float( "CloakTime", 0 ) < CurTime() then return end
 			local ent = self:SelectTargets( 1, 30 )[ 1 ]
@@ -262,7 +262,7 @@ wOS.ForcePowers:RegisterNewPower({
 			self.Owner:EmitSound( "lightsaber/saber_hit_laser" .. math.random( 1, 4 ) .. ".wav" )
 			self.Owner:AnimResetGestureSlot( GESTURE_SLOT_CUSTOM )
 			self.Owner:SetAnimation( PLAYER_ATTACK1 )
-			ent:TakeDamage( 1500, self.Owner, self )
+			ent:TakeDamage( 500, self.Owner, self )
 			self.Owner:SetNW2Float( "CloakTime", CurTime() + 0.5 )
 			self:SetNextAttack( 0.7 )
 			return true
@@ -270,10 +270,10 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Притяжение силы",
+		name = "Force Pull",
 		icon = "PL",
 		target = 1,
-		description = "Притягивает вашу цель к вам.",
+		description = "Get over here!",
 		image = "wos/forceicons/pull.png",
 		cooldown = 0,
 		manualaim = false,
@@ -293,11 +293,11 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Толчок силы",
+		name = "Force Push",
 		icon = "PH",
 		target = 1,
 		distance = 150,
-		description = "Отталкивает вашу цель от вас.",
+		description = "They are no harm at a distance",
 		image = "wos/forceicons/push.png",
 		cooldown = 0,
 		manualaim = false,
@@ -317,14 +317,14 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Удар молнии",
+		name = "Lightning Strike",
 		icon = "LS",
 		distance = 600,
 		image = "wos/forceicons/lightning_strike.png",
 		cooldown = 0,
 		target = 1,
 		manualaim = false,
-		description = "Сфокусированный заряд молнии",
+		description = "A focused charge of lightning",
 		action = function( self )
 			local ent = self:SelectTargets( 1, 600 )[ 1 ]
 			if !IsValid( ent ) then self:SetNextAttack( 0.2 ) return end
@@ -367,12 +367,12 @@ wOS.ForcePowers:RegisterNewPower({
 		end
 })
 wOS.ForcePowers:RegisterNewPower({
-		name = "Улучшенная маскировка",
+		name = "Advanced Cloak",
 		icon = "AC",
 		image = "wos/forceicons/advanced_cloak.png",
 		cooldown = 0,
 		manualaim = false,
-		description = "Окутайте себя силой на 25 секунд.",
+		description = "Shrowd yourself with the force for 25 seconds",
 		action = function( self )
 		if ( self:GetForce() < 50 || !self.Owner:IsOnGround() ) then return end
 
@@ -386,13 +386,13 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Молния силы",
+		name = "Force Lightning",
 		icon = "L",
 		target = 1,
 		image = "wos/forceicons/lightning.png",
 		cooldown = 0,
 		manualaim = false,
-		description = "Пытки людей (и монстров) по желанию.",
+		description = "Torture people ( and monsters ) at will.",
 		action = function( self )
 			if ( self:GetForce() < 1 ) then return end
 
@@ -432,10 +432,10 @@ wOS.ForcePowers:RegisterNewPower({
 })
 	
 wOS.ForcePowers:RegisterNewPower({
-		name = "Поджигание силы",
+		name = "Force Combust",
 		icon = "C",
 		target = 1,
-		description = "Подожигайте вещи перед собой.",
+		description = "Ignite stuff infront of you.",
 		image = "wos/forceicons/combust.png",
 		cooldown = 0,
 		manualaim = false,
@@ -459,10 +459,10 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Отталкивание силы",
+		name = "Force Repulse",
 		icon = "R",
 		image = "wos/forceicons/repulse.png",
-		description = "Накапливайте заряд, что бы сильнее оттолкнуть ваших противников вокруг себя.",
+		description = "Hold to charge for greater distance/damage. Push back everything near you.",
 		think = function( self )
 			if ( self:GetNextSecondaryFire() > CurTime() ) then return end
 			if ( self:GetForce() < 1 ) then return end
@@ -545,11 +545,11 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Шторм",
+		name = "Storm",
 		icon = "STR",
 		image = "wos/forceicons/storm.png",
 		cooldown = 0,
-		description = "Призовите шторм, что бы уничтожить ваших врагов.",
+		description = "Charge for 2 seconds, unleash a storm on your enemies",
 		action = function( self )
 			if ( self:GetForce() < 100 ) then self:SetNextAttack( 0.2 ) return end
 			if self.Owner:GetNW2Float( "wOS.SaberAttackDelay", 0 ) >= CurTime() then return end
@@ -616,10 +616,10 @@ wOS.ForcePowers:RegisterNewPower({
 })
 	
 wOS.ForcePowers:RegisterNewPower({
-		name = "Медитация",
+		name = "Meditate",
 		icon = "M",
 		image = "wos/forceicons/meditate.png",
-		description = "Расслабьтесь и направляйте свою энергию.",
+		description = "Relax yourself and channel your energy",
 		think = function( self )
 			if self.MeditateCooldown and self.MeditateCooldown >= CurTime() then return end
 			if ( self.Owner:KeyDown( IN_ATTACK2 ) ) and !self:GetEnabled() and self.Owner:OnGround() then
@@ -664,10 +664,10 @@ wOS.ForcePowers:RegisterNewPower({
 })
 
 wOS.ForcePowers:RegisterNewPower({
-		name = "Поддержание ненависти",
+		name = "Channel Hatred",
 		icon = "HT",
 		image = "wos/forceicons/channel_hatred.png",
-		description = "Я могу почувствовать твою злость",
+		description = "I can feel your anger",
 		think = function( self )
 			if self.ChannelCooldown and self.ChannelCooldown >= CurTime() then return end
 			if ( self.Owner:KeyDown( IN_ATTACK2 ) ) and !self:GetEnabled() and self.Owner:OnGround() then

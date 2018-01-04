@@ -1,8 +1,8 @@
 local ITEM = {}
 
-ITEM.Name = "Гипершар"
+ITEM.Name = "Hyperball"
 
-ITEM.Description = "Перегружает воспламенитель для более выраженного пучка"
+ITEM.Description = "Overcharges the igniter for a more pronounced beam"
 
 ITEM.Type = WOSTYPE.MISC1
 
