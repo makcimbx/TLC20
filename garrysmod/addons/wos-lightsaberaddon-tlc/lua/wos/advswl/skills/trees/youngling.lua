@@ -138,4 +138,4 @@ TREE.Tier[2][3] = {
 	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Leap" ) end,
 }
 
-wOS:RegisterSkillTree( TREE ))
+wOS:RegisterSkillTree( TREE ) end)
