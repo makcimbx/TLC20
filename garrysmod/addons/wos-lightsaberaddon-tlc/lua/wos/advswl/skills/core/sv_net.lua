@@ -42,7 +42,7 @@ net.Receive( "wOS.SkillTree.ChooseSkill", function( len, ply )
 		if not table.HasValue( skilldata.UserGroups, ply:GetUserGroup() ) then return end
 	end
 	if skilldata.TeamAllowed then
-		if TeamAllowed[LocalPlayer():Team()] or false == true then continue end
+		if TeamAllowed[LocalPlayer():Team()] or false == true then return end
 	end
 	
 	skilldata = skilldata.Tier
