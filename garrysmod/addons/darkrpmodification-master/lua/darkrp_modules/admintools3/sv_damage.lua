@@ -66,8 +66,8 @@ function GM:EntityTakeDamage( target, dmginfo )
 			p = p + d
 			c = c + c
 		end
-		dmg = dmg + dmg*p
-		crit = crit + crit*c
+		dmg = dmg*p
+		crit = crit*c
 	end
 	EverPrint("Post attacker skills damage: "..dmg,Color(153,153,255))
 	
@@ -79,8 +79,8 @@ function GM:EntityTakeDamage( target, dmginfo )
 			p = p + d
 			c = c + c
 		end
-		dmg = dmg + dmg*p
-		crit = crit + crit*c
+		dmg = dmg*p
+		crit = crit*c
 	end
 	EverPrint("Post target skills damage: "..dmg,Color(153,153,255))
 	
