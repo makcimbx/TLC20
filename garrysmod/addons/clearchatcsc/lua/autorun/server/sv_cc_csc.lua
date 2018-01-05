@@ -1,5 +1,5 @@
 local alwaysCSC = false -- Change this to true if you want every message someone sends to be sent to all your servers running this key.
-local ooc = true -- Set to true if // and /ooc should be broadcast.
+local ooc = false -- Set to true if // and /ooc should be broadcast.
 
 local servers = { -- Change these if you want to show the names of each server when someone sends a message.
 	["195.62.52.237:27015"] = "Основной",
