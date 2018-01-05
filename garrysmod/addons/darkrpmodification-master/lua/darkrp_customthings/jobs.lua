@@ -308,6 +308,42 @@ TEAM_501CO = DarkRP.createJob("501-й Командир", {
 	category = "501st legion",
 })
 
+TEAM_501CC = DarkRP.createJob("501-й Клон-Командер", {
+	color = Color(50, 50, 255, 255),
+	model = "models/player/ven/bf2_reg/rex/bf2rex.mdl",
+	description = [[Поздравляем, теперь вы командир 501-го легиона!]],
+	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "501cc",
+	max = 0,
+	salary = 0,
+	admin = 0,
+	vote = false,
+	level = 1,
+	maxHP=500,
+	maxAM=100,
+	hasLicense = false,
+	candemote = false,
+	category = "501st legion",
+})
+
+TEAM_501MC = DarkRP.createJob("501-й Маршал-Командер", {
+	color = Color(50, 50, 255, 255),
+	model = "models/player/ven/bf2_reg/rex/bf2rex.mdl",
+	description = [[Поздравляем, теперь вы командир 501-го легиона!]],
+	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "501mc",
+	max = 0,
+	salary = 0,
+	admin = 0,
+	vote = false,
+	level = 1,
+	maxHP=500,
+	maxAM=100,
+	hasLicense = false,
+	candemote = false,
+	category = "501st legion",
+})
+
 
 TEAM_212CT = DarkRP.createJob("212-й Клон Солдат", {
 	color = Color(244, 210, 74, 255),
@@ -529,6 +565,40 @@ TEAM_212CO = DarkRP.createJob("212-й Командир", {
 	candemote = false,
 })
 
+TEAM_212CC = DarkRP.createJob("212-й Клон-Командер", {
+	color = Color(244, 210, 74, 255),
+    model = "models/player/ven/bf2_reg/cody/bf2cody.mdl",	
+	description = [[Поздравляем, теперь вы командир 212-го штурмового батальона!]],
+	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "212cc",
+	max = 0,
+	salary = 50,
+	level = 1,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "212 AB",
+	candemote = false,
+})
+
+TEAM_212MC = DarkRP.createJob("212-й Маршал-Командер", {
+	color = Color(244, 210, 74, 255),
+    model = "models/player/ven/bf2_reg/cody/bf2cody.mdl",	
+	description = [[Поздравляем, теперь вы командир 212-го штурмового батальона!]],
+	weapons = {"tfa_swch_dc15a", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "212mc",
+	max = 0,
+	salary = 50,
+	level = 1,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "212 AB",
+	candemote = false,
+})
+
 TEAM_2NDTRP = DarkRP.createJob("212-й Пулеметчик", {
 	color = Color(244, 210, 74, 255),
 	model = "models/gonzo/swbf2heavygunner/212th/212th.mdl",
@@ -597,7 +667,7 @@ TEAM_41CT = DarkRP.createJob("41-й Клон Солдат", {
 	category = "41st legion",
 })
 
-TEAM_41THTRP = DarkRP.createJob("41-й Солдат", {
+TEAM_41TRP = DarkRP.createJob("41-й Солдат", {
 	color = Color(133, 133, 133),
 	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы часть 41-го Легиона!]],
@@ -623,7 +693,7 @@ TEAM_41THTRP = DarkRP.createJob("41-й Солдат", {
 	candemote = false,
 })
 
-TEAM_41THCPL = DarkRP.createJob("41-й Капрал", {
+TEAM_41CPL = DarkRP.createJob("41-й Капрал", {
 	color = Color(133, 133, 133),
 	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы капрал 41-го Легиона!]],
@@ -649,7 +719,7 @@ TEAM_41THCPL = DarkRP.createJob("41-й Капрал", {
 	candemote = false,
 })
 
-TEAM_41THSGT = DarkRP.createJob("41-й Сержант", {
+TEAM_41SGT = DarkRP.createJob("41-й Сержант", {
 	color = Color(133, 133, 133),
 	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы сержант 41-го Легиона!]],
@@ -675,7 +745,7 @@ TEAM_41THSGT = DarkRP.createJob("41-й Сержант", {
 	candemote = false,
 })
 
-TEAM_41THLT = DarkRP.createJob("41-й Лейтенант", {
+TEAM_41LT = DarkRP.createJob("41-й Лейтенант", {
 	color = Color(133, 133, 133),
 	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы лейтенант 41-го Легиона!]],
@@ -701,7 +771,7 @@ TEAM_41THLT = DarkRP.createJob("41-й Лейтенант", {
 	candemote = false,
 })
 
-TEAM_41THCPT = DarkRP.createJob("41-й Капитан", {
+TEAM_41CPT = DarkRP.createJob("41-й Капитан", {
 	color = Color(133, 133, 133),
 	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы капитан 41-го Легиона!]],
@@ -727,7 +797,7 @@ TEAM_41THCPT = DarkRP.createJob("41-й Капитан", {
 	candemote = false,
 })
 
-TEAM_41THMJR = DarkRP.createJob("41-й Майор", {
+TEAM_41MJR = DarkRP.createJob("41-й Майор", {
 	color = Color(133, 133, 133),
 	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы майор 41-го Легиона!]],
@@ -753,7 +823,7 @@ TEAM_41THMJR = DarkRP.createJob("41-й Майор", {
 	candemote = false,
 })
 
-TEAM_41THCOL = DarkRP.createJob("41-й Подполковник", {
+TEAM_41COL = DarkRP.createJob("41-й Подполковник", {
 	color = Color(133, 133, 133),
 	model = "models/gonzo/swbf2greencompany/gctrooper/gctrooper.mdl",
 	description = [[Поздравляем, теперь вы майор 41-го Легиона!]],
@@ -779,12 +849,46 @@ TEAM_41THCOL = DarkRP.createJob("41-й Подполковник", {
 	candemote = false,
 })
 
-TEAM_41THCO = DarkRP.createJob("41-й Командир", {
+TEAM_41CO = DarkRP.createJob("41-й Командир", {
 	color = Color(133, 133, 133),
 	model = "models/player/ven/bf2_reg/gree/bf2gree.mdl",
 	description = [[Поздравляем, теперь вы командир 41-го Легиона!]],
 	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "41thco",
+	max = 0,
+	level = 1,
+	salary = 50,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "41st legion",
+	candemote = false,
+})
+
+TEAM_41CC = DarkRP.createJob("41-й Клон-Командер", {
+	color = Color(133, 133, 133),
+	model = "models/player/ven/bf2_reg/gree/bf2gree.mdl",
+	description = [[Поздравляем, теперь вы командир 41-го Легиона!]],
+	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "41thcc",
+	max = 0,
+	level = 1,
+	salary = 50,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "41st legion",
+	candemote = false,
+})
+
+TEAM_41MC = DarkRP.createJob("41-й Маршал-Командер", {
+	color = Color(133, 133, 133),
+	model = "models/player/ven/bf2_reg/gree/bf2gree.mdl",
+	description = [[Поздравляем, теперь вы командир 41-го Легиона!]],
+	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "41thmc",
 	max = 0,
 	level = 1,
 	salary = 50,
@@ -1051,6 +1155,40 @@ TEAM_91CO = DarkRP.createJob("91-й Командир", {
 	candemote = false,
 })
 
+TEAM_91CC = DarkRP.createJob("91-й Клон-Командер", {
+	color = Color(200, 0, 25, 255),
+	model = {"models/player/ven/bf2_reg/neyo/bf2neyo.mdl"},
+	description = [[Поздравляем, теперь вы Командир 91-го батальона!]],
+	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "91cc",
+	max = 1,
+	salary = 500,
+	admin = 0,
+	level = 1,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "91st Recon Corps",
+	candemote = false,
+})
+
+TEAM_91MC = DarkRP.createJob("91-й Маршал-Командер", {
+	color = Color(200, 0, 25, 255),
+	model = {"models/player/ven/bf2_reg/neyo/bf2neyo.mdl"},
+	description = [[Поздравляем, теперь вы Командир 91-го батальона!]],
+	weapons = {"tfa_ee3_extended", "tfa_dc17chrome","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "91mc",
+	max = 1,
+	salary = 500,
+	admin = 0,
+	level = 1,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "91st Recon Corps",
+	candemote = false,
+})
+
 TEAM_91SCOUT = DarkRP.createJob("91-й Разведчик", {
 	color = Color(200, 0, 25, 255),
 	model = {"models/gonzo/327thand91st/91starf/91starf.mdl"},	
@@ -1286,6 +1424,40 @@ TEAM_327CO = DarkRP.createJob("327-й Командир", {
 	description = [[Поздравляем, теперь вы Командир 327-го легиона!]],
 	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "327co",
+	max = 0,
+	salary = 80,
+	level = 1,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "327st",
+	candemote = false,
+})
+
+TEAM_327CC = DarkRP.createJob("327-й Клон-Командер", {
+	color = Color(150, 75, 0),
+	model = "models/player/ven/bf2_reg/bly/bf2bly.mdl",
+	description = [[Поздравляем, теперь вы Командир 327-го легиона!]],
+	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "327cc",
+	max = 0,
+	salary = 80,
+	level = 1,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "327st",
+	candemote = false,
+})
+
+TEAM_327MC = DarkRP.createJob("327-й Маршал-Командер", {
+	color = Color(150, 75, 0),
+	model = "models/player/ven/bf2_reg/bly/bf2bly.mdl",
+	description = [[Поздравляем, теперь вы Командир 327-го легиона!]],
+	weapons = {"tfa_swch_dc15a","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "327mc",
 	max = 0,
 	salary = 80,
 	level = 1,
@@ -1541,6 +1713,40 @@ TEAM_104CO = DarkRP.createJob("104-й Командир", {
 	description = [[Поздравляем, теперь вы Командир 104-го легиона!]],
 	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
 	command = "104co",
+	max = 0,
+	salary = 80,
+	level = 1,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "104st",
+	candemote = false,
+})
+
+TEAM_104CC = DarkRP.createJob("104-й Клон-Командер", {
+	color = Color(92, 183, 222, 255),
+	model = "models/player/ven/bf2_reg/wolffe/bf2wolffe.mdl",
+	description = [[Поздравляем, теперь вы Командир 104-го легиона!]],
+	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "104cc",
+	max = 0,
+	salary = 80,
+	level = 1,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	category = "104st",
+	candemote = false,
+})
+
+TEAM_104MC = DarkRP.createJob("104-й Маршал-Командер", {
+	color = Color(92, 183, 222, 255),
+	model = "models/player/ven/bf2_reg/wolffe/bf2wolffe.mdl",
+	description = [[Поздравляем, теперь вы Командир 104-го легиона!]],
+	weapons = {"tfa_e11d_extended","tfa_sw_dc17dual","zeus_thermaldet","zeus_smokegranade","clone_card_c8","weapon_physgun"},
+	command = "104MC",
 	max = 0,
 	salary = 80,
 	level = 1,
@@ -1816,6 +2022,58 @@ TEAM_EODCO = DarkRP.createJob("EOD Командир", {
 	candemote = false,
 })
 
+TEAM_EODCC = DarkRP.createJob("EOD Клон-Командер", {
+	color = Color(244, 210, 74, 255),
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
+	description = [[Поздравляем, теперь вы Командир EOD!]],
+	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","weapon_swrc_det","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c8","weapon_physgun"},
+	command = "eodcc",
+	max = 0,
+	salary = 100,
+	level = 1,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
+	vote = false,
+	category = "EOD",
+	candemote = false,
+})
+
+TEAM_EODMC = DarkRP.createJob("EOD Маршал-Командер", {
+	color = Color(244, 210, 74, 255),
+	model = "models/player/ven/bf2_reg/eod/bf2eod.mdl",
+	description = [[Поздравляем, теперь вы Командир EOD!]],
+	weapons = {"tfa_dc15s_ashura","tfa_sw_repshot","zeus_thermaldet","weapon_swrc_det","weapon_physgun","weapon_physcannon","repair_tool","clone_card_c8","weapon_physgun"},
+	command = "eodmc",
+	max = 0,
+	salary = 100,
+	level = 1,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,0) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,0) 
+	ply:SetBodygroup(3,0) 
+	ply:SetBodygroup(4,1) 
+	ply:SetBodygroup(5,0)
+	ply:SetBodygroup(6,1)
+	end,
+	vote = false,
+	category = "EOD",
+	candemote = false,
+})
+
 
 TEAM_74CT = DarkRP.createJob("74-й Клон Солдат", {
 	color = Color(200, 0, 25, 255),
@@ -1842,7 +2100,7 @@ TEAM_74TRP = DarkRP.createJob("74-й Солдат", {
 	color = Color(200, 0, 25, 255),
 	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы часть 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c5","darkrp_defibrillator"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","clone_card_c5","darkrp_defibrillator"},
 	command = "74trp",
 	max = 0,
 	level = 10,
@@ -1869,7 +2127,7 @@ TEAM_74CPL = DarkRP.createJob("74-й Капрал", {
 	color = Color(200, 0, 25, 255),
 	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы капрал 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","darkrp_defibrillator"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","weapon_physgun","weapon_physcannon","darkrp_defibrillator"},
 	command = "74cpl",
 	max = 0,
 	salary = 70,
@@ -1896,7 +2154,7 @@ TEAM_74SGT = DarkRP.createJob("74-й Сержант", {
 	color = Color(200, 0, 25, 255),
 	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы Сержант 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c6","darkrp_defibrillator"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","weapon_physgun","weapon_physcannon","clone_card_c6","darkrp_defibrillator"},
 	command = "74sgt",
 	max = 0,
 	level = 30,
@@ -1923,7 +2181,7 @@ TEAM_74LT = DarkRP.createJob("74-й Лейтенант", {
 	color = Color(200, 0, 25, 255),
 	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы Лейтенант 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c7","darkrp_defibrillator"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","clone_card_c7","darkrp_defibrillator"},
 	command = "74lt",
 	max = 0,
 	salary = 100,
@@ -1950,7 +2208,7 @@ TEAM_74CPT = DarkRP.createJob("74-й Капитан", {
 	color = Color(200, 0, 25, 255),
 	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы капитан 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c7","darkrp_defibrillator"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","clone_card_c7","darkrp_defibrillator"},
 	command = "74cpt",
 	max = 0,
 	salary = 120,
@@ -1977,7 +2235,7 @@ TEAM_74MJR = DarkRP.createJob("74-й Майор", {
 	color = Color(200, 0, 25, 255),
 	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы майор 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c7","darkrp_defibrillator"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","clone_card_c7","darkrp_defibrillator"},
 	command = "74mjr",
 	max = 0,
 	salary = 110,
@@ -2004,7 +2262,7 @@ TEAM_74COL = DarkRP.createJob("74-й Подполковник", {
 	color = Color(200, 0, 25, 255),
 	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы подполковник 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c7","darkrp_defibrillator"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","clone_card_c7","darkrp_defibrillator"},
 	command = "74col",
 	max = 0,
 	salary = 160,
@@ -2031,8 +2289,62 @@ TEAM_74CO = DarkRP.createJob("74-й Командир", {
 	color = Color(200, 0, 25, 255),
 	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
 	description = [[Поздравляем, теперь вы Командир 74!]],
-	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","first_aid_kit","weapon_physgun","weapon_physcannon","defibrillator","clone_card_c8","weapon_physgun","darkrp_defibrillator"},
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","weapon_physgun","clone_card_c8","darkrp_defibrillator"},
 	command = "74co",
+	max = 0,
+	level = 1,
+	salary = 500,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,1) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,1) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1) 
+	ply:SetBodygroup(6,1) 
+	ply:SetSkin(1) 
+	end,
+	vote = false,
+	category = "74th medical corps",
+	candemote = false,
+})
+
+TEAM_74CC = DarkRP.createJob("74-й Клон-Командер", {
+	color = Color(200, 0, 25, 255),
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
+	description = [[Поздравляем, теперь вы Командир 74!]],
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","weapon_physgun","clone_card_c8","darkrp_defibrillator"},
+	command = "74cc",
+	max = 0,
+	level = 1,
+	salary = 500,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	PlayerSpawn = function(ply) 
+	ply:SetBodygroup(0,1) 
+	ply:SetBodygroup(1,1) 
+	ply:SetBodygroup(2,1) 
+	ply:SetBodygroup(3,1) 
+	ply:SetBodygroup(4,0) 
+	ply:SetBodygroup(5,1) 
+	ply:SetBodygroup(6,1) 
+	ply:SetSkin(1) 
+	end,
+	vote = false,
+	category = "74th medical corps",
+	candemote = false,
+})
+
+TEAM_74MC = DarkRP.createJob("74-й Маршал-Командер", {
+	color = Color(200, 0, 25, 255),
+	model = "models/gonzo/swbf2ahsoka/theta/theta.mdl",
+	description = [[Поздравляем, теперь вы Командир 74!]],
+	weapons = {"tfa_dc15a_custom_medicvar","tfa_dc17chrome","weapon_physgun","clone_card_c8","darkrp_defibrillator"},
+	command = "74mc",
 	max = 0,
 	level = 1,
 	salary = 500,
@@ -2110,7 +2422,7 @@ TEAM_ARCTRP = DarkRP.createJob("ЭРК Солдат", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcblue/arcblue.mdl",
 	description = [[Поздравляем, теперь вы Элитный Разведывательный Коммандос!]],
-	weapons = {"tfa_swch_alphablaster", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c5"},
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c5"},
 	command = "arctrp",
 	max = 0,
 	salary = 75,
@@ -2127,7 +2439,7 @@ TEAM_ARCCPL = DarkRP.createJob("ЭРК Капрал", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcblue/arcblue.mdl",
 	description = [[Поздравляем, теперь вы капрал Элитный Разведывательный Коммандос!]],
-	weapons = {"tfa_swch_alphablaster", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c5"},
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c5"},
 	command = "arccpl",
 	max = 0,
 	salary = 75,
@@ -2144,7 +2456,7 @@ TEAM_ARCSGT = DarkRP.createJob("ЭРК Сержант", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcgreen/arcgreen.mdl",
 	description = [[Поздравляем, теперь вы Сержант Элитного Разведывательного Коммандоса!]],
-	weapons = {"tfa_swch_alphablaster", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet","seal6-c4","clone_card_c6"},
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet","seal6-c4","clone_card_c6"},
 	command = "arcsgt",
 	max = 0,
 	salary = 140,
@@ -2161,7 +2473,7 @@ TEAM_ARCLT = DarkRP.createJob("ЭРК Лейтенант", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcred/arcred.mdl",
 	description = [[Поздравляем, теперь вы Лейтенант Элитного Разведывательного Коммандоса!]],
-	weapons = {"tfa_swch_alphablaster", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c7"},
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c7"},
 	command = "arclt",
 	max = 4,
 	salary = 160,
@@ -2178,7 +2490,7 @@ TEAM_ARCCPT = DarkRP.createJob("ЭРК Капитан", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcred/arcred.mdl",
 	description = [[Поздравляем, теперь вы Капитан Элитного Разведывательного Коммандоса!]],
-	weapons = {"tfa_swch_alphablaster", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c7"},
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c7"},
 	command = "arccpt",
 	max = 3,
 	salary = 180,
@@ -2195,7 +2507,7 @@ TEAM_ARCMJR = DarkRP.createJob("ЭРК Майор", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcred/arcred.mdl",
 	description = [[Поздравляем, теперь вы майор Элитного Республиканского Коммандос!]],
-	weapons = {"tfa_swch_alphablaster", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c7"},
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c7"},
 	command = "arcmjr",
 	max = 2,
 	salary = 100,
@@ -2212,7 +2524,7 @@ TEAM_ARCCOL = DarkRP.createJob("ЭРК Подполковник", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcred/arcred.mdl",
 	description = [[Поздравляем, теперь вы подполковник Элитного Разведывательного Коммандос!]],
-	weapons = {"tfa_swch_alphablaster", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c7"},
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c7"},
 	command = "arccol",
 	max = 0,
 	salary = 95,
@@ -2229,8 +2541,42 @@ TEAM_ARCCO = DarkRP.createJob("ЭРК Командир", {
 	color = Color(50, 50, 255, 255),
 	model = "models/gonzo/swbf2arc/arcyellow/arcyellow.mdl",
 	description = [[Поздравляем, теперь вы командир Элитного Разведывательного Коммандос!]],
-	weapons = {"tfa_swch_alphablaster", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c8"},
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c8","weapon_physgun"},
 	command = "arcco",
+	max = 0,
+	salary = 100,
+	level = 1,
+	admin = 0,
+	maxHP=600,
+	maxAM=100,
+	vote = false,
+	category = "ARC",
+	candemote = false,
+})
+
+TEAM_ARCCC = DarkRP.createJob("ЭРК Клон-Командер", {
+	color = Color(50, 50, 255, 255),
+	model = "models/gonzo/swbf2arc/arcyellow/arcyellow.mdl",
+	description = [[Поздравляем, теперь вы командир Элитного Разведывательного Коммандос!]],
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c8","weapon_physgun"},
+	command = "arccc",
+	max = 0,
+	salary = 100,
+	level = 1,
+	admin = 0,
+	maxHP=600,
+	maxAM=100,
+	vote = false,
+	category = "ARC",
+	candemote = false,
+})
+
+TEAM_ARCMC = DarkRP.createJob("ЭРК Маршал-Командер", {
+	color = Color(50, 50, 255, 255),
+	model = "models/gonzo/swbf2arc/arcyellow/arcyellow.mdl",
+	description = [[Поздравляем, теперь вы командир Элитного Разведывательного Коммандос!]],
+	weapons = {"tfa_westarm5_custom", "tfa_dc17dual_custom", "zeus_smokegranade", "zeus_flashbang", "zeus_thermaldet", "seal6-c4","clone_card_c8","weapon_physgun"},
+	command = "arcmc",
 	max = 0,
 	salary = 100,
 	level = 1,
@@ -2247,7 +2593,7 @@ TEAM_RC = DarkRP.createJob("Республиканский Коммандос", 
 	color = Color(247, 103, 17, 255),
 	model = "models/player/sgg/starwars/clone_commando.mdl",
 	description = [[Поздравляем, теперь вы часть Республиканского Коммандоса, вы элита!]],
-	weapons = {"tfa_swch_dc17m_br", "tfa_swch_dc17m_at", "tfa_dc17m_shotgun", "tfa_swch_dc17m_sn", "tfa_swch_dc15sa", "weapon_swrc_det", "zeus_thermaldet", "zeus_smokegranade", "zeus_flashbang","clone_card_c8"},
+	weapons = {"tfa_westarm5_custom", "tfa_swch_dc17m_at", "tfa_dc17m_shotgun", "tfa_swch_dc17m_sn", "tfa_swch_dc15sa", "weapon_swrc_det", "zeus_thermaldet", "zeus_smokegranade", "zeus_flashbang","clone_card_c8"},
 	command = "rc",
 	max = 0,
 	level = 80,
@@ -2614,6 +2960,23 @@ TEAM_RCTHUMBS = DarkRP.createJob("RC Thumbs", {
 	maxAM=100,
 	vote = false,
 	category = "Republic Commando",
+	candemote = false,
+})
+
+TEAM_SHTRPS = DarkRP.createJob("RC Shadow", {
+	color = Color(0, 0, 0),
+	model = "models/player/sgg/starwars/clone_commando_mp_a.mdl",
+	description = [[Поздравляем, теперь вы солдат тени!]],
+	weapons = {"tfa_swch_dc17m_br", "tfa_swch_dc17m_at", "tfa_dc17m_shotgun", "tfa_swch_dc17m_sn", "tfa_swch_dc15sa", "weapon_swrc_det", "zeus_thermaldet", "zeus_smokegranade", "zeus_flashbang","clone_card_c8"},
+	command = "soldtrpsh",
+	max = 0,
+	salary = 500,
+	admin = 0,
+	level = 0,
+	maxHP=1500,
+	maxAM=100,
+	vote = false,
+	category = "Shadow",
 	candemote = false,
 })
 
@@ -3167,7 +3530,7 @@ model = {
 		"models/player/jedi/zabrak.mdl"
 	},
 	description = [[.]],
-	weapons = {"gmod_tool","clone_card_c8"},
+	weapons = {"gmod_tool","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "padawan",
 	max = 0,
 	category = "Jedi",
@@ -3216,7 +3579,7 @@ TEAM_JEDIK = DarkRP.createJob("Джедай Рыцарь", {
 		"models/grealms/characters/bastila/bastila.mdl"
 	},
 	description = [[.]],
-	weapons = {"gmod_tool","clone_card_c8"},
+	weapons = {"gmod_tool","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "knight",
 	max = 0,
 	salary = 0,
@@ -3260,7 +3623,7 @@ TEAM_JEDIS = DarkRP.createJob("Джедай Страж", {
 		"models/grealms/characters/bastila/bastila.mdl"
 	},
 	description = [[.]],
-	weapons = {"gmod_tool","clone_card_c8"},
+	weapons = {"gmod_tool","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "Sentinel",
 	max = 0,
 	category = "Jedi",
@@ -3303,7 +3666,7 @@ TEAM_JEDIQ = DarkRP.createJob("Джедай Защитник", {
 		"models/grealms/characters/bastila/bastila.mdl"
 	},
 	description = [[.]],
-	weapons = {"gmod_tool","clone_card_c8"},
+	weapons = {"gmod_tool","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "Guardian",
 	max = 0,
 	salary = 0,
@@ -3351,7 +3714,7 @@ TEAM_JEDIKO = DarkRP.createJob("Джедай Консул", {
 		"models/player/jedi/zabrak.mdl"
 	},
 	description = [[.]],
-	weapons = {"gmod_tool","clone_card_c8"},
+	weapons = {"gmod_tool","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "jediko",
 	max = 0,
 	salary = 0,
@@ -3368,7 +3731,7 @@ TEAM_JEDIM = DarkRP.createJob("Гранд-Мастер", {
 	color = Color(145, 145, 145, 255),
 	model = "models/player/swtor/arsenic/jokal/jokal.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "Echo",
 	max = 0,
 	salary = 0,
@@ -3385,7 +3748,7 @@ TEAM_YODA = DarkRP.createJob("Йода", {
 	color = Color(0, 200, 0, 255),
 	model = "models/tfa/comm/gg/pm_sw_yoda.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "yoda",
 	max = 1,
 	salary = 0,
@@ -3406,7 +3769,7 @@ TEAM_KENOBI = DarkRP.createJob("Оби-Ван Кеноби", {
 		"models/tfa/comm/gg/pm_sw_obiwan_alt.mdl"
 	},
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "kenobi",
 	max = 1,
 	level = 0,
@@ -3423,7 +3786,7 @@ TEAM_WINDU = DarkRP.createJob("Мэйс Винду", {
 	color = Color(255, 0, 255, 255),
 	model = "models/player/mace/mace.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "windu",
 	max = 1,
 	salary = 0,
@@ -3440,7 +3803,7 @@ TEAM_KOON = DarkRP.createJob("Пло Кун", {
 	color = Color(255, 200, 0, 255),
 	model = "models/player/plokoon/plokoon.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "koon",
 	max = 1,
 	salary = 0,
@@ -3460,7 +3823,7 @@ TEAM_SKYWALKER = DarkRP.createJob("Энакин Скайуокер", {
 		"models/tfa/comm/gg/pm_sw_anakin_v2.mdl"
 	},
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "skywalker",
 	max = 1,
 	salary = 0,
@@ -3477,7 +3840,7 @@ TEAM_SECURA = DarkRP.createJob("Айла Секура", {
 	color = Color(60, 200, 255, 255),
 	model = "models/tfa/comm/gg/pm_sw_aayala.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "secura",
 	max = 1,
 	level = 0,
@@ -3494,7 +3857,7 @@ TEAM_MUNDI = DarkRP.createJob("Ки-Ади Мунди", {
 	color = Color(60, 200, 255, 255),
 	model = "models/tfa/comm/gg/pm_sw_mundi.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "mundi",
 	max = 1,
 	salary = 0,
@@ -3511,7 +3874,7 @@ TEAM_SAESEE = DarkRP.createJob("Сэси Тийн", {
 	color = Color(60, 200, 255, 255),
 	model = "models/cultist_kun/sw/saesee_tiin.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "saeseetiin",
 	max = 1,
 	salary = 0,
@@ -3532,7 +3895,7 @@ TEAM_JEDIBATTLEMASTER = DarkRP.createJob("Джедай Боевого Назна
         "models/gonzo/forcewarden/krelach/krelach.mdl"
     },
     description = [[.]],
-    weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+    weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
     command = "jedibattlemaster",
     max = 0,
     salary = 0,
@@ -3552,7 +3915,7 @@ TEAM_FISTO = DarkRP.createJob("Кит Фисто", {
         "models/player/valley/lgn/kitfisto_diver/kitfisto_diver.mdl"
     },
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "fisto",
 	max = 1,
 	salary = 0,
@@ -3569,7 +3932,7 @@ TEAM_TI = DarkRP.createJob("Шаак Ти", {
 	color = Color(60, 200, 255, 255),
 	model = "models/tfa/comm/gg/pm_sw_shaakti.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "ti",
 	max = 1,
 	category = "Jedi",
@@ -3586,7 +3949,7 @@ TEAM_TANO = DarkRP.createJob("Асока", {
 	color = Color(0, 200, 0, 255),
 	model = "models/tfa/comm/gg/pm_sw_ahsoka_v2.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "tano",
 	max = 1,
 	salary = 0,
@@ -3604,7 +3967,7 @@ TEAM_TANO22 = DarkRP.createJob("Луминара Ундули", {
 	color = Color(0, 200, 0, 255),
 	model = "models/tfa/comm/gg/pm_sw_luminara.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "tano22",
 	max = 1,
 	salary = 0,
@@ -3621,7 +3984,7 @@ TEAM_TANO3 = DarkRP.createJob("Квинлан Вос", {
 	color = Color(0, 200, 0, 255),
 	model = "models/tfa/comm/gg/pm_sw_quinlanvos.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "tano3",
 	max = 1,
 	salary = 0,
@@ -3638,7 +4001,7 @@ TEAM_TANO4 = DarkRP.createJob("Айма-Ган Дай", {
 	color = Color(0, 200, 0, 255),
 	model = "models/tfa/comm/gg/pm_sw_imagundi.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "tano4",
 	max = 1,
 	salary = 0,
@@ -3655,7 +4018,7 @@ TEAM_TANO5 = DarkRP.createJob("Ади Галлия", {
 	color = Color(0, 200, 0, 255),
 	model = "models/tfa/comm/gg/pm_sw_adigallia.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "tano5",
 	max = 1,
 	salary = 0,
@@ -3672,7 +4035,7 @@ TEAM_TANO6 = DarkRP.createJob("Иит Кот", {
 	color = Color(0, 200, 0, 255),
 	model = "models/tfa/comm/gg/pm_sw_eeth_koth.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "tano6",
 	max = 1,
 	salary = 0,
@@ -3689,7 +4052,7 @@ TEAM_TANO7 = DarkRP.createJob("Баррисс Оффи", {
 	color = Color(0, 200, 0, 255),
 	model = "models/tfa/comm/gg/pm_sw_barriss.mdl",
 	description = [[.]],
-	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8"},
+	weapons = {"gmod_tool", "weapon_physgun","clone_card_c8","weapon_lightsaber_lightsaber_echo"},
 	command = "tano7",
 	max = 1,
 	salary = 0,
@@ -3941,6 +4304,34 @@ TEAM_TACTICAL = DarkRP.createJob("Тактический Дроид", {
 	max = 0,
 	category = "For Events",
 	level = 0,
+	salary = 0,
+	admin = 0,
+	maxHP=500,
+	maxAM=100,
+	vote = false,
+	candemote = false,
+})
+
+TEAM_ASTRO = DarkRP.createJob("Дроид Астромеханик", {
+	color = Color(60, 200, 255, 255),
+	model = {
+		"models/player/r2d2.mdl",
+		"models/player/yellow.mdl",
+		"models/player/r4p17.mdl",
+		"models/player/r2kt.mdl",
+		"models/player/purple.mdl",
+		"models/player/red.mdl",
+		"models/player/r5blue.mdl",
+		"models/player/republict3.mdl",
+		"models/player/mandaloriant3.mdl",
+		"models/player/green.mdl",
+		"models/player/black.mdl"
+	},
+	description = [[Вы дроид астромеханик... Вы должны отыгрывать роль просто дроида механика и помогать в нелегком деле пилотам и инженерам, ну и флоту тоже.]],
+	weapons = {"repair_tool"},
+	command = "astro",
+	level = 0,
+	max = 0,
 	salary = 0,
 	admin = 0,
 	maxHP=500,

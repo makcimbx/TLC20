@@ -119,3 +119,23 @@ Add entities under the following line:
 		allowed = {TEAM_PILOTCPL,TEAM_PILOTSGT,TEAM_PILOTLT,TEAM_PILOTCPT,TEAM_PILOTMJR,TEAM_PILOTCOL,TEAM_PILOTCO},
 	})
 	
+	DarkRP.createEntity("Бакта Диспенсер", {
+		ent = "bacta_dispenser",
+		model = "models/props/starwars/medical/bacta_dispenser.mdl",
+		price = 1,
+		max = 2,
+		cmd = "buybactadispenser",
+		category = "Bacta Dispenser",
+		allowed = {TEAM_74TRP,TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
+	})
+	
+	DarkRP.createEntity("Бакта", {
+		ent = "touch_pickup_752_bacta_large",
+		model = "models/starwars/items/bacta_large.mdl",
+		price = 1,
+		max = 6,
+		cmd = "buybacta",
+		category = "Bacta",
+		allowed = {TEAM_74TRP,TEAM_74CPL,TEAM_74SGT,TEAM_74LT,TEAM_74CPT,TEAM_74MJR,TEAM_74COL,TEAM_74CO},
+	})
+	

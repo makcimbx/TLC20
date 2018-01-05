@@ -8,14 +8,21 @@ SI.locations[ "rp_chancellor_tlc_b1" ] = { -- You can change the map name to wha
 		startpos = Vector( -1876.755981, 294.222473, -277.731079 ), 
 		endpos = Vector( -1883.230591, -859.605591, -277.731079 ), 
 		ang = Angle( 0, 180, 0 ),  
-		speed = 0.1, 
+		speed = 0.05, 
 		text = "Сфотографируйте или запомните.",
 	},
 	{ 
 		startpos = Vector( -1873.558350, -865.585999, -282.910065 ),
 		endpos = Vector( -1142.853882, -855.912048, -282.910065 ), 
-		ang = Angle( 0, 90, 0 ), 
-		speed = 0.1, 
+		ang = Angle( 0, 270, 0 ), 
+		speed = 0.05, 
+		text = "Сфотографируйте или запомните." 
+	},
+	{ 
+		startpos = Vector( -1107.309326, -933.503845, -279.416748 ),
+		endpos = Vector( -1106.040527, -471.820465, -279.416748 ), 
+		ang = Angle( 0, 0, 0 ), 
+		speed = 0.05, 
 		text = "Сфотографируйте или запомните." 
 	},
 }
