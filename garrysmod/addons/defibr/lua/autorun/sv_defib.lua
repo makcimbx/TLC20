@@ -21,7 +21,17 @@ Kun_DrawHealth = 1 --Set to 0 to disable the white cross shown on death
 Kun_DeathText = "Респавн через. . " --Text to display on death.
 Kun_GiveReviveMoney = 20 --Give $20 for reviving someone.
 Kun_allowedJobs = {
-	["cadet"] = true,
+	["74ct"] = true,
+	["74trp"] = true,
+	["74cpl"] = true,
+	["74sgt"] = true,
+	["74lt"] = true,
+	["74cpt"] = true,
+	["74mjr"] = true,
+	["74col"] = true,
+	["74co"] = true,
+	["74cc"] = true,
+	["74mc"] = true,
 }
 
 Kun_DefJobName = "Citizen" --Medic Team name
