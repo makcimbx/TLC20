@@ -5,34 +5,18 @@ SI.locations = {} -- Don't touch that.
 
 SI.locations[ "rp_chancellor_tlc_b1" ] = { -- You can change the map name to whatever you want. Make sure to add new positions for every map you have!
 	{ 
-		startpos = Vector( 550, -5500, 3311 ), 
-		endpos = Vector( 550, 5500, 3311 ), 
-		ang = Angle( 90, 90, 0 ),  
+		startpos = Vector( -1876.755981, 294.222473, -277.731079 ), 
+		endpos = Vector( -1883.230591, -859.605591, -277.731079 ), 
+		ang = Angle( 0, 180, 0 ),  
 		speed = 0.1, 
-		text = "This is our map.",
+		text = "Сфотографируйте или запомните.",
 	},
 	{ 
-		startpos = Vector( 248, 640, -150 ),
-		endpos = Vector( 248, 3500, -150 ), 
-		ang = Angle( 0, 105, 0 ), 
+		startpos = Vector( -1873.558350, -865.585999, -282.910065 ),
+		endpos = Vector( -1142.853882, -855.912048, -282.910065 ), 
+		ang = Angle( 0, 90, 0 ), 
 		speed = 0.1, 
-		text = "Please follow the rules." 
-	},
-	{ 
-		startpos = Vector( 2000, 680, -400 ), 
-		endpos = Vector( 2400, 1250, -280 ), 
-		ang = Angle( 0, 45, 0 ), 
-		speed = 0.1,
-		text = "There are lots of jobs.", 
-		ang2 = Angle( 20, -90, 0 ) 
-	},
-	{ 	
-		startpos = Vector( 3000, -1000, -110 ), 
-		endpos = Vector( 3000, -2050, -110 ), 
-		ang = Angle( 0, -45, 0 ), 
-		speed = 0.1,
-		text = "We hope you enjoy your stay.",
-		ang2 = Angle( 0, 45, 0 ),
+		text = "Сфотографируйте или запомните." 
 	},
 }
 
