@@ -32,6 +32,7 @@ command.immunity 	= SERVERGUARD.IMMUNITY.ANY;
 command.bSingleTarget = true;
 
 local allowedjobs = {
+	--["cadet"] = true,
 	[TEAM_501CPL] = true,
 	[TEAM_501SGT] = true,
 	[TEAM_501LT] = true,

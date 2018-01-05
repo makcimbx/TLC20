@@ -145,7 +145,7 @@ TREE.Tier[4][1] = {
 	PointsRequired = 30,
 	Requirements = {[3] = {1,2}},
 	OnPlayerTakeDamage = function(target, attacker, dmg,crit) return 0.1,0 end,
-	OnHealthChanged = function(ply) timer.Simple(0.1,function() local hpp = 1-ply:Health()/ply:GetMaxHealth() ply:UpdateSpeedBonus(hpp)  end) end,
+	OnHealthChanged = function(ply) timer.Simple(0.1,function() local hpp = 1-math.Clamp(ply:Health(),0,ply:GetMaxHealth())/ply:GetMaxHealth() ply:UpdateSpeedBonus(hpp)  end) end,
 	--OnPlayerSpawn = function( ply ) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,

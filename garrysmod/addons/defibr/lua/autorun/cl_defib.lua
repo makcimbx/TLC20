@@ -48,7 +48,7 @@ function Kun_MakeMarker()
 		end
 	end
 	if(Kun_DrawHealth == 1 and ply:Alive()) then
-		if(team.GetName(ply:Team()) == Kun_DefJobName) then
+		if((Kun_allowedJobs[ply:getJobTable().command] or false)) then
 			for k,v in pairs(ents.GetAll()) do
 				if(v != nil and v:IsValid() and v:GetClass() == "prop_ragdoll") then
 					local pos = v:GetPos():ToScreen()

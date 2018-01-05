@@ -14,7 +14,7 @@ rtConfig.Percent = 0
 rtConfig.XPmultip = 1000
 
 rtLang = {}
-timer.Simple(5,function()
+hook.Add("loadCustomDarkRPItems","Ever_loadCustomDarkRPItems",function()
 	rtLang.Legions = {
 		[1] = {name = "501",prof = TEAM_501CT,category = "501st legion"},
 		[2] = {name = "212",prof = TEAM_212CT,category = "212 AB"},

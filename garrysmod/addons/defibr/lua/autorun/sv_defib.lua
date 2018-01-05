@@ -20,6 +20,9 @@ Kun_DeathTime = 10 --Time spent between life and death.
 Kun_DrawHealth = 1 --Set to 0 to disable the white cross shown on death
 Kun_DeathText = "Респавн через. . " --Text to display on death.
 Kun_GiveReviveMoney = 20 --Give $20 for reviving someone.
+Kun_allowedJobs = {
+	["cadet"] = true,
+}
 
 Kun_DefJobName = "Citizen" --Medic Team name
 Kun_AddExtraTime = 1 --If there are medics, make people stay dead for longer?

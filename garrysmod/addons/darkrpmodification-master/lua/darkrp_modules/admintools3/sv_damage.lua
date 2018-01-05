@@ -17,11 +17,13 @@ function meta:UpdateSpeedBonus(persent)
 		self.srsb = math.Clamp(self.srsd * persent,0,self.srsd)
 		self.scwsb = math.Clamp(self.scwsd * persent,0,self.scwsd)
 	else
-		local mm = self.old-persent
-		
-		self.swsb = math.Clamp(self.swsb-self.swsd * mm,0,self.swsd)
-		self.srsb = math.Clamp(self.srsb-self.srsd * mm,0,self.srsd)
-		self.scwsb = math.Clamp(self.scwsb-self.scwsd * mm,0,self.scwsd)
+		if(s<0)then
+			local mm = (self.old or 0)-persent
+			
+			self.swsb = math.Clamp(self.swsb-self.swsd * mm,0,self.swsd)
+			self.srsb = math.Clamp(self.srsb-self.srsd * mm,0,self.srsd)
+			self.scwsb = math.Clamp(self.scwsb-self.scwsd * mm,0,self.scwsd)
+		end
 	end
 	
 	self:SetWalkSpeed(self.swsd + self.sws + (self.swsb or 0))
