@@ -9,7 +9,7 @@ plugin.name = "Change Map"
 plugin.author = "zephruz"
 plugin.version = "1"
 plugin.description = "Adds a visual map/level-change menu for admins."
-plugin.permissions = {}
+plugin.permissions = {"Change Map"}
 
 plugin:IncludeFile("cl_panel.lua", SERVERGUARD.STATE.CLIENT)
 
