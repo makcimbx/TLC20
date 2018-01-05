@@ -10,7 +10,7 @@ function playerAdvert( ply, args )
 		for k,pl in pairs( player.GetAll() ) do
 
 			local senderColor = team.GetColor( ply:Team() )
-			DarkRP.talkToPerson(pl, senderColor, CLASSICADVERT.chatPrefix.." "..ply:Nick(), Color(255, 255, 0), "", ply)
+			DarkRP.talkToPerson(pl, senderColor, CLASSICADVERT.chatPrefix.." "..ply:Nick(), Color(255, 255, 0), args, ply)
 		end
 
 		return ""
