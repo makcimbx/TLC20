@@ -80,7 +80,8 @@ end)
 net.Receive("addnagrada",function(l,pl)
 	if(pl.allgood == true)then
 		local id = tonumber(net.ReadString())
-		pl:changeTeam(DarkRP.getJobByCommand([rtLang.Legions[id].cmd]).team,true,true)
+		local d = DarkRP.getJobByCommand(rtLang.Legions[id].cmd)
+		pl:changeTeam(d.team,true,true)
 		RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", pl:SteamID(), rtLang.Legions[id].prof )
 		pl:addXP(pl.trainXp, true)
 		if(IsValid(pl.sempai))then
