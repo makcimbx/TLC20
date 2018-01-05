@@ -113,7 +113,7 @@ local allowedjobs = {
 }
 
 function command:OnPlayerExecute(ply, target, arguments)
-	if(ply == target or allowedjobs[ply:Team()] != true)then return end
+	if(ply == target or (allowedjobs[ply:Team()] or false) != true)then return end
 	if(game.GetMap()!="rp_chancellor_tlc_b1")then return end
 	if target.train_wait!=nil and target.sempai == nil then 
 		target.pause = true
