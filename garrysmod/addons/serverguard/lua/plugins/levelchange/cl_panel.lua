@@ -69,7 +69,7 @@ function category:Create(base)
 		category.UpdateMapsTimer = CurTime() + ThinkTime
 	end
 end
-plugin:AddSubCategory("Server settings", category)
+plugin:AddSubCategory("Information", category)
 
 function category:Update()
 	if (self.ServerMaps and !self.LoadedMaps) then
