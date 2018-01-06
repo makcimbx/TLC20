@@ -8,6 +8,18 @@ local PANEL = { }
 PANEL.Categories = { }
 PANEL.Child = { }
 
+local function CheckCanJoin(s)
+	if(LocalPlayer():Team() == s.Data.team)then
+		return "Вступил"
+	end
+	if(s.Can)then
+		return "Вступить"
+	else
+		return "Нет доступа"
+	end
+	
+end
+
 function PANEL:Init()
     SW.F4 = self
     self:SetSize(lowRes and 1024 or 1160 , lowres and 512 or 720)
@@ -809,7 +821,7 @@ function JOB:Initialize()
     join:SetText("")
 
     join.Paint = function(s , w , h)
-        if (self.Can) then
+        if (self.Can and LocalPlayer():Team() != self.Data.team) then
             surface.SetDrawColor(s:IsHovered() and Color(235 , 226 , 176) or Color(50 , 140 , 235))
         else
             surface.SetDrawColor(s:IsHovered() and Color(235 , 100 , 50) or Color(100 , 0 , 0))
@@ -818,8 +830,8 @@ function JOB:Initialize()
         surface.DrawRect(0 , 0 , w , h)
         surface.SetDrawColor(Color(25 , 25 , 25))
         surface.DrawRect(2 , 2 , w - 4 , h - 4)
-        draw.SimpleText(self.Can and (LocalPlayer():Team() == self.Data.team and "Joined" or "Join") or "Not Allowed" , "sw_ui_18b" , w / 2 , h / 2 , s:IsHovered() and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER)
-        draw.SimpleText(self.Can and (LocalPlayer():Team() == self.Data.team and "Joined" or "Join") or "Not Allowed" , "sw_ui_18" , w / 2 , h / 2 , s:IsHovered() and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER)
+        draw.SimpleText(CheckCanJoin(self) , "sw_ui_18b" , w / 2 , h / 2 , s:IsHovered() and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER)
+        draw.SimpleText(CheckCanJoin(self) , "sw_ui_18" , w / 2 , h / 2 , s:IsHovered() and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER)
     end
 
     join.DoClick = fn.Compose{ function() end , fn.Partial(RunConsoleCommand , "darkrp" , self.Data.command) }
@@ -1234,11 +1246,11 @@ function JOB:Paint(w , h)
             SW.F4.JobInfo.mk = markup.Parse("<font=sw_ui_14><colour=100, 255, 10>Description:\n</colour><colour=255, 255, 255, 50>" .. self.Data.description .. "</colour></font>" , 244)
         end
     end
-
+	
     surface.SetDrawColor(25 , 140 , 200 , 10)
     surface.DrawRect(8 , h - 1 , w - 12 , 1)
-    draw.SimpleText((self.Selected and "> " or "") .. self.Job , "sw_ui_24b" , 72 , 16 , self.Selected and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_LEFT , TEXT_ALIGN_CENTER)
-    draw.SimpleText((self.Selected and "> " or "") .. self.Job , "sw_ui_24" , 72 , 16 , self.Selected and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_LEFT , TEXT_ALIGN_CENTER)
+    draw.SimpleText((self.Selected and "> " or "") .. "["..self.Data.level.." LVL] " .. self.Job , "sw_ui_24b" , 72 , 16 , self.Selected and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_LEFT , TEXT_ALIGN_CENTER)
+    draw.SimpleText((self.Selected and "> " or "") .. "["..self.Data.level.." LVL] " ..  self.Job , "sw_ui_24" , 72 , 16 , self.Selected and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_LEFT , TEXT_ALIGN_CENTER)
     draw.SimpleText(#team.GetPlayers(self.Data.team) .. " Players" , "sw_ui_18" , w - 8 , 6 , self.Selected and Color(235 , 226 , 176 , (self:IsHovered() or self.Join:IsHovered()) and 255 or 25) or Color(176 , 226 , 235 , (self:IsHovered() or self.Join:IsHovered()) and 255 or 25) , TEXT_ALIGN_RIGHT , TEXT_ALIGN_TOP)
     surface.SetDrawColor(255 , 255 , 255 , 40)
     surface.DrawRect(72 , 28 , w - 78 , 1)
@@ -1310,7 +1322,7 @@ function JOB:Initialize()
     join:SetText("")
 
     join.Paint = function(s , w , h)
-        if (self.Can) then
+        if (self.Can and LocalPlayer():Team() != self.Data.team) then
             surface.SetDrawColor(s:IsHovered() and Color(235 , 226 , 176) or Color(50 , 140 , 235))
         else
             surface.SetDrawColor(s:IsHovered() and Color(235 , 100 , 50) or Color(100 , 0 , 0))
@@ -1319,8 +1331,8 @@ function JOB:Initialize()
         surface.DrawRect(0 , 0 , w , h)
         surface.SetDrawColor(Color(25 , 25 , 25))
         surface.DrawRect(2 , 2 , w - 4 , h - 4)
-        draw.SimpleText(self.Can and (LocalPlayer():Team() == self.Data.team and "Joined" or "Join") or "Not Allowed" , "sw_ui_18b" , w / 2 , h / 2 , s:IsHovered() and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER)
-        draw.SimpleText(self.Can and (LocalPlayer():Team() == self.Data.team and "Joined" or "Join") or "Not Allowed" , "sw_ui_18" , w / 2 , h / 2 , s:IsHovered() and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER)
+        draw.SimpleText(CheckCanJoin(self) , "sw_ui_18b" , w / 2 , h / 2 , s:IsHovered() and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER)
+        draw.SimpleText(CheckCanJoin(self) , "sw_ui_18" , w / 2 , h / 2 , s:IsHovered() and Color(235 , 226 , 176) or Color(176 , 226 , 235) , TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER)
     end
 
     join.DoClick = fn.Compose{ function() end , fn.Partial(RunConsoleCommand , "darkrp" , self.Data.command) }
