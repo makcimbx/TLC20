@@ -24,7 +24,15 @@ timer.Create( "TrainPlayerCheck2", 40, 0,function()
 	if(p!=0)then
 		local i = "игроков"
 		local i2 = "ждут"
-		if(p==1)then i="игрок" i2 = "ждёт" else if(p>1 and not #TrainPlayer>4)then i = "игрока" i2 = "ждёт" end end
+		if(p==1)then 
+			i="игрок" 
+			i2 = "ждёт" 
+		else 
+			if(p>1 and not (#TrainPlayer>4))then
+				i = "игрока" 
+				i2 = "ждёт" 
+			end 
+		end
 		serverguard.Notify(nil, SERVERGUARD.NOTIFY.WHITE, "[TRAIN] " , SERVERGUARD.NOTIFY.RED, p.."", SERVERGUARD.NOTIFY.WHITE, " "..i.." "..i2.." обучения");
 	end
 end)
@@ -53,7 +61,12 @@ net.Receive("gettrain",function(len,ply)
 	local d = net.ReadBool()
 	
 	if(d == true)then
-		table.RemoveByValue( TrainPlayer, ply )
+		for k,v in pairs(TrainPlayer)do
+			if(v.ply==ply)then
+				table.remove( TrainPlayer, k )
+				break
+			end
+		end
 		ply.train_wait=nil
 		ply:SendLua("StopTTimer()")
 		ply:SetNWBool( "train_wait", false )

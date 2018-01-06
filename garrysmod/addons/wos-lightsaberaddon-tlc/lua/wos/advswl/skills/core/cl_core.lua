@@ -267,7 +267,7 @@ function wOS:OpenSkillTreeMenu()
 		draw.SimpleText( "Уровень Войны: " .. level, "wOS.TitleFont", padx, hh - pady, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM )		
 		draw.SimpleText( "Скилл поинты: " .. LocalPlayer():GetNW2Int( "wOS.SkillPoints", 0 ), "wOS.TitleFont", ww - padx, hh - pady, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )				
 		draw.SimpleText( "Главная ветка: " .. LocalPlayer():GetNWString( "curTree", "*" ), "wOS.TitleFont", ww - padx, hh - 2.5*pady, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )	
-		draw.SimpleText( "Очки сброса: " .. LocalPlayer():GetNWString( "resetPoints", "0" ), "wOS.TitleFont", padx, hh - 2.5* pady, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM )
+		draw.SimpleText( "Очки сброса: " .. LocalPlayer():GetNW2Int( "resetPoints", 0 ), "wOS.TitleFont", padx, hh - 2.5* pady, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM )
 		--self:SetNWString("resetPoints",self.resetPoints)
 		--self:SetNWString("curTree",self.maintree)	
 	end

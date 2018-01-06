@@ -55,7 +55,7 @@ end
 function meta:addResetPoints(points)
 	self:SetPData("resetPoints",self.resetPoints+points)
 	self.resetPoints = self.resetPoints+points
-	self:SetNWString("resetPoints",self.resetPoints.."")
+	self:SetNW2Int("resetPoints",self.resetPoints)
 end
 
 function meta:checkResetPoints()
@@ -206,11 +206,10 @@ local function spawn3( ply )
 	ply:SetEyeAngles( Angle(59.736351, 148.419388, 0.000000) )
 	ply.maintree = ply:GetPData("curTree","*") 
 	ply.resetPoints = tonumber(ply:GetPData("resetPoints","1"))
-	ply:SetNWString("resetPoints",ply.resetPoints.."")
+	ply:SetNW2Int("resetPoints",ply.resetPoints)
 	ply:SetNWString("curTree",ply.maintree)
 	ply:SetMaxArmor(100)
 	CheckSpawnSkills(ply)
-	
 end
 hook.Add( "PlayerInitialSpawn", "EverSuper_DalarinPidorPlayerInitialSpawn", spawn3 )
 
