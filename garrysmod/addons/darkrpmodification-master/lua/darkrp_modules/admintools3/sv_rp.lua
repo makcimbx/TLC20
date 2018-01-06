@@ -3,19 +3,16 @@ local function makesomedo(ply, args)
         DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", "argument", ""))
         return ""
     end
+	
+	local babycol = team.GetColor(ply:Team())
 
     local DoSay = function(text)
-        if text == "" then
-            DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", "argument", ""))
-            return ""
-        end
-        if GAMEMODE.Config.alltalk then
-            for _, target in pairs(player.GetAll()) do
-                DarkRP.talkToPerson(target, Color(255,255,0), ply:Nick().." "..text)
-            end
-        else
-            DarkRP.talkToRange(ply, "(("..ply:Nick()..")) "..text, "", 250,Color(255,255,0))
-        end
+		local ents = ents.FindInSphere(ply:EyePos(), 250)
+        for k, v in pairs(ents) do
+			if v:IsPlayer() then
+				serverguard.Notify(v, babycol, ply:GetName(), Color(255, 255, 0),  args);
+			end
+		end
     end
     return args, DoSay
 end
@@ -35,18 +32,15 @@ local function makesometry(ply, args)
 		col = Color(0,255,0)
 	end
 	
+	local babycol = team.GetColor(ply:Team())
+	
     local DoSay = function(text)
-        if text == "" then
-            DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", "argument", ""))
-            return ""
-        end
-        if GAMEMODE.Config.alltalk then
-            for _, target in pairs(player.GetAll()) do
-                DarkRP.talkToPerson(target, col, ply:Nick().." "..text.." "..t)
-            end
-        else
-            DarkRP.talkToRange(ply, ply:Nick().." "..text.." "..t, "", 250,col)
-        end
+		local ents = ents.FindInSphere(ply:EyePos(), 250)
+        for k, v in pairs(ents) do
+			if v:IsPlayer() then
+				serverguard.Notify(v, babycol, ply:GetName(), Color(255,255,255), " "..text.." ",col,t);
+			end
+		end
     end
     return args, DoSay
 end
@@ -59,17 +53,12 @@ local function makesomeb(ply, args)
     end
 
     local DoSay = function(text)
-        if text == "" then
-            DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", "argument", ""))
-            return ""
-        end
-        if GAMEMODE.Config.alltalk then
-            for _, target in pairs(player.GetAll()) do
-                DarkRP.talkToPerson(target, Color(128, 128, 128), ply:Nick().." (( "..text.." ))")
-            end
-        else
-            DarkRP.talkToRange(ply, ply:Nick().." (( "..text.." ))", "", 250,Color(128, 128, 128))
-        end
+		local ents = ents.FindInSphere(ply:EyePos(), 250)
+        for k, v in pairs(ents) do
+			if v:IsPlayer() then
+				serverguard.Notify(v, Color(128, 128, 128), ply:GetName(), " (( ", args, " )) ");
+			end
+		end
     end
     return args, DoSay
 end

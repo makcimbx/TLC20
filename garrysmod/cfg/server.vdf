@@ -230,7 +230,7 @@
 	"soundlist_usedefaultsounds"		"0"
 	"chess_wagers"		"1"
 	"chess_darkrp_wager"		"1"
-	"chess_debug"		"0"
+	"chess_debug"		"1"
 	"talkicon_computablecolor"		"1"
 	"talkicon_showtextchat"		"1"
 	"talkicon_ignoreteamchat"		"1"

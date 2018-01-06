@@ -27,12 +27,12 @@ ENT.Models = {
 	["table"] = (UseHL2Model and Model( "models/props_c17/furnituretable001a.mdl" ) or Model("models/cires992/props4/bar_table_02.mdl")),
 	["hl2table"] = Model( "models/props_c17/furnituretable001a.mdl" ),
 	
-	["BlackPawn"] = Model("models/kriegsyntax/starwars/stormtrooper.mdl"),						["WhitePawn"] = Model("models/player/smitty/bf2_reg/sm_212th_sergeant/sm_212th_sergeant.mdl"),
-	["BlackRook"] = Model("models/kriegsyntax/starwars/shadwscouttrooper.mdl"),					["WhiteRook"] = Model("models/player/smitty/bf2_reg/sm_104th_sergeant/sm_104th_sergeant.mdl"),	
+	["BlackPawn"] = Model("models/player/ven/bf2_reg/91st/bf291.mdl"),						["WhitePawn"] = Model("models/player/ven/bf2_reg/212th/bf2212.mdl"),--models/gonzo/helmetlessclone/helmetlessclone.mdl
+	["BlackRook"] = Model("models/kriegsyntax/starwars/shadwscouttrooper.mdl"),					["WhiteRook"] = Model("models/player/ven/bf2_reg/104th/bf2104.mdl"),	
 	["BlackKnight"] = Model("models/player/darth_revan_blood.mdl"),								["WhiteKnight"] = Model("models/grealms/characters/jedibattlelord/jedibattlelord.mdl"),			
-	["BlackBishop"] = Model("models/player/hydro/clone_officer/clone_officer_playermodel.mdl"),	["WhiteBishop"] = Model("models/player/swtor/arsenic/templeguard/templeguard.mdl"),				
+	["BlackBishop"] = Model("models/player/ven/bf2_reg/91st/bf291.mdl"),	["WhiteBishop"] = Model("models/player/light_revan.mdl"),				
 	["BlackQueen"] = Model("models/jellik/asajj/asajj.mdl"),									["WhiteQueen"] = Model("models/tfa/comm/gg/pm_sw_ahsoka_v2.mdl"),								
-	["BlackKing"] = Model("models/jazzmcfly/jka/darth_maul/jka_maul.mdl"),						["WhiteKing"] = Model("models/tfa/comm/gg/pm_sw_anakin_v2.mdl"),								
+	["BlackKing"] = Model("models/jazzmcfly/jka/darth_maul/jka_maul.mdl"),						["WhiteKing"] = Model("models/tfa/comm/pm_sw_anakin_skywalker.mdl"),								
 	
 	["dama"] = Model("models/props_phx/games/chess/white_dama.mdl"),
 }
@@ -55,10 +55,10 @@ ENT.WeaponModels = {
 	["BlackKing"] = "models/sgg/starwars/weapons/w_maul_saber_half.mdl",["WhiteKing"] = "models/sgg/starwars/weapons/w_anakin_ep2_saber.mdl",
 }
 ENT.WeaponOffset = {
-	["BlackPawn"] = {pos = Vector(0.3,0.1,0.13),ang = Angle(70,35,20),size = 0.1},	["WhitePawn"] = {pos = Vector(0.5,0.1,0.13),ang = Angle(0,-90,0),size = 0.05},
+	["BlackPawn"] = {pos = Vector(0.03,0,-0.1),ang = Angle(60,45,35),size = 0.1},	["WhitePawn"] = {pos = Vector(0.5,0.1,0.13),ang = Angle(0,-90,0),size = 0.05},
 	["BlackRook"] = {pos = Vector(0.75,0.09,-0.04),ang = Angle(0,90,0),size = 0.07},	["WhiteRook"] = {pos = Vector(0.5,0.09,-0.34),ang = Angle(0,0,0),size = 0.06},
 	["BlackKnight"] = {pos = Vector(0.3,0.1,0.4),ang = Angle(45,0,0),size = 0.06},	["WhiteKnight"] = {pos = Vector(0.1,0.1,-0.6),ang = Angle(135,0,0),size = 0.06},
-	["BlackBishop"] = {pos = Vector(0.04,-0.1,-0.48),ang = Angle(0,180,0),size = 0.055},	["WhiteBishop"] = {pos = Vector(0.1,0.1,-0.6),ang = Angle(135,0,0),size = 0.06},
+	["BlackBishop"] = {pos = Vector(0.5,0.05,-0.3),ang = Angle(0,180,0),size = 0.055},	["WhiteBishop"] = {pos = Vector(0.1,0.1,-0.6),ang = Angle(135,0,0),size = 0.06},
 	["BlackQueen"] = {pos = Vector(0.1,0.1,-0.4),ang = Angle(45,0,0),size = 0.06},	["WhiteQueen"] = {pos = Vector(0.13,0.15,-0.3),ang = Angle(135,0,0),size = 0.06},
 	["BlackKing"] = {pos = Vector(0.1,0,-0.3),ang = Angle(45,0,0),size = 0.06},	["WhiteKing"] = {pos = Vector(0.06,0.05,-0.3),ang = Angle(135,0,0),size = 0.06},
 }

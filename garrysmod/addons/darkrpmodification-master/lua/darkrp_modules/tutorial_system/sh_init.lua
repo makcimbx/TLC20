@@ -27,7 +27,6 @@ command = {};
 command.help		= "";
 command.command 	= "offertrain";
 command.arguments	= {"player"};
-command.permissions	= "Offertrain";
 command.immunity 	= SERVERGUARD.IMMUNITY.ANY;
 command.bSingleTarget = true;
 
@@ -139,7 +138,6 @@ command = {};
 command.help		= "";
 command.command 	= "offertest";
 command.arguments	= {"player"};
-command.permissions	= "Offertest";
 command.immunity 	= SERVERGUARD.IMMUNITY.ANY;
 command.bSingleTarget = true;
 
