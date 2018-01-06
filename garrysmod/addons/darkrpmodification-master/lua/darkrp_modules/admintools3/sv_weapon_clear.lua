@@ -5,3 +5,9 @@ function OnNPCKilled(npc, attacker, inflictor)
 	end
 end
 hook.Add("OnNPCKilled","Ever_OnNPCKilled",OnNPCKilled)
+
+local meta = FindMetaTable("Player")
+
+function meta:isArrested()
+	return false
+end
