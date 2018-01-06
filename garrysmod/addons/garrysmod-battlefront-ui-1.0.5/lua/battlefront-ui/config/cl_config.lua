@@ -284,7 +284,7 @@ bfUI.registerElement( "СЕРВЕРА", {
 	servers = {
 		[ "Основной сервер" ] = {
 			icon = Material( "bfui/server_icon.png" ),
-			ip = "89.34.97.159",
+			ip = "195.62.52.237:27015",
 			desc = "Наш сервер периода войн клонов.",
 
 			joinText = "ПРИСОЕДИНИТЬСЯ"
@@ -292,7 +292,7 @@ bfUI.registerElement( "СЕРВЕРА", {
 		
 		[ "Ивентовый сервер" ] = {
 			icon = Material( "bfui/server_icon.png" ),
-			ip = "89.34.97.159",
+			ip = "195.62.52.237:27016;password starlinesucks",
 			desc = "Наш ивентовый сервер",
 
 			joinText = "ПРИСОЕДИНИТЬСЯ"
