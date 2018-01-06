@@ -226,7 +226,7 @@ net.Receive("questions", function()
 	end	]]--
 end)
 
-local maxplys = 1000--5
+local maxplys = 5--5
 
 function Legion()
 	
