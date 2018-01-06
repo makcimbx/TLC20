@@ -55,7 +55,7 @@ net.Receive("gettrain",function(len,ply)
 	if(d == true)then
 		table.RemoveByValue( TrainPlayer, ply )
 		ply.train_wait=nil
-		target:SendLua("StopTTimer()")
+		ply:SendLua("StopTTimer()")
 		ply:SetNWBool( "train_wait", false )
 		ply.sempai = ply.presempai
 		ply:SetNWEntity( "sempai", ply.presempai )
@@ -64,7 +64,7 @@ net.Receive("gettrain",function(len,ply)
 		serverguard.Notify(ply.presempai, SERVERGUARD.NOTIFY.RED,ply:Name(),SERVERGUARD.NOTIFY.RED," отклонил предложение!");
 		ply.pause = false
 		ply.presempai = nil
-		target:SendLua("UnPauseTTimer()")
+		ply:SendLua("UnPauseTTimer()")
 	end
 end)
 
