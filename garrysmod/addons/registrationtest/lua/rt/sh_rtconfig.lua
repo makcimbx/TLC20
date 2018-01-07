@@ -16,14 +16,14 @@ rtConfig.XPmultip = 1000
 rtLang = {}
 hook.Add("loadCustomDarkRPItems","Ever_loadCustomDarkRPItems",function()
 	rtLang.Legions = {
-		[1] = {name = "501",prof = "501-й Клон Солдат",cmd = "501ct",category = "501st legion"},
-		[2] = {name = "212",prof = "212-й Клон Солдат",cmd = "212ct",category = "212 AB"},
-		[3] = {name = "41",prof = "41-й Клон Солдат",cmd = "41ct",category = "41st legion"},
-		[4] = {name = "91",prof = "91-й Клон Солдат",cmd = "91ct",category = "91st Recon Corps"},
-		[5] = {name = "74",prof = "74-й Клон Солдат",cmd = "74ct",category = "74th medical corps"},
-		[6] = {name = "EOD",prof = "EOD Клон Солдат",cmd = "eodct",category = "EOD"},
-		[7] = {name = "327",prof = "327-й Клон Солдат",cmd = "327ct",category = "327st"},
-		[8] = {name = "104",prof = "104-й Клон Солдат",cmd = "104ct",category = "104st"},
+		{name = "501",prof = "501-й Клон Солдат",cmd = "501ct",category = "501st legion"},
+		{name = "212",prof = "212-й Клон Солдат",cmd = "212ct",category = "212 AB"},
+		{name = "41",prof = "41-й Клон Солдат",cmd = "41ct",category = "41st legion"},
+		{name = "91",prof = "91-й Клон Солдат",cmd = "91ct",category = "91st Recon Corps"},
+		--{name = "74",prof = "74-й Клон Солдат",cmd = "74ct",category = "74th medical corps"},
+		{name = "EOD",prof = "EOD Клон Солдат",cmd = "eodct",category = "EOD"},
+		{name = "327",prof = "327-й Клон Солдат",cmd = "327ct",category = "327st"},
+		{name = "104",prof = "104-й Клон Солдат",cmd = "104ct",category = "104st"},
 	}
 end)
 
