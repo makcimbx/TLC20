@@ -10,7 +10,7 @@ local function makesomedo(ply, args)
 		local ents = ents.FindInSphere(ply:EyePos(), 250)
         for k, v in pairs(ents) do
 			if v:IsPlayer() then
-				serverguard.Notify(v, babycol, ply:GetName(), Color(255, 255, 0),  args);
+				serverguard.Notify(v, babycol, ply:GetName().." ",  args);
 			end
 		end
     end
