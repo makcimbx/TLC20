@@ -65,11 +65,12 @@ end
 DarkRP.defineChatCommand("b", makesomeb)
 
 local function roll(ply, args)
+	local rnd = math.random(0,100)
     local DoSay = function(text)
 		local ents = ents.FindInSphere(ply:EyePos(), 250)
         for k, v in pairs(ents) do
 			if v:IsPlayer() then
-				serverguard.Notify(v, SERVERGUARD.NOTIFY.GREEN, ply:GetName(), SERVERGUARD.NOTIFY.WHITE, " выпало ", SERVERGUARD.NOTIFY.RED, math.random(0,100).."");
+				serverguard.Notify(v, SERVERGUARD.NOTIFY.GREEN, ply:GetName(), SERVERGUARD.NOTIFY.WHITE, " выпало ", SERVERGUARD.NOTIFY.RED, rnd.."");
 			end
 		end
     end
