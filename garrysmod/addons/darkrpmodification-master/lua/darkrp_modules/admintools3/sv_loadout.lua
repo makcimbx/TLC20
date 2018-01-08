@@ -29,6 +29,13 @@ function GM:PlayerLoadout(ply)
 		if(v!="-1")then
 			ply:Give(v)
 		end
+	end		
+	local jobTable = ply:getJobTable()
+	
+	for k,v in pairs(jobTable.weapons or {}) do
+		if(v == "clone_card_c3nevy" or v == "clone_card_c5" or v == "clone_card_c6" or v == "clone_card_c7" or v == "clone_card_c8")then
+			ply:Give(v,true)
+		end
 	end
 	
     ply:SwitchToDefaultWeapon()
