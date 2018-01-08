@@ -94,8 +94,10 @@ end
 
 function meta:SetCurrentSkillHooks()
 
+	local tbl = self.SkillTree or {}
+
 	self.PlayerSkillSpawns = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -113,7 +115,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnPlayerSpawn then
 					self.PlayerSkillSpawns[ #self.PlayerSkillSpawns + 1 ] = data.OnPlayerSpawn
 				end
@@ -122,7 +124,7 @@ function meta:SetCurrentSkillHooks()
 	end
 	
 	self.PlayerSkillDeaths = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -140,7 +142,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnPlayerDeath then
 					self.PlayerSkillDeaths[ #self.PlayerSkillDeaths + 1 ] = data.OnPlayerDeath
 				end
@@ -151,7 +153,7 @@ function meta:SetCurrentSkillHooks()
 	
 	
 	self.PlayerTakeDamage = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -169,7 +171,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnPlayerTakeDamage then
 					self.PlayerTakeDamage[ #self.PlayerTakeDamage + 1 ] = data.OnPlayerTakeDamage
 				end
@@ -178,7 +180,7 @@ function meta:SetCurrentSkillHooks()
 	end
 	
 	self.PlayerMakeDamage = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -196,7 +198,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnPlayerMakeDamage then
 					self.PlayerMakeDamage[ #self.PlayerMakeDamage + 1 ] = data.OnPlayerMakeDamage
 				end
@@ -205,7 +207,7 @@ function meta:SetCurrentSkillHooks()
 	end
 	
 	self.PlayerPostMakeDamage = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -223,7 +225,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnPlayerPostMakeDamage then
 					self.PlayerPostMakeDamage[ #self.PlayerPostMakeDamage + 1 ] = data.OnPlayerPostMakeDamage
 				end
@@ -232,7 +234,7 @@ function meta:SetCurrentSkillHooks()
 	end
 	
 	self.HealthChange = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -250,7 +252,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnHealthChanged then
 					self.HealthChange[ #self.HealthChange + 1 ] = data.OnHealthChanged
 				end
@@ -260,7 +262,7 @@ function meta:SetCurrentSkillHooks()
 	
 	
 	self.PlayerSaberDeploys = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -278,7 +280,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnSaberDeploy then
 					self.PlayerSaberDeploys[ #self.PlayerSaberDeploys + 1 ] = data.OnSaberDeploy
 				end
@@ -287,7 +289,7 @@ function meta:SetCurrentSkillHooks()
 	end
 	
 	self.PlayerSaberSlashes = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -305,7 +307,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnSaberDamaged then
 					self.PlayerSaberSlashes[ #self.PlayerSaberSlashes + 1 ] = data.OnSaberDamaged
 				end
@@ -314,7 +316,7 @@ function meta:SetCurrentSkillHooks()
 	end
 	
 	self.PlayerSaberBlocks = {}
-	for name, _ in pairs( self.SkillTree ) do
+	for name, _ in pairs( tbl ) do
 		local sdata = wOS.SkillTrees[ name ]
 		if sdata then
 			if sdata.JobRestricted then
@@ -332,7 +334,7 @@ function meta:SetCurrentSkillHooks()
 					continue
 				end
 			end
-			for skill, data in pairs( self.SkillTree[ name ] ) do
+			for skill, data in pairs( tbl[ name ] ) do
 				if data.OnSaberBlocked then
 					self.PlayerSaberBlocks[ #self.PlayerSaberBlocks + 1 ] = data.OnSaberBlocked
 				end
