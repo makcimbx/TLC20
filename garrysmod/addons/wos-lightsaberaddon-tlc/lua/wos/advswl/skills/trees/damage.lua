@@ -77,7 +77,7 @@ TREE.Tier[1][2] = {
 	Icon = "wos/skilltrees/ravager/emergent.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerMakeDamage = function(target, attacker, dmg,crit) return 0.05,crit*0.05 end,
+	OnPlayerMakeDamage = function(target, attacker, dmg,crit) return 0.05,0.05 end,
 	--OnPlayerSpawn = function( ply ) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
@@ -211,7 +211,7 @@ TREE.Tier[6][2] = {
 	Icon = "wos/skilltrees/ravager/torment.png",
 	PointsRequired = 20,
 	Requirements = {[4] = {1}},
-	OnPlayerPostMakeDamage = function(target, attacker, dmg,crit) attacker:SetHealth(math.Clamp( attacker:Health()+dmg*0.005, 0, attacker:GetMaxHealth() )) end,
+	OnPlayerPostMakeDamage = function(target, attacker, dmg,crit) attacker:SetHealth(math.Clamp( attacker:Health()+0.005*dmg, 0, attacker:GetMaxHealth() )) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
