@@ -2151,6 +2151,9 @@ if SERVER then
 			print( saved and "Saved chess board positions" or "Save failed!" )
 		end
 	end)
+	hook.Add( "PostCleanupMap", "Chess PostCleanupMap LoadBoards", function()
+		SaveSystem:Load()
+	end)
 end
 
 hook.Add( "canPocket", "Chess DarkRP PreventPocket", function( ply, ent )
