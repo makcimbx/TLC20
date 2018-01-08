@@ -50,9 +50,9 @@ SWEP.Secondary.Automatic = true
 SWEP.Secondary.Ammo = "none"
 
 ------------------------------------------------------------THINGS YOU WILL EDIT ARE BELOW HERE-------------------------------------------------------------------------
-SWEP.PrintName = "Dual Lightsaber (Unstable)" --Name of the lightsaber
-SWEP.Class = "weapon_lightsaber_unstable_dual_echo" --The file name of this swep
-SWEP.DualWielded = true --Should this be a dual wielded saber?
+SWEP.PrintName = "Lightsaber" --Name of the lightsaber
+SWEP.Class = "weapon_lightsaber_lightsaber_echo" --The file name of this swep
+SWEP.DualWielded = false --Should this be a dual wielded saber?
 SWEP.CanMoveWhileAttacking = true -- Can the user move while attacking
 SWEP.SaberDamage = 500 --How much damage the saber does when it's being swung
 SWEP.SaberBurnDamage = 25 -- How much damage the saber does when it's colliding with someone ( coming in contact with laser )
@@ -99,13 +99,7 @@ SWEP.UseSecDarkInner = false
 SWEP.CustomSettings = 
 {
 	Corrupted = false,
-	Unstable = true,
-}
-
-SWEP.SecCustomSettings = 
-{
-	Corrupted = false,
-	Unstable = true,
+	Unstable = false,
 }
 
 -----------------------------------------------------------END OF EDIT----------------------------------------------------------------
@@ -113,10 +107,8 @@ SWEP.SecCustomSettings =
 
 if !SWEP.DualWielded then
 	SWEP.Base = "wos_adv_single_lightsaber_base"
-	DEFINE_BASECLASS( "wos_adv_single_lightsaber_base" )
 else
 	SWEP.Base = "wos_adv_dual_lightsaber_base"
-	DEFINE_BASECLASS( "wos_adv_dual_lightsaber_base" )
 end
 
 

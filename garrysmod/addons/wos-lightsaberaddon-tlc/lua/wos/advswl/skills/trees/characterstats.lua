@@ -42,11 +42,6 @@ TREE.MaxTiers = 6
 --Add user groups that are allowed to use this tree. If anyone is allowed, set this to FALSE ( TREE.UserGroups = false )
 TREE.UserGroups = false
 
---TREE.TeamAllowed = {
---	[TEAM_***] = true, 
---	
---}
-
 TREE.Tier = {}
 
 --Tier format is as follows:
@@ -89,11 +84,11 @@ TREE.Tier[1][2] = {
 
 TREE.Tier[1][3] = {
 	Name = "Speed 1",
-	Description = "Adds 15 Speed to your current Speed",
+	Description = "Adds 5 Speed to your current Speed",
 	Icon = "wos/skilltrees/characterstats/speed.png",
 	PointsRequired = 1,
 	Requirements = {},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 5) ply:Ssrs(ply:Gsrs() + 5) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -129,13 +124,13 @@ TREE.Tier[2][2] = {
 
 TREE.Tier[2][3] = {
 	Name = "Speed 2",
-	Description = "Adds 15 Speed to your current Speed",
+	Description = "Adds 10 Speed to your current Speed",
 	Icon = "wos/skilltrees/characterstats/speed.png",
 	PointsRequired = 2,
 	Requirements = {
 	[1] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 10) ply:Ssrs(ply:Gsrs() + 10) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -171,13 +166,13 @@ TREE.Tier[3][2] = {
 
 TREE.Tier[3][3] = {
 	Name = "Speed 3",
-	Description = "Adds 15 Speed to your current Speed",
+	Description = "Adds 10 Speed to your current Speed",
 	Icon = "wos/skilltrees/characterstats/speed.png",
 	PointsRequired = 3,
 	Requirements = {
 	[2] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 10) ply:Ssrs(ply:Gsrs() + 10) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -213,13 +208,13 @@ TREE.Tier[4][2] = {
 
 TREE.Tier[4][3] = {
 	Name = "Speed 4",
-	Description = "Adds 15 Speed to your current Speed",
+	Description = "Adds 10 Speed to your current Speed",
 	Icon = "wos/skilltrees/characterstats/speed.png",
 	PointsRequired = 4,
 	Requirements = {
 	[3] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 10) ply:Ssrs(ply:Gsrs() + 10) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -255,13 +250,13 @@ TREE.Tier[5][2] = {
  
 TREE.Tier[5][3] = { 
 	Name = "Speed 5",
-	Description = "Adds 40 Speed to your current Speed",
+	Description = "Adds 15 Speed to your current Speed",
 	Icon = "wos/skilltrees/characterstats/speed.png",
 	PointsRequired = 5,
 	Requirements = {
 	[4] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 40) ply:Ssrs(ply:Gsrs() + 40) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 15) ply:Ssrs(ply:Gsrs() + 15) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }
@@ -298,13 +293,13 @@ TREE.Tier[6][2] = {
 
 TREE.Tier[6][3] = {
 	Name = "Speed 6",
-	Description = "Adds 75 Speed to your current Speed",
+	Description = "Adds 20 Speed to your current Speed",
 	Icon = "wos/skilltrees/characterstats/speed.png",
 	PointsRequired = 6,
 	Requirements = {
 	[5] = { 3 },
 	},
-	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 75) ply:Ssrs(ply:Gsrs() + 75) end) end,
+	OnPlayerSpawn = function( ply ) timer.Simple(0.1,function() ply:Ssws(ply:Gsws() + 20) ply:Ssrs(ply:Gsrs() + 20) end) end,
 	--OnPlayerDeath = function( ply ) end,
 	--OnSaberDeploy = function( wep ) end,
 }

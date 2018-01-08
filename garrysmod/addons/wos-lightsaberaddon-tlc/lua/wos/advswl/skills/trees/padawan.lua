@@ -26,13 +26,13 @@
 local TREE = {}
 
 --Name of the skill tree
-TREE.Name = "Юнлинг"
+TREE.Name = "Падаван"
 
 --Description of the skill tree
-TREE.Description = "Базовые способности силы, которые должен изучить каждый джедай."
+TREE.Description = ""
 
 --Icon for the skill tree ( Appears in category menu and above the skills )
-TREE.TreeIcon = "wos/skilltrees/forcepowers/forcepowers.png"
+TREE.TreeIcon = "wos/skilltrees/characterstats/characterstats.png"
 
 --What is the background color in the menu for this 
 TREE.BackgroundColor = Color( 255, 0, 0, 25 )
@@ -44,7 +44,6 @@ TREE.MaxTiers = 2
 TREE.UserGroups = false
 
 TREE.TeamAllowed = {
-	["youngling"] = true,
 	["padawan"] = true,
 	["knight"] = true,
 	["Sentinel"] = true,
@@ -88,52 +87,28 @@ TREE.Tier = {}
 
 TREE.Tier[1] = {}
 TREE.Tier[1][1] = {
-	Name = "Meditate",
-	Description = "Медитация.",
-	Icon = "wos/forceicons/meditate.png",
-	PointsRequired = 0,
+	Name = "Прыжок силы",
+	Description = "Используйте силу, что бы прыгать выше и дальше.",
+	Icon = "wos/forceicons/leap.png",
+	PointsRequired = 3,
 	Requirements = {},
 	--OnPlayerSpawn = function( ply ) end,
 	--OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) wep:AddForcePower( "Meditate" ) end,
-}
-
-TREE.Tier[1][2] = {
-	Name = "Форма I: Шии-Чо",
-	Description = "Базовая форма боя, которую должен изучить каждый джедай.",
-	Icon = "wos/skilltrees/forms/defensive.png",
-	PointsRequired = 0,
-	Requirements = {},
-	--OnPlayerSpawn = function( ply ) end,
-	--OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) wep:AddForm( "Shii-Cho", 1 ) end,
+	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Leap" ) end,
 }
 
 TREE.Tier[2] = {}
 TREE.Tier[2][1] = {
-	Name = "Force Push",
-	Description = "Push anyone away from you.",
-	Icon = "wos/forceicons/push.png",
-	PointsRequired = 1,
+	Name = "Рывок",
+	Description = "Используйте силу, что бы сблизится с противником и нанести ему удар.",
+	Icon = "wos/forceicons/charge.png",
+	PointsRequired = 3,
 	Requirements = {
 	[1] = { 1 },
 	},
 	--OnPlayerSpawn = function( ply ) end,
 	--OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Push" ) end,
-}
-
-TREE.Tier[2][2] = {
-	Name = "Force Pull",
-	Description = "Pull anyone towards you.",
-	Icon = "wos/forceicons/pull.png",
-	PointsRequired = 1,
-	Requirements = {
-	[1] = { 1 },
-	},
-	--OnPlayerSpawn = function( ply ) end,
-	--OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) wep:AddForcePower( "Force Pull" ) end,
+	OnSaberDeploy = function( wep ) wep:AddForcePower( "Charge" ) end,
 }
 
 wOS:RegisterSkillTree( TREE )

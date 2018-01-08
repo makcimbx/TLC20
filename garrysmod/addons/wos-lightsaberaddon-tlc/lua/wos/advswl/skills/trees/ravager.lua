@@ -42,6 +42,10 @@ TREE.MaxTiers = 5
 --Add user groups that are allowed to use this tree. If anyone is allowed, set this to FALSE ( TREE.UserGroups = false )
 TREE.UserGroups = false
 
+TREE.TeamAllowed = {
+	["Echo"] = true,
+}
+
 TREE.Tier = {}
 
 --Tier format is as follows:

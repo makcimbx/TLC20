@@ -28,7 +28,7 @@ wOS.ForcePowers:RegisterNewPower({
 		name = "Force Leap",
 		icon = "L",
 		image = "wos/forceicons/leap.png",
-		cooldown = 2,
+		cooldown = 5,
 		manualaim = false,
 		description = "Jump longer and higher. Aim higher to jump higher/further.",
 		action = function( self )
@@ -53,7 +53,7 @@ wOS.ForcePowers:RegisterNewPower({
 			distance = 600,
 			image = "wos/forceicons/charge.png",
 			target = 1,
-			cooldown = 0,
+			cooldown = 2,
 			manualaim = false,
 			description = "Lunge at your enemy",
 			action = function( self )
@@ -196,7 +196,7 @@ wOS.ForcePowers:RegisterNewPower({
 		name = "Cloak",
 		icon = "C",
 		image = "wos/forceicons/cloak.png",
-		cooldown = 0,
+		cooldown = 5,
 		description = "Shrowd yourself with the force for 10 seconds",
 		action = function( self )
 		if ( self:GetForce() < 50 || !self.Owner:IsOnGround() ) then return end
@@ -370,7 +370,7 @@ wOS.ForcePowers:RegisterNewPower({
 		name = "Advanced Cloak",
 		icon = "AC",
 		image = "wos/forceicons/advanced_cloak.png",
-		cooldown = 0,
+		cooldown = 2,
 		manualaim = false,
 		description = "Shrowd yourself with the force for 25 seconds",
 		action = function( self )
