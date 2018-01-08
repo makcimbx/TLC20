@@ -104,7 +104,7 @@ function Kun_DeathThink(ply)
 		ply:Spawn()
 		return true
 	end
-	if(ply.KunDead == nil and ply.Gliding or true == false) then ply:Spawn() end
+	if(ply.KunDead == nil) then ply:Spawn() end
 	return false
 end
 hook.Add( "PlayerDeathThink", "Kun_DeathThink", Kun_DeathThink )
