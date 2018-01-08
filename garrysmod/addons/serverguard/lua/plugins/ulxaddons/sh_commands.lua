@@ -47,19 +47,7 @@ function command:OnPlayerExecute(_, target, arguments)
 	local scale = tonumber(arguments[2])
 	
 	if(scale>0) then
-		target.CLEANUPKITScale = scale
-		target.CLEANUPKITViewOffset = target.CLEANUPKITViewOffset or target:GetViewOffset()
-		target.CLEANUPKITViewOffsetDucked =target.CLEANUPKITViewOffsetDucked or target:GetViewOffsetDucked()
-		
-		target:SetViewOffset(target.CLEANUPKITViewOffset*scale)
-		target:SetViewOffsetDucked(target.CLEANUPKITViewOffsetDucked*scale)
-		target:SetHull(Vector(-16, -16, 0), Vector(16, 16, 72 * scale))
-		target:SetHullDuck(Vector(-16, -16, 0), Vector(16, 16, 36 * scale))
-		target:SetModelScale(scale,0)
-		net.Start("ever_scale")
-			net.WriteEntity(target)
-			net.WriteString(scale)
-		net.Broadcast()
+		target:bestSetSize(scale)
 	end
 
 	return true;
@@ -205,6 +193,7 @@ command = {};
 command.help		= "Add weapon to player loadout.";
 command.command 	= "cuload_add";
 command.arguments	= {"player", "weapon"};
+command.optionalArguments 	= {"restriction_cmd"};
 command.permissions	= "culoadadd";
 command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
 command.aliases		= {"cuload_add"};
@@ -213,8 +202,15 @@ command.bSingleTarget = true;
 function command:OnPlayerExecute(_, target, arguments)
 	local weapon = arguments[2];
 	
+	local tbl = nil
+	if(#arguments>2)then
+		tbl = table.Copy( arguments )
+		table.remove( tbl, 1 )
+		table.remove( tbl, 1 )
+	end
+	
 	if(util.IsValidWeapon(weapon))then
-		local addw = addWeaponToCuLoad(target,weapon)
+		local addw = addWeaponToCuLoad(target,weapon,tbl)
 	
 		if(addw==false)then
 			serverguard.Notify(_, SERVERGUARD.NOTIFY.RED,target:Name(),SERVERGUARD.NOTIFY.WHITE," have ",SERVERGUARD.NOTIFY.RED,weapon,SERVERGUARD.NOTIFY.WHITE," in cuload!");

@@ -25,11 +25,6 @@ function GM:PlayerLoadout(ply)
         ply:Give("weaponchecker")
     end)
 
-	for k,v in pairs(getWeaponsFromCuLoad(ply)) do 
-		if(v!="-1")then
-			ply:Give(v)
-		end
-	end		
 	local jobTable = ply:getJobTable()
 	
 	for k,v in pairs(jobTable.weapons or {}) do
@@ -96,6 +91,29 @@ function BOX_PlayerLoadout(ply)
 	
 		for k,v in pairs(jobTable.weapons or {}) do
 			ply:Give(v,true)
+		end
+		
+		local plycmd = ply:getJobTable().command
+		for k,v in pairs(getWeaponsFromCuLoad(ply)) do 
+			if(v.wep!="-1")then
+				if(v.vtype=="-1" and v.rv=="-1")then
+					ply:Give(v.wep)
+				else
+					if(v.vtype == "table")then
+						local array = string.Split( v.rv, "*" )
+						for k,z in pairs(array)do
+							if(z==plycmd)then
+								ply:Give(v.wep)
+								break
+							end
+						end
+					else
+						if(v.vtype==plycmd)then
+							ply:Give(v.wep)
+						end
+					end
+				end
+			end
 		end
 		ply:SetArmor(ply:GetMaxArmor())--(ply:getJobTable().maxAM or 0) + am)
 	else
@@ -323,4 +341,20 @@ function meta:UpdateSpeeds()
 	self.sdso = self.sds
 	self.sudso = self.suds
 	self.sjpo = self.sjp
+end
+
+function meta:bestSetSize(scale)
+	self.CLEANUPKITScale = scale
+	self.CLEANUPKITViewOffset = self.CLEANUPKITViewOffset or self:GetViewOffset()
+	self.CLEANUPKITViewOffsetDucked = self.CLEANUPKITViewOffsetDucked or self:GetViewOffsetDucked()
+	
+	self:SetViewOffset(self.CLEANUPKITViewOffset*scale)
+	self:SetViewOffsetDucked(self.CLEANUPKITViewOffsetDucked*scale)
+	self:SetHull(Vector(-16, -16, 0), Vector(16, 16, 72 * scale))
+	self:SetHullDuck(Vector(-16, -16, 0), Vector(16, 16, 36 * scale))
+	self:SetModelScale(scale,0)
+	--[[net.Start("ever_scale")
+		net.WriteEntity(target)
+		net.WriteString(scale)
+	net.Broadcast()]]--
 end

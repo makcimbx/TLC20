@@ -121,7 +121,7 @@ function wOS.SkillDatabase:LoadData( ply )
 					local skills = string.Explode( ";", skilldata.CurrentSkills )
 					local flag = false
 					local total = 0
-					if treedata.UserGroups then
+					--[[if treedata.UserGroups then
 						if not table.HasValue( treedata.UserGroups, ply:GetUserGroup() ) then 
 							flag = true
 						end
@@ -130,7 +130,7 @@ function wOS.SkillDatabase:LoadData( ply )
 						if not (treedata.TeamAllowed[ply:getJobTable().command] or false) then
 							flag = true
 						end
-					end
+					end]]--
 					for _, readdata in pairs( skills ) do
 						local data = string.Explode( ",", readdata )
 						local tier = tonumber( data[1] )
@@ -190,7 +190,7 @@ function wOS.SkillDatabase:LoadData( ply )
 				if not treedata then continue end
 				local flag = false
 				local total = 0
-				if treedata.UserGroups then
+				--[[if treedata.UserGroups then
 					if not table.HasValue( treedata.UserGroups, ply:GetUserGroup() ) then 
 						flag = true
 					end
@@ -199,7 +199,7 @@ function wOS.SkillDatabase:LoadData( ply )
 					if not (treedata.TeamAllowed[LocalPlayer():getJobTable().command] or false) then
 						flag = true
 					end
-				end
+				end]]--
 				local readdata = util.JSONToTable( read )
 				for tier, skills in pairs( readdata ) do
 					if not treedata[ tier ] then continue end

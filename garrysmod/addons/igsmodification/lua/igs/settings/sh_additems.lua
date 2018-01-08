@@ -294,19 +294,27 @@ LVL:AddItem(
 ).Global = true
 
 local weaponArray = { 
---{name="LL-30M",price=200,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=21,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая."}, 
-{name="LL-30M",price=200,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=_NAVSEGDA_,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая."}, 
---{name="DC-15AM",price=300,code="tfa_swch_dc15a_alt",model="models/weapons/w_dc15a_neue.mdl",time=21,disc="DC-15AM - Бластерная винтовка компании «БласТех Индастриз». Урон: 80. Скор.Выстр. в мин.: 400RPM. Точность: Высокая."}, 
-{name="DC-15AM",price=300,code="tfa_swch_dc15a_alt",model="models/weapons/w_dc15a_neue.mdl",time=_NAVSEGDA_,disc="DC-15AM - Бластерная винтовка компании «БласТех Индастриз». Урон: 80. Скор.Выстр. в мин.: 400RPM. Точность: Высокая."}, 
---{name="DC-15AMS",price=400,code="tfa_swch_dc15a_shadow",model="models/weapons/w_dc15a_neue2_shadow.mdl",time=21,disc="DC-15AMS - Бластерная винтовка компании «БласТех Индастриз». Урон: 60x2. Скор.Выстр. в мин.: 350RPM. Точность: Высокая."}, 
-{name="DC-15AMS",price=400,code="tfa_swch_dc15a_shadow",model="models/weapons/w_dc15a_neue2_shadow.mdl",time=_NAVSEGDA_,disc="DC-15AMS - Бластерная винтовка компании «БласТех Индастриз». Урон: 60x2. Скор.Выстр. в мин.: 350RPM. Точность: Высокая."}, 
+--{id = "wep1", name="LL-30M",price=200,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=21,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая.",restriction = nil}, 
+{id = "wep2", name="LL-30M",price=200,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=_NAVSEGDA_,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая.",restriction = nil}, 
+--{id = "wep3", name="DC-15AM",price=300,code="tfa_swch_dc15a_alt",model="models/weapons/w_dc15a_neue.mdl",time=21,disc="DC-15AM - Бластерная винтовка компании «БласТех Индастриз». Урон: 80. Скор.Выстр. в мин.: 400RPM. Точность: Высокая.",restriction = nil}, 
+{id = "wep4", name="DC-15AM",price=300,code="tfa_swch_dc15a_alt",model="models/weapons/w_dc15a_neue.mdl",time=_NAVSEGDA_,disc="DC-15AM - Бластерная винтовка компании «БласТех Индастриз». Урон: 80. Скор.Выстр. в мин.: 400RPM. Точность: Высокая.",restriction = nil}, 
+--{id = "wep5", name="DC-15AMS",price=400,code="tfa_swch_dc15a_shadow",model="models/weapons/w_dc15a_neue2_shadow.mdl",time=21,disc="DC-15AMS - Бластерная винтовка компании «БласТех Индастриз». Урон: 60x2. Скор.Выстр. в мин.: 350RPM. Точность: Высокая.",restriction = nil}, 
+{id = "wep6", name="DC-15AMS",price=400,code="tfa_swch_dc15a_shadow",model="models/weapons/w_dc15a_neue2_shadow.mdl",time=_NAVSEGDA_,disc="DC-15AMS - Бластерная винтовка компании «БласТех Индастриз». Урон: 60x2. Скор.Выстр. в мин.: 350RPM. Точность: Высокая.",restriction = nil}, 
+
+{id = "wep7", name="Два световых меча",price=1000,code="weapon_lightsaber_dual_echo",model="models/sgg/starwars/weapons/w_anakin_ep2_saber_hilt.mdl",time=_NAVSEGDA_,disc="Добавляет вам двойные световые мечи. ВНИМАНИЕ, что бы использовать два световых меча, необходима иметь специализацию Защитник/Страж/Джедай боевого назначения.",restriction = {"jedibattlemaster","Sentinel","Guardian"}}, 
+{id = "wep8", name="Два световых меча(Corrupted эффект)",price=1500,code="weapon_lightsaber_corrupted_dual_echo",model="models/sgg/starwars/weapons/w_anakin_ep2_saber_hilt.mdl",time=_NAVSEGDA_,disc="Добавляет вам двойные световые мечи. ВНИМАНИЕ, что бы использовать два световых меча, необходима иметь специализацию Защитник/Страж/Джедай боевого назначения.",restriction = {"jedibattlemaster","Sentinel","Guardian"}}, 
+{id = "wep9", name="Два световых меча(Unstable эффект)",price=1500,code="weapon_lightsaber_corrupted_dual_echo",model="models/sgg/starwars/weapons/w_anakin_ep2_saber_hilt.mdl",time=_NAVSEGDA_,disc="Добавляет вам двойные световые мечи. ВНИМАНИЕ, что бы использовать два световых меча, необходима иметь специализацию Защитник/Страж/Джедай боевого назначения.",restriction = {"jedibattlemaster","Sentinel","Guardian"}}, 
+
+{id = "wep10", name="Световой меч (Corrupted эффект)",price=500,code="weapon_lightsaber_corrupted_echo",model="models/sgg/starwars/weapons/w_anakin_ep2_saber_hilt.mdl",time=_NAVSEGDA_,disc="Добавляет вам меч с эффектом",restriction = {"jedibattlemaster","Sentinel","Guardian"}}, 
+{id = "wep11", name="Световой меч (Unstable эффект) ",price=500,code="weapon_lightsaber_unstable_echo",model="models/sgg/starwars/weapons/w_anakin_ep2_saber_hilt.mdl",time=_NAVSEGDA_,disc="Добавляет вам меч с эффектом",restriction = {"jedibattlemaster","Sentinel","Guardian"}}, 
+
 }
 
 for k,v in pairs(weaponArray)do
-		IGS(v.name,v.code)
+		IGS(v.name,v.id)
 		:SetPrice(v.price)
 		:SetTerm(v.time)
-		:SetOnActivate(function(ply) addWeaponToCuLoad(ply,v.code) end)
+		:SetOnActivate(function(ply) addWeaponToCuLoad(ply,v.code,v.restriction) end)
 		--:SetOnRemove(function(s64) removeWeaponFromCuLoad(ply,v.code) end)
 		:SetCategory("Оружие")
 		:SetIcon(v.model, true) -- true значит, что указана моделька, а не ссылка
@@ -391,7 +399,7 @@ SKILLS:AddItem(
 
 SKILLS:AddItem(
  IGS("5 скиллпоинт", "5skill")
- 	:SetPrice(125)
+ 	:SetPrice(115)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillPoints(1)
@@ -402,7 +410,7 @@ SKILLS:AddItem(
 
 SKILLS:AddItem(
  IGS("10 скиллпоинт", "10skill")
- 	:SetPrice(250)
+ 	:SetPrice(230)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillPoints(1)
@@ -412,7 +420,7 @@ SKILLS:AddItem(
 
 SKILLS:AddItem(
  IGS("50 скиллпоинт", "50skill")
- 	:SetPrice(1250)
+ 	:SetPrice(1210)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillPoints(1)
@@ -422,7 +430,7 @@ SKILLS:AddItem(
 
 RESETSKILLS:AddItem(
  IGS("1 очко сброса", "1skillrestore")
- 	:SetPrice(100)
+ 	:SetPrice(99)
  	:SetTerm(0)
  	:SetOnActivate(function(pl)
 		pl:AddSkillResetPoints(1)

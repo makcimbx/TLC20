@@ -23,7 +23,7 @@ function printCuLoad(ply,target)
 		s = s.."---------------------------------\\n";
 		s = s.."'"..target:Nick().."' cuload list: \\n";
 		for k,v in pairs(tbl)do
-			s = s..k.." - "..v.."\\n";
+			s = s..k.." - "..v.wep.."\\n";
 		end
 		s = s.."---------------------------------\\n";
 		ply:SendLua("MsgC( Color( 255, 0, 0 ),\""..s.."\\n\")") 
@@ -34,17 +34,26 @@ function printCuLoad(ply,target)
 	end
 end
 
-function addWeaponToCuLoad(ply,wep)
+function addWeaponToCuLoad(ply,wep,restriction)
 	local iCuLoad = tonumber(ply:GetPData("iCuLoadNumb","0"))
 	local array = {}
 	for i=1,iCuLoad do 
 		table.insert(array,ply:GetPData("iCuLoad_"..i))
 	end
-	
+
 	local i = table.KeyFromValue(array,wep)
 	if(i==nil)then
 		ply:SetPData("iCuLoad_"..iCuLoad+1,wep)
 		ply:SetPData("iCuLoadNumb",iCuLoad+1)
+		if(restriction!=nil)then
+			if(type(restriction)=="table")then
+				ply:SetPData("iCuLoad_R_Type"..iCuLoad+1,"table")
+				ply:SetPData("iCuLoad_R_V"..iCuLoad+1,table.concat( restriction, "*" ))
+			else
+				ply:SetPData("iCuLoad_R_Type"..iCuLoad+1,"string")
+				ply:SetPData("iCuLoad_R_V"..iCuLoad+1,restriction)
+			end
+		end
 		return true
 	end
 	return false
@@ -82,6 +91,8 @@ function removeIndexFromCuLoad(ply,ind)
 	end
 	
 	ply:RemovePData("iCuLoad_"..ind)
+	ply:RemovePData("iCuLoad_R_Type"..ind)
+	ply:RemovePData("iCuLoad_R_V"..ind)
 	local removed = array[ind]
 	table.remove(array,ind)
 	
@@ -107,7 +118,11 @@ function getWeaponsFromCuLoad(ply)
 	local iCuLoad = tonumber(ply:GetPData("iCuLoadNumb","0"))
 	local array = {}
 	for i=1,iCuLoad do 
-		table.insert(array,ply:GetPData("iCuLoad_"..i,"-1"))
+		local data = {}
+		data.wep = ply:GetPData("iCuLoad_"..i,"-1")
+		data.vtype = ply:GetPData("iCuLoad_R_Type"..i,"-1")
+		data.rv = ply:GetPData("iCuLoad_R_V"..i,"-1")
+		table.insert(array,data)
 	end
 	return array
 end
