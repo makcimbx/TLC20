@@ -50,6 +50,7 @@ TREE.TeamAllowed = {
 	["fisto"] = true,
 	["ti"] = true,
 	["tano5"] = true,
+	["jedimco"] = true,
 }
 
 TREE.Tier = {}

@@ -47,6 +47,7 @@ TREE.TeamAllowed = {
 	["Sentinel"] = true,
 	["Echo"] = true,
 	["jedibattlemaster"] = true,
+	["jedims"] = true,
 }
 
 TREE.Tier = {}

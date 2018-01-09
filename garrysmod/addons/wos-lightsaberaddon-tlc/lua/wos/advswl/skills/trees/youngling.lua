@@ -69,6 +69,9 @@ TREE.TeamAllowed = {
 	["tano5"] = true,
 	["tano6"] = true,
 	["tano7"] = true,
+	["jedimg"] = true,
+	["jedimco"] = true,
+	["jedims"] = true,
 }
 
 TREE.Tier = {}
