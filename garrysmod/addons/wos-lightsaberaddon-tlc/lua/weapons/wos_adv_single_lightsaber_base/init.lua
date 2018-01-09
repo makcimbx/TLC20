@@ -395,12 +395,12 @@ function SWEP:SetStandard( ply )
 	
 	timer.Simple( 0.5, function()
 		if self.UseSkills then
-			--if not self.SkillsApplied then
+			if not self.SkillsApplied then
 				for _, deploy in ipairs( ply.PlayerSaberDeploys ) do
 					deploy( self )
 				end
-				--self.SkillsApplied = true
-			--end
+				self.SkillsApplied = true
+			end
 		end
 	end )
 

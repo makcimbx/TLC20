@@ -160,7 +160,7 @@ TREE.Tier[3][1] = {
 	--OnPlayerDeath = function( ply ) end,
 	OnSaberDeploy = function( wep ) 
 		wep.SaberDamage = wep.SaberDamage*1.5 
-		wep.MaxForce = wep.MaxForce*0.25
+		wep.MaxForce = wep:SetMaxForce( wep:GetMaxForce()*0.25 )
 	end,
 }
 

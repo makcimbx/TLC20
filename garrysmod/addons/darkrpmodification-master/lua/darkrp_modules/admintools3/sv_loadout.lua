@@ -1,3 +1,5 @@
+util.AddNetworkString("ever_scale")
+
 function GM:PlayerLoadout(ply)
     self.Sandbox.PlayerLoadout(self, ply)
 
@@ -158,7 +160,9 @@ local function change(ply, oldTeam, newTeam)
 	ply:SetMaxArmor(a)
 	ply:SetHealth(h)
 	CheckSpawnSkills(ply)
-	ply:bestSetSize(ply:getJobTable().scale or 1)
+	timer.Simple(0.1,function()
+		ply:bestSetSize(ply:getJobTable().scale or 1)
+	end)
 end
 hook.Add( "OnPlayerChangedTeam", "EverII_OnPlayerChangedTeam", change )
 

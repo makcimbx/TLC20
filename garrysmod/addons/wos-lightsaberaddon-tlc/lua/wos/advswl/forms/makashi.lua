@@ -9,7 +9,7 @@ FORM.Type = FORM_SINGLE
 --What user groups are able to use this form? And which stances?
 FORM.UserGroups = { 
 	["user"] = { 1 }, 
-	["jedi"] = { 1, 2, 3 },
+	["jedi"] = { 1, 2 },
 }
 
 FORM.Stances = {}

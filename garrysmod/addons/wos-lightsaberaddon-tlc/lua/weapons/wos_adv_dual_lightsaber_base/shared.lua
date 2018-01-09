@@ -76,6 +76,7 @@ SWEP.CombatTypeModel = false
 SWEP.Enabled = false
 SWEP.StanceCycle = {}
 SWEP.StanceCycle[ "Arrogant" ] = "ryoku_"
+SWEP.StanceCycle[ "Jar'Kai" ] = "ryoku_"
 SWEP.IsLightsaber = true
 SWEP.IsDualLightsaber = true
 SWEP.CurStance = 1

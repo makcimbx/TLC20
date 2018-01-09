@@ -64,6 +64,11 @@
 -- 	:SetPrice(450) -- руб
 -- )
 
+local STORE_ITEM = FindMetaTable("IGSItem")
+function STORE_ITEM:SetGlob()
+	self.Global = true
+	return self
+end
 
 
 /****************************************************************************
@@ -119,125 +124,135 @@ for k,v in pairs(serv_groups)do
 			:SetValidator(function(pl)
 				return serverguard.player:GetRank(pl) == v.rank, true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 			end)
-	).Global = true
+			:SetGlob()
+	)
 end
 ]]--
 MINIVIP:AddItem(
- IGS("Mini-VIP на месяц", "mini_vip_na_mesyac")
- 	:SetPrice(250)
- 	:SetTerm(30) -- 30 дней
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'mini-vip', 0, true)
+	IGS("Mini-VIP на месяц", "mini_vip_na_mesyac")
+	:SetPrice(250)
+	:SetTerm(30) -- 30 дней
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "mini-vip", 0, true)
 	end)
 	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'mini-vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+		return serverguard.player:GetRank(pl) == "mini-vip", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
 
 MINIVIP:AddItem(
- IGS("Mini-VIP навсегда", "mini_vip_navsegda")
- 	:SetPrice(625)
- 	:SetTerm(_NAVSEGDA_) -- навсегда
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'mini-vip', 0, true)
+	IGS("Mini-VIP навсегда", "mini_vip_navsegda")
+	:SetPrice(625)
+	:SetTerm(_NAVSEGDA_) -- навсегда
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "mini-vip", 0, true)
 	end)
 	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'mini-vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+		return serverguard.player:GetRank(pl) == "mini-vip", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
-	
-VIP:AddItem(
-IGS("VIP на месяц", "vip_na_mesyac")
- 	:SetPrice(500)
- 	:SetTerm(30) -- 30 дней
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'vip', 0, true)
-	end)
-	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
-	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
 
 VIP:AddItem(
- IGS("VIP навсегда", "vip_navsegda")
- 	:SetPrice(1250)
- 	:SetTerm(_NAVSEGDA_) -- навсегда
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'vip', 0, true)
+	IGS("VIP на месяц", "vip_na_mesyac")
+	:SetPrice(500)
+	:SetTerm(30) -- 30 дней
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "vip", 0, true)
 	end)
 	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'vip', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+		return serverguard.player:GetRank(pl) == "vip", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
-	
-ADMIN:AddItem(
-IGS("Admin на месяц", "admin_na_mesyac")
- 	:SetPrice(1000)
- 	:SetTerm(30) -- 30 дней
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'admin', 0, true)
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
+
+VIP:AddItem(
+	IGS("VIP навсегда", "vip_navsegda")
+	:SetPrice(1250)
+	:SetTerm(_NAVSEGDA_) -- навсегда
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "vip", 0, true)
 	end)
 	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'admin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+		return serverguard.player:GetRank(pl) == "vip", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
 
 ADMIN:AddItem(
- IGS("Admin навсегда", "admin_navsegda")
- 	:SetPrice(2500)
- 	:SetTerm(_NAVSEGDA_) -- навсегда
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'admin', 0, true)
+	IGS("Admin на месяц", "admin_na_mesyac")
+	:SetPrice(1000)
+	:SetTerm(30) -- 30 дней
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "admin", 0, true)
 	end)
 	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'admin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+		return serverguard.player:GetRank(pl) == "admin", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
-	
-SUPERADMIN:AddItem(
-IGS("Superadmin на месяц", "super_na_mesyac")
- 	:SetPrice(1500)
- 	:SetTerm(30) -- 30 дней
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'superadmin', 0, true)
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
+
+ADMIN:AddItem(
+	IGS("Admin навсегда", "admin_navsegda")
+	:SetPrice(2500)
+	:SetTerm(_NAVSEGDA_) -- навсегда
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "admin", 0, true)
 	end)
 	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'superadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+		return serverguard.player:GetRank(pl) == "admin", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
 
 SUPERADMIN:AddItem(
- IGS("Superadmin навсегда", "super_navsegda")
- 	:SetPrice(3750)
- 	:SetTerm(_NAVSEGDA_) -- навсегда
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'superadmin', 0, true)
+	IGS("Superadmin на месяц", "super_na_mesyac")
+	:SetPrice(1500)
+	:SetTerm(30) -- 30 дней
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "superadmin", 0, true)
 	end)
 	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'superadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+		return serverguard.player:GetRank(pl) == "superadmin", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
+
+SUPERADMIN:AddItem(
+	IGS("Superadmin навсегда", "super_navsegda")
+	:SetPrice(3750)
+	:SetTerm(_NAVSEGDA_) -- навсегда
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "superadmin", 0, true)
+	end)
+	:SetValidator(function(pl)
+		return serverguard.player:GetRank(pl) == "superadmin", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+	end)
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
 
 HEADADMIN:AddItem(
- IGS("HeadAdmin навсегда", "headadmin_navsegda")
- 	:SetPrice(5000)
- 	:SetTerm(_NAVSEGDA_) -- навсегда
- 	:SetOnActivate(function(pl)
-		serverguard.player:SetRank(pl, 'headadmin', 0, true)
+	IGS("HeadAdmin навсегда", "headadmin_navsegda")
+	:SetPrice(5000)
+	:SetTerm(_NAVSEGDA_) -- навсегда
+	:SetOnActivate(function(pl)
+		serverguard.player:SetRank(pl, "headadmin", 0, true)
 	end)
 	:SetValidator(function(pl)
-		return serverguard.player:GetRank(pl) == 'headadmin', true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
+		return serverguard.player:GetRank(pl) == "headadmin", true -- тут надо сменить группу, на такую-же, как и в :SetOnActivate
 	end)
- 	:SetCategory("SERVERGUARD группы")
-).Global = true
+	:SetCategory("SERVERGUARD группы")
+	:SetGlob()
+)
 
 /****************************************************************************
 	Донат группы FAdmin
@@ -269,29 +284,28 @@ HEADADMIN:AddItem(
 local LVL = IGS.NewGroup("Опыт")
 
 LVL:AddItem(
- IGS("7000 опыта","exp_7000")
- 	:SetPrice(1)
- 	:SetEXP(7000)
+IGS("14000 опыта","exp_14000")
+	:SetPrice(1)
+	:SetEXP(14000)
 	:SetStackable(true)
- 	:SetCategory("Система уровней")
-	
-).Global = true
+	:SetCategory("Система уровней")
+)
 
 LVL:AddItem(
- IGS("70000 опыта","exp_70000")
- 	:SetPrice(10)
- 	:SetEXP(70000)
+IGS("140000 опыта","exp_140000")
+	:SetPrice(10)
+	:SetEXP(140000)
 	:SetStackable(true)
- 	:SetCategory("Система уровней")
-).Global = true
+	:SetCategory("Система уровней")
+)
 
 LVL:AddItem(
- IGS("700000 опыта","exp_700000")
- 	:SetPrice(100)
- 	:SetEXP(700000)
+IGS("1400000 опыта","exp_1400000")
+	:SetPrice(100)
+	:SetEXP(1400000)
 	:SetStackable(true)
- 	:SetCategory("Система уровней")
-).Global = true
+	:SetCategory("Система уровней")
+)
 
 local weaponArray = { 
 --{id = "wep1", name="LL-30M",price=200,code="tfa_swch_ll30",model="models/weapons/w_LL30.mdl",time=21,disc="LL-30 - Бластерный пистолет компании «БласТех Индастриз». Урон: 55. Скор.Выстр. в мин.: 350RPM. Точность: Очень высокая.",restriction = nil}, 
@@ -319,59 +333,56 @@ for k,v in pairs(weaponArray)do
 		:SetCategory("Оружие")
 		:SetIcon(v.model, true) -- true значит, что указана моделька, а не ссылка
 		:SetDescription(v.disc)
-		.Global = true
+		:SetGlob()
 end
 
-	
+
 /****************************************************************************
 	Работы
 ****************************************************************************/
-	
-	
-
 local JEDI = IGS.NewGroup("Джедаи")
 
 local RC = IGS.NewGroup("RC")
 
 local jobnames = {
-	{name="RC Sev",id="rc_shadow",price=500,group=RC},
-	{name="RC Scorch",id="rc_fixer",price=500,group=RC},
-	{name="RC Gregor",id="rc_sev",price=500,group=RC},
-	{name="RC Fixer",id="rc_boss",price=500,group=RC},
-	{name="RC Boss",id="rc_gregor",price=500,group=RC},
-	{name="RC Archangel",id="rcscorch",price=500,group=RC},
-	{name="RC Contort",id="rc_black",price=500,group=RC},
-	{name="RC Eyeshard",id="rc_bosky",price=500,group=RC},
-	{name="RC Grip",id="rc_scraps",price=500,group=RC},
-	{name="RC Huskie",id="rc_throttle",price=500,group=RC},
-	{name="RC Kurz",id="rc_trigger",price=500,group=RC},
-	{name="RC Scorpion",id="rc_wookie",price=500,group=RC},
-	{name="RC Stripe",id="rc_archangel",price=500,group=RC},
-	{name="RC Watson",id="rc_grip",price=500,group=RC},
-	{name="RC Nuck",id="rc_eyeshard",price=500,group=RC},
-	{name="RC Price",id="rc_huskie",price=500,group=RC},
-	{name="RC Tranker",id="rc_stripe",price=500,group=RC},
-	{name="RC Acer",id="rc_kurz",price=500,group=RC},
-	{name="RC Headshot",id="rc_contort",price=500,group=RC},
-	{name="RC Grinder",id="rc_scorpion",price=500,group=RC},
-	{name="RC Thumbs",id="rc_watson",price=500,group=RC},
-	{name="Юнлинг",id="unling",price=400,group=JEDI},
-	{name="Джедай Падаван",id="jedi_padavan",price=500,group=JEDI},
-	{name="Джедай Рыцарь",id="jedi_ricar",price= 600,group=JEDI},
-	{name="Джедай Консул",id="jedi_consul",price=800,group=JEDI},
-	{name="Джедай Защитник",id="jedi_defender",price=800,group=JEDI},
-	{name="Джедай Страж",id="jedi_straz",price=800,group=JEDI},
-	{name="Джедай Боевого Назначения",id="jedi_boevogo_naznachenia",price=1000,group=JEDI},
+	{name = "RC Sev",id="rc_shadow",price=500,group=RC},
+	{name = "RC Scorch",id="rc_fixer",price=500,group=RC},
+	{name = "RC Gregor",id="rc_sev",price=500,group=RC},
+	{name = "RC Fixer",id="rc_boss",price=500,group=RC},
+	{name = "RC Boss",id="rc_gregor",price=500,group=RC},
+	{name = "RC Archangel",id="rcscorch",price=500,group=RC},
+	{name = "RC Contort",id="rc_black",price=500,group=RC},
+	{name = "RC Eyeshard",id="rc_bosky",price=500,group=RC},
+	{name = "RC Grip",id="rc_scraps",price=500,group=RC},
+	{name = "RC Huskie",id="rc_throttle",price=500,group=RC},
+	{name = "RC Kurz",id="rc_trigger",price=500,group=RC},
+	{name = "RC Scorpion",id="rc_wookie",price=500,group=RC},
+	{name = "RC Stripe",id="rc_archangel",price=500,group=RC},
+	{name = "RC Watson",id="rc_grip",price=500,group=RC},
+	{name = "RC Nuck",id="rc_eyeshard",price=500,group=RC},
+	{name = "RC Price",id="rc_huskie",price=500,group=RC},
+	{name = "RC Tranker",id="rc_stripe",price=500,group=RC},
+	{name = "RC Acer",id="rc_kurz",price=500,group=RC},
+	{name = "RC Headshot",id="rc_contort",price=500,group=RC},
+	{name = "RC Grinder",id="rc_scorpion",price=500,group=RC},
+	{name = "RC Thumbs",id="rc_watson",price=500,group=RC},
+	{name = "Юнлинг",id="unling",price=400,group=JEDI},
+	{name = "Джедай Падаван",id="jedi_padavan",price=500,group=JEDI},
+	{name = "Джедай Рыцарь",id="jedi_ricar",price= 600,group=JEDI},
+	{name = "Джедай Консул",id="jedi_consul",price=800,group=JEDI},
+	{name = "Джедай Защитник",id="jedi_defender",price=800,group=JEDI},
+	{name = "Джедай Страж",id="jedi_straz",price=800,group=JEDI},
+	{name = "Джедай Боевого Назначения",id="jedi_boevogo_naznachenia",price=1000,group=JEDI},
 }
 
 for k,v in pairs(jobnames)do
-	if(v.group=="nil")then
+	if !v.group then
 		IGS(v.name,v.id)
 			:SetCategory("Работы")
 			:SetPrice(v.price)
 			:SetOnActivate(function(ply) RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", ply:SteamID(),v.name ) end)
 			--:SetOnRemove(function(s64) RunConsoleCommand( "bwhitelist_remove_from_whitelist_steamid", s64,v.name ) end)
-			.Global = true
+			:SetGlob()
 	else
 		v.group:AddItem(
 			IGS(v.name,v.id)
@@ -379,7 +390,8 @@ for k,v in pairs(jobnames)do
 				:SetPrice(v.price)
 				:SetOnActivate(function(ply) RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", ply:SteamID(),v.name ) end)
 				--:SetOnRemove(function(s64) RunConsoleCommand( "bwhitelist_remove_from_whitelist_steamid", s64,v.name ) end)
- 		).Global = true
+				:SetGlob()
+		)
 	end
 end
 
@@ -387,53 +399,76 @@ local SKILLS = IGS.NewGroup("Скилы")
 local RESETSKILLS = IGS.NewGroup("Сброс скиллов")
 
 SKILLS:AddItem(
- IGS("1 скиллпоинт", "1skill")
- 	:SetPrice(25)
- 	:SetTerm(0)
- 	:SetOnActivate(function(pl)
+	IGS("1 скиллпоинт", "1skill")
+	:SetPrice(25)
+	:SetTerm(0)
+	:SetOnActivate(function(pl)
 		pl:AddSkillPoints(1)
 	end)
 	:SetCategory("Система скиллов")
-).Global = true
+	:SetGlob()
+)
 
 
 SKILLS:AddItem(
- IGS("5 скиллпоинт", "5skill")
- 	:SetPrice(115)
- 	:SetTerm(0)
- 	:SetOnActivate(function(pl)
-		pl:AddSkillPoints(1)
+	IGS("5 скиллпоинт", "5skill")
+	:SetPrice(125)
+	:SetTerm(0)
+	:SetOnActivate(function(pl)
+		pl:AddSkillPoints(5)
 	end)
 	:SetCategory("Система скиллов")
-).Global = true
+	:SetGlob()
+)
 
 
 SKILLS:AddItem(
- IGS("10 скиллпоинт", "10skill")
- 	:SetPrice(230)
- 	:SetTerm(0)
- 	:SetOnActivate(function(pl)
-		pl:AddSkillPoints(1)
+	IGS("10 скиллпоинт", "10skill")
+	:SetPrice(250)
+	:SetTerm(0)
+	:SetOnActivate(function(pl)
+		pl:AddSkillPoints(10)
 	end)
 	:SetCategory("Система скиллов")
-).Global = true
+	:SetGlob()
+)
 
 SKILLS:AddItem(
- IGS("50 скиллпоинт", "50skill")
- 	:SetPrice(1210)
- 	:SetTerm(0)
- 	:SetOnActivate(function(pl)
-		pl:AddSkillPoints(1)
+	IGS("50 скиллпоинт", "50skill")
+	:SetPrice(1250)
+	:SetTerm(0)
+	:SetOnActivate(function(pl)
+		pl:AddSkillPoints(50)
 	end)
 	:SetCategory("Система скиллов")
-).Global = true
+	:SetGlob()
+)
 
 RESETSKILLS:AddItem(
- IGS("1 очко сброса", "1skillrestore")
- 	:SetPrice(99)
- 	:SetTerm(0)
- 	:SetOnActivate(function(pl)
-		pl:AddSkillResetPoints(1)
+	IGS("1 очко сброса", "1skillrestore")
+	:SetPrice(100)
+	:SetTerm(0)
+	:SetOnActivate(function(pl)
+		pl:addResetPoints(1)
 	end)
 	:SetCategory("Система скиллов")
-).Global = true
+	:SetGlob()
+)
+
+
+hook.Add("IGS.OnSuccessPurchase","DoItemGlobal",function(pl, ITEM, isGlobal, iID)
+	if isGlobal then return end -- дальше делать нечего
+
+	if ITEM.Global then
+		-- IGS.MovePurchase(db_id, nil, fCallback)
+
+		if IGS.C.Inv_Enabled then
+			IGS.DeletePlayerInventoryItem(pl, iID, function(ok)
+				if !ok then return end
+				IGS.AddToInventory(pl, ITEM:UID(), true)
+			end)
+		else
+			print("Есть инвентари выключены, то пока работать не будет")
+		end
+	end
+end)

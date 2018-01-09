@@ -79,6 +79,16 @@ SWEP.StanceCycle[ "Defensive" ] = "judge_"
 SWEP.StanceCycle[ "Aggressive" ] = "phalanx_"
 SWEP.StanceCycle[ "Agile" ] = "ryoku_"
 SWEP.StanceCycle[ "Versatile" ] = "vanguard_"
+
+SWEP.StanceCycle[ "Makashi" ] = "phalanx_"
+SWEP.StanceCycle[ "Soresu" ] = "judge_"
+SWEP.StanceCycle[ "Ataru" ] = "ryoku_"
+SWEP.StanceCycle[ "Shien" ] = "judge_"
+
+SWEP.StanceCycle[ "Shien/Djem So" ] = "judge_"
+SWEP.StanceCycle[ "Shii-Cho" ] = "judge_"
+SWEP.StanceCycle[ "Saberstaff Form" ] = "vanguard_"
+
 SWEP.PlayerStances = {}
 SWEP.IsLightsaber = true
 SWEP.CurStance = 1
