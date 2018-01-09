@@ -49,17 +49,20 @@ function Kun_MakeMarker()
 	end
 	if(Kun_DrawHealth == 1 and ply:Alive()) then
 		if((Kun_allowedJobs[ply:getJobTable().command] or false)) then
+			local plp = ply:GetPos()
 			for k,v in pairs(ents.GetAll()) do
 				if(v != nil and v:IsValid() and v:GetClass() == "prop_ragdoll") then
-					local pos = v:GetPos():ToScreen()
-					local forczersad = Kun_DeathTime
-					if(Kun_AddExtraTime == 1) then
-						forczersad = forczersad + Kun_ExtraDeathTime
+					if(plp:Distance( v:GetPos() )<=1250)then
+						local pos = v:GetPos():ToScreen()
+						local forczersad = Kun_DeathTime
+						if(Kun_AddExtraTime == 1) then
+							forczersad = forczersad + Kun_ExtraDeathTime
+						end
+						draw.SimpleText( "Time: "..forczersad - math.ceil(CurTime() - v:GetNWInt("RagDeathTimeZ")), "TargetID", pos.x - 20, pos.y + 30, Color(250,250,250,255))
+						surface.SetDrawColor( 250, 250, 250, 255) 
+						surface.DrawRect(pos.x, pos.y, 10, 30 )
+						surface.DrawRect(pos.x - 10, pos.y + 10, 30, 10 )
 					end
-					draw.SimpleText( "Time: "..forczersad - math.ceil(CurTime() - v:GetNWInt("RagDeathTimeZ")), "TargetID", pos.x - 20, pos.y + 30, Color(250,250,250,255))
-					surface.SetDrawColor( 250, 250, 250, 255) 
-					surface.DrawRect(pos.x, pos.y, 10, 30 )
-					surface.DrawRect(pos.x - 10, pos.y + 10, 30, 10 )
 				end
 			end
 		end

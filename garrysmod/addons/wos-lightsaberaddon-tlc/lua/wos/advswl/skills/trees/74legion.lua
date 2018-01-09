@@ -116,7 +116,7 @@ TREE.Tier[2][2] = {
 TREE.Tier[3] = {}
 TREE.Tier[3][1] = {
 	Name = "Объём лечения 3",
-	Description = "Увеличивает объём лечения на 2 едениц",
+	Description = "Увеличивает объём лечения на 2 еденицы",
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 2,
 	Requirements = {
@@ -138,7 +138,7 @@ TREE.Tier[3][2] = {
 TREE.Tier[4] = {}
 TREE.Tier[4][1] = {
 	Name = "Объём лечения 4",
-	Description = "Увеличивает объём лечения на 2 едениц",
+	Description = "Увеличивает объём лечения на 2 еденицы",
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 3,
 	Requirements = {
@@ -159,6 +159,16 @@ TREE.Tier[4][2] = {
 
 TREE.Tier[5] = {}
 TREE.Tier[5][1] = {
+	Name = "Объём лечения 5",
+	Description = "Увеличивает объём лечения на 2 еденицы",
+	Icon = "wos/skilltrees/characterstats/health.png",
+	PointsRequired = 3,
+	Requirements = {
+	[4] = { 1 },
+	},
+	OnPlayerMedKitUse = function( ply,who,heal,speed ) return 2,0  end,
+}
+TREE.Tier[5][2] = {
 	Name = "Скорость лечения 5",
 	Description = "Увеличивает скорость лечения на 20%",
 	Icon = "wos/skilltrees/characterstats/health.png",
@@ -176,8 +186,7 @@ TREE.Tier[6][1] = {
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 25,
 	Requirements = {
-	[4] = { 2 },
-	[5] = { 1},
+	[5] = { 1, 2 },
 	},
 	OnPlayerMedKitUse = function( ply,who,heal,speed ) return heal*0.15,0.15  end,
 }
