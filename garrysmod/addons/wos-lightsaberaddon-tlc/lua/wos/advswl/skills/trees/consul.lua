@@ -50,6 +50,7 @@ TREE.TeamAllowed = {
 	["fisto"] = true,
 	["ti"] = true,
 	["tano5"] = true,
+	["jedimco"] = true,
 }
 
 TREE.Tier = {}
@@ -76,7 +77,7 @@ TREE.Tier[1][1] = {
 	Requirements = {},
 	--OnPlayerSpawn = function( ply ) end,
 	--OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) wep.MaxForce = wep.MaxForce + 20 end,
+	OnSaberDeploy = function( wep ) wep:SetMaxForce( wep:GetMaxForce() + 20 ) end,
 }
 
 TREE.Tier[1][2] = {
@@ -101,7 +102,7 @@ TREE.Tier[2][1] = {
 	},
 	--OnPlayerSpawn = function( ply ) end,
 	--OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) wep.MaxForce = wep.MaxForce + 30 end,
+	OnSaberDeploy = function( wep ) wep:SetMaxForce( wep:GetMaxForce() + 30 ) end,
 }
 
 TREE.Tier[2][2] = {
@@ -128,7 +129,7 @@ TREE.Tier[3][1] = {
 	},
 	--OnPlayerSpawn = function( ply ) end,
 	--OnPlayerDeath = function( ply ) end,
-	OnSaberDeploy = function( wep ) wep.MaxForce = wep.MaxForce + 50 end,
+	OnSaberDeploy = function( wep ) wep:SetMaxForce( wep:GetMaxForce() + 50 ) end,
 }
 
 TREE.Tier[3][2] = {
