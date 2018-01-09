@@ -176,7 +176,7 @@ TREE.Tier[6][1] = {
 	Icon = "wos/skilltrees/characterstats/health.png",
 	PointsRequired = 25,
 	Requirements = {
-	[4] = { 1,2 },
+	[4] = { 2 },
 	[5] = { 1},
 	},
 	OnPlayerMedKitUse = function( ply,who,heal,speed ) return heal*0.15,0.15  end,
