@@ -158,6 +158,7 @@ local function change(ply, oldTeam, newTeam)
 	ply:SetMaxArmor(a)
 	ply:SetHealth(h)
 	CheckSpawnSkills(ply)
+	ply:bestSetSize(ply:getJobTable().scale or 1)
 end
 hook.Add( "OnPlayerChangedTeam", "EverII_OnPlayerChangedTeam", change )
 
@@ -353,8 +354,9 @@ function meta:bestSetSize(scale)
 	self:SetHull(Vector(-16, -16, 0), Vector(16, 16, 72 * scale))
 	self:SetHullDuck(Vector(-16, -16, 0), Vector(16, 16, 36 * scale))
 	self:SetModelScale(scale,0)
-	--[[net.Start("ever_scale")
+	
+	net.Start("ever_scale")
 		net.WriteEntity(target)
 		net.WriteString(scale)
-	net.Broadcast()]]--
+	net.Broadcast()
 end

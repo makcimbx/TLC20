@@ -175,10 +175,8 @@ TEAM_501SGT = DarkRP.createJob("501-й Сержант", {
 	level = 30,
 	maxHP=500,
 	maxAM=100,	
+	scale=0.6,	
 	OnPlayerChangedTeam = function(ply)
-		if SERVER then
-			ply:bestSetSize(0.6)
-		end
 		timer.Simple(0.1,function()
 			ply:SetBodygroup(0,0) 
 			ply:SetBodygroup(1,1) 
@@ -3942,11 +3940,7 @@ TEAM_YODA = DarkRP.createJob("Йода", {
 	level = 0,
 	maxHP=2000,
 	maxAM=100,
-	OnPlayerChangedTeam = function(ply)
-		if SERVER then
-			ply:bestSetSize(0.6)
-		end
-	end,
+	scale=0.6,
 	vote = false,
 	category = "Jedi",
 	candemote = false,
@@ -4147,11 +4141,7 @@ TEAM_TANO = DarkRP.createJob("Асока", {
 	admin = 0,
 	maxHP=2000,
 	maxAM=100,	
-	OnPlayerChangedTeam = function(ply)
-		if SERVER then
-			ply:bestSetSize(0.9)
-		end
-	end,
+	scale = 0.9,
 	vote = false,
 	category = "Jedi",
 	candemote = false,
