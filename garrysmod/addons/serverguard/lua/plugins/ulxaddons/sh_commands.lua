@@ -12,6 +12,9 @@ function command:OnPlayerExecute(_, target, arguments)
 	local model = arguments[2];
 	
 	if(util.IsValidModel( model )) then
+		if(target.oldmodel==nil)then
+			target.oldmodel = target:GetModel()
+		end
 		target:SetModel(model)
 	end
 
@@ -31,6 +34,37 @@ end;
 serverguard.phrase:Add("english", "command_model", {
 	SERVERGUARD.NOTIFY.GREEN, "%s", SERVERGUARD.NOTIFY.WHITE, " has set ", SERVERGUARD.NOTIFY.RED, "%s", SERVERGUARD.NOTIFY.WHITE, " model to ",
 	SERVERGUARD.NOTIFY.GREEN, "%s",
+});
+serverguard.command:Add(command);
+
+
+local command = {};
+command.help		= "Set a player's default model.";
+command.command 	= "unmodel";
+command.arguments	= {"player"};
+command.permissions	= "Unmodel";
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+
+local defaultmodel = ""
+
+function command:OnPlayerExecute(_, target, arguments)
+	
+	if(target.oldmodel!=nil)then
+		target:SetModel(target.oldmodel)
+		target.oldmodel = nil
+	end
+
+	return true;
+end;
+
+function command:OnNotify(pPlayer, targets, arguments)
+
+	return SGPF("command_unmodel", serverguard.player:GetName(pPlayer), util.GetNotifyListForTargets(targets, true));
+
+end;
+
+serverguard.phrase:Add("english", "command_unmodel", {
+	SERVERGUARD.NOTIFY.GREEN, "%s", SERVERGUARD.NOTIFY.WHITE, " has set ", SERVERGUARD.NOTIFY.RED, "%s", SERVERGUARD.NOTIFY.WHITE, " default model ",
 });
 serverguard.command:Add(command);
 
@@ -67,6 +101,31 @@ serverguard.phrase:Add("english", "command_scale", {
 	SERVERGUARD.NOTIFY.GREEN, "%s", SERVERGUARD.NOTIFY.WHITE, " has set ", SERVERGUARD.NOTIFY.RED, "%s", SERVERGUARD.NOTIFY.WHITE, " scale to ",
 	SERVERGUARD.NOTIFY.GREEN, "%d",
 });
+serverguard.command:Add(command);
+
+
+command = {};
+command.help		= "Silently slay players";
+command.command 	= "sslay";
+command.arguments	= {"player"};
+command.permissions	= "Sslay"; 
+command.immunity 	= SERVERGUARD.IMMUNITY.LESSOREQUAL;
+
+function command:OnPlayerExecute(_, target, arguments)
+	
+	target:KillSilent()
+
+	return true;
+end;
+
+function command:OnNotify(pPlayer, targets, arguments)
+	for k,v in pairs(targets)do
+		targets[k] = "'"..v:Name().."'"
+	end
+	print("[sslay] "..pPlayer:Name().." ["..pPlayer:SteamID().."] silent kill "..table.concat(targets,", "))
+	return ""
+end;
+
 serverguard.command:Add(command);
 
 

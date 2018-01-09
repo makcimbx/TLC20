@@ -24,7 +24,7 @@ SWEP.Primary.Recoil = 0
 SWEP.Primary.ClipSize  = -1
 SWEP.Primary.DefaultClip = 1
 SWEP.Primary.Automatic  = true
-SWEP.Primary.Delay = 0.1
+SWEP.Primary.Delay = 0.3
 SWEP.Primary.Ammo = "none"
 
 SWEP.Secondary.Recoil = 0
@@ -36,7 +36,7 @@ SWEP.Secondary.Ammo = "none"
 
 function SWEP:PrimaryAttack()
     self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
-
+	if CLIENT then return end
     local found
     local lastDot = -1 -- the opposite of what you're looking at
     self:GetOwner():LagCompensation(true)
@@ -59,17 +59,26 @@ function SWEP:PrimaryAttack()
     self:GetOwner():LagCompensation(false)
 
     if found then
-        found:SetHealth(found:Health() + 1)
-        self:EmitSound("hl1/fvox/boop.wav", 150, found:Health() / found:GetMaxHealth() * 100, 1, CHAN_AUTO)
+		if found:Health() < found:GetMaxHealth() then
+			local heal,speed = self:GetOwner():GetHealBonus(found)
+			self.Primary.Delay = speed
+			self.Secondary.Delay = speed
+			found:SetHealth(math.Clamp(found:Health() + heal,0,found:GetMaxHealth()))
+			self:EmitSound("hl1/fvox/boop.wav", 150, found:Health() / found:GetMaxHealth() * 100, 1, CHAN_AUTO)
+		end
     end
 end
 
 function SWEP:SecondaryAttack()
     self:SetNextSecondaryFire(CurTime() + self.Secondary.Delay)
+	if CLIENT then return end
     local ply = self:GetOwner()
     local maxhealth = self:GetOwner():GetMaxHealth() or 100
     if ply:Health() < maxhealth then
-        ply:SetHealth(ply:Health() + 1)
+		local heal,speed = ply:GetHealBonus(ply)
+		self.Primary.Delay = speed
+		self.Secondary.Delay = speed
+        ply:SetHealth(math.Clamp(ply:Health() + heal,0,maxhealth))
         self:EmitSound("hl1/fvox/boop.wav", 150, ply:Health() / ply:GetMaxHealth() * 100, 1, CHAN_AUTO)
     end
 end

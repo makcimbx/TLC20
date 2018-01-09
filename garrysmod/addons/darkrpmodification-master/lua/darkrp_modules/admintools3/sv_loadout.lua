@@ -38,7 +38,19 @@ function GM:PlayerLoadout(ply)
     ply:SwitchToDefaultWeapon()
 end
 
-local meta = FindMetaTable( "Player" );
+local meta = FindMetaTable( "Player" )
+
+function meta:GetHealBonus(who)
+	local hp_b = 1
+	local hp_sp = 0.3
+	for _, v in pairs( self.PlayerMedKitUse or {} ) do
+		local heal,speed = v(self,who,hp_b,hp_sp)
+		hp_b = hp_b + heal
+		hp_sp = hp_sp - hp_sp*speed
+	end
+	return hp_b,hp_sp
+end
+
 function meta:checkTree(tree)
 	local curTree = self.maintree
 	

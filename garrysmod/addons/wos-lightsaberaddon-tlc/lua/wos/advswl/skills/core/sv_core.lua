@@ -122,6 +122,33 @@ function meta:SetCurrentSkillHooks()
 			end
 		end
 	end
+
+	self.PlayerMedKitUse = {}
+	for name, _ in pairs( tbl ) do
+		local sdata = wOS.SkillTrees[ name ]
+		if sdata then
+			if sdata.JobRestricted then
+				local found = false
+				for _, job in pairs( sdata.JobRestricted ) do
+					if _G[ job ] == self:Team() then 
+						found = true
+						break 
+					end
+				end
+				if not found then continue end
+			end
+			if sdata.TeamAllowed then
+				if not (sdata.TeamAllowed[self:getJobTable().command] or false) then
+					continue
+				end
+			end
+			for skill, data in pairs( tbl[ name ] ) do
+				if data.OnPlayerMedKitUse then
+					self.PlayerMedKitUse[ #self.PlayerMedKitUse + 1 ] = data.OnPlayerMedKitUse
+				end
+			end
+		end
+	end
 	
 	self.PlayerSkillDeaths = {}
 	for name, _ in pairs( tbl ) do
