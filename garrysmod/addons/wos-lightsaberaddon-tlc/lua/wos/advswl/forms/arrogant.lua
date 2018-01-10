@@ -7,7 +7,7 @@ FORM.Name = "Arrogant"
 FORM.Type = FORM_DUAL
 
 --What user groups are able to use this form? And which stances?
-FORM.UserGroups = false
+FORM.UserGroups = {}
 
 FORM.Stances = {}
 FORM.Stances[1] = {

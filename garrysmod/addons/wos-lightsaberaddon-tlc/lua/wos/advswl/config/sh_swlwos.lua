@@ -37,6 +37,6 @@ hook.Add( "PostGamemodeLoaded", "wOS.AddJobsForForms", function()
 
 
 --This is where you'd select the usergroups that should have access to ALL forms and stances!
-wOS.AllAccessForms = { "superadmin", "admin", "senioradmin", "headadmin", "founder", "seniormoderator", "moderator", "gamemaster", "staffmanager", "VIP", "user" }
+wOS.AllAccessForms = { "superadmin", "commander", "admin", "headadmin", "founder", "senior_moderator", "moderator", "moderator_intern", "vip", "user", "headiventmaker", "iventmaker", "mini-vip", }
 
 end )

@@ -7,7 +7,7 @@ FORM.Name = "Saberstaff Form"
 FORM.Type = FORM_SINGLE
 
 --What user groups are able to use this form? And which stances?
-FORM.UserGroups = false
+FORM.UserGroups = {}
 
 FORM.Stances = {}
 
