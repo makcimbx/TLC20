@@ -7,9 +7,7 @@ FORM.Name = "Versatile"
 FORM.Type = FORM_SINGLE
 
 --What user groups are able to use this form? And which stances?
-FORM.UserGroups = { 
-	["VIP"] = { 1, 2, 3 },
-}
+FORM.UserGroups = false
 
 FORM.Stances = {}
 

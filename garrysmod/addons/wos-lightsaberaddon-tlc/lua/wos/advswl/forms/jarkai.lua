@@ -7,9 +7,7 @@ FORM.Name = "Jar'Kai"
 FORM.Type = FORM_DUAL
 
 --What user groups are able to use this form? And which stances?
-FORM.UserGroups = { 
-	["jedi"] = { 1, 2 },
-}
+FORM.UserGroups = false
 
 FORM.Stances = {}
 FORM.Stances[1] = {
