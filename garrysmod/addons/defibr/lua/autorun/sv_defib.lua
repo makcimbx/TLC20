@@ -14,8 +14,8 @@ Kun_DefibChargeAmtNeed = 2 --Amt of charges needed to revive someone.
 Kun_DefibChargeTime = 2 --Time between charges.
 Kun_SaveCharges = 1 --Set to 0 to make it so they don't have to recharge if they switch weapons.
 
-Kun_RespawnTime = 10 --Time between player respawn.
-Kun_DeathTime = 10 --Time spent between life and death.
+Kun_RespawnTime = 60 --Time between player respawn.
+Kun_DeathTime = 60 --Time spent between life and death.
 
 Kun_DrawHealth = 1 --Set to 0 to disable the white cross shown on death
 Kun_DeathText = "Респавн через. . " --Text to display on death.
