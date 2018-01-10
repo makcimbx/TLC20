@@ -4,13 +4,13 @@ local function makesomedo(ply, args)
         return ""
     end
 	
-	local babycol = team.GetColor(ply:Team())
+	--local babycol = team.GetColor(ply:Team())
 
     local DoSay = function(text)
 		local ents = ents.FindInSphere(ply:EyePos(), 250)
         for k, v in pairs(ents) do
 			if v:IsPlayer() then
-				serverguard.Notify(v, babycol, ply:GetName().." ",  args);
+				serverguard.Notify(v, Color(255,255,0), args, " ("..ply:GetName()..")");
 			end
 		end
     end
