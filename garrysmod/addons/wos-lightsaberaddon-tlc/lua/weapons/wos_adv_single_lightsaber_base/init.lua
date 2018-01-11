@@ -390,6 +390,10 @@ function SWEP:SetStandard( ply )
 		self:SetNW2Bool( "SWL_CustomAnimCheck", true )
 		self:SetNW2Int("Stance", self.Stances[ self:GetForm() ][1] )
 	end
+	print("pidor")
+	PrintTable(self.Stances)
+	print(#self.Stances)
+	print("pidor")
 	
 	self:LoadToolValues( ply )	
 	
