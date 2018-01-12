@@ -71,7 +71,19 @@ SWEP.ForcePowerList = { "Force Leap", "Force Absorb", "Force Heal", "Group Heal"
 }
 ]]--
 
-SWEP.UseForms = {}
+SWEP.UseForms = { 
+	["Ataru"] = { 1, 2 }, 
+	["Makashi"] = { 1, 2 }, 
+	["Aggressive"] = { 1, 2, 3 }, 
+	["Agile"] = { 1, 2, 3 }, 
+	--["Arrogant"] = { 1, 2, 3 },--dual 
+	["Defensive"] = { 1, 2, 3 }, 
+	--["Jar'Kai"] = { 1, 2, 3 },--dual 
+	["Saberstaff Form"] = { 1, 2, 3 }, 
+	["Shii-Cho"] = { 1 }, 
+	["Shien/Djem So"] = { 1, 2 }, 
+	["Versatile"] = { 1, 2, 3 }, 
+}
 
 --Use these options to overwrite the player's commands
 SWEP.UseHilt = false -- Model path of the hilt

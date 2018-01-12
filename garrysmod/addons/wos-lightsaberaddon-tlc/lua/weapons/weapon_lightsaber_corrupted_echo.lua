@@ -76,7 +76,17 @@ SWEP.CustomSettings = {}
 }
 ]]--
 
-SWEP.UseForms = {}
+SWEP.UseForms = { 
+	["Ataru"] = { 1, 2 }, 
+	["Makashi"] = { 1, 2 }, 
+	["Aggressive"] = { 1, 2, 3 }, 
+	["Agile"] = { 1, 2, 3 }, 
+	["Defensive"] = { 1, 2, 3 }, 
+	["Saberstaff Form"] = { 1, 2, 3 }, 
+	["Shii-Cho"] = { 1 }, 
+	["Shien/Djem So"] = { 1, 2 }, 
+	["Versatile"] = { 1, 2, 3 }, 
+}
 
 --Use these options to overwrite the player's commands
 SWEP.UseHilt = false -- Model path of the hilt

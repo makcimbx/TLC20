@@ -76,7 +76,10 @@ SWEP.CustomSettings = {}
 }
 ]]--
 
-SWEP.UseForms = {}
+SWEP.UseForms = { 
+	["Arrogant"] = { 1, 2, 3 },--dual 
+	["Jar'Kai"] = { 1, 2, 3 },--dual 
+}
 
 --Use these options to overwrite the player's commands
 SWEP.UseHilt = "models/sgg/starwars/weapons/w_maul_saber_half_hilt.mdl" -- Model path of the hilt
