@@ -79,7 +79,7 @@ SWEP.CustomSettings =
 }
 ]]--
 
-SWEP.UseForms = false
+SWEP.UseForms = {}
 
 --Use these options to overwrite the player's commands
 SWEP.UseHilt = false -- Model path of the hilt
