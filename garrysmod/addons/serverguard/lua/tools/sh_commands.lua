@@ -530,7 +530,7 @@ command.permissions			= "Goto";
 command.bDisallowConsole	= true;
 command.bSingleTarget		= true;
 command.immunity 			= SERVERGUARD.IMMUNITY.ANY;
-command.aliases				= {"tp", "teleport"};
+--command.aliases				= {"tp", "teleport"};
 
 function command:OnPlayerExecute(player, target)
 	local position = serverguard:playerSend(player, target, true);
