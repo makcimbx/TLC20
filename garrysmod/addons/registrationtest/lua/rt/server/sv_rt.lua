@@ -58,7 +58,6 @@ net.Receive("checkanswers", function(l, pl)
 	if pl.allgood then
 		sql.Query("INSERT INTO `rt_players` (`steamid`, `name`, `pass`) VALUES ('" .. pl:SteamID() .. "', '" .. pl:Nick() .. "', 'true')")
 		net.Start("rtresults")
-			net.WriteBool( true )
 		net.Send( pl )
 	else
 		pl.Attempts = pl.Attempts - 1
@@ -70,7 +69,6 @@ net.Receive("checkanswers", function(l, pl)
 			end
 		else
 			net.Start("rtresults")
-				net.WriteBool( false )
 				net.WriteString( pl.Attempts )
 			net.Send( pl )
 		end
@@ -79,10 +77,10 @@ end)
 
 net.Receive("addnagrada",function(l,pl)
 	if(pl.allgood == true)then
-		local id = tonumber(net.ReadString())
-		local d = DarkRP.getJobByCommand(rtLang.Legions[id].cmd)
+		--local id = tonumber(net.ReadString())
+		local d = DarkRP.getJobByCommand("CTtrp")--rtLang.Legions[id].cmd)
 		pl:changeTeam(d.team,true,true)
-		RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", pl:SteamID(), rtLang.Legions[id].prof )
+		RunConsoleCommand( "bwhitelist_add_to_whitelist_steamid", pl:SteamID(), d.name )
 		pl:addXP(pl.trainXp, true)
 		if(IsValid(pl.sempai))then
 			pl.sempai:addXP(10000, true)

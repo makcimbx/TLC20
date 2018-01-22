@@ -340,14 +340,20 @@ end
 
 net.Receive("rtresults", function()
 
-	if net.ReadBool() then
+	--[[if net.ReadBool() then
 		Legion()
 	else
 		local mainFrame = vgui.Create("DAlert")
 		mainFrame:SetTitle(string.format( rtLang.failedTitle, net.ReadString() ))
 		mainFrame:SetText(rtLang.failedText)
 		mainFrame.okTxt = rtLang.failedOk
-	end
+	end]]--
+			local mainFrame = vgui.Create("DAlert")
+			mainFrame:SetTitle(rtLang.passedTitle)
+			mainFrame:SetText(rtLang.passedText)
+			mainFrame.okTxt = rtLang.passedOk
+			mainFrame.cancelTxt1 = rtLang.passedCancel
+			mainFrame:Passed()
 
 end)
 	

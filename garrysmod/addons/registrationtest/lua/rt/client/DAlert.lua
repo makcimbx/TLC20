@@ -113,9 +113,9 @@ function PANEL:Passed()
 	self.sendbutton.DoClick = function()
 		self.mainFrame:Close()
 		net.Start("addnagrada")
-			net.WriteString(LocalPlayer().legion)
+			--net.WriteString(LocalPlayer().legion)
 		net.SendToServer()
-		LocalPlayer().legion = nil
+		--LocalPlayer().legion = nil
 	end
 	self.cancelbutton:SetVisible(false)
 end
